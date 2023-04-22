@@ -51,10 +51,6 @@ export default function SignUp() {
             <Typography
               variant="h1"
               ml="13px"
-              sx={{
-                fontSize: '42px',
-                fontWeight: 900,
-              }}
             >
               Join Twitter today
             </Typography>
