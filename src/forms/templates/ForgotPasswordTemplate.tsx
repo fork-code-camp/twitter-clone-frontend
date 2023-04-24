@@ -2,15 +2,7 @@ import { Box, Typography, TextField, Button, Container } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 
-type Props = {}
-
-const LoginPageTemplate = (props: Props) => {
-  const {} = props
-
-  const linkStyle = {
-    color: '#1da1f2',
-  }
-
+const ForgotPasswordTemplate = () => {
   return (
     <Box
       sx={{
@@ -52,17 +44,31 @@ const LoginPageTemplate = (props: Props) => {
             color: '#000000',
           }}
         >
-          Log in to Twitter
+          Forgot password
         </Typography>
+        <Container>
+          <Typography
+            variant="h5"
+            component="h5"
+            sx={{
+              fontFamily: 'SF Compact Display',
+              fontStyle: 'normal',
+              fontWeight: '500',
+              fontSize: '18px',
+              lineHeight: '21px',
+
+              textAlign: 'center',
+
+              color: '#5B7083',
+            }}
+          >
+            Enter your email and we will send you a link to reset your password
+          </Typography>
+        </Container>
 
         <TextField
           InputProps={{ sx: { height: 70 } }}
           placeholder="Email address"
-        />
-        <TextField
-          type="password"
-          InputProps={{ sx: { height: 70 } }}
-          placeholder="Password"
         />
 
         <Button
@@ -77,28 +83,24 @@ const LoginPageTemplate = (props: Props) => {
             color: '#ffffff',
           }}
         >
-          Log in
+          Submit
         </Button>
         <Box
           sx={{
             mt: '15px',
-            width: '100%',
 
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
 
             fontFamily: 'SF Compact Display',
             fontStyle: 'normal',
             fontWeight: '400',
-            fontSize: { xs: 15, sm: 18 },
+            fontSize: '18px',
             lineHeight: '21px',
           }}
         >
-          <Link href="./../forgotpassword" style={linkStyle}>
-            Forgot password?
-          </Link>
-          <Link href="./../signup" style={linkStyle}>
-            Sign up to Twitter
+          <Link href="./../login" style={{ color: '#1da1f2' }}>
+            Back to Login
           </Link>
         </Box>
       </Box>
@@ -106,4 +108,4 @@ const LoginPageTemplate = (props: Props) => {
   )
 }
 
-export default LoginPageTemplate
+export default ForgotPasswordTemplate
