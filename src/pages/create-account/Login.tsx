@@ -66,7 +66,7 @@ const Login = (props: Props) => {
             fontSize: 'San Francisco Text Semibold',
           }}
         >
-          Sign up
+          Sign ups
         </Button>
       </Container>
     </Box>
