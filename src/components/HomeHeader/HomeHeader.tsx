@@ -16,10 +16,10 @@ const HomeHeader = () => {
         gap: '0 13px',
         maxWidth: { xs: '320px', md: '600px' },
         padding: '10px 15px',
-        border: '1px solid #ebeef0',
       }}
     >
       <Typography
+        component="span"
         fontWeight={700}
         fontSize={19}
         lineHeight="23px"

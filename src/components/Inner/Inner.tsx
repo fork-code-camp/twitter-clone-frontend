@@ -1,16 +1,20 @@
 import { Box, Container } from '@mui/material';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import InnerActions from './InnerActions';
-import InnerAvatar from './InnerAvatar';
+import Avatar from '@/common/Avatar';
 import InnerButton from './InnerButton';
 import InnerInput from './InnerInput';
 
-const Inner = () => {
+type IInner = {
+  avatarImg: string;
+  avatarAlt: string;
+};
+
+const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
   const [inputValue, setInputValue] = useState('');
 
   function onChangeInput(value: string) {
     setInputValue(value);
-    console.log('value: ' + inputValue);
   }
 
   return (
@@ -22,13 +26,9 @@ const Inner = () => {
         gap: '0 13px',
         maxWidth: { xs: '320px', md: '600px' },
         padding: '10px 15px',
-        border: '1px solid #ebeef0',
       }}
     >
-      <InnerAvatar
-        img={require('@/data/configInner/avatar/TempAvatar.png')}
-        alt="temp"
-      />
+      <Avatar img={avatarImg} alt={avatarAlt} />
       <Box
         sx={{
           display: 'flex',

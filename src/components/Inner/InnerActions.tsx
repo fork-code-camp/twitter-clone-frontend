@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton, ListItemIcon } from '@mui/material';
-import configInnerActions from '@/data/configInner/actionList/configInnerActions';
+import configInnerActions from '@/data/configInner/configActions';
 
 const onClick = (itemId: number) => {
   console.log('InnerActions: id ' + itemId);

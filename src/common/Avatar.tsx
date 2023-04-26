@@ -3,7 +3,7 @@ import { FC } from 'react';
 import Image from 'next/image';
 import { Box, IconButton } from '@mui/material';
 
-type IInnerAvatar = {
+type IAvatar = {
   img: string;
   alt: string;
 };
@@ -12,7 +12,7 @@ const onClick = () => {
   console.log('avatar click');
 };
 
-const InnerAvatar: FC<IInnerAvatar> = ({ img, alt }) => {
+const Avatar: FC<IAvatar> = ({ img, alt }) => {
   return (
     <Box
       sx={{
@@ -25,10 +25,10 @@ const InnerAvatar: FC<IInnerAvatar> = ({ img, alt }) => {
       onClick={() => onClick()}
     >
       <IconButton sx={{ p: 0 }}>
-        <Image src={img} alt={alt} />
+        <Image width={48} height={48} src={img} alt={alt} />
       </IconButton>
     </Box>
   );
 };
 
-export default InnerAvatar;
+export default Avatar;
