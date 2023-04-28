@@ -27,13 +27,21 @@ const LikeToggle: FC<ILikeToggle> = ({ count, selected, onChangeLike }) => {
           selectedBtn ? likeCount - 1 : likeCount + 1
         );
       }}
-      sx={{ display: 'flex', alignItems: 'center', gap: 1.25, p: 0 }}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 1.25,
+        p: 0,
+        background: 'none!important',
+        border: 'none',
+        minWidth: '50px',
+      }}
     >
-      <Box sx={{display: 'flex', strokeWidth: 2 }}>
+      <Box sx={{ display: 'flex', strokeWidth: 2 }}>
         <LikeSVG
           style={{
             stroke: selectedBtn ? selectedColor : notSelectedColor,
-            fill: selectedBtn && selectedColor,
+            fill: selectedBtn ? selectedColor : 'none',
           }}
         />
       </Box>

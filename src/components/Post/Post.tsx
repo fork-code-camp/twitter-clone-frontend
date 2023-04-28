@@ -6,6 +6,7 @@ import PassedTime from '@/common/PassedTime';
 import PostContent from './PostContent';
 
 type IPost = {
+  id: string;
   avatarImg: string;
   avatarAlt: string;
   userName: string;
@@ -14,8 +15,17 @@ type IPost = {
   postText?: string;
   postImg?: string;
   postAlt?: string;
+  likeCount: number;
+  commentCount: number;
+  retweetCount: number;
+  shareCount: number;
+  likeSelected?: boolean;
+  commentSelected?: boolean;
+  retweetSelected?: boolean;
+  shareSelected?: boolean;
 };
 const Post: FC<IPost> = ({
+  id,
   avatarImg,
   avatarAlt,
   userName,
@@ -24,9 +34,18 @@ const Post: FC<IPost> = ({
   postText,
   postImg,
   postAlt,
+  likeCount,
+  commentCount,
+  retweetCount,
+  shareCount,
+  likeSelected,
+  commentSelected,
+  retweetSelected,
+  shareSelected,
 }) => {
   return (
     <Container
+      id={id}
       disableGutters
       sx={{
         display: 'flex',
@@ -49,7 +68,19 @@ const Post: FC<IPost> = ({
           <UserHeader name={userName} tag={userTag} />
           <PassedTime date={userPassedTime} />
         </Box>
-        <PostContent text={postText} img={postImg} alt={postAlt} />
+        <PostContent
+          text={postText}
+          img={postImg}
+          alt={postAlt}
+          likeCount={likeCount}
+          likeSelected={likeSelected}
+          commentCount={commentCount}
+          commentSelected={commentSelected}
+          retweetCount={retweetCount}
+          retweetSelected={retweetSelected}
+          shareCount={shareCount}
+          shareSelected={shareSelected}
+        />
       </Box>
     </Container>
   );
