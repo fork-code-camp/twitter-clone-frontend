@@ -53,7 +53,7 @@ const PostContent: FC<IPostContent> = ({
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-        width: { xs: '200px', md: '450px' },
+        width: { xs: '200px', md: '510px' },
       }}
     >
       <Typography component="span">{text}</Typography>
@@ -70,7 +70,6 @@ const PostContent: FC<IPostContent> = ({
           <Image
             style={{ width: 'inherit', height: 'inherit' }}
             placeholder="blur"
-            objectFit="contain"
             unoptimized
             src={img}
             alt={alt}

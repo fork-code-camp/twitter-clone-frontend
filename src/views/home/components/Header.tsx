@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Container, IconButton, Typography } from '@mui/material';
 import TopTweet from '@/assets/TopTweet.svg';
 
 const onClick = () => {
-  console.log('HomeHeader click');
+  console.log('Header click');
 };
 
-const HomeHeader = () => {
+interface IHomeHeader {
+  title: string;
+}
+
+const Header: FC<IHomeHeader> = ({ title }) => {
+  const lightThemeFontColor = '#0F1419';
+  // const darkThemeFontColor = '#e7e9ea';
+  const iconColor = '#1DA1F2';
+
   return (
     <Container
       disableGutters
@@ -19,19 +27,19 @@ const HomeHeader = () => {
       }}
     >
       <Typography
-        component="span"
+        variant='h2'
         fontWeight={700}
         fontSize={19}
         lineHeight="23px"
-        color="#0F1419"
+        color={lightThemeFontColor}
       >
-        Home
+        {title}
       </Typography>
-      <IconButton sx={{ m: 0, p: 0 }} onClick={() => onClick()}>
-        <TopTweet style={{ fill: '#1DA1F2' }} />
+      <IconButton sx={{ m: 0, p: 0 }} onClick={onClick}>
+        <TopTweet style={{ fill: iconColor }} />
       </IconButton>
     </Container>
   );
 };
 
-export default HomeHeader;
+export default Header;

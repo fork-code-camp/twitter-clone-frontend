@@ -1,8 +1,7 @@
-import { Box, Container } from '@mui/material';
+import { Box, Button, Container } from '@mui/material';
 import React, { FC, useState } from 'react';
 import InnerActions from './InnerActions';
 import Avatar from '@/common/Avatar';
-import InnerButton from './InnerButton';
 import InnerInput from './InnerInput';
 
 type IInner = {
@@ -13,9 +12,7 @@ type IInner = {
 const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
   const [inputValue, setInputValue] = useState('');
 
-  function onChangeInput(value: string) {
-    setInputValue(value);
-  }
+  const isDisable = inputValue === '';
 
   return (
     <Container
@@ -37,7 +34,7 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
           width: 1,
         }}
       >
-        <InnerInput onChangeInput={onChangeInput} />
+        <InnerInput setInputValue={setInputValue} />
         <Box
           sx={{
             display: 'flex',
@@ -47,7 +44,19 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
           }}
         >
           <InnerActions />
-          <InnerButton inputValue={inputValue} />
+          <Button
+            type="submit"
+            disabled={isDisable}
+            variant="contained"
+            sx={{
+              borderRadius: '100px',
+              width: '77px',
+              height: '39px',
+              fontWeight: 700,
+            }}
+          >
+            Tweet
+          </Button>
         </Box>
       </Box>
     </Container>
