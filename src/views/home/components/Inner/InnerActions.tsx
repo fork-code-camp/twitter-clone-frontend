@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { IconButton, ListItemIcon } from '@mui/material';
 import ConfigActions from '@/data/configInner/configActions';
 
@@ -7,7 +7,7 @@ const InnerActions = () => {
   const iconColor = '#1DA1F2';
   const iconArray = ConfigActions({iconColor})
 
-  const onClick:FC = (itemId: number) => {
+  const onClick = (itemId: number) => {
     console.log('InnerActions: id ' + itemId);
   };
 
