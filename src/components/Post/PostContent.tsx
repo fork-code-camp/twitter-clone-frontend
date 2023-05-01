@@ -4,21 +4,7 @@ import Image from 'next/image';
 import PostActions from './PostActions';
 import { IPostContent } from '@/types/Post';
 
-function onChangeLike(likeCount: number) {
-  console.log('onChangeLike ', likeCount);
-}
 
-function onChangeComment() {
-  console.log('onChangeComment');
-}
-
-function onChangeRetweet() {
-  console.log('onChangeRetweet');
-}
-
-function onChangeShare() {
-  console.log('onChangeShare');
-}
 
 const PostContent: FC<IPostContent> = ({
   text,
@@ -67,16 +53,12 @@ const PostContent: FC<IPostContent> = ({
       <PostActions
         likeCount={likeCount}
         likeSelected={likeSelected}
-        onChangeLike={onChangeLike}
         commentCount={commentCount}
         commentSelected={commentSelected}
-        onChangeComment={onChangeComment}
         retweetCount={retweetCount}
         retweetSelected={retweetSelected}
-        onChangeRetweet={onChangeRetweet}
         shareCount={shareCount}
         shareSelected={shareSelected}
-        onChangeShare={onChangeShare}
       />
     </Container>
   );

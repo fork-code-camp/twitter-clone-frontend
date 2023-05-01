@@ -35,14 +35,10 @@ export interface IPostContent {
 export interface IPostActions {
   likeCount: number;
   likeSelected?: boolean;
-  onChangeLike: (likeCount: number) => void;
   commentCount: number;
   commentSelected?: boolean;
-  onChangeComment: () => void;
   retweetCount: number;
   retweetSelected?: boolean;
-  onChangeRetweet: () => void;
   shareCount: number;
   shareSelected?: boolean;
-  onChangeShare: () => void;
 };

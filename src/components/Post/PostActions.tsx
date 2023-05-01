@@ -1,24 +1,37 @@
 import React, { FC } from 'react';
 import { Container } from '@mui/material';
-import PostComment from './PostActionButtons/PostComment';
-import PostLikeToggle from './PostActionButtons/PostLikeToggle';
-import PostRetweet from './PostActionButtons/PostRetweet';
-import PostShare from './PostActionButtons/PostShare';
+import LikeToggle from './LikeToggle';
+import ActionButton from './ActionButton';
+import CommentSVG from '@/assets/Comment.svg';
+import RetweetSVG from '@/assets/Retweet.svg';
+import ShareSVG from '@/assets/Share.svg';
 import { IPostActions } from '@/types/Post';
+
+function onChangeLike(likeCount: number) {
+  console.log('onChangeLike ', likeCount);
+}
+
+function onChangeComment() {
+  console.log('onChangeComment');
+}
+
+function onChangeRetweet() {
+  console.log('onChangeRetweet');
+}
+
+function onChangeShare() {
+  console.log('onChangeShare');
+}
 
 const PostActions: FC<IPostActions> = ({
   likeCount,
   likeSelected,
-  onChangeLike,
   commentCount,
   commentSelected,
-  onChangeComment,
   retweetCount,
   retweetSelected,
-  onChangeRetweet,
   shareCount,
   shareSelected,
-  onChangeShare,
 }) => {
   return (
     <Container
@@ -29,25 +42,28 @@ const PostActions: FC<IPostActions> = ({
         justifyContent: 'space-between',
       }}
     >
-      <PostComment
+      <ActionButton
+        icon={<CommentSVG />}
         count={commentCount}
         selected={commentSelected}
-        onChange={onChangeComment}
+        onClick={onChangeComment}
       />
-      <PostRetweet
+      <ActionButton
+        icon={<RetweetSVG />}
         count={retweetCount}
         selected={retweetSelected}
-        onChange={onChangeRetweet}
+        onClick={onChangeRetweet}
       />
-      <PostLikeToggle
+      <LikeToggle
         count={likeCount}
         selected={likeSelected}
         onChangeLike={onChangeLike}
       />
-      <PostShare
+      <ActionButton
+        icon={<ShareSVG />}
         count={shareCount}
         selected={shareSelected}
-        onChange={onChangeShare}
+        onClick={onChangeShare}
       />
     </Container>
   );
