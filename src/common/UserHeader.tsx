@@ -2,7 +2,7 @@ import { Box, Container, IconButton, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import VerificationSVG from '@/assets/Verification.svg';
 
-type IUserHeader = {
+interface IUserHeader {
   name: string;
   tag: string;
   verified?: boolean;
@@ -10,9 +10,11 @@ type IUserHeader = {
 };
 
 const UserHeader: FC<IUserHeader> = ({ name, tag, verified, vertical }) => {
+  const iconColor = '#1DA1F2';
+  const fontColor = '#5B7083';
+
   return (
     <Container
-      component='span'
       disableGutters
       sx={{
         display: 'contents',
@@ -27,16 +29,16 @@ const UserHeader: FC<IUserHeader> = ({ name, tag, verified, vertical }) => {
           gap: '8px',
         }}
       >
-        <Typography component={'span'} fontWeight={700}>
+        <Typography variant="subtitle1" fontWeight={700}>
           {name}
         </Typography>
         {verified && (
           <IconButton sx={{ m: 0, p: 0 }}>
-            <VerificationSVG style={{ fill: '#1DA1F2' }} />
+            <VerificationSVG style={{ fill: iconColor }} />
           </IconButton>
         )}
       </Box>
-      <Typography component={'span'} color="#5B7083">
+      <Typography variant="subtitle1" color={fontColor}>
         @{tag}
       </Typography>
     </Container>

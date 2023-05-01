@@ -2,16 +2,24 @@ import React, { FC } from 'react';
 import { Box, ToggleButton, Typography } from '@mui/material';
 import CommentSVG from '@/assets/Comment.svg';
 
-type IPostComment = {
+interface IPostComment {
   count: number;
   selected?: boolean;
   onChange: () => void;
 };
 
-const notSelectedColor = '#5B7083';
-const selectedColor = '#1DA1F2';
-
 const PostComment: FC<IPostComment> = ({ count, selected, onChange }) => {
+  const notSelectedColor = '#5B7083';
+  const selectedColor = '#1DA1F2';
+  const toggleStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 1.25,
+    minWidth: '40px',
+    p: 0,
+    background: 'none!important',
+    border: 'none',
+  };
   return (
     <ToggleButton
       value="check"
@@ -19,17 +27,9 @@ const PostComment: FC<IPostComment> = ({ count, selected, onChange }) => {
       onChange={() => {
         onChange();
       }}
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 1.25,
-        p: 0,
-        background: 'none!important',
-        border: 'none',
-        minWidth: '50px',
-      }}
+      sx={toggleStyles}
     >
-      <Box component="span" sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex' }}>
         <CommentSVG
           style={{
             stroke: selected ? selectedColor : notSelectedColor,
@@ -38,7 +38,7 @@ const PostComment: FC<IPostComment> = ({ count, selected, onChange }) => {
         />
       </Box>
       <Typography
-        component="span"
+        variant="subtitle1"
         sx={{ color: notSelectedColor, lineHeight: 1.1 }}
       >
         {count}

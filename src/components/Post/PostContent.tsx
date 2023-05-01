@@ -3,7 +3,7 @@ import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
 import PostActions from './PostActions';
 
-type IPostContent = {
+interface IPostContent {
   text?: string;
   img?: string;
   alt?: string;

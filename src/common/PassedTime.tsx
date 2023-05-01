@@ -1,15 +1,15 @@
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
-type IPassedTime = {
+interface IPassedTime {
   date: string;
 };
 
 const PassedTime: FC<IPassedTime> = ({ date }) => {
+  const fontColor = '#5B7083';
+
   return (
-    <Typography
-      component={'div'}
-      color="#5B7083"
+    <Box
       sx={{
         display: 'flex',
         flexDirection: 'row',
@@ -17,9 +17,13 @@ const PassedTime: FC<IPassedTime> = ({ date }) => {
         gap: '4px',
       }}
     >
-      <span>·</span>
-      {date}
-    </Typography>
+      <Typography variant="subtitle1" color={fontColor}>
+        ·
+      </Typography>
+      <Typography variant="subtitle1" color={fontColor}>
+        {date}
+      </Typography>
+    </Box>
   );
 };
 

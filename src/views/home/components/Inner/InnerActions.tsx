@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { IconButton, ListItemIcon } from '@mui/material';
-import configInnerActions from '@/data/configInner/configActions';
+import ConfigActions from '@/data/configInner/configActions';
 
-const onClick = (itemId: number) => {
-  console.log('InnerActions: id ' + itemId);
-};
 
 const InnerActions = () => {
+  const iconColor = '#1DA1F2';
+  const iconArray = ConfigActions({iconColor})
+
+  const onClick:FC = (itemId: number) => {
+    console.log('InnerActions: id ' + itemId);
+  };
+
   return (
     <ListItemIcon
       sx={{
@@ -17,7 +21,7 @@ const InnerActions = () => {
         maxWidth: { xs: '100px', md: '100%' },
       }}
     >
-      {configInnerActions.map((item) => {
+      {iconArray.map((item) => {
         return (
           <IconButton
             key={item.id}

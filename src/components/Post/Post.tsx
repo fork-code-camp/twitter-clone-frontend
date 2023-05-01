@@ -5,7 +5,7 @@ import UserHeader from '@/common/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import PostContent from './PostContent';
 
-type IPost = {
+interface IPost {
   id: string;
   avatarImg: string;
   avatarAlt: string;

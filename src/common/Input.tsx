@@ -1,11 +1,11 @@
 import React, { FC, useState } from 'react';
 import { TextareaAutosize } from '@mui/material';
 
-interface IInnerInput {
+interface IInput {
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const InnerInput: FC<IInnerInput> = ({ setInputValue }) => {
+const Input: FC<IInput> = ({ setInputValue }) => {
   const [value, setValue] = useState('');
 
   const lightThemeFontColor = '#0F1419';
@@ -37,4 +37,4 @@ const InnerInput: FC<IInnerInput> = ({ setInputValue }) => {
   );
 };
 
-export default InnerInput;
+export default Input;

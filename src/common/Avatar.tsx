@@ -3,7 +3,7 @@ import { FC } from 'react';
 import Image from 'next/image';
 import { Box, IconButton } from '@mui/material';
 
-type IAvatar = {
+interface IAvatar {
   img: string;
   alt: string;
 };

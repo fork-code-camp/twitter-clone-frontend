@@ -5,7 +5,7 @@ import PostLikeToggle from './PostActionButtons/PostLikeToggle';
 import PostRetweet from './PostActionButtons/PostRetweet';
 import PostShare from './PostActionButtons/PostShare';
 
-type IPostActions = {
+interface IPostActions {
   likeCount: number;
   likeSelected?: boolean;
   onChangeLike: (likeCount: number) => void;

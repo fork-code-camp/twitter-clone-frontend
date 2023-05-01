@@ -2,9 +2,9 @@ import { Box, Button, Container } from '@mui/material';
 import React, { FC, useState } from 'react';
 import InnerActions from './InnerActions';
 import Avatar from '@/common/Avatar';
-import InnerInput from './InnerInput';
+import Input from '../../../../common/Input';
 
-type IInner = {
+interface IInner {
   avatarImg: string;
   avatarAlt: string;
 };
@@ -34,7 +34,7 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
           width: 1,
         }}
       >
-        <InnerInput setInputValue={setInputValue} />
+        <Input setInputValue={setInputValue} />
         <Box
           sx={{
             display: 'flex',
