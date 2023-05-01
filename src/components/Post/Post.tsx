@@ -1,29 +1,11 @@
-import { Box, Container } from '@mui/material';
 import React, { FC } from 'react';
+import { Box, Container } from '@mui/material';
 import Avatar from '@/common/Avatar';
 import UserHeader from '@/common/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import PostContent from './PostContent';
+import { IPost } from '@/types/Post';
 
-interface IPost {
-  id: string;
-  avatarImg: string;
-  avatarAlt: string;
-  userName: string;
-  userTag: string;
-  userPassedTime: string;
-  postText?: string;
-  postImg?: string;
-  postAlt?: string;
-  likeCount: number;
-  commentCount: number;
-  retweetCount: number;
-  shareCount: number;
-  likeSelected?: boolean;
-  commentSelected?: boolean;
-  retweetSelected?: boolean;
-  shareSelected?: boolean;
-};
 const Post: FC<IPost> = ({
   id,
   avatarImg,

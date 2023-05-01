@@ -4,21 +4,7 @@ import PostComment from './PostActionButtons/PostComment';
 import PostLikeToggle from './PostActionButtons/PostLikeToggle';
 import PostRetweet from './PostActionButtons/PostRetweet';
 import PostShare from './PostActionButtons/PostShare';
-
-interface IPostActions {
-  likeCount: number;
-  likeSelected?: boolean;
-  onChangeLike: (likeCount: number) => void;
-  commentCount: number;
-  commentSelected?: boolean;
-  onChangeComment: () => void;
-  retweetCount: number;
-  retweetSelected?: boolean;
-  onChangeRetweet: () => void;
-  shareCount: number;
-  shareSelected?: boolean;
-  onChangeShare: () => void;
-};
+import { IPostActions } from '@/types/Post';
 
 const PostActions: FC<IPostActions> = ({
   likeCount,

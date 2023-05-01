@@ -2,20 +2,7 @@ import React, { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
 import PostActions from './PostActions';
-
-interface IPostContent {
-  text?: string;
-  img?: string;
-  alt?: string;
-  likeCount: number;
-  likeSelected?: boolean;
-  commentCount: number;
-  commentSelected?: boolean;
-  retweetCount: number;
-  retweetSelected?: boolean;
-  shareCount: number;
-  shareSelected?: boolean;
-};
+import { IPostContent } from '@/types/Post';
 
 function onChangeLike(likeCount: number) {
   console.log('onChangeLike ', likeCount);
