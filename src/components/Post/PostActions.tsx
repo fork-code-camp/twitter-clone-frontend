@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Container } from '@mui/material';
 import LikeToggle from './LikeToggle';
 import ActionButton from './ActionButton';
@@ -6,10 +6,6 @@ import CommentSVG from '@/assets/Comment.svg';
 import RetweetSVG from '@/assets/Retweet.svg';
 import ShareSVG from '@/assets/Share.svg';
 import { IPostActions } from '@/types/Post';
-
-function onChangeLike(likeCount: number) {
-  console.log('onChangeLike ', likeCount);
-}
 
 function onChangeComment() {
   console.log('onChangeComment');
@@ -33,6 +29,9 @@ const PostActions: FC<IPostActions> = ({
   shareCount,
   shareSelected,
 }) => {
+  const [likeToggleCount, setLikeToggleCount] = useState(likeCount);
+  const [selectedBtn, setSelectedBtn] = useState(likeSelected || false);
+
   return (
     <Container
       disableGutters
@@ -55,9 +54,10 @@ const PostActions: FC<IPostActions> = ({
         onClick={onChangeRetweet}
       />
       <LikeToggle
-        count={likeCount}
-        selected={likeSelected}
-        onChangeLike={onChangeLike}
+        count={likeToggleCount}
+        selected={selectedBtn}
+        setLikeToggleCount={setLikeToggleCount}
+        setSelectedBtn={setSelectedBtn}
       />
       <ActionButton
         icon={<ShareSVG />}

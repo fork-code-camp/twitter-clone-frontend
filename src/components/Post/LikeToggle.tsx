@@ -1,17 +1,20 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Box, ToggleButton, Typography } from '@mui/material';
 import LikeSVG from '@/assets/Like.svg';
 
 interface ILikeToggle {
   count: number;
   selected?: boolean;
-  onChangeLike: (likeCount: number) => void;
+  setLikeToggleCount: React.Dispatch<React.SetStateAction<number>>;
+  setSelectedBtn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const LikeToggle: FC<ILikeToggle> = ({ count, selected, onChangeLike }) => {
-  const [selectedBtn, setSelectedBtn] = useState(selected);
-  const [likeCount, setLikeCount] = useState(count);
-
+const LikeToggle: FC<ILikeToggle> = ({
+  count,
+  selected,
+  setLikeToggleCount,
+  setSelectedBtn,
+}) => {
   const notSelectedColor = '#5B7083';
   const selectedColor = '#F4245E';
   const toggleStyles = {
@@ -25,23 +28,21 @@ const LikeToggle: FC<ILikeToggle> = ({ count, selected, onChangeLike }) => {
   };
   const onChange = () => {
     setSelectedBtn((selected) => !selected);
-    setLikeCount((likeCount) => (selectedBtn ? likeCount - 1 : likeCount + 1));
+    setLikeToggleCount((count) => (selected ? count - 1 : count + 1));
   };
-
-  useEffect(() => onChangeLike(likeCount), [likeCount, onChangeLike]);
 
   return (
     <ToggleButton
       value="check"
-      selected={selectedBtn}
+      selected={selected}
       onChange={onChange}
       sx={toggleStyles}
     >
       <Box sx={{ display: 'flex', strokeWidth: 2 }}>
         <LikeSVG
           style={{
-            stroke: selectedBtn ? selectedColor : notSelectedColor,
-            fill: selectedBtn ? selectedColor : 'none',
+            stroke: selected ? selectedColor : notSelectedColor,
+            fill: selected ? selectedColor : 'none',
           }}
         />
       </Box>
@@ -49,7 +50,7 @@ const LikeToggle: FC<ILikeToggle> = ({ count, selected, onChangeLike }) => {
         variant="subtitle1"
         sx={{ color: notSelectedColor, lineHeight: 1.1 }}
       >
-        {likeCount}
+        {count}
       </Typography>
     </ToggleButton>
   );
