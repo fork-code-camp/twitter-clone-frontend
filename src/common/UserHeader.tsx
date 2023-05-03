@@ -1,6 +1,6 @@
 import { Box, Container, IconButton, Typography } from '@mui/material';
 import React, { FC } from 'react';
-import VerificationSVG from '@/assets/Verification.svg';
+import VerificationSVG from '@/assets/icons/Verification.svg';
 
 interface IUserHeader {
   name: string;

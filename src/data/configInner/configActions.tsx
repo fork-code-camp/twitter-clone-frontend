@@ -1,8 +1,8 @@
-import EmojiSVG from '@/assets/Emoji.svg';
-import GifSVG from '@/assets/Gif.svg';
-import MediaSVG from '@/assets/Media.svg';
-import PollSVG from '@/assets/Poll.svg';
-import ScheduleSVG from '@/assets/Schedule.svg';
+import EmojiSVG from '@/assets/icons/Emoji.svg';
+import GifSVG from '@/assets/icons/Gif.svg';
+import MediaSVG from '@/assets/icons/Media.svg';
+import PollSVG from '@/assets/icons/Poll.svg';
+import ScheduleSVG from '@/assets/icons/Schedule.svg';
 
 interface IConfigActions {
   iconColor: string;

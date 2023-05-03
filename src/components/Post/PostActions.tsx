@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
 import { Container } from '@mui/material';
-import LikeToggle from './LikeToggle';
+import LikeToggle from './LikeButton';
 import ActionButton from './ActionButton';
-import CommentSVG from '@/assets/Comment.svg';
-import RetweetSVG from '@/assets/Retweet.svg';
-import ShareSVG from '@/assets/Share.svg';
+import CommentSVG from '@/assets/icons/Comment.svg';
+import RetweetSVG from '@/assets/icons/Retweet.svg';
+import ShareSVG from '@/assets/icons/Share.svg';
 import { IPostActions } from '@/types/Post';
 
 function onChangeComment() {
@@ -29,8 +29,8 @@ const PostActions: FC<IPostActions> = ({
   shareCount,
   shareSelected,
 }) => {
-  const [likeToggleCount, setLikeToggleCount] = useState(likeCount);
-  const [selectedBtn, setSelectedBtn] = useState(likeSelected || false);
+  const [likeCountButton, setLikeCountButton] = useState(likeCount);
+  const [selected, setSelected] = useState(likeSelected || false);
 
   return (
     <Container
@@ -54,10 +54,10 @@ const PostActions: FC<IPostActions> = ({
         onClick={onChangeRetweet}
       />
       <LikeToggle
-        count={likeToggleCount}
-        selected={selectedBtn}
-        setLikeToggleCount={setLikeToggleCount}
-        setSelectedBtn={setSelectedBtn}
+        count={likeCountButton}
+        selected={selected}
+        setLikeButtonCount={setLikeCountButton}
+        setSelected={setSelected}
       />
       <ActionButton
         icon={<ShareSVG />}

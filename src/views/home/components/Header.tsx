@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Container, IconButton, Typography } from '@mui/material';
-import TopTweet from '@/assets/TopTweet.svg';
+import TopTweet from '@/assets/icons/TopTweet.svg';
 
 const onClick = () => {
   console.log('Header click');

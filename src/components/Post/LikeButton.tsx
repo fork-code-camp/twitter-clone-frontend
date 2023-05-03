@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
 import { Box, ToggleButton, Typography } from '@mui/material';
-import LikeSVG from '@/assets/Like.svg';
+import LikeSVG from '@/assets/icons/Like.svg';
 
-interface ILikeToggle {
+interface ILikeButton {
   count: number;
   selected?: boolean;
-  setLikeToggleCount: React.Dispatch<React.SetStateAction<number>>;
-  setSelectedBtn: React.Dispatch<React.SetStateAction<boolean>>;
+  setLikeButtonCount: React.Dispatch<React.SetStateAction<number>>;
+  setSelected: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const LikeToggle: FC<ILikeToggle> = ({
+const LikeButton: FC<ILikeButton> = ({
   count,
   selected,
-  setLikeToggleCount,
-  setSelectedBtn,
+  setLikeButtonCount,
+  setSelected,
 }) => {
   const notSelectedColor = '#5B7083';
   const selectedColor = '#F4245E';
@@ -27,8 +27,8 @@ const LikeToggle: FC<ILikeToggle> = ({
     border: 'none',
   };
   const onChange = () => {
-    setSelectedBtn((selected) => !selected);
-    setLikeToggleCount((count) => (selected ? count - 1 : count + 1));
+    setSelected((selected) => !selected);
+    setLikeButtonCount((count) => (selected ? count - 1 : count + 1));
   };
 
   return (
@@ -56,4 +56,4 @@ const LikeToggle: FC<ILikeToggle> = ({
   );
 };
 
-export default LikeToggle;
+export default LikeButton;

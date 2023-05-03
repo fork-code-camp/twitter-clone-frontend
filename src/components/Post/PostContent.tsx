@@ -19,6 +19,7 @@ const PostContent: FC<IPostContent> = ({
   shareCount,
   shareSelected,
 }) => {
+  const isShowImage = img && alt
   return (
     <Container
       disableGutters
@@ -30,7 +31,7 @@ const PostContent: FC<IPostContent> = ({
       }}
     >
       <Typography component="span">{text}</Typography>
-      {img && alt && (
+      {isShowImage && (
         <Box
           sx={{
             position: 'relative',
