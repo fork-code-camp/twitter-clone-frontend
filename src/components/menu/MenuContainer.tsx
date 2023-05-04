@@ -3,7 +3,7 @@ import React, { FC, ReactNode } from 'react';
 import MenuIcon from './MenuIcon';
 import MenuTitle from './MenuTitle';
 
-type IMenuContainer = {
+interface IMenuContainer {
   navItem: {
     title: string;
     icon: ReactNode;

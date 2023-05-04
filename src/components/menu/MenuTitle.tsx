@@ -1,17 +1,18 @@
 import { Button } from '@mui/material';
 import React, { FC } from 'react';
 
-type IMenuTitle = {
+interface IMenuTitle {
   title: string;
-};
+}
 
 const MenuTitle: FC<IMenuTitle> = ({ title }) => {
+  const fontColor = '#9f9f9f';
   return (
     <Button
       sx={{
         mx: 0,
         p: 0,
-        color: '#9f9f9f',
+        color: fontColor,
         display: { xs: 'none', md: 'flex' },
         justifyContent: 'flex-start',
         gap: '20px 0',
