@@ -1,7 +1,7 @@
 import { IconButton, ListItemIcon } from '@mui/material';
 import React, { FC, ReactNode } from 'react';
 
-type IMenuIcon = {
+interface IMenuIcon {
   icon: ReactNode;
 };
 
