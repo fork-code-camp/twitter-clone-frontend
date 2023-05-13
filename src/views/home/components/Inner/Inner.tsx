@@ -1,21 +1,31 @@
-import { Box, Button, Container } from '@mui/material';
-import React, { FC, useState } from 'react';
+import { Box, Button, Container, TextField } from '@mui/material';
+import React, { FC } from 'react';
 import InnerActions from './InnerActions';
 import Avatar from '@/common/Avatar';
-import Input from '../../../../common/Input';
+import { useForm } from 'react-hook-form';
+import { ITweetResponse } from '@/services/types';
 
 interface IInner {
   avatarImg: string;
   avatarAlt: string;
-};
+  onSumbit: (data: ITweetResponse) => void;
+}
 
-const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
-  const [inputValue, setInputValue] = useState('');
+const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
+  const lightThemeFontColor = '#0F1419';
+  // const darkThemeFontColor = '#e7e9ea';
 
-  const isDisable = inputValue === '';
+  const { register, handleSubmit, reset } = useForm<ITweetResponse>();
+
+  const customHandleSubmit = (data: ITweetResponse) => {
+    onSumbit(data);
+    reset();
+  };
 
   return (
     <Container
+      component="form"
+      onSubmit={handleSubmit(customHandleSubmit)}
       disableGutters
       sx={{
         display: 'flex',
@@ -34,7 +44,26 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
           width: 1,
         }}
       >
-        <Input setInputValue={setInputValue} />
+        <TextField
+          {...register('text')}
+          placeholder="What’s happening?"
+          minRows={3}
+          multiline
+          required={true}
+          fullWidth
+          sx={{
+            minHeight: 18,
+            color: lightThemeFontColor,
+            fontSize: 20,
+            outline: 'none',
+            border: 'none',
+            resize: 'none',
+            fontFamily: 'system-ui',
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: 'none',
+            },
+          }}
+        />
         <Box
           sx={{
             display: 'flex',
@@ -46,7 +75,6 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
           <InnerActions />
           <Button
             type="submit"
-            disabled={isDisable}
             variant="contained"
             sx={{
               borderRadius: '100px',
