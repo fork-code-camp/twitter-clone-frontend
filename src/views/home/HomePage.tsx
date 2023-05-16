@@ -9,19 +9,19 @@ import { ITweetResponse } from '@/services/types';
 
 const HomePage: FC = () => {
   const { data, isLoading, isError } = useTweetQuery();
+  const tweetData = data?.data
+    .slice(0)
+    .reverse()
+    .map((element: ITweetResponse) => {
+      return element;
+    });
+
   const queryClient = useQueryClient();
 
-  async function createTweet(data: ITweetResponse) {
-    tweetResponse(data);
-  }
   const tweetMutation = useMutation(
-    (newPost: ITweetResponse) => createTweet(newPost),
+    (newPost: ITweetResponse) => tweetResponse(newPost),
     {
-      onSuccess: () =>
-        queryClient.invalidateQueries({
-          queryKey: ['tweetData'],
-          exact: true,
-        }),
+      onSuccess: () => queryClient.invalidateQueries(),
     }
   );
 
@@ -40,7 +40,7 @@ const HomePage: FC = () => {
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error</p>}
       {!data && <p>nodata</p>}
-      <PostList posts={data?.data} />
+      <PostList posts={tweetData} />
     </Container>
   );
 };
