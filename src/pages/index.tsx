@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
-import { Link } from '@mui/material';
+import StartPage from '@/views/start/StartPage';
 export default function Home() {
   return (
     <>
@@ -10,13 +9,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <Link href="/home" variant="h5">
-            Home page
-          </Link>
-        </div>
-      </main>
+      <StartPage/>
     </>
   );
 }

@@ -1,19 +1,7 @@
-import axios from 'axios';
+import $api from '@/http';
 import { useQuery } from 'react-query';
-import { API_URL, DELETE_TWEETS, GET_TWEETS, POST_TWEETS } from './config';
-import getToken from '@/services/getToken';
+import { DELETE_TWEETS, GET_TWEETS, POST_TWEETS } from './config';
 import { ITweetResponse } from './types';
-
-getToken();
-
-export const $api = axios.create({
-  baseURL: API_URL,
-});
-
-$api.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('auth-token')}`;
-  return config;
-});
 
 const getTweetConfig = {
   tweet: {

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Container } from '@mui/system';
 import { useMutation, useQueryClient } from 'react-query';
-import { useTweetQuery, tweetResponse } from '../../services/api';
+import { useTweetQuery, tweetResponse } from '../../services/tweetService';
 import Inner from '@/views/home/components/Inner/Inner';
 import Header from '@/views/home/components/Header';
 import PostList from '@/components/Post/PostList';

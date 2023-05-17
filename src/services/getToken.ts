@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { API_URL, API_AUTH } from './config';
+import { API_URL } from '@/http/config';
+import { API_AUTH } from './config';
 
 const getToken = async () => {
   axios
