@@ -1,8 +1,9 @@
 import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
-import HomePage from '@/views/home/HomePage';
+import HomeView from '@/views/home/HomeView';
+import Menu from '../components/menu/Menu';
+import { Container } from '@mui/material';
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Head>
@@ -11,9 +12,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <HomePage/>
-      </main>
+      <Container sx={{ display: 'flex' }}>
+        <Menu />
+        <HomeView />
+      </Container>
     </>
   );
-}
+};
+
+export default Home;

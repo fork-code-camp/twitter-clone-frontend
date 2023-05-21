@@ -7,7 +7,6 @@ import RetweetSVG from '@/assets/icons/Retweet.svg';
 import ShareSVG from '@/assets/icons/Share.svg';
 import { IPostWidgets } from '@/types/Post';
 
-
 const PostWidgets: FC<IPostWidgets> = ({
   likeCount,
   likeIsSelected,
@@ -18,20 +17,20 @@ const PostWidgets: FC<IPostWidgets> = ({
   const [likeCountButton, setLikeCountButton] = useState(likeCount);
   const [selected, setSelected] = useState(likeIsSelected || false);
 
-  function onChangeComment() {
+  const onChangeComment = () => {
     console.log('onChangeComment');
-  }
-  
-  function onChangeRetweet() {
+  };
+
+  const onChangeRetweet = () => {
     console.log('onChangeRetweet');
-  }
-  
-  function onClickLike() {
+  };
+
+  const onClickLike = () => {
     console.log('onClickLike: ', likeCountButton, selected);
-  }
-  function onChangeShare() {
+  };
+  const onChangeShare = () => {
     console.log('onChangeShare');
-  }
+  };
 
   return (
     <Container

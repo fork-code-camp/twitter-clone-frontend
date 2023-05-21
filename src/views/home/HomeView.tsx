@@ -25,9 +25,9 @@ const HomePage: FC = () => {
     }
   );
 
-  async function onSumbit(data: ITweetResponse) {
+  const onSumbit = async (data: ITweetResponse) => {
     tweetMutation.mutate(data);
-  }
+  };
 
   return (
     <Container sx={{ display: 'flex', flexDirection: 'column' }}>

@@ -1,6 +1,10 @@
 import Head from 'next/head';
-import StartPage from '@/views/start/StartPage';
-export default function Home() {
+import { Button, Container, Link } from '@mui/material';
+import { authLogout } from '@/services/authService';
+const Home = () => {
+  const onClickLogout = async () => {
+    authLogout();
+  };
   return (
     <>
       <Head>
@@ -9,7 +13,34 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <StartPage/>
+      <Container
+        disableGutters
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '0 15px',
+          p: '10px',
+        }}
+      >
+        <Button component={Link} href="/registration" variant="contained">
+          Registration
+        </Button>
+
+        <Button component={Link} href="/home" variant="contained">
+          Home page
+        </Button>
+
+        <Button component={Link} href="/login" variant="contained">
+          Login
+        </Button>
+
+        <Button onClick={onClickLogout} variant="contained">
+          Logout
+        </Button>
+      </Container>
     </>
   );
-}
+};
+
+export default Home;

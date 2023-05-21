@@ -2,17 +2,21 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { Typography, TextField, Button, Container, Box } from '@mui/material';
-import { IAuthResponse } from '@/services/types';
 import { FC } from 'react';
 
-interface ILogin {
-  onSumbit: (data: IAuthResponse) => void;
+interface IAuthAuthenticate {
+  email: string;
+  password: string;
 }
 
-const Login: FC<ILogin> = ({ onSumbit }) => {
-  const { register, handleSubmit, reset } = useForm<IAuthResponse>();
+interface ILoginForm {
+  onSumbit: (data: IAuthAuthenticate) => void;
+}
 
-  const customHandleSubmit = (data: IAuthResponse) => {
+const LoginForm: FC<ILoginForm> = ({ onSumbit }) => {
+  const { register, handleSubmit, reset } = useForm<IAuthAuthenticate>();
+
+  const customHandleSubmit = (data: IAuthAuthenticate) => {
     onSumbit(data);
     reset();
   };
@@ -20,7 +24,7 @@ const Login: FC<ILogin> = ({ onSumbit }) => {
   return (
     <>
       <Head>
-        <title>Sign Up</title>
+        <title>Log In</title>
         <meta name="description" content="Sign Up Twitter" />
       </Head>
       <main>
@@ -51,16 +55,8 @@ const Login: FC<ILogin> = ({ onSumbit }) => {
               src="/icons/twitter-logo.png"
             />
             <Typography variant="h1" ml="13px">
-              Join Twitter today
+              Log In
             </Typography>
-            <TextField
-              {...register('username')}
-              id="name"
-              label="Full name"
-              type="text"
-              variant="outlined"
-              fullWidth
-            />
             <TextField
               {...register('email')}
               id="email"
@@ -90,7 +86,7 @@ const Login: FC<ILogin> = ({ onSumbit }) => {
                 color: '#ffffff',
               }}
             >
-              Sign up
+              Login
             </Button>
           </Box>
         </Container>
@@ -99,4 +95,4 @@ const Login: FC<ILogin> = ({ onSumbit }) => {
   );
 };
 
-export default Login;
+export default LoginForm;
