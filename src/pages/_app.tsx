@@ -1,11 +1,15 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from '../theme/theme'
 import '@/styles/globals.css'
 
+const queryClient = new QueryClient()
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
+    <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={theme}>
       <Head>
         <meta name="description" content="Twitter clone" />
@@ -26,5 +30,6 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <Component {...pageProps} />
     </ThemeProvider>
+    </QueryClientProvider>
   )
 }

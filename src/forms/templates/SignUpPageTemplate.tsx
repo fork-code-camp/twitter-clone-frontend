@@ -39,14 +39,17 @@ const SignUpPageTemplate: FC = () => {
           Join Twitter today
         </Typography>
 
-        {/* TODO: add this field after implementation on backend */}
-        {/* <TextField
+        <TextField
+                  {...register('name')}
+                  error={!!errors.name}
+                  helperText={errors?.name?.message as ReactNode}
+                  name="name"
             id="name"
-            label="Full name"
+            label="Name"
             type="text"
             variant="outlined"
             fullWidth
-          /> */}
+          />
 
         <TextField
           {...register('email')}
