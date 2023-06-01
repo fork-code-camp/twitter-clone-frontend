@@ -1,32 +1,33 @@
 import { FC } from 'react';
 import { Container } from '@mui/system';
 import { useMutation, useQueryClient } from 'react-query';
-import { useTweetQuery, tweetResponse } from '../../services/tweetService';
+import { useTweetQuery, makePostFn } from '../../services/tweetService';
 import Inner from '@/views/home/components/Inner/Inner';
 import Header from '@/views/home/components/Header';
 import PostList from '@/components/Post/PostList';
-import { ITweetResponse } from '@/services/types';
+import { ITweetRequest } from '@/services/types';
 
 const HomePage: FC = () => {
   const { data, isLoading, isError } = useTweetQuery();
   const tweetData = data?.data
     .slice(0)
     .reverse()
-    .map((element: ITweetResponse) => {
+    .map((element: ITweetRequest) => {
       return element;
     });
 
   const queryClient = useQueryClient();
 
-  const tweetMutation = useMutation(
-    (newPost: ITweetResponse) => tweetResponse(newPost),
+  const { mutate: mutateMakeTweet } = useMutation(
+    (newPost: ITweetRequest) => makePostFn(newPost),
     {
       onSuccess: () => queryClient.invalidateQueries(),
+      onError: () => console.error('ошибка создания поста'),
     }
   );
 
-  const onSumbit = async (data: ITweetResponse) => {
-    tweetMutation.mutate(data);
+  const onSumbit = async (data: ITweetRequest) => {
+    mutateMakeTweet(data);
   };
 
   return (

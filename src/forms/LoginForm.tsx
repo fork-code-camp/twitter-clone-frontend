@@ -3,20 +3,16 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { Typography, TextField, Button, Container, Box } from '@mui/material';
 import { FC } from 'react';
-
-interface IAuthAuthenticate {
-  email: string;
-  password: string;
-}
+import { IAuthLoginRequest } from '@/services/types';
 
 interface ILoginForm {
-  onSumbit: (data: IAuthAuthenticate) => void;
+  onSumbit: (data: IAuthLoginRequest) => void;
 }
 
 const LoginForm: FC<ILoginForm> = ({ onSumbit }) => {
-  const { register, handleSubmit, reset } = useForm<IAuthAuthenticate>();
+  const { register, handleSubmit, reset } = useForm<IAuthLoginRequest>();
 
-  const customHandleSubmit = (data: IAuthAuthenticate) => {
+  const customHandleSubmit = (data: IAuthLoginRequest) => {
     onSumbit(data);
     reset();
   };

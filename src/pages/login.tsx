@@ -1,16 +1,28 @@
 import React from 'react';
+import { useMutation } from 'react-query';
 import LoginForm from '../forms/LoginForm';
-import { authAuthenticate } from '@/services/authService';
-
-interface IAuthAuthenticate {
-  email: string;
-  password: string;
-}
+import { loginFn } from '@/services/authService';
+import { IAuthLoginRequest } from '@/services/types';
+import { useRouter } from 'next/router';
 
 const Login = () => {
-  const onSumbit = async (data: IAuthAuthenticate) => {
-    authAuthenticate(data);
+  const { push } = useRouter();
+  const onSumbit = async (data: IAuthLoginRequest) => {
+    mutateLogin(data);
   };
+
+  const { mutate: mutateLogin } = useMutation(
+    (loginData: IAuthLoginRequest) => loginFn(loginData),
+    {
+      onSuccess(data) {
+        console.log('логин успешен', data);
+        push('/home');
+      },
+      onError(error) {
+        console.log('логин ошибка', error);
+      },
+    }
+  );
 
   return (
     <main>

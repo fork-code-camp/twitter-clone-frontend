@@ -1,10 +1,22 @@
 import Head from 'next/head';
 import { Button, Container, Link } from '@mui/material';
-import { authLogout } from '@/services/authService';
+import { useMutation } from 'react-query';
+import { logoutFn } from '@/services/authService';
+
 const Home = () => {
+  const { mutate: mutateLogout } = useMutation(() => logoutFn(), {
+    onSuccess(data) {
+      console.log('выход успешен', data);
+    },
+    onError(error) {
+      console.log('выход ошибка', error);
+    },
+  });
+
   const onClickLogout = async () => {
-    authLogout();
+    mutateLogout();
   };
+
   return (
     <>
       <Head>

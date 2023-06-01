@@ -1,37 +1,31 @@
 import React, { FC } from 'react';
-import Head from 'next/head';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { Typography, TextField, Button, Container, Box } from '@mui/material';
-
-interface IAuthRegister {
-  email: string,
-  username: string,
-  password: string,
-}
+import { IAuthRegisterRequest } from '@/services/types';
 
 interface IRegisterForm {
-  onSumbit: (data: IAuthRegister) => void;
+  onSumbit: (data: IAuthRegisterRequest) => void;
 }
 
 const RegisterForm: FC<IRegisterForm> = ({ onSumbit }) => {
-  const { register, handleSubmit, reset } = useForm<IAuthRegister>();
+  const {
+    register: register1,
+    handleSubmit: handleSubmit1,
+    reset: reset1,
+  } = useForm<IAuthRegisterRequest>();
 
-  const customHandleSubmit = (data: IAuthRegister) => {
+  const customHandleSubmit = (data: IAuthRegisterRequest) => {
     onSumbit(data);
-    reset();
+    reset1();
   };
 
   return (
     <>
-      <Head>
-        <title>Sign Up</title>
-        <meta name="description" content="Sign Up Twitter" />
-      </Head>
       <main>
         <Container
           component="form"
-          onSubmit={handleSubmit(customHandleSubmit)}
+          onSubmit={handleSubmit1(customHandleSubmit)}
           sx={{
             display: 'flex',
             justifyContent: 'center',
@@ -59,7 +53,7 @@ const RegisterForm: FC<IRegisterForm> = ({ onSumbit }) => {
               Join Twitter today
             </Typography>
             <TextField
-              {...register('username')}
+              {...register1('username')}
               id="name"
               label="Full name"
               type="text"
@@ -67,7 +61,7 @@ const RegisterForm: FC<IRegisterForm> = ({ onSumbit }) => {
               fullWidth
             />
             <TextField
-              {...register('email')}
+              {...register1('email')}
               id="email"
               label="Email address"
               type="email"
@@ -75,7 +69,7 @@ const RegisterForm: FC<IRegisterForm> = ({ onSumbit }) => {
               fullWidth
             />
             <TextField
-              {...register('password')}
+              {...register1('password')}
               id="password"
               label="Password"
               type="password"

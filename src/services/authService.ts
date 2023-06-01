@@ -1,60 +1,24 @@
-import $api from '../api/index';
+import api from '../api/index';
 import { AUTH_AUTH, AUTH_ACTIVATE, AUTH_REGISTER, AUTH_LOGOUT } from './config';
+import { IAuthRegisterRequest, IAuthRegisterResponse, IAuthVerifyResponse, IAuthLoginRequest, IAuthLoginResponse } from './types';
 
-interface IAuthRegister {
-  email: string;
-  username: string;
-  password: string;
+export const registerFn = async (registrationData: IAuthRegisterRequest) => {
+  const response = await api.post<IAuthRegisterResponse>(AUTH_REGISTER, registrationData);
+  return response.data
 }
 
-interface IAuthAuthenticate {
-  email: string;
-  password: string;
+export const verifyEmailFn = async ({activationCode}: {activationCode: string}) => {
+  const response = await api.get<IAuthVerifyResponse>(`${AUTH_ACTIVATE}${activationCode}`);
+  return response.data
 }
 
-interface IActivationCode {
-  activationCode: string;
+export const loginFn = async (loginData: IAuthLoginRequest) => {
+  const response = await api.post<IAuthLoginResponse>(AUTH_AUTH, loginData);
+  localStorage.setItem('auth-token', response?.data.jwt);
+  return response.data;
+};
+
+export const logoutFn = async () => {
+  const response = await api.get(AUTH_LOGOUT);
+  return response.data
 }
-
-interface IToken {
-  jwt: string;
-}
-
-export const authRegister = async (data: IAuthRegister) => {
-  await console.log(data); //TODO сделать валидацию
-  try {
-    await $api.post<IAuthRegister>(AUTH_REGISTER, data);
-  } catch (e) {
-    console.error('error authRegister', e);
-  }
-};
-
-export const authActivate = async ({ activationCode }: IActivationCode) => {
-  await console.log(activationCode); //TODO сделать валидацию
-  try {
-    await $api
-      .get(AUTH_ACTIVATE + activationCode)
-      .then((response) => console.log(response.statusText));
-  } catch (e) {
-    console.error('error authActivate', e);
-  }
-};
-
-export const authAuthenticate = async (data: IAuthAuthenticate) => {
-  try {
-    await $api.post<IAuthAuthenticate>(AUTH_AUTH, data).then((response) => {
-      localStorage.setItem('auth-token', response.data.jwt); //TODO Property 'jwt' does not exist on type 'IAuthAuthenticate'
-      console.info('auth-token добавлен в localStorage');
-    });
-  } catch (e) {
-    console.error('ошибка получения auth-token - authAuthenticate', e);
-  }
-};
-
-export const authLogout = async () => {
-  try {
-    await $api.get(AUTH_LOGOUT).finally(() => console.log('LOGOUTED'));
-  } catch (e) {
-    console.error('error authActivate', e);
-  }
-};

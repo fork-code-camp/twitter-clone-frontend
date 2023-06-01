@@ -13,7 +13,7 @@ interface IPopup {
   children: ReactNode;
   openPopup: boolean;
   setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
-  onEnterClick: () => void;
+  onPopupSubmit: () => void;
 }
 const Popup: FC<IPopup> = (props) => {
   const {
@@ -22,7 +22,7 @@ const Popup: FC<IPopup> = (props) => {
     children,
     openPopup,
     setOpenPopup,
-    onEnterClick,
+    onPopupSubmit,
   } = props;
 
   return (
@@ -47,7 +47,7 @@ const Popup: FC<IPopup> = (props) => {
           >
             Cancel
           </Button>
-          <Button onClick={onEnterClick}>Enter</Button>
+          <Button onClick={onPopupSubmit}>Enter</Button>
         </DialogActions>
       </Dialog>
     </Container>
