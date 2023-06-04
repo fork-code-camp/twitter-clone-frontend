@@ -6,7 +6,7 @@ import { Box, IconButton } from '@mui/material';
 interface IAvatar {
   img: string;
   alt: string;
-};
+}
 
 const onClick = () => {
   console.log('avatar click');

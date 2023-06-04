@@ -1,36 +1,36 @@
 import React, { FC, useState } from 'react';
 import { Container } from '@mui/material';
-import LikeToggle from './LikeButton';
-import ActionButton from './ActionButton';
+import ButtonLike from '../../common/ButtonLike';
+import ButtonWidget from '../../common/ButtonWidget';
 import CommentSVG from '@/assets/icons/Comment.svg';
 import RetweetSVG from '@/assets/icons/Retweet.svg';
 import ShareSVG from '@/assets/icons/Share.svg';
-import { IPostActions } from '@/types/Post';
+import { IPostWidgets } from '@/types/Post';
 
-function onChangeComment() {
-  console.log('onChangeComment');
-}
-
-function onChangeRetweet() {
-  console.log('onChangeRetweet');
-}
-
-function onChangeShare() {
-  console.log('onChangeShare');
-}
-
-const PostActions: FC<IPostActions> = ({
+const PostWidgets: FC<IPostWidgets> = ({
   likeCount,
-  likeSelected,
+  likeIsSelected,
   commentCount,
-  commentSelected,
   retweetCount,
-  retweetSelected,
   shareCount,
-  shareSelected,
 }) => {
   const [likeCountButton, setLikeCountButton] = useState(likeCount);
-  const [selected, setSelected] = useState(likeSelected || false);
+  const [selected, setSelected] = useState(likeIsSelected || false);
+
+  const onChangeComment = () => {
+    console.log('onChangeComment');
+  };
+
+  const onChangeRetweet = () => {
+    console.log('onChangeRetweet');
+  };
+
+  const onClickLike = () => {
+    console.log('onClickLike: ', likeCountButton, selected);
+  };
+  const onChangeShare = () => {
+    console.log('onChangeShare');
+  };
 
   return (
     <Container
@@ -41,32 +41,30 @@ const PostActions: FC<IPostActions> = ({
         justifyContent: 'space-between',
       }}
     >
-      <ActionButton
+      <ButtonWidget
         icon={<CommentSVG />}
         count={commentCount}
-        selected={commentSelected}
         onClick={onChangeComment}
       />
-      <ActionButton
+      <ButtonWidget
         icon={<RetweetSVG />}
         count={retweetCount}
-        selected={retweetSelected}
         onClick={onChangeRetweet}
       />
-      <LikeToggle
+      <ButtonLike
         count={likeCountButton}
         selected={selected}
-        setLikeButtonCount={setLikeCountButton}
+        setButtonLikeCount={setLikeCountButton}
         setSelected={setSelected}
+        onClick={onClickLike}
       />
-      <ActionButton
+      <ButtonWidget
         icon={<ShareSVG />}
         count={shareCount}
-        selected={shareSelected}
         onClick={onChangeShare}
       />
     </Container>
   );
 };
 
-export default PostActions;
+export default PostWidgets;

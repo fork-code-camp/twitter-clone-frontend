@@ -1,11 +1,11 @@
 import React from 'react';
-import { IconButton, ListItemIcon } from '@mui/material';
+import { IconButton, ListItemIcon, useTheme } from '@mui/material';
 import ConfigActions from '@/data/configInner/configActions';
 
-
 const InnerActions = () => {
-  const iconColor = '#1DA1F2';
-  const iconArray = ConfigActions({iconColor})
+  const theme = useTheme();
+  const iconColor = theme.palette.buttonWidget?.contrastText || '#000000';
+  const iconArray = ConfigActions({ iconColor });
 
   const onClick = (itemId: number) => {
     console.log('InnerActions: id ' + itemId);

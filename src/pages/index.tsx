@@ -1,11 +1,22 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from 'next/head';
+import { Button, Container, Link } from '@mui/material';
+import { useMutation } from 'react-query';
+import { logoutFn } from '@/services/authService';
 
-const inter = Inter({ subsets: ['latin'] })
+const Home = () => {
+  const { mutate: mutateLogout } = useMutation(() => logoutFn(), {
+    onSuccess(data) {
+      console.log('выход успешен', data);
+    },
+    onError(error) {
+      console.log('выход ошибка', error);
+    },
+  });
 
-export default function Home() {
+  const onClickLogout = async () => {
+    mutateLogout();
+  };
+
   return (
     <>
       <Head>
@@ -14,10 +25,34 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-        </div>
-      </main>
+      <Container
+        disableGutters
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '0 15px',
+          p: '10px',
+        }}
+      >
+        <Button component={Link} href="/registration" variant="contained">
+          Registration
+        </Button>
+
+        <Button component={Link} href="/home" variant="contained">
+          Home page
+        </Button>
+
+        <Button component={Link} href="/login" variant="contained">
+          Login
+        </Button>
+
+        <Button onClick={onClickLogout} variant="contained">
+          Logout
+        </Button>
+      </Container>
     </>
-  )
-}
+  );
+};
+
+export default Home;

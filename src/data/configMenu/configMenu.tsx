@@ -1,4 +1,4 @@
-import HomeSVG from '@icons/Home.svg';
+import HomeSVG from '@/assets/icons/Home.svg';
 import ExplorerSVG from '@/assets/icons/Explore.svg';
 import NotificationSVG from '@/assets/icons/Notifications.svg';
 import MessagesSVG from '@/assets/icons/Messages.svg';
