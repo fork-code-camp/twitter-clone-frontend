@@ -3,12 +3,20 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import Popup from '@/common/Popup';
 import { useMutation } from 'react-query';
 import Image from 'next/image';
-import { Typography, TextField, Button, Container, Box } from '@mui/material';
+import {
+  Typography,
+  TextField,
+  Button,
+  Container,
+  Box,
+  useTheme,
+} from '@mui/material';
 import { registerFn, verifyEmailFn } from '@/services/authService';
 import { IAuthRegisterRequest, IAuthVerifyRequest } from '@/services/types';
 import { useRouter } from 'next/router';
 
 const Registration = () => {
+  const theme = useTheme();
   const { push } = useRouter();
   const [openPopup, setOpenPopup] = useState(false);
   const {
@@ -124,10 +132,10 @@ const Registration = () => {
             sx={{
               borderRadius: '100px',
               p: '14px',
-              fontSize: '18px',
-              fontWeight: 700,
+              fontSize: theme.typography.button.fontSize,
+              fontWeight: theme.typography.button.fontWeight,
               textTransform: 'inherit',
-              color: '#ffffff',
+              color: theme.typography.button.color,
             }}
           >
             Sign up

@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 
 interface IMenuTitle {
@@ -6,18 +6,19 @@ interface IMenuTitle {
 }
 
 const MenuTitle: FC<IMenuTitle> = ({ title }) => {
-  const fontColor = '#9f9f9f';
+  const theme = useTheme();
   return (
     <Button
       sx={{
-        mx: 0,
-        p: 0,
-        color: fontColor,
         display: { xs: 'none', md: 'flex' },
         justifyContent: 'flex-start',
         gap: '20px 0',
-        fontWeight: 700,
-        fontSize: '19px',
+        mx: 0,
+        p: 0,
+        color: theme.typography.h3.color,
+        fontFamily: theme.typography.h3.fontFamily,
+        fontWeight: theme.typography.h3.fontWeight,
+        fontSize: theme.typography.h3.fontSize,
       }}
     >
       {title}

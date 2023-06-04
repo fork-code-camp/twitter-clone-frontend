@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, useTheme } from '@mui/material';
 
 interface IButtonWidget {
   icon: ReactNode;
@@ -8,8 +8,9 @@ interface IButtonWidget {
 }
 
 const ButtonWidget: FC<IButtonWidget> = ({ icon, count, onClick }) => {
-  const notSelectedColor = '#5B7083';
-  const selectedColor = '#1DA1F2';
+  const theme = useTheme();
+  const notSelectedColor = theme.palette.buttonWidget?.main;
+  const selectedColor = theme.palette.buttonWidget?.contrastText;
   const strokeColor = count > 0 ? selectedColor : notSelectedColor;
   const toggleStyles = {
     display: 'flex',

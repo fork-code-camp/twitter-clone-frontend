@@ -1,4 +1,4 @@
-import { Box, Button, Container, TextField } from '@mui/material';
+import { Box, Button, Container, TextField, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 import InnerActions from './InnerActions';
 import Avatar from '@/common/Avatar';
@@ -12,8 +12,7 @@ interface IInner {
 }
 
 const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
-  const lightThemeFontColor = '#0F1419';
-  // const darkThemeFontColor = '#e7e9ea';
+  const theme = useTheme();
 
   const { register, handleSubmit, reset } = useForm<ITweetResponse>();
 
@@ -53,8 +52,9 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
           fullWidth
           sx={{
             minHeight: 18,
-            color: lightThemeFontColor,
-            fontSize: 20,
+            color: theme.palette.primary.dark,
+            fontSize: theme.typography.h2.fontSize,
+            lineHeight: theme.typography.h2.lineHeight,
             outline: 'none',
             border: 'none',
             resize: 'none',
@@ -80,7 +80,7 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
               borderRadius: '100px',
               width: '77px',
               height: '39px',
-              fontWeight: 700,
+              fontWeight: theme.typography.button.fontWeight,
             }}
           >
             Tweet
