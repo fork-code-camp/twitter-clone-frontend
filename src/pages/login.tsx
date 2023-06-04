@@ -1,3 +1,11 @@
+//PR: add log in layout #18
+
+//import LogInPageForm from '@/forms/LogInPageForm'
+//const login = () => {
+//  return <LogInPageForm />
+//}
+//export default login
+
 import React from 'react';
 import { useMutation } from 'react-query';
 import LoginForm from '../forms/LoginForm';
