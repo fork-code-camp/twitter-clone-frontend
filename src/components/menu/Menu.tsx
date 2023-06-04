@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppBar, Box, Container, Toolbar } from '@mui/material';
+import { AppBar, Box, Container, Toolbar, useTheme } from '@mui/material';
 import configMenu from '@/data/configMenu/configMenu';
 import MenuContainer from './MenuContainer';
 
@@ -8,8 +8,16 @@ const onClick = () => {
 };
 
 const Menu = () => {
+  const theme = useTheme();
   return (
-    <AppBar position="relative" sx={{ width: 'auto' }}>
+    <AppBar
+      position="relative"
+      sx={{
+        width: 'auto',
+        background: theme.palette.primary.light,
+        boxShadow: 'none',
+      }}
+    >
       <Container disableGutters sx={{ display: 'flex' }}>
         <Toolbar
           disableGutters

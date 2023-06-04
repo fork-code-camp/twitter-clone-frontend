@@ -8,6 +8,16 @@ import '@/styles/globals.css'
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+        retry: 1,
+        staleTime: 5 * 1000,
+      },
+    },
+  });
   return (
     <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={theme}>

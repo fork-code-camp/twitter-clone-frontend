@@ -1,29 +1,23 @@
 import React, { FC, ReactNode } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, useTheme } from '@mui/material';
 
-interface IActionButton {
+interface IButtonWidget {
   icon: ReactNode;
   count: number;
-  selected?: boolean;
   onClick: () => void;
 }
 
-const ActionButton: FC<IActionButton> = ({
-  icon,
-  count,
-  selected,
-  onClick,
-}) => {
-  const notSelectedColor = '#5B7083';
-  const selectedColor = '#1DA1F2';
-  const strokeColor = selected ? selectedColor : notSelectedColor;
+const ButtonWidget: FC<IButtonWidget> = ({ icon, count, onClick }) => {
+  const theme = useTheme();
+  const notSelectedColor = theme.palette.buttonWidget?.main;
+  const selectedColor = theme.palette.buttonWidget?.contrastText;
+  const strokeColor = count > 0 ? selectedColor : notSelectedColor;
   const toggleStyles = {
     display: 'flex',
     alignItems: 'center',
     gap: 1.25,
     minWidth: '40px',
     p: 0,
-    background: 'none!important',
     border: 'none',
   };
   return (
@@ -39,4 +33,4 @@ const ActionButton: FC<IActionButton> = ({
   );
 };
 
-export default ActionButton;
+export default ButtonWidget;

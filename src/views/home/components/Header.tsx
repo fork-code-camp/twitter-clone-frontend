@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Container, IconButton, Typography } from '@mui/material';
+import { Container, IconButton, Typography, useTheme } from '@mui/material';
 import TopTweet from '@/assets/icons/TopTweet.svg';
 
 const onClick = () => {
@@ -11,9 +11,7 @@ interface IHomeHeader {
 }
 
 const Header: FC<IHomeHeader> = ({ title }) => {
-  const lightThemeFontColor = '#0F1419';
-  // const darkThemeFontColor = '#e7e9ea';
-  const iconColor = '#1DA1F2';
+  const theme = useTheme();
 
   return (
     <Container
@@ -27,16 +25,16 @@ const Header: FC<IHomeHeader> = ({ title }) => {
       }}
     >
       <Typography
-        variant='h2'
+        variant="h2"
         fontWeight={700}
         fontSize={19}
         lineHeight="23px"
-        color={lightThemeFontColor}
+        color={theme.palette.primary.dark}
       >
         {title}
       </Typography>
       <IconButton sx={{ m: 0, p: 0 }} onClick={onClick}>
-        <TopTweet style={{ fill: iconColor }} />
+        <TopTweet style={{ fill: theme.palette.buttonWidget?.contrastText }} />
       </IconButton>
     </Container>
   );

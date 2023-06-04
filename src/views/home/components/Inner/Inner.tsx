@@ -1,21 +1,30 @@
-import { Box, Button, Container } from '@mui/material';
-import React, { FC, useState } from 'react';
+import { Box, Button, Container, TextField, useTheme } from '@mui/material';
+import React, { FC } from 'react';
 import InnerActions from './InnerActions';
 import Avatar from '@/common/Avatar';
-import Input from '../../../../common/Input';
+import { useForm } from 'react-hook-form';
+import { ITweetResponse } from '@/services/types';
 
 interface IInner {
   avatarImg: string;
   avatarAlt: string;
-};
+  onSumbit: (data: ITweetResponse) => void;
+}
 
-const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
-  const [inputValue, setInputValue] = useState('');
+const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
+  const theme = useTheme();
 
-  const isDisable = inputValue === '';
+  const { register, handleSubmit, reset } = useForm<ITweetResponse>();
+
+  const customHandleSubmit = (data: ITweetResponse) => {
+    onSumbit(data);
+    reset();
+  };
 
   return (
     <Container
+      component="form"
+      onSubmit={handleSubmit(customHandleSubmit)}
       disableGutters
       sx={{
         display: 'flex',
@@ -34,7 +43,27 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
           width: 1,
         }}
       >
-        <Input setInputValue={setInputValue} />
+        <TextField
+          {...register('text')}
+          placeholder="What’s happening?"
+          minRows={3}
+          multiline
+          required={true}
+          fullWidth
+          sx={{
+            minHeight: 18,
+            color: theme.palette.primary.dark,
+            fontSize: theme.typography.h2.fontSize,
+            lineHeight: theme.typography.h2.lineHeight,
+            outline: 'none',
+            border: 'none',
+            resize: 'none',
+            fontFamily: 'system-ui',
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: 'none',
+            },
+          }}
+        />
         <Box
           sx={{
             display: 'flex',
@@ -46,13 +75,12 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt }) => {
           <InnerActions />
           <Button
             type="submit"
-            disabled={isDisable}
             variant="contained"
             sx={{
               borderRadius: '100px',
               width: '77px',
               height: '39px',
-              fontWeight: 700,
+              fontWeight: theme.typography.button.fontWeight,
             }}
           >
             Tweet

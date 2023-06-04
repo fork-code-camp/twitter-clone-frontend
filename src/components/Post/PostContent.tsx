@@ -1,25 +1,20 @@
 import React, { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
-import PostActions from './PostActions';
+import IPostWidgets from './PostWidgets';
 import { IPostContent } from '@/types/Post';
 
-
-
 const PostContent: FC<IPostContent> = ({
-  text,
-  img,
-  alt,
+  postText,
+  postImg,
+  postAlt,
   likeCount,
-  likeSelected,
+  likeIsSelected,
   commentCount,
-  commentSelected,
   retweetCount,
-  retweetSelected,
   shareCount,
-  shareSelected,
 }) => {
-  const isShowImage = img && alt
+  const isShowImage = postImg && postAlt;
   return (
     <Container
       disableGutters
@@ -30,7 +25,7 @@ const PostContent: FC<IPostContent> = ({
         width: { xs: '200px', md: '510px' },
       }}
     >
-      <Typography component="span">{text}</Typography>
+      <Typography sx={{ wordWrap: 'break-word' }}>{postText}</Typography>
       {isShowImage && (
         <Box
           sx={{
@@ -45,21 +40,18 @@ const PostContent: FC<IPostContent> = ({
             style={{ width: 'inherit', height: 'inherit' }}
             placeholder="blur"
             unoptimized
-            src={img}
-            alt={alt}
+            src={postImg}
+            alt={postAlt}
           />
         </Box>
       )}
 
-      <PostActions
+      <IPostWidgets
         likeCount={likeCount}
-        likeSelected={likeSelected}
+        likeIsSelected={likeIsSelected}
         commentCount={commentCount}
-        commentSelected={commentSelected}
         retweetCount={retweetCount}
-        retweetSelected={retweetSelected}
         shareCount={shareCount}
-        shareSelected={shareSelected}
       />
     </Container>
   );

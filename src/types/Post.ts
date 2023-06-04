@@ -1,44 +1,22 @@
-export interface IPost {
+export type IPost = {
   id: string;
   avatarImg: string;
   avatarAlt: string;
   userName: string;
   userTag: string;
-  userPassedTime: string;
+  userPassedTime: number;
+} & IPostContent;
+
+export type IPostContent = {
   postText?: string;
   postImg?: string;
   postAlt?: string;
-  likeCount: number;
-  commentCount: number;
-  retweetCount: number;
-  shareCount: number;
-  likeSelected?: boolean;
-  commentSelected?: boolean;
-  retweetSelected?: boolean;
-  shareSelected?: boolean;
-}
+} & IPostWidgets;
 
-export interface IPostContent {
-  text?: string;
-  img?: string;
-  alt?: string;
+export type IPostWidgets = {
   likeCount: number;
-  likeSelected?: boolean;
+  likeIsSelected?: boolean;
   commentCount: number;
-  commentSelected?: boolean;
   retweetCount: number;
-  retweetSelected?: boolean;
   shareCount: number;
-  shareSelected?: boolean;
-};
-
-export interface IPostActions {
-  likeCount: number;
-  likeSelected?: boolean;
-  commentCount: number;
-  commentSelected?: boolean;
-  retweetCount: number;
-  retweetSelected?: boolean;
-  shareCount: number;
-  shareSelected?: boolean;
 };

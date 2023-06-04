@@ -1,22 +1,25 @@
 import React, { FC } from 'react';
-import { Box, ToggleButton, Typography } from '@mui/material';
+import { Box, ToggleButton, Typography, useTheme } from '@mui/material';
 import LikeSVG from '@/assets/icons/Like.svg';
 
-interface ILikeButton {
+interface IButtonLike {
   count: number;
   selected?: boolean;
-  setLikeButtonCount: React.Dispatch<React.SetStateAction<number>>;
+  setButtonLikeCount: React.Dispatch<React.SetStateAction<number>>;
   setSelected: React.Dispatch<React.SetStateAction<boolean>>;
+  onClick: () => void;
 }
 
-const LikeButton: FC<ILikeButton> = ({
+const ButtonLike: FC<IButtonLike> = ({
   count,
   selected,
-  setLikeButtonCount,
+  setButtonLikeCount,
   setSelected,
+  onClick,
 }) => {
-  const notSelectedColor = '#5B7083';
-  const selectedColor = '#F4245E';
+  const theme = useTheme();
+  const notSelectedColor = theme.palette.buttonLike?.main;
+  const selectedColor = theme.palette.buttonLike?.contrastText;
   const toggleStyles = {
     display: 'flex',
     alignItems: 'center',
@@ -28,7 +31,7 @@ const LikeButton: FC<ILikeButton> = ({
   };
   const onChange = () => {
     setSelected((selected) => !selected);
-    setLikeButtonCount((count) => (selected ? count - 1 : count + 1));
+    setButtonLikeCount((count) => (selected ? count - 1 : count + 1));
   };
 
   return (
@@ -36,6 +39,7 @@ const LikeButton: FC<ILikeButton> = ({
       value="check"
       selected={selected}
       onChange={onChange}
+      onClick={onClick}
       sx={toggleStyles}
     >
       <Box sx={{ display: 'flex', strokeWidth: 2 }}>
@@ -56,4 +60,4 @@ const LikeButton: FC<ILikeButton> = ({
   );
 };
 
-export default LikeButton;
+export default ButtonLike;

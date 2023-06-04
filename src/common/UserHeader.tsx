@@ -1,4 +1,10 @@
-import { Box, Container, IconButton, Typography } from '@mui/material';
+import {
+  Box,
+  Container,
+  IconButton,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import React, { FC } from 'react';
 import VerificationSVG from '@/assets/icons/Verification.svg';
 
@@ -7,11 +13,10 @@ interface IUserHeader {
   tag: string;
   verified?: boolean;
   vertical?: boolean;
-};
+}
 
 const UserHeader: FC<IUserHeader> = ({ name, tag, verified, vertical }) => {
-  const iconColor = '#1DA1F2';
-  const fontColor = '#5B7083';
+  const theme = useTheme();
 
   return (
     <Container
@@ -34,11 +39,13 @@ const UserHeader: FC<IUserHeader> = ({ name, tag, verified, vertical }) => {
         </Typography>
         {verified && (
           <IconButton sx={{ m: 0, p: 0 }}>
-            <VerificationSVG style={{ fill: iconColor }} />
+            <VerificationSVG
+              style={{ fill: theme.palette.secondary.contrastText }}
+            />
           </IconButton>
         )}
       </Box>
-      <Typography variant="subtitle1" color={fontColor}>
+      <Typography variant="subtitle1" color={theme.palette.secondary.main}>
         @{tag}
       </Typography>
     </Container>

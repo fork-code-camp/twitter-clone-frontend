@@ -20,10 +20,7 @@ const Post: FC<IPost> = ({
   commentCount,
   retweetCount,
   shareCount,
-  likeSelected,
-  commentSelected,
-  retweetSelected,
-  shareSelected,
+  likeIsSelected,
 }) => {
   return (
     <Container
@@ -51,17 +48,14 @@ const Post: FC<IPost> = ({
           <PassedTime date={userPassedTime} />
         </Box>
         <PostContent
-          text={postText}
-          img={postImg}
-          alt={postAlt}
+          postText={postText}
+          postImg={postImg}
+          postAlt={postAlt}
           likeCount={likeCount}
-          likeSelected={likeSelected}
+          likeIsSelected={likeIsSelected}
           commentCount={commentCount}
-          commentSelected={commentSelected}
           retweetCount={retweetCount}
-          retweetSelected={retweetSelected}
           shareCount={shareCount}
-          shareSelected={shareSelected}
         />
       </Box>
     </Container>
