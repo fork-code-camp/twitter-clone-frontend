@@ -1,13 +1,19 @@
-import React, { FC, ReactNode } from 'react'
-import Image from 'next/image'
-import { Typography, TextField, Button, Container, Box } from '@mui/material'
-import { useFormContext } from 'react-hook-form'
+/*
+ *
+ * сейчас не используется
+ *
+ */
+
+import React, { FC, ReactNode } from 'react';
+import Image from 'next/image';
+import { Typography, TextField, Button, Container, Box } from '@mui/material';
+import { useFormContext } from 'react-hook-form';
 
 const SignUpPageTemplate: FC = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext()
+  } = useFormContext();
 
   return (
     <Container
@@ -40,16 +46,16 @@ const SignUpPageTemplate: FC = () => {
         </Typography>
 
         <TextField
-                  {...register('name')}
-                  error={!!errors.name}
-                  helperText={errors?.name?.message as ReactNode}
-                  name="name"
-            id="name"
-            label="Name"
-            type="text"
-            variant="outlined"
-            fullWidth
-          />
+          {...register('name')}
+          error={!!errors.name}
+          helperText={errors?.name?.message as ReactNode}
+          name="name"
+          id="name"
+          label="Name"
+          type="text"
+          variant="outlined"
+          fullWidth
+        />
 
         <TextField
           {...register('email')}
@@ -92,7 +98,7 @@ const SignUpPageTemplate: FC = () => {
         </Button>
       </Box>
     </Container>
-  )
-}
+  );
+};
 
-export default SignUpPageTemplate
+export default SignUpPageTemplate;

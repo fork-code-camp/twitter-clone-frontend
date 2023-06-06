@@ -1,11 +1,9 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const NotFoundPage = () => {
-  const linkStyle = {
-    color: '#1da1f2',
-  }
+  const theme = useTheme();
 
   return (
     <Box
@@ -40,12 +38,12 @@ const NotFoundPage = () => {
           variant="h4"
           component="h4"
           sx={{
-            fontFamily: 'SF Compact Display',
-            fontStyle: 'normal',
-            fontWeight: '900',
-            fontSize: '42px',
-            lineHeight: '50px',
-            color: '#000000',
+            fontFamily: theme.typography.h1.fontFamily,
+            fontStyle: theme.typography.h1.fontStyle,
+            fontWeight: theme.typography.h1.fontWeight,
+            fontSize: theme.typography.h1.fontSize,
+            lineHeight: theme.typography.h1.lineHeight,
+            color: theme.typography.h1.color,
           }}
         >
           Sorry, that page does not exist
@@ -55,16 +53,15 @@ const NotFoundPage = () => {
           sx={{
             mt: '15px',
             width: '100%',
-
-            fontFamily: 'SF Compact Display',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: { xs: 15, sm: 18 },
-            lineHeight: '21px',
+            fontFamily: theme.typography.h4.fontFamily,
+            fontStyle: theme.typography.h4.fontStyle,
+            fontWeight: theme.typography.h4.fontWeight,
+            fontSize: { xs: 15, sm: theme.typography.h4.fontSize },
+            lineHeight: theme.typography.h4.lineHeight,
           }}
         >
           Please visit you{' '}
-          <Link href={'./'} style={linkStyle}>
+          <Link href={'./'} style={{color: theme.palette.primary.main}}>
             Home Page
           </Link>
         </Box>

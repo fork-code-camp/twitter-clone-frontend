@@ -78,7 +78,7 @@ const Registration = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '100vh',
+          maxWidth: '452px',
         }}
       >
         <Box
