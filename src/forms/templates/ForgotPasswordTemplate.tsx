@@ -1,19 +1,24 @@
-import { Box, Typography, TextField, Button, Container } from '@mui/material'
-import Image from 'next/image'
-import Link from 'next/link'
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Container,
+  useTheme,
+} from '@mui/material';
+import Image from 'next/image';
+import Link from 'next/link';
 
-const ForgotPasswordTemplate = () => {
+const ForgotPasswordForm = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
         position: 'absolute',
         top: '50%',
         left: '50%',
-
         transform: 'translate(-50%,-50%)',
-
         display: 'flex',
-
         maxWidth: { xs: 300, sm: 350, md: 450 },
       }}
     >
@@ -36,12 +41,12 @@ const ForgotPasswordTemplate = () => {
           variant="h4"
           component="h4"
           sx={{
-            fontFamily: 'SF Compact Display',
-            fontStyle: 'normal',
-            fontWeight: '900',
-            fontSize: '42px',
-            lineHeight: '50px',
-            color: '#000000',
+            fontFamily: theme.typography.h1.fontFamily,
+            fontStyle: theme.typography.h1.fontStyle,
+            fontWeight: theme.typography.h1.fontWeight,
+            fontSize: theme.typography.h1.fontSize,
+            lineHeight: theme.typography.h1.lineHeight,
+            color: theme.typography.h1.color,
           }}
         >
           Forgot password
@@ -51,15 +56,13 @@ const ForgotPasswordTemplate = () => {
             variant="h5"
             component="h5"
             sx={{
-              fontFamily: 'SF Compact Display',
-              fontStyle: 'normal',
-              fontWeight: '500',
-              fontSize: '18px',
-              lineHeight: '21px',
-
               textAlign: 'center',
-
-              color: '#5B7083',
+              fontFamily: theme.typography.h4.fontFamily,
+              fontStyle: theme.typography.h4.fontStyle,
+              fontWeight: theme.typography.h4.fontWeight,
+              fontSize: theme.typography.h4.fontSize,
+              lineHeight: theme.typography.h4.lineHeight,
+              color: theme.palette.secondary.main,
             }}
           >
             Enter your email and we will send you a link to reset your password
@@ -75,37 +78,39 @@ const ForgotPasswordTemplate = () => {
           variant="contained"
           fullWidth
           sx={{
-            borderRadius: '76px',
+            borderRadius: '100px',
             p: '14px',
-            fontSize: '18px',
-            fontWeight: 700,
             textTransform: 'inherit',
-            color: '#ffffff',
+            fontFamily: theme.typography.button.fontFamily,
+            fontStyle: theme.typography.button.fontStyle,
+            fontWeight: theme.typography.button.fontWeight,
+            fontSize: theme.typography.button.fontSize,
+            lineHeight: theme.typography.button.lineHeight,
+            color: theme.typography.button.color,
           }}
         >
           Submit
         </Button>
         <Box
           sx={{
-            mt: '15px',
-
             display: 'flex',
             justifyContent: 'center',
-
-            fontFamily: 'SF Compact Display',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: '18px',
-            lineHeight: '21px',
+            mt: '15px',
+            fontFamily: theme.typography.h4.fontFamily,
+            fontStyle: theme.typography.h4.fontStyle,
+            fontWeight: theme.typography.h4.fontWeight,
+            fontSize: theme.typography.h4.fontSize,
+            lineHeight: theme.typography.h4.lineHeight,
+            color: theme.palette.secondary.main,
           }}
         >
-          <Link href="./../login" style={{ color: '#1da1f2' }}>
+          <Link href="./../login" style={{ color: theme.palette.primary.main }}>
             Back to Login
           </Link>
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default ForgotPasswordTemplate
+export default ForgotPasswordForm;

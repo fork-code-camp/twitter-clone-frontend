@@ -1,8 +1,15 @@
-import React from 'react'
-import LoginPageTemplate from './templates/LogInPageTemplate'
+/*
+ *
+ *сейчас не используется
+ *нужен компонент?
+ *
+ */
+
+import React from 'react';
+import LoginPageTemplate from './templates/LogInPageTemplate';
 
 const LogInPageForm = () => {
-  return <LoginPageTemplate />
-}
+  return <LoginPageTemplate />;
+};
 
-export default LogInPageForm
+export default LogInPageForm;
