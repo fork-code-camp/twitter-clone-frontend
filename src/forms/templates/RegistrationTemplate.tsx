@@ -46,7 +46,7 @@ const Registration = () => {
     setOpenPopup(false);
     verifyReset();
   };
-  
+
   verifyIsSuccess && push('/login')
   return (
     <>

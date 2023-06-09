@@ -1,19 +1,26 @@
-import { registerFn, verifyEmailFn } from '@/services/authService';
-import { IAuthRegisterRequest } from '@/services/types';
+import { loginFn, registerFn, verifyEmailFn } from '@/services/authService';
+import { IAuthLoginRequest, IAuthRegisterRequest } from '@/services/types';
 import { useMutation } from 'react-query';
 
 const authorizationConfig = {
   registerConfig: {
     key: 'registerFn',
     request: async (params: IAuthRegisterRequest) => {
-      const res = registerFn(params);
+      const res = await registerFn(params);
       return res;
     },
   },
   verifyConfig: {
     key: 'verifyEmailFn',
     request: async (params: { activationCode: string }) => {
-      const res = verifyEmailFn(params);
+      const res = await verifyEmailFn(params);
+      return res;
+    },
+  },
+  loginConfig: {
+    key: 'loginFn',
+    request: async (params: IAuthLoginRequest) => {
+      const res = await loginFn(params);
       return res;
     },
   },
@@ -41,6 +48,20 @@ export const useVerificationMutation = () => {
     },
     onError(error) {
       console.log('верификация ошибка', error);
+    },
+  });
+
+  return state;
+};
+
+export const useLoginMutation = () => {
+  const { loginConfig: config } = authorizationConfig;
+  const state = useMutation(config.request, {
+    onSuccess(data) {
+      console.log('логин успешен', data);
+    },
+    onError(error) {
+      console.log('логин ошибка', error);
     },
   });
 
