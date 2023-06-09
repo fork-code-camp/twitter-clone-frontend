@@ -1,34 +1,23 @@
 import { FC } from 'react';
 import { Container } from '@mui/system';
-import { useMutation, useQueryClient } from 'react-query';
-import { useTweetQuery, makePostFn } from '../../services/tweetService';
 import Inner from '@/views/home/components/Inner/Inner';
 import Header from '@/views/home/components/Header';
 import PostList from '@/components/Post/PostList';
-import { ITweetRequest } from '@/services/types';
+import { IMakeTweetRequest } from '@/services/types';
+import { useTweetQuery } from '@/services/Query/tweet/tweet.query';
+import { useMakeTweetMutation } from '@/services/Query/tweet/tweet.mutation';
+import { Alert, Box, CircularProgress } from '@mui/material';
 
 const HomePage: FC = () => {
   const { data, isLoading, isError } = useTweetQuery();
-  const tweetData = data?.data
-    .slice(0)
+  const tweetData = data
+    ?.slice(0)
     .reverse()
-    .map((element: ITweetRequest) => {
+    .map((element: IMakeTweetRequest) => {
       return element;
     });
 
-  const queryClient = useQueryClient();
-
-  const { mutate: mutateMakeTweet } = useMutation(
-    (newPost: ITweetRequest) => makePostFn(newPost),
-    {
-      onSuccess: () => queryClient.invalidateQueries(),
-      onError: () => console.error('ошибка создания поста'),
-    }
-  );
-
-  const onSumbit = async (data: ITweetRequest) => {
-    mutateMakeTweet(data);
-  };
+  const { mutateAsync: mutateMakeTweet } = useMakeTweetMutation();
 
   return (
     <Container sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -36,11 +25,23 @@ const HomePage: FC = () => {
       <Inner
         avatarImg={require('../../temp/BlankAvatar.jpg')}
         avatarAlt="avatarAlt"
-        onSumbit={onSumbit}
+        onSumbit={(requestData: IMakeTweetRequest) =>
+          mutateMakeTweet(requestData)
+        }
       />
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Error</p>}
-      {!data && <p>nodata</p>}
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {isLoading && <CircularProgress />}
+        {isError && <Alert severity="error">Ошибка загрузки постов</Alert>}
+      </Box>
+
       <PostList posts={tweetData} />
     </Container>
   );

@@ -3,20 +3,20 @@ import React, { FC } from 'react';
 import InnerActions from './InnerActions';
 import Avatar from '@/common/Avatar';
 import { useForm } from 'react-hook-form';
-import { ITweetResponse } from '@/services/types';
+import { IMakeTweetResponse } from '@/services/types';
 
 interface IInner {
   avatarImg: string;
   avatarAlt: string;
-  onSumbit: (data: ITweetResponse) => void;
+  onSumbit: (data: IMakeTweetResponse) => void;
 }
 
 const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
   const theme = useTheme();
 
-  const { register, handleSubmit, reset } = useForm<ITweetResponse>();
+  const { register, handleSubmit, reset } = useForm<IMakeTweetResponse>();
 
-  const customHandleSubmit = (data: ITweetResponse) => {
+  const customHandleSubmit = (data: IMakeTweetResponse) => {
     onSumbit(data);
     reset();
   };
