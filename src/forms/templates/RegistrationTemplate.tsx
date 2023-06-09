@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Popup from '@/common/Popup';
-import { useMutation } from 'react-query';
 import Image from 'next/image';
 import {
   Typography,
@@ -11,54 +10,33 @@ import {
   Box,
   useTheme,
 } from '@mui/material';
-import { registerFn, verifyEmailFn } from '@/services/authService';
+
 import { IAuthRegisterRequest, IAuthVerifyRequest } from '@/services/types';
 import { useRouter } from 'next/router';
+import { useRegistrationMutation, useVerificationMutation } from '@/services/Query/authorization/authorization.mutation';
 
 const Registration = () => {
   const theme = useTheme();
   const { push } = useRouter();
   const [openPopup, setOpenPopup] = useState(false);
   const {
-    register: register1,
-    handleSubmit: handleSubmit1,
-    reset: reset1,
+    register: authRegister,
+    handleSubmit: authHandleSubmit,
+    reset: authReset,
   } = useForm<IAuthRegisterRequest>();
   const {
-    register: register2,
-    handleSubmit: handleSubmit2,
-    reset: reset2,
+    register: verifyRegister,
+    handleSubmit: verifyHandleSubmit,
+    reset: verifyReset,
   } = useForm<IAuthVerifyRequest>();
 
-  const { mutate: mutateSignUp, isLoading: isLoadingRegister } = useMutation(
-    (userData: IAuthRegisterRequest) => registerFn(userData),
-    {
-      onSuccess(data) {
-        console.log('регистрация начата', data);
-      },
-      onError(error) {
-        console.log('регистрация ошибка', error);
-      },
-    }
-  );
-
-  const { mutate: mutateVerifyEmail } = useMutation(
-    (activationCode: IAuthVerifyRequest) => verifyEmailFn(activationCode),
-    {
-      onSuccess(data) {
-        console.log('верификация успешна', data);
-        push('/login');
-      },
-      onError(error) {
-        console.log('верификация ошибка', error);
-      },
-    }
-  );
+  const { mutateAsync: mutateSignUp, isLoading: isLoadingRegister } = useRegistrationMutation()
+  const { mutateAsync: mutateVerifyEmail, isSuccess: verifyIsSuccess} = useVerificationMutation()
 
   const requestRegister: SubmitHandler<IAuthRegisterRequest> = (value) => {
     mutateSignUp(value);
     setOpenPopup(true);
-    reset1();
+    authReset();
   };
 
   const requestVerify: SubmitHandler<IAuthVerifyRequest> = async (
@@ -66,14 +44,15 @@ const Registration = () => {
   ) => {
     mutateVerifyEmail(activationCode);
     setOpenPopup(false);
-    reset2();
+    verifyReset();
   };
-
+  
+  verifyIsSuccess && push('/login')
   return (
     <>
       <Container
         component="form"
-        onSubmit={handleSubmit1(requestRegister)}
+        onSubmit={authHandleSubmit(requestRegister)}
         sx={{
           display: 'flex',
           justifyContent: 'center',
@@ -102,7 +81,7 @@ const Registration = () => {
             Join Twitter today{' '}
           </Typography>
           <TextField
-            {...register1('username')}
+            {...authRegister('username')}
             id="name"
             label="Full name"
             type="text"
@@ -110,7 +89,7 @@ const Registration = () => {
             fullWidth
           />
           <TextField
-            {...register1('email')}
+            {...authRegister('email')}
             id="email"
             label="Email address"
             type="email"
@@ -118,7 +97,7 @@ const Registration = () => {
             fullWidth
           />
           <TextField
-            {...register1('password')}
+            {...authRegister('password')}
             id="password"
             label="Password"
             type="password"
@@ -149,10 +128,10 @@ const Registration = () => {
         contentText="Please enter this verification code to get started on Twitter:"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
-        onPopupSubmit={handleSubmit2(requestVerify)}
+        onPopupSubmit={verifyHandleSubmit(requestVerify)}
       >
         <TextField
-          {...register2('activationCode')}
+          {...verifyRegister('activationCode')}
           id="verif"
           label="Verification code"
           type="text"
