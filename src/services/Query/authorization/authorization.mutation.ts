@@ -1,27 +1,27 @@
-import { loginFn, registerFn, verifyEmailFn } from '@/services/authService';
+import { login, register, verifyEmail } from '@/services/authService';
 import { IAuthLoginRequest, IAuthRegisterRequest } from '@/services/types';
 import { useMutation } from 'react-query';
 
 const authorizationConfig = {
   registerConfig: {
-    key: 'registerFn',
+    key: 'register',
     request: async (params: IAuthRegisterRequest) => {
-      const res = await registerFn(params);
-      return res;
+      const res = await register(params);
+      return res.data;
     },
   },
   verifyConfig: {
-    key: 'verifyEmailFn',
+    key: 'verifyEmail',
     request: async (params: { activationCode: string }) => {
-      const res = await verifyEmailFn(params);
-      return res;
+      const res = await verifyEmail(params);
+      return res.data;
     },
   },
   loginConfig: {
-    key: 'loginFn',
+    key: 'login',
     request: async (params: IAuthLoginRequest) => {
-      const res = await loginFn(params);
-      return res;
+      const res = await login(params);
+      return res.data;
     },
   },
 };

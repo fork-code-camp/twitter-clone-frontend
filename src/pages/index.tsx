@@ -1,21 +1,10 @@
 import Head from 'next/head';
 import { Button, Container, Link } from '@mui/material';
-import { useMutation } from 'react-query';
-import { logoutFn } from '@/services/authService';
+import { useLogoutQuery } from '@/services/Query/authorization/authorization.query';
 
 const Home = () => {
-  const { mutate: mutateLogout } = useMutation(() => logoutFn(), {
-    onSuccess(data) {
-      console.log('выход успешен', data);
-    },
-    onError(error) {
-      console.log('выход ошибка', error);
-    },
-  });
 
-  const onClickLogout = async () => {
-    mutateLogout();
-  };
+  const { refetch: logout } = useLogoutQuery()
 
   return (
     <>
@@ -47,7 +36,7 @@ const Home = () => {
           Login
         </Button>
 
-        <Button onClick={onClickLogout} variant="contained">
+        <Button onClick={()=>logout()} variant="contained">
           Logout
         </Button>
       </Container>
