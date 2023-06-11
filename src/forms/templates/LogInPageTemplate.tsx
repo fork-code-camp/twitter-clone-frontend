@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form';
 import {
   Typography,
   TextField,
@@ -12,31 +11,19 @@ import {
   useTheme,
 } from '@mui/material';
 import { IAuthLoginRequest } from '@/services/types';
-import { useLoginMutation } from '@/services/Query/authorization/authorization.mutation';
 
-const Login: FC = () => {
+interface ILogin {
+  loginRegisterForm: UseFormRegister<IAuthLoginRequest>;
+  onSubmitForm: (e: React.FormEvent) => void;
+}
+
+const Login: FC<ILogin> = ({ loginRegisterForm, onSubmitForm }) => {
   const theme = useTheme();
-  const { push } = useRouter();
 
-  const {
-    register: loginRegister,
-    handleSubmit: loginhandleSubmit,
-    reset: loginReset,
-  } = useForm<IAuthLoginRequest>();
-
-  const { mutateAsync: mutateLogin, isSuccess: loginIsSuccess } =
-    useLoginMutation();
-
-  const customHandleSubmit = (data: IAuthLoginRequest) => {
-    mutateLogin(data);
-    loginReset();
-  };
-
-  loginIsSuccess && push('/home');
   return (
     <Container
       component="form"
-      onSubmit={loginhandleSubmit(customHandleSubmit)}
+      onSubmit={onSubmitForm}
       sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -75,7 +62,7 @@ const Login: FC = () => {
           Log in to Twitter
         </Typography>
         <TextField
-          {...loginRegister('email')}
+          {...loginRegisterForm('email')}
           id="email"
           label="Email address"
           type="email"
@@ -83,7 +70,7 @@ const Login: FC = () => {
           fullWidth
         />
         <TextField
-          {...loginRegister('password')}
+          {...loginRegisterForm('password')}
           id="password"
           label="Password"
           type="password"
