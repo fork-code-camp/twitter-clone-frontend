@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Box, Container } from '@mui/material';
-import Avatar from '@/common/Avatar';
-import UserHeader from '@/common/UserHeader';
+import Avatar from '@/components/Avatar';
+import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import PostContent from './PostContent';
 import { IPost } from '@/types/Post';

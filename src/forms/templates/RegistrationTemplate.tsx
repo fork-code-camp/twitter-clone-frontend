@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import Popup from '@/common/Popup';
+import Popup from '@/components/Popup';
 import Image from 'next/image';
 import {
   Typography,

@@ -20,5 +20,5 @@ export const login = async (loginData: IAuthLoginRequest) => {
 
 export const logout = async () => {
   const response = await api.get(AUTH_LOGOUT);
-  return response.data
+  return response
 }

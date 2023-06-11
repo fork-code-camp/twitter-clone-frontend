@@ -6,7 +6,7 @@ const authorizationConfig = {
     key: 'logout',
     request: async () => {
       const res = await logout();
-      return res;
+      return res.data;
     },
   },
 }

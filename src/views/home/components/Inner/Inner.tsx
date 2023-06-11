@@ -1,7 +1,7 @@
 import { Box, Button, Container, TextField, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 import InnerActions from './InnerActions';
-import Avatar from '@/common/Avatar';
+import Avatar from '@/components/Avatar';
 import { useForm } from 'react-hook-form';
 import { IMakeTweetResponse } from '@/services/types';
 
