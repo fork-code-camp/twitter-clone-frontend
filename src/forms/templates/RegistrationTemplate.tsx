@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import React from 'react';
+
 import Image from 'next/image';
 import {
   Typography,
@@ -10,37 +10,32 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { IAuthRegisterRequest } from '@/services/types';
-import { useRouter } from 'next/router';
-import { useRegistrationMutation } from '@/services/Query/authorization/authorization.mutation';
 import VerifyForm from '../VerifyForm';
+import { IAuthRegisterRequest } from '@/services/types';
+import { UseFormRegister } from 'react-hook-form';
 
-const Registration = () => {
+interface IRegistration {
+  authRegisterForm: UseFormRegister<IAuthRegisterRequest>;
+  onSubmitForm: (e: React.FormEvent) => void;
+  isLoadingRegister: boolean;
+  openPopup: boolean;
+  setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsVerify: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const Registration = ({
+  authRegisterForm,
+  onSubmitForm,
+  isLoadingRegister,
+  openPopup,
+  setOpenPopup,
+  setIsVerify,
+}: IRegistration) => {
   const theme = useTheme();
-  const { push } = useRouter();
-  const [openPopup, setOpenPopup] = useState(false);
-  const [isVerify, setIsVerify] = useState(false);
-  const {
-    register: authRegisterForm,
-    handleSubmit: authHandleSubmitForm,
-    reset: authResetForm,
-  } = useForm<IAuthRegisterRequest>();
-
-  const { mutateAsync: mutateSignUp, isLoading: isLoadingRegister } =
-    useRegistrationMutation();
-
-  const requestRegister: SubmitHandler<IAuthRegisterRequest> = (value) => {
-    mutateSignUp(value);
-    setOpenPopup(true);
-    authResetForm();
-  };
-
-  isVerify && push('/login');
   return (
     <>
       <Container
         component="form"
-        onSubmit={authHandleSubmitForm(requestRegister)}
+        onSubmit={onSubmitForm}
         sx={{
           display: 'flex',
           justifyContent: 'center',
