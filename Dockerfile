@@ -4,7 +4,7 @@ WORKDIR /twitterclonefront
 
 COPY package.json .
 
-RUN npm intstall
+RUN npm install
 
 COPY . .
 
