@@ -1,6 +1,6 @@
 import React from 'react';
-
 import Image from 'next/image';
+import { UseFormRegister } from 'react-hook-form';
 import {
   Typography,
   TextField,
@@ -12,7 +12,6 @@ import {
 
 import VerifyForm from '../VerifyForm';
 import { IAuthRegisterRequest } from '@/services/types';
-import { UseFormRegister } from 'react-hook-form';
 
 interface IRegistration {
   authRegisterForm: UseFormRegister<IAuthRegisterRequest>;
@@ -21,6 +20,8 @@ interface IRegistration {
   openPopup: boolean;
   setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
   setIsVerify: React.Dispatch<React.SetStateAction<boolean>>;
+  isErrorRegister: boolean;
+  errorMessage: string;
 }
 const Registration = ({
   authRegisterForm,
@@ -29,8 +30,11 @@ const Registration = ({
   openPopup,
   setOpenPopup,
   setIsVerify,
+  isErrorRegister,
+  errorMessage,
 }: IRegistration) => {
   const theme = useTheme();
+
   return (
     <>
       <Container
@@ -103,14 +107,21 @@ const Registration = ({
             Sign up
           </Button>
           {isLoadingRegister && <Typography>Loading.......</Typography>}
+          {isErrorRegister && (
+            <Typography variant="subtitle1" sx={{ textAlign: 'center' }}>
+              {errorMessage}
+            </Typography>
+          )}
         </Box>
       </Container>
 
-      <VerifyForm
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-        setIsVerify={setIsVerify}
-      />
+      {!isErrorRegister && (
+        <VerifyForm
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+          setIsVerify={setIsVerify}
+        />
+      )}
     </>
   );
 };

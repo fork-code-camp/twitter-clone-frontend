@@ -5,8 +5,6 @@ import { ThemeProvider } from '@mui/material/styles'
 import theme from '../theme/theme'
 import '@/styles/globals.css'
 
-const queryClient = new QueryClient()
-
 export default function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient({
     defaultOptions: {

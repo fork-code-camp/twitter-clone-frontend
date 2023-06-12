@@ -32,9 +32,6 @@ export const useRegistrationMutation = () => {
     onSuccess(data) {
       console.log('регистрация начата', data);
     },
-    onError(error) {
-      console.log('регистрация ошибка', error);
-    },
   });
 
   return state;

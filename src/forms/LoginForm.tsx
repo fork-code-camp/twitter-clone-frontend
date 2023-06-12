@@ -25,7 +25,6 @@ const LoginForm: FC = () => {
   const onSubmitForm = (e: React.FormEvent) => {
     e.preventDefault();
     loginhandleSubmitForm(customHandleSubmit)();
-    console.log(loginIsSuccess);
   };
 
   loginIsSuccess && push('/home');
