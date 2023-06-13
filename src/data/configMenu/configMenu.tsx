@@ -6,11 +6,14 @@ import BookmarksSVG from '@/assets/icons/Bookmarks.svg';
 import ListsSVG from '@/assets/icons/Lists.svg';
 import ProfileSVG from '@/assets/icons/Profile.svg';
 import MoreSVG from '@/assets/icons/More.svg';
+import View from '@/assets/icons/View.svg';
+import Settings from '@/assets/icons/Settings.svg';
+import palette from '@/theme/palette';
 
-const currentPageColor = '#1DA1F2';
-const anotherPagesColor = '#0F1419';
+const currentPageColor = palette.primary.main;
+const anotherPagesColor = palette.primary.dark;
 
-const menuList = [
+export const menuList = [
   { title: 'Home', icon: <HomeSVG style={{ fill: currentPageColor }} /> },
   { title: 'Explore', icon: <ExplorerSVG style={{ fill: anotherPagesColor }} /> },
   { title: 'Notifications', icon: <NotificationSVG style={{ fill: anotherPagesColor }} /> },
@@ -21,4 +24,7 @@ const menuList = [
   { title: 'More', icon: <MoreSVG style={{ fill: anotherPagesColor }} /> },
 ];
 
-export default menuList
+export const menuLogoutList = [
+  { title: 'View', icon: <View style={{ fill: currentPageColor }} /> },
+  { title: 'Settings', icon: <Settings style={{ fill: anotherPagesColor }} /> },
+];

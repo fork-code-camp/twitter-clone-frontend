@@ -30,7 +30,7 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
         display: 'flex',
         flexDirection: 'row',
         gap: '0 13px',
-        maxWidth: { xs: '320px', md: '600px' },
+        maxWidth: { xs: '100%', md: '600px' },
         padding: '10px 15px',
       }}
     >
