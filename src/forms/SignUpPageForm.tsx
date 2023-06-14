@@ -8,7 +8,7 @@
 import React, { FC } from 'react';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import axios from 'axios';
-import SignUpPageTemplate from './templates/SignUpPageTemplate';
+import SignUpPageTemplate from '../temp/notUsed/SignUpPageTemplate';
 import { yupResolver } from '@hookform/resolvers/yup';
 import sighupSchema from './schemas/signup.scema';
 import {

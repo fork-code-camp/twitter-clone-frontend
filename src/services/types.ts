@@ -27,10 +27,10 @@ export interface IAuthLoginResponse {
 }
 
 /* Tweet */
-export interface ITweetRequest {
+export interface IMakeTweetRequest {
   text: string;
 }
 
-export interface ITweetResponse {
+export interface IMakeTweetResponse {
   text: string;
 }

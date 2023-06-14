@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import Popup from '@/common/Popup';
-import { useMutation } from 'react-query';
+import React from 'react';
 import Image from 'next/image';
+import { UseFormRegister } from 'react-hook-form';
 import {
   Typography,
   TextField,
@@ -11,69 +9,37 @@ import {
   Box,
   useTheme,
 } from '@mui/material';
-import { registerFn, verifyEmailFn } from '@/services/authService';
-import { IAuthRegisterRequest, IAuthVerifyRequest } from '@/services/types';
-import { useRouter } from 'next/router';
 
-const Registration = () => {
+import VerifyForm from '../VerifyForm';
+import { IAuthRegisterRequest } from '@/services/types';
+
+interface IRegistration {
+  authRegisterForm: UseFormRegister<IAuthRegisterRequest>;
+  onSubmitForm: (e: React.FormEvent) => void;
+  isLoadingRegister: boolean;
+  openPopup: boolean;
+  setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsVerify: React.Dispatch<React.SetStateAction<boolean>>;
+  isErrorRegister: boolean;
+  errorMessage: string;
+}
+const Registration = ({
+  authRegisterForm,
+  onSubmitForm,
+  isLoadingRegister,
+  openPopup,
+  setOpenPopup,
+  setIsVerify,
+  isErrorRegister,
+  errorMessage,
+}: IRegistration) => {
   const theme = useTheme();
-  const { push } = useRouter();
-  const [openPopup, setOpenPopup] = useState(false);
-  const {
-    register: register1,
-    handleSubmit: handleSubmit1,
-    reset: reset1,
-  } = useForm<IAuthRegisterRequest>();
-  const {
-    register: register2,
-    handleSubmit: handleSubmit2,
-    reset: reset2,
-  } = useForm<IAuthVerifyRequest>();
-
-  const { mutate: mutateSignUp, isLoading: isLoadingRegister } = useMutation(
-    (userData: IAuthRegisterRequest) => registerFn(userData),
-    {
-      onSuccess(data) {
-        console.log('регистрация начата', data);
-      },
-      onError(error) {
-        console.log('регистрация ошибка', error);
-      },
-    }
-  );
-
-  const { mutate: mutateVerifyEmail } = useMutation(
-    (activationCode: IAuthVerifyRequest) => verifyEmailFn(activationCode),
-    {
-      onSuccess(data) {
-        console.log('верификация успешна', data);
-        push('/login');
-      },
-      onError(error) {
-        console.log('верификация ошибка', error);
-      },
-    }
-  );
-
-  const requestRegister: SubmitHandler<IAuthRegisterRequest> = (value) => {
-    mutateSignUp(value);
-    setOpenPopup(true);
-    reset1();
-  };
-
-  const requestVerify: SubmitHandler<IAuthVerifyRequest> = async (
-    activationCode
-  ) => {
-    mutateVerifyEmail(activationCode);
-    setOpenPopup(false);
-    reset2();
-  };
 
   return (
     <>
       <Container
         component="form"
-        onSubmit={handleSubmit1(requestRegister)}
+        onSubmit={onSubmitForm}
         sx={{
           display: 'flex',
           justifyContent: 'center',
@@ -102,7 +68,7 @@ const Registration = () => {
             Join Twitter today{' '}
           </Typography>
           <TextField
-            {...register1('username')}
+            {...authRegisterForm('username')}
             id="name"
             label="Full name"
             type="text"
@@ -110,7 +76,7 @@ const Registration = () => {
             fullWidth
           />
           <TextField
-            {...register1('email')}
+            {...authRegisterForm('email')}
             id="email"
             label="Email address"
             type="email"
@@ -118,7 +84,7 @@ const Registration = () => {
             fullWidth
           />
           <TextField
-            {...register1('password')}
+            {...authRegisterForm('password')}
             id="password"
             label="Password"
             type="password"
@@ -141,26 +107,21 @@ const Registration = () => {
             Sign up
           </Button>
           {isLoadingRegister && <Typography>Loading.......</Typography>}
+          {isErrorRegister && (
+            <Typography variant="subtitle1" sx={{ textAlign: 'center' }}>
+              {errorMessage}
+            </Typography>
+          )}
         </Box>
       </Container>
 
-      <Popup
-        title="Activate"
-        contentText="Please enter this verification code to get started on Twitter:"
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-        onPopupSubmit={handleSubmit2(requestVerify)}
-      >
-        <TextField
-          {...register2('activationCode')}
-          id="verif"
-          label="Verification code"
-          type="text"
-          variant="outlined"
-          margin="dense"
-          fullWidth
+      {!isErrorRegister && (
+        <VerifyForm
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+          setIsVerify={setIsVerify}
         />
-      </Popup>
+      )}
     </>
   );
 };

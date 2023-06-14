@@ -22,7 +22,8 @@ const PostContent: FC<IPostContent> = ({
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-        width: { xs: '200px', md: '510px' },
+        width: { xs: '100%', md: '100%' }, //100
+        maxWidth: { xs: '100%', md: '510px' }, //100
       }}
     >
       <Typography sx={{ wordWrap: 'break-word' }}>{postText}</Typography>

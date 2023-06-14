@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import LoginPageTemplate from './templates/LogInPageTemplate';
+import LoginPageTemplate from '../../forms/templates/LogInPageTemplate';
 
 const LogInPageForm = () => {
   return <LoginPageTemplate />;

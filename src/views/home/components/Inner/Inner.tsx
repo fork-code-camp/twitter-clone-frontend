@@ -1,22 +1,22 @@
 import { Box, Button, Container, TextField, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 import InnerActions from './InnerActions';
-import Avatar from '@/common/Avatar';
+import Avatar from '@/components/Avatar';
 import { useForm } from 'react-hook-form';
-import { ITweetResponse } from '@/services/types';
+import { IMakeTweetResponse } from '@/services/types';
 
 interface IInner {
   avatarImg: string;
   avatarAlt: string;
-  onSumbit: (data: ITweetResponse) => void;
+  onSumbit: (data: IMakeTweetResponse) => void;
 }
 
 const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
   const theme = useTheme();
 
-  const { register, handleSubmit, reset } = useForm<ITweetResponse>();
+  const { register, handleSubmit, reset } = useForm<IMakeTweetResponse>();
 
-  const customHandleSubmit = (data: ITweetResponse) => {
+  const customHandleSubmit = (data: IMakeTweetResponse) => {
     onSumbit(data);
     reset();
   };
@@ -30,7 +30,7 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
         display: 'flex',
         flexDirection: 'row',
         gap: '0 13px',
-        maxWidth: { xs: '320px', md: '600px' },
+        maxWidth: { xs: '100%', md: '600px' },
         padding: '10px 15px',
       }}
     >

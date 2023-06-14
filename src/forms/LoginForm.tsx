@@ -1,16 +1,40 @@
-import React from 'react'
-import { FC } from 'react';
-import LoginPageTemplate from '../forms/templates/LogInPageTemplate'
+import React, { FC } from 'react';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import LoginPageTemplate from '../forms/templates/LogInPageTemplate';
+import { useLoginMutation } from '@/services/Query/authorization/authorization.mutation';
 import { IAuthLoginRequest } from '@/services/types';
 
-interface ILoginForm {
-  onSumbit: (data: IAuthLoginRequest) => void;
-}
+const LoginForm: FC = () => {
+  const { push } = useRouter();
 
-const LoginForm: FC<ILoginForm> = ({onSumbit}) => {
+  const {
+    register: loginRegisterForm,
+    handleSubmit: loginhandleSubmitForm,
+    reset: loginResetForm,
+  } = useForm<IAuthLoginRequest>();
+
+  const { mutateAsync: mutateLogin, isSuccess: loginIsSuccess } =
+    useLoginMutation();
+
+  const customHandleSubmit = (data: IAuthLoginRequest) => {
+    mutateLogin(data);
+    loginResetForm();
+  };
+
+  const onSubmitForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    loginhandleSubmitForm(customHandleSubmit)();
+  };
+
+  loginIsSuccess && push('/home');
+
   return (
-    <LoginPageTemplate onSumbit={onSumbit}/>
-  )
-}
+    <LoginPageTemplate
+      loginRegisterForm={loginRegisterForm}
+      onSubmitForm={onSubmitForm}
+    />
+  );
+};
 
-export default LoginForm
+export default LoginForm;

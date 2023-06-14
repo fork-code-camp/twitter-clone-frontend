@@ -1,13 +1,21 @@
-import * as React from 'react';
+import React, { FC, ReactNode } from 'react';
 import { AppBar, Box, Container, Toolbar, useTheme } from '@mui/material';
-import configMenu from '@/data/configMenu/configMenu';
 import MenuContainer from './MenuContainer';
+
+interface IMenu {
+  title: string;
+  icon: ReactNode;
+}
+
+interface IMenuArray {
+  menuList: IMenu[];
+}
 
 const onClick = () => {
   console.log('click');
 };
 
-const Menu = () => {
+const Menu: FC<IMenuArray> = ({ menuList }) => {
   const theme = useTheme();
   return (
     <AppBar
@@ -30,7 +38,7 @@ const Menu = () => {
               flexDirection: 'column',
             }}
           >
-            {configMenu.map((navItem) => (
+            {menuList.map((navItem) => (
               <MenuContainer
                 key={navItem.title}
                 navItem={navItem}
@@ -46,7 +54,7 @@ const Menu = () => {
               alignItems: 'start',
             }}
           >
-            {configMenu.map((navItem) => (
+            {menuList.map((navItem) => (
               <MenuContainer
                 key={navItem.title}
                 navItem={navItem}
