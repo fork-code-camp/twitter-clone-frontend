@@ -2,10 +2,11 @@ const palette = {
   primary: {
     main: '#1da1f2',
     light: '#ffffff',
-    dark: '#000000',
+    dark: '#0f1419',
+    contrastText: '#1a8cd8',
   },
   secondary: {
-    main: '#5B7083',
+    main: '#5b7083',
     contrastText: '#1da1F2',
   },
   custom: {
@@ -20,6 +21,17 @@ const palette = {
     dark_8: '#f7f9fa',
     white: '#ffffff',
   },
+  border: {
+    main: '#ebeef0',
+  },
+  background: {
+    default: '#f7f9fa',
+    paper: 'rgba(0,0,0,0.03)',
+  },
+  tag: {
+    main: '#1da1f2',
+    contrastText: '#5b7083',
+  },
   buttonLike: {
     main: '#5b7083',
     contrastText: '#F4245E',
@@ -28,6 +40,6 @@ const palette = {
     main: '#5b7083',
     contrastText: '#1da1F2',
   },
-};
+}
 
-export default palette;
+export default palette

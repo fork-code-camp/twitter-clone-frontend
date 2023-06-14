@@ -1,13 +1,14 @@
-import { Box, Typography, useTheme } from '@mui/material';
 import React, { FC } from 'react';
+import { Box, Typography, useTheme } from '@mui/material';
 
 interface IPassedTime {
-  date: number;
+  date: string;
 }
 
 const PassedTime: FC<IPassedTime> = ({ date }) => {
   const theme = useTheme();
-  const ms = new Date().getTime() - new Date(date).getTime();
+
+  const ms = new Date().getTime() - new Date(date).getTime()
   const days = Math.floor(ms / (24 * 60 * 60 * 1000));
   const daysms = ms % (24 * 60 * 60 * 1000);
   const hours = Math.floor(daysms / (60 * 60 * 1000));
@@ -17,21 +18,11 @@ const PassedTime: FC<IPassedTime> = ({ date }) => {
   const seconds = Math.floor(minutesms / 1000);
 
   let dateResult = '';
-  if (days > 0) {
-    dateResult += days + 'd ago';
-  }
-  if (days === 0 && hours > 0) {
-    dateResult += hours + 'h ago';
-  }
-  if (days === 0 && hours === 0 && minutes > 0) {
-    dateResult += minutes + 'm ago';
-  }
-  if (days === 0 && hours === 0 && minutes === 0 && seconds > 0) {
-    dateResult += seconds + 's ago';
-  }
-  if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
-    dateResult += ' now';
-  }
+  if (days > 0) { dateResult += days + 'd ago'; }
+  if (days === 0 && hours > 0) { dateResult += hours + 'h ago'; }
+  if (days === 0 && hours === 0 && minutes > 0) { dateResult += minutes + 'm ago'; }
+  if (days === 0 && hours === 0 && minutes === 0 && seconds > 0) { dateResult += seconds + 's ago'; }
+  if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) { dateResult += ' now'; }
 
   return (
     <Box
@@ -40,12 +31,25 @@ const PassedTime: FC<IPassedTime> = ({ date }) => {
         flexDirection: 'row',
         alignItems: 'center',
         gap: '4px',
+        whiteSpace: 'nowrap',
       }}
     >
-      <Typography variant="subtitle1" color={theme.palette.secondary.main}>
+      <Typography
+        variant="h5"
+        sx={{
+          fontWeight: 500,
+          color: theme.palette.secondary.main,
+        }}
+      >
         ·
       </Typography>
-      <Typography variant="subtitle1" color={theme.palette.secondary.main}>
+      <Typography
+        variant="h5"
+        sx={{
+          fontWeight: 500,
+          color: theme.palette.secondary.main,
+        }}
+      >
         {dateResult}
       </Typography>
     </Box>
