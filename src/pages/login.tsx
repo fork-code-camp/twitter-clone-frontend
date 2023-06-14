@@ -1,17 +1,12 @@
 import React from 'react';
+import { DefaultSeo } from 'next-seo';
+import SEO from '../../next-seo.config';
 import LoginForm from '../forms/LoginForm';
-import Head from 'next/head';
 
 const Login = () => {
   return (
     <>
-      <Head>
-        <title>Log In</title>
-        <meta name="description" content="Sign Up Twitter" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+      <DefaultSeo title="Login" {...SEO} />
       <LoginForm />
     </>
   );

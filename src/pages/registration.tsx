@@ -1,16 +1,13 @@
-import Head from 'next/head';
+import React from 'react';
+import { DefaultSeo } from 'next-seo';
+import SEO from '../../next-seo.config';
 import { Container } from '@mui/material';
 import RegistrationForm from '@/forms/RegistrationForm';
 
 const Home = () => {
   return (
     <>
-      <Head>
-        <title>Registration</title>
-        <meta name="description" content="Registration on Twitter" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <DefaultSeo title="Registration" {...SEO} />
       <Container
         sx={{
           display: 'flex',

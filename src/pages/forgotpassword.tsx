@@ -1,7 +1,15 @@
-import ForgotPasswordForm from '@/forms/ForgotPasswordForm'
+import React from 'react';
+import { DefaultSeo } from 'next-seo';
+import SEO from '../../next-seo.config';
+import ForgotPasswordForm from '@/forms/ForgotPasswordForm';
 
-const forgotpassword = () => {
-  return <ForgotPasswordForm />
-}
+const ForgotPassword = () => {
+  return (
+    <>
+      <DefaultSeo title="Sign Up Twitter" {...SEO} />
+      <ForgotPasswordForm />
+    </>
+  );
+};
 
-export default forgotpassword
+export default ForgotPassword;
