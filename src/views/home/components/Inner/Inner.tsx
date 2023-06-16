@@ -13,7 +13,6 @@ interface IInner {
 
 const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
   const theme = useTheme();
-
   const { register, handleSubmit, reset } = useForm<IMakeTweetResponse>();
 
   const customHandleSubmit = (data: IMakeTweetResponse) => {
@@ -30,7 +29,6 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
         display: 'flex',
         flexDirection: 'row',
         gap: '0 13px',
-        maxWidth: { xs: '100%', md: '600px' },
         padding: '10px 15px',
       }}
     >
@@ -80,7 +78,15 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
               borderRadius: '100px',
               width: '77px',
               height: '39px',
+              fontFamily: theme.typography.button.fontFamily,
+              fontStyle: theme.typography.button.fontStyle,
               fontWeight: theme.typography.button.fontWeight,
+              fontSize: theme.typography.button.fontSize,
+              lineHeight: theme.typography.button.lineHeight,
+              color: theme.typography.button.color,
+              ':hover': {
+                background: theme.palette.primary.contrastText,
+              },
             }}
           >
             Tweet

@@ -56,6 +56,7 @@ export const useLoginMutation = () => {
   const state = useMutation(config.request, {
     onSuccess(data) {
       console.log('логин успешен', data);
+      localStorage.setItem('auth-token', data.jwt);
     },
     onError(error) {
       console.log('логин ошибка', error);

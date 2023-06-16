@@ -1,4 +1,4 @@
-export type IPost = {
+export type ISinglePost = {
   id: string;
   avatarImg: string;
   avatarAlt: string;

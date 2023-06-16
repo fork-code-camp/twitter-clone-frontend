@@ -5,7 +5,7 @@ import ButtonWidget from '../buttons/ButtonWidget';
 import CommentSVG from '@/assets/icons/Comment.svg';
 import RetweetSVG from '@/assets/icons/Retweet.svg';
 import ShareSVG from '@/assets/icons/Share.svg';
-import { IPostWidgets } from '@/types/Post';
+import { IPostWidgets } from '@/components/Post/types';
 
 const PostWidgets: FC<IPostWidgets> = ({
   likeCount,

@@ -10,7 +10,7 @@ const MenuTitle: FC<IMenuTitle> = ({ title }) => {
   return (
     <Button
       sx={{
-        display: { xs: 'none', md: 'flex' },
+        display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' },
         justifyContent: 'flex-start',
         gap: '20px 0',
         mx: 0,

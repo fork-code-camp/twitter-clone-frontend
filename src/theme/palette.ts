@@ -3,9 +3,10 @@ const palette = {
     main: '#1da1f2',
     light: '#ffffff',
     dark: '#000000',
+    contrastText: '#1a8cd8',
   },
   secondary: {
-    main: '#5B7083',
+    main: '#5b7083',
     contrastText: '#1da1F2',
   },
   custom: {
@@ -19,6 +20,15 @@ const palette = {
     dark_7: '#ebeef0',
     dark_8: '#f7f9fa',
     white: '#ffffff',
+  },
+  border: {
+    main: '#ebeef0',
+  },
+  background: {
+    default: '#f7f9fa',
+  },
+  tag: {
+    main: '#1da1f2',
   },
   buttonLike: {
     main: '#5b7083',
