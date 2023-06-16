@@ -35,12 +35,22 @@ const typography = {
     lineHeight: '21px',
   },
   h5: {
-    color: palette.primary.dark,
+    color: palette.secondary.main,
     fontFamily: 'SF Compact Display',
     fontStyle: 'normal',
     fontWeight: 700,
     fontSize: '16px',
     lineHeight: '19px',
+    letterSpacing: '-0.02em',
+  },
+  h6: {
+    color: palette.secondary.main,
+    fontFamily: 'SF Compact Display',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: '14px',
+    lineHeight: '17px',
+    letterSpacing: '-0.02em',
   },
   button: {
     color: palette.primary.light,

@@ -8,9 +8,10 @@ const onClick = () => {
 
 interface IHomeHeader {
   title: string;
+  hasIcon?: boolean;
 }
 
-const Header: FC<IHomeHeader> = ({ title }) => {
+const Header: FC<IHomeHeader> = ({ title, hasIcon }) => {
   const theme = useTheme();
 
   return (
@@ -20,7 +21,6 @@ const Header: FC<IHomeHeader> = ({ title }) => {
         display: 'flex',
         justifyContent: 'space-between',
         gap: '0 13px',
-        maxWidth: { xs: '320px', md: '600px' },
         padding: '10px 15px',
       }}
     >
@@ -33,9 +33,13 @@ const Header: FC<IHomeHeader> = ({ title }) => {
       >
         {title}
       </Typography>
-      <IconButton sx={{ m: 0, p: 0 }} onClick={onClick}>
-        <TopTweet style={{ fill: theme.palette.buttonWidget?.contrastText }} />
-      </IconButton>
+      {hasIcon && (
+        <IconButton sx={{ m: 0, p: 0 }} onClick={onClick}>
+          <TopTweet
+            style={{ fill: theme.palette.buttonWidget?.contrastText }}
+          />
+        </IconButton>
+      )}
     </Container>
   );
 };

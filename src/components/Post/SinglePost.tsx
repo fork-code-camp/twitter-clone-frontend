@@ -4,9 +4,9 @@ import Avatar from '@/components/Avatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import PostContent from './PostContent';
-import { IPost } from '@/types/Post';
+import { ISinglePost } from '@/components/Post/types';
 
-const Post: FC<IPost> = ({
+const SinglePost: FC<ISinglePost> = ({
   id,
   avatarImg,
   avatarAlt,
@@ -30,12 +30,12 @@ const Post: FC<IPost> = ({
         display: 'flex',
         flexDirection: 'row',
         gap: '0 13px',
-        maxWidth: { xs: '100%', md: '600px' },
         padding: '10px 15px',
       }}
     >
       <Avatar img={avatarImg} alt={avatarAlt} />
       <Box sx={{ width: '100%' }}>
+        {/* name, username, time */}
         <Box
           sx={{
             display: 'flex',
@@ -48,6 +48,7 @@ const Post: FC<IPost> = ({
           <UserHeader name={userName} tag={userTag} />
           <PassedTime date={userPassedTime} />
         </Box>
+        {/* text, image, widgets */}
         <PostContent
           postText={postText}
           postImg={postImg}
@@ -63,4 +64,4 @@ const Post: FC<IPost> = ({
   );
 };
 
-export default Post;
+export default SinglePost;

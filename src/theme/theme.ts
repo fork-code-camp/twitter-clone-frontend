@@ -5,9 +5,9 @@ import typography from './typography';
 const myBreakpoints = {
   values: {
     xs: 0,
-    sm: 320,
-    md: 768,
-    lg: 1024,
+    sm: 768,
+    md: 1024,
+    lg: 1300,
     xl: 1920,
   },
 };

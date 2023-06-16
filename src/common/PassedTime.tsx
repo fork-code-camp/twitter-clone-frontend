@@ -1,5 +1,5 @@
-import { Box, Typography, useTheme } from '@mui/material';
 import React, { FC } from 'react';
+import { Box, Typography, useTheme } from '@mui/material';
 
 interface IPassedTime {
   date: number;
@@ -42,10 +42,30 @@ const PassedTime: FC<IPassedTime> = ({ date }) => {
         gap: '4px',
       }}
     >
-      <Typography variant="subtitle1" color={theme.palette.secondary.main}>
+      <Typography
+        sx={{
+          fontFamily: theme.typography.h5.fontFamily,
+          fontStyle: theme.typography.h5.fontStyle,
+          fontWeight: 500,
+          fontSize: theme.typography.h5.fontSize,
+          lineHeight: theme.typography.h5.lineHeight,
+          color: theme.typography.h5.color,
+          letterSpacing: theme.typography.h5.letterSpacing,
+        }}
+      >
         ·
       </Typography>
-      <Typography variant="subtitle1" color={theme.palette.secondary.main}>
+      <Typography
+        sx={{
+          fontFamily: theme.typography.h5.fontFamily,
+          fontStyle: theme.typography.h5.fontStyle,
+          fontWeight: 500,
+          fontSize: theme.typography.h5.fontSize,
+          lineHeight: theme.typography.h5.lineHeight,
+          color: theme.typography.h5.color,
+          letterSpacing: theme.typography.h5.letterSpacing,
+        }}
+      >
         {dateResult}
       </Typography>
     </Box>

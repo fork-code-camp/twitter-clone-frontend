@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
 import IPostWidgets from './PostWidgets';
-import { IPostContent } from '@/types/Post';
+import { IPostContent } from '@/components/Post/types';
 
 const PostContent: FC<IPostContent> = ({
   postText,
@@ -19,11 +19,12 @@ const PostContent: FC<IPostContent> = ({
     <Container
       disableGutters
       sx={{
+        m: 0,
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-        width: { xs: '100%', md: '100%' }, //100
-        maxWidth: { xs: '100%', md: '510px' }, //100
+        width: { xs: '100%', md: '100%' },
+        maxWidth: { xs: '100%', md: '510px' },
       }}
     >
       <Typography sx={{ wordWrap: 'break-word' }}>{postText}</Typography>

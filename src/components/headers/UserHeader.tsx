@@ -1,3 +1,4 @@
+import React, { FC } from 'react';
 import {
   Box,
   Container,
@@ -5,7 +6,6 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import React, { FC } from 'react';
 import VerificationSVG from '@/assets/icons/Verification.svg';
 
 interface IUserHeader {
@@ -45,7 +45,18 @@ const UserHeader: FC<IUserHeader> = ({ name, tag, verified, vertical }) => {
           </IconButton>
         )}
       </Box>
-      <Typography variant="subtitle1" color={theme.palette.secondary.main}>
+      <Typography
+        variant="subtitle1"
+        sx={{
+          fontFamily: theme.typography.h5.fontFamily,
+          fontStyle: theme.typography.h5.fontStyle,
+          fontWeight: 500,
+          fontSize: theme.typography.h5.fontSize,
+          lineHeight: theme.typography.h5.lineHeight,
+          color: theme.typography.h5.color,
+          letterSpacing: theme.typography.h5.letterSpacing,
+        }}
+      >
         @{tag}
       </Typography>
     </Container>

@@ -14,7 +14,6 @@ export const verifyEmail = async ({activationCode}: {activationCode: string}) =>
 
 export const login = async (loginData: IAuthLoginRequest) => {
   const response = await api.post<IAuthLoginResponse>(AUTH_AUTH, loginData);
-  localStorage.setItem('auth-token', response?.data.jwt);
   return response;
 };
 

@@ -1,24 +1,20 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import Inner from '@/views/home/components/Inner/Inner';
-import PostList from '@/components/Post/PostList';
+import Posts from '@/components/Post/Posts';
 import { IMakeTweetRequest } from '@/services/types';
 import { useTweetQuery } from '@/services/Query/tweet/tweet.query';
 import { useMakeTweetMutation } from '@/services/Query/tweet/tweet.mutation';
-import { Alert, Box, CircularProgress, Grid, Typography } from '@mui/material';
-import { statusIsAuth } from '@/api';
-import { useEffect, useState } from 'react';
+import { Alert, Box, CircularProgress, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
 import Header from './components/Header';
 import Menu from '@/components/menu/Menu';
+import News from '@/components/news/News';
+import UnderLine from '@/common/UnderLine';
 
 const HomePage: FC = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const theme = useTheme();
   const { data, isLoading, isError } = useTweetQuery();
   const { mutateAsync: mutateMakeTweet } = useMakeTweetMutation();
-
-  useEffect(() => {
-    setIsAuth(statusIsAuth);
-  }, []);
 
   const tweetData = data
     ?.slice(0)
@@ -28,21 +24,33 @@ const HomePage: FC = () => {
     });
 
   return (
-    <Grid container spacing={0} columns={{ sm: 6, md: 8, lg: 12 }}>
-      <Grid item sm={1} md={2} lg={3}>
+    <Grid
+      container
+      gap={2}
+      sx={{ justifyContent: 'center', flexWrap: 'nowrap' }}
+    >
+      <Grid item sx={{ width: { md: '75px', lg: '200px' } }}>
         <Menu menuList={menuList} />
       </Grid>
-      <Grid item sm={5} md={6} lg={6}>
-        <Header title="Home" />
-        {isAuth && (
-          <Inner
-            avatarImg={require('../../temp/BlankAvatar.jpg')}
-            avatarAlt="avatarAlt"
-            onSumbit={(requestData: IMakeTweetRequest) =>
-              mutateMakeTweet(requestData)
-            }
-          />
-        )}
+      <Grid
+        item
+        sx={{
+          width: { xs: '300px', sm: '600px', md: '600px' },
+          borderLeft: `1px solid ${theme.palette.border?.main}`,
+          borderRight: `1px solid ${theme.palette.border?.main}`,
+        }}
+      >
+        <Header title="Home" hasIcon />
+        <UnderLine />
+
+        <Inner
+          avatarImg={require('../../temp/BlankAvatar.jpg')}
+          avatarAlt="avatarAlt"
+          onSumbit={(requestData: IMakeTweetRequest) =>
+            mutateMakeTweet(requestData)
+          }
+        />
+        <UnderLine />
 
         <Box
           sx={{
@@ -56,18 +64,16 @@ const HomePage: FC = () => {
           {isError && <Alert severity="error">Ошибка загрузки постов</Alert>}
         </Box>
 
-        <PostList posts={tweetData} />
+        <Posts posts={tweetData} />
       </Grid>
-      <Grid item sm={0} md={0} lg={3}>
-        <Typography
-          variant="h6"
-          sx={{
-            display: { sm: 'none', md: 'none', lg: 'block' },
-            textAlign: 'center',
-          }}
-        >
-          in developing
-        </Typography>
+      <Grid
+        item
+        sx={{
+          display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' },
+          width: '350px',
+        }}
+      >
+        <News />
       </Grid>
     </Grid>
   );
