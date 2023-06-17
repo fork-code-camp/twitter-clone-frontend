@@ -26,6 +26,7 @@ const palette = {
   },
   background: {
     default: '#f7f9fa',
+    paper: 'rgba(0,0,0,0.03)',
   },
   tag: {
     main: '#1da1f2',
