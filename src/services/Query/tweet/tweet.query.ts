@@ -16,6 +16,10 @@ const tweetConfig = {
 export const useTweetQuery = () => {
   const { getTweets: config } = tweetConfig;
 
-  const state = useQuery(config.key, config.request);
+  const state = useQuery(config.key, config.request, {
+    onSuccess() {
+      console.log('твиты получены');
+    },
+  });
   return state;
 };
