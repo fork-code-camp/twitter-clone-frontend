@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
-import { Grid, Typography, useTheme } from '@mui/material';
+import { Grid, useTheme } from '@mui/material';
 import Menu from '@/components/menu/Menu';
 import Header from '@/views/home/components/Header';
 import { menuLogoutList } from '@/data/configMenu/configMenu';
-import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
+import OfferToRegister from '@/components/OfferToRegister/OfferToRegister';
+import Description from '@/temp/Description';
 
 const LogoutView: FC = () => {
   const theme = useTheme();
@@ -12,7 +13,7 @@ const LogoutView: FC = () => {
     <Grid
       container
       gap={2}
-      sx={{ justifyContent: 'center', flexWrap: 'nowrap' }}
+      sx={{ justifyContent: 'center', flexWrap: 'nowrap', paddingTop: '20px' }}
     >
       <Grid item sx={{ width: { md: '75px', lg: '200px' } }}>
         <Menu menuList={menuLogoutList} />
@@ -25,11 +26,11 @@ const LogoutView: FC = () => {
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
       >
+        <UnderLine />
         <Header title="View" />
         <UnderLine />
-        <Typography sx={{ p: 2, textAlign: 'center' }}>
-          * здесь будут рандомные посты для неавторизованных пользователей*
-        </Typography>
+        <Description />
+        <UnderLine />
       </Grid>
       <Grid
         item
@@ -38,7 +39,7 @@ const LogoutView: FC = () => {
           width: '350px',
         }}
       >
-        <News />
+        <OfferToRegister />
       </Grid>
     </Grid>
   );

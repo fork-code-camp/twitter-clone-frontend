@@ -51,7 +51,15 @@ const Home = () => {
         </Button>
 
         <Button onClick={() => logout()} variant="contained" sx={btnTheme}>
-          Logout
+          Logout Auth
+        </Button>
+        <Button
+          component={Link}
+          href="/logout"
+          variant="contained"
+          sx={btnTheme}
+        >
+          Logout page
         </Button>
       </Container>
     </>
