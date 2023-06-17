@@ -10,6 +10,7 @@ import Header from './components/Header';
 import Menu from '@/components/menu/Menu';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
+import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 
 const HomePage: FC = () => {
   const theme = useTheme();
@@ -69,11 +70,14 @@ const HomePage: FC = () => {
       <Grid
         item
         sx={{
-          display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' },
+          display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' },
+          flexDirection: 'column',
+          gap: '30px',
           width: '350px',
         }}
       >
         <News />
+        <WhoToFollow />
       </Grid>
     </Grid>
   );
