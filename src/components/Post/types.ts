@@ -1,8 +1,8 @@
 export type ISinglePost = {
   id: string;
-  avatarImg: string;
+  avatarUrl: string;
   avatarAlt: string;
-  userName: string;
+  username: string;
   userTag: string;
   userPassedTime: number;
 } & IPostContent;
@@ -16,7 +16,10 @@ export type IPostContent = {
 export type IPostWidgets = {
   likeCount: number;
   likeIsSelected?: boolean;
-  commentCount: number;
+  replyCount: number;
+  replyTo: string | null;
   retweetCount: number;
-  shareCount: number;
+  retweetTo: string | null;
+  viewsCount: number;
 };
+

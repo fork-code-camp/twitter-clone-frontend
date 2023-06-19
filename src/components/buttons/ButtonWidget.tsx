@@ -3,15 +3,25 @@ import { Box, Button, Typography, useTheme } from '@mui/material';
 
 interface IButtonWidget {
   icon: ReactNode;
-  count: number;
+  count?: number;
+  widgetTo?: string | null;
   onClick: () => void;
 }
 
-const ButtonWidget: FC<IButtonWidget> = ({ icon, count, onClick }) => {
+const ButtonWidget: FC<IButtonWidget> = ({
+  icon,
+  count,
+  widgetTo = null,
+  onClick,
+}) => {
   const theme = useTheme();
   const notSelectedColor = theme.palette.buttonWidget?.main;
   const selectedColor = theme.palette.buttonWidget?.contrastText;
-  const strokeColor = count > 0 ? selectedColor : notSelectedColor;
+  const strokeColor =
+    widgetTo !== null || (count && count > 0)
+      ? selectedColor
+      : notSelectedColor;
+
   const toggleStyles = {
     display: 'flex',
     alignItems: 'center',

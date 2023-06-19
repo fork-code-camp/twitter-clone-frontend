@@ -6,12 +6,12 @@ import { useForm } from 'react-hook-form';
 import { IMakeTweetResponse } from '@/services/types';
 
 interface IInner {
-  avatarImg: string;
+  avatarUrl: string;
   avatarAlt: string;
   onSumbit: (data: IMakeTweetResponse) => void;
 }
 
-const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
+const Inner: FC<IInner> = ({ avatarUrl, avatarAlt, onSumbit }) => {
   const theme = useTheme();
   const { register, handleSubmit, reset } = useForm<IMakeTweetResponse>();
 
@@ -32,7 +32,7 @@ const Inner: FC<IInner> = ({ avatarImg, avatarAlt, onSumbit }) => {
         padding: '10px 15px',
       }}
     >
-      <Avatar img={avatarImg} alt={avatarAlt} />
+      <Avatar img={avatarUrl} alt={avatarAlt} />
       <Box
         sx={{
           display: 'flex',

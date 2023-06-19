@@ -6,7 +6,7 @@ import { IWhoToFollow } from './types';
 const SingleWhoToFollow: FC<IWhoToFollow> = ({
   name,
   tag,
-  avatarImg,
+  avatarUrl,
   altImg,
   url,
   followURL,
@@ -53,7 +53,7 @@ const SingleWhoToFollow: FC<IWhoToFollow> = ({
             width={48}
             height={48}
             style={{ objectFit: 'contain' }}
-            src={avatarImg}
+            src={avatarUrl}
             alt={altImg}
           />
         </Box>
