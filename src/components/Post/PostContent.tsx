@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
-import IPostWidgets from './PostWidgets';
+import PostWidgets from './PostWidgets';
 import { IPostContent } from '@/components/Post/types';
 
 const PostContent: FC<IPostContent> = ({
@@ -10,9 +10,11 @@ const PostContent: FC<IPostContent> = ({
   postAlt,
   likeCount,
   likeIsSelected,
-  commentCount,
+  replyCount,
+  replyTo,
   retweetCount,
-  shareCount,
+  retweetTo,
+  viewsCount,
 }) => {
   const isShowImage = postImg && postAlt;
   return (
@@ -39,8 +41,9 @@ const PostContent: FC<IPostContent> = ({
           }}
         >
           <Image
+            width={100}
+            height={100}
             style={{ width: 'inherit', height: 'inherit' }}
-            placeholder="blur"
             unoptimized
             src={postImg}
             alt={postAlt}
@@ -48,12 +51,14 @@ const PostContent: FC<IPostContent> = ({
         </Box>
       )}
 
-      <IPostWidgets
+      <PostWidgets
         likeCount={likeCount}
         likeIsSelected={likeIsSelected}
-        commentCount={commentCount}
+        replyCount={replyCount}
+        replyTo={replyTo}
         retweetCount={retweetCount}
-        shareCount={shareCount}
+        retweetTo={retweetTo}
+        viewsCount={viewsCount}
       />
     </Container>
   );

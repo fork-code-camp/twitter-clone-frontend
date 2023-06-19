@@ -15,6 +15,9 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true
   },
+  images: {
+    domains: ['twitter-clone-storages.s3.amazonaws.com'],
+  },
 }
 
 const withReactSvg = require('next-react-svg')(nextReactSvgConfig);

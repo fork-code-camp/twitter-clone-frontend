@@ -9,7 +9,7 @@ const temp = [
   {
     name: 'Bessie Cooper',
     tag: '@alessandroveronezi',
-    avatarImg: img,
+    avatarUrl: img,
     altImg: 'alt',
     url: '/',
     followURL: '#',
@@ -17,7 +17,7 @@ const temp = [
   {
     name: 'Jenny Wilson',
     tag: '@gabrielcantarin',
-    avatarImg: img,
+    avatarUrl: img,
     altImg: 'alt',
     url: '/',
     followURL: '#',

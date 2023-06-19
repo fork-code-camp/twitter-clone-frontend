@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Inner from '@/views/home/components/Inner/Inner';
+import Inner from '@/components/Inner/Inner';
 import Posts from '@/components/Post/Posts';
 import { IMakeTweetRequest } from '@/services/types';
 import { useTweetQuery } from '@/services/Query/tweet/tweet.query';
@@ -18,11 +18,11 @@ const HomePage: FC = () => {
   const { mutateAsync: mutateMakeTweet } = useMakeTweetMutation();
 
   const tweetData = data
-    ?.slice(0)
+    /* ?.slice(0)
     .reverse()
     .map((element: IMakeTweetRequest) => {
       return element;
-    });
+    }); */
 
   return (
     <Grid
@@ -45,7 +45,7 @@ const HomePage: FC = () => {
         <UnderLine />
 
         <Inner
-          avatarImg={require('../../temp/BlankAvatar.jpg')}
+          avatarUrl={require('../../temp/BlankAvatar.jpg')}
           avatarAlt="avatarAlt"
           onSumbit={(requestData: IMakeTweetRequest) =>
             mutateMakeTweet(requestData)

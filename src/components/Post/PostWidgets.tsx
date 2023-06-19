@@ -2,23 +2,26 @@ import React, { FC, useState } from 'react';
 import { Container } from '@mui/material';
 import ButtonLike from '../buttons/ButtonLike';
 import ButtonWidget from '../buttons/ButtonWidget';
-import CommentSVG from '@/assets/icons/Comment.svg';
+import ReplySVG from '@/assets/icons/Reply.svg';
 import RetweetSVG from '@/assets/icons/Retweet.svg';
 import ShareSVG from '@/assets/icons/Share.svg';
+import ViewsSVG from '@/assets/icons/Views.svg';
 import { IPostWidgets } from '@/components/Post/types';
 
 const PostWidgets: FC<IPostWidgets> = ({
   likeCount,
   likeIsSelected,
-  commentCount,
+  replyCount,
+  replyTo,
   retweetCount,
-  shareCount,
+  retweetTo,
+  viewsCount,
 }) => {
   const [likeCountButton, setLikeCountButton] = useState(likeCount);
   const [selected, setSelected] = useState(likeIsSelected || false);
 
-  const onChangeComment = () => {
-    console.log('onChangeComment');
+  const onChangeReply = () => {
+    console.log('onChangeReply');
   };
 
   const onChangeRetweet = () => {
@@ -28,6 +31,11 @@ const PostWidgets: FC<IPostWidgets> = ({
   const onClickLike = () => {
     console.log('onClickLike: ', likeCountButton, selected);
   };
+
+  const onChangeView = () => {
+    console.log('onChangeView');
+  };
+
   const onChangeShare = () => {
     console.log('onChangeShare');
   };
@@ -42,14 +50,16 @@ const PostWidgets: FC<IPostWidgets> = ({
       }}
     >
       <ButtonWidget
-        icon={<CommentSVG />}
-        count={commentCount}
-        onClick={onChangeComment}
+        icon={<ReplySVG />}
+        count={replyCount}
+        onClick={onChangeReply}
+        widgetTo={replyTo}
       />
       <ButtonWidget
         icon={<RetweetSVG />}
         count={retweetCount}
         onClick={onChangeRetweet}
+        widgetTo={retweetTo}
       />
       <ButtonLike
         count={likeCountButton}
@@ -59,8 +69,14 @@ const PostWidgets: FC<IPostWidgets> = ({
         onClick={onClickLike}
       />
       <ButtonWidget
+        icon={<ViewsSVG />}
+        count={viewsCount}
+        // count={shareCount}
+        onClick={onChangeView}
+      />
+      <ButtonWidget
         icon={<ShareSVG />}
-        count={shareCount}
+        // count={shareCount}
         onClick={onChangeShare}
       />
     </Container>

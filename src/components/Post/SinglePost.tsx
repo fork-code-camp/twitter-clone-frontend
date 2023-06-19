@@ -8,18 +8,20 @@ import { ISinglePost } from '@/components/Post/types';
 
 const SinglePost: FC<ISinglePost> = ({
   id,
-  avatarImg,
+  avatarUrl,
   avatarAlt,
-  userName,
+  username,
   userTag,
   userPassedTime,
   postText,
   postImg,
   postAlt,
   likeCount,
-  commentCount,
+  replyCount,
+  replyTo,
   retweetCount,
-  shareCount,
+  retweetTo,
+  viewsCount,
   likeIsSelected,
 }) => {
   return (
@@ -33,7 +35,7 @@ const SinglePost: FC<ISinglePost> = ({
         padding: '10px 15px',
       }}
     >
-      <Avatar img={avatarImg} alt={avatarAlt} />
+      <Avatar img={avatarUrl} alt={avatarAlt} />
       <Box sx={{ width: '100%' }}>
         {/* name, username, time */}
         <Box
@@ -45,7 +47,7 @@ const SinglePost: FC<ISinglePost> = ({
             gap: '8px',
           }}
         >
-          <UserHeader name={userName} tag={userTag} />
+          <UserHeader name={username} tag={userTag} />
           <PassedTime date={userPassedTime} />
         </Box>
         {/* text, image, widgets */}
@@ -55,9 +57,11 @@ const SinglePost: FC<ISinglePost> = ({
           postAlt={postAlt}
           likeCount={likeCount}
           likeIsSelected={likeIsSelected}
-          commentCount={commentCount}
+          replyCount={replyCount}
+          replyTo={replyTo}
           retweetCount={retweetCount}
-          shareCount={shareCount}
+          retweetTo={retweetTo}
+          viewsCount={viewsCount}
         />
       </Box>
     </Container>
