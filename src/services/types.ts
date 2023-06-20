@@ -13,8 +13,8 @@ export interface IAuthVerifyRequest {
   activationCode: string;
 }
 
-export interface IAuthVerifyResponse{
-  jwt: string
+export interface IAuthVerifyResponse {
+  jwt: string;
 }
 
 export interface IAuthLoginRequest {
@@ -29,6 +29,7 @@ export interface IAuthLoginResponse {
 /* Tweet */
 export interface IMakeTweetRequest {
   text: string;
+  file: FileList;
 }
 
 export interface IMakeTweetResponse {

@@ -1,29 +1,44 @@
-import { Box, Button, Container, TextField, useTheme } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  Input,
+  TextField,
+  useTheme,
+} from '@mui/material';
 import React, { FC } from 'react';
 import InnerActions from './InnerActions';
 import Avatar from '@/components/Avatar';
 import { useForm } from 'react-hook-form';
-import { IMakeTweetResponse } from '@/services/types';
+import { IMakeTweetRequest } from '@/services/types';
+import { useMakeTweetMutation } from '@/services/Query/tweet/tweet.mutation';
 
 interface IInner {
   avatarUrl: string;
   avatarAlt: string;
-  onSumbit: (data: IMakeTweetResponse) => void;
 }
-
-const Inner: FC<IInner> = ({ avatarUrl, avatarAlt, onSumbit }) => {
+const Inner: FC<IInner> = ({ avatarUrl, avatarAlt }) => {
   const theme = useTheme();
-  const { register, handleSubmit, reset } = useForm<IMakeTweetResponse>();
+  const { register, handleSubmit, reset } = useForm<IMakeTweetRequest>();
+  const { mutateAsync: mutateMakeTweet } = useMakeTweetMutation();
+  const onSubmit = async (requestData: IMakeTweetRequest) => {
+    await mutateMakeTweet(requestData);
 
-  const customHandleSubmit = (data: IMakeTweetResponse) => {
-    onSumbit(data);
+    const formdata = new FormData();
+    const blob = new Blob([JSON.stringify({ text: requestData.text })], {
+      type: 'application/json',
+    });
+
+    formdata.append('request', blob);
+    formdata.append('files', requestData.file[0]);
+
     reset();
   };
 
   return (
     <Container
       component="form"
-      onSubmit={handleSubmit(customHandleSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
       disableGutters
       sx={{
         display: 'flex',
@@ -43,6 +58,7 @@ const Inner: FC<IInner> = ({ avatarUrl, avatarAlt, onSumbit }) => {
       >
         <TextField
           {...register('text')}
+          type="text"
           placeholder="What’s happening?"
           minRows={3}
           multiline
@@ -62,6 +78,8 @@ const Inner: FC<IInner> = ({ avatarUrl, avatarAlt, onSumbit }) => {
             },
           }}
         />
+        <Input type="file" {...register('file')} />
+
         <Box
           sx={{
             display: 'flex',

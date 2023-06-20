@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
 import Inner from '@/components/Inner/Inner';
 import Posts from '@/components/Post/Posts';
-import { IMakeTweetRequest } from '@/services/types';
-import { useTweetQuery } from '@/services/Query/tweet/tweet.query';
-import { useMakeTweetMutation } from '@/services/Query/tweet/tweet.mutation';
+import { useGetTweetQuery } from '@/services/Query/tweet/tweet.query';
 import { Alert, Box, CircularProgress, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
 import Header from './components/Header';
@@ -14,15 +12,7 @@ import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 
 const HomePage: FC = () => {
   const theme = useTheme();
-  const { data, isLoading, isError } = useTweetQuery();
-  const { mutateAsync: mutateMakeTweet } = useMakeTweetMutation();
-
-  const tweetData = data
-    /* ?.slice(0)
-    .reverse()
-    .map((element: IMakeTweetRequest) => {
-      return element;
-    }); */
+  const { data, isLoading, isError } = useGetTweetQuery();
 
   return (
     <Grid
@@ -47,9 +37,6 @@ const HomePage: FC = () => {
         <Inner
           avatarUrl={require('../../temp/BlankAvatar.jpg')}
           avatarAlt="avatarAlt"
-          onSumbit={(requestData: IMakeTweetRequest) =>
-            mutateMakeTweet(requestData)
-          }
         />
         <UnderLine />
 
@@ -65,7 +52,7 @@ const HomePage: FC = () => {
           {isError && <Alert severity="error">Ошибка загрузки постов</Alert>}
         </Box>
 
-        <Posts posts={tweetData} />
+        <Posts posts={data} />
       </Grid>
       <Grid
         item

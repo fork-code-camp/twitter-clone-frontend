@@ -5,8 +5,16 @@ import { useMutation, useQueryClient } from 'react-query';
 const tweetConfig = {
   makeTweet: {
     key: 'makeTweet',
-    request: async (params: IMakeTweetRequest) => {
-      const response = await makeTweet(params);
+    request: async (requestData: IMakeTweetRequest) => {
+      const mydata = await new FormData();
+      const blob = new Blob([JSON.stringify({ text: requestData.text })], {
+        type: 'application/json',
+      });
+
+      await mydata.append('request', blob);
+      await mydata.append('files', requestData.file[0]);
+
+      const response = await makeTweet(mydata);
       return response.data;
     },
   },

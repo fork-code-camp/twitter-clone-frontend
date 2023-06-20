@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../next-seo.config';
-import SignUpPageForm from '@/forms/SignUpPageForm';
+import SignUpPageForm from '@/temp/notUsed/SignUpPageForm';
 
 const SignUp: FC = () => {
   return (

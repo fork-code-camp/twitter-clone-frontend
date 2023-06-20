@@ -71,14 +71,9 @@ const PostWidgets: FC<IPostWidgets> = ({
       <ButtonWidget
         icon={<ViewsSVG />}
         count={viewsCount}
-        // count={shareCount}
         onClick={onChangeView}
       />
-      <ButtonWidget
-        icon={<ShareSVG />}
-        // count={shareCount}
-        onClick={onChangeShare}
-      />
+      <ButtonWidget icon={<ShareSVG />} onClick={onChangeShare} />
     </Container>
   );
 };
