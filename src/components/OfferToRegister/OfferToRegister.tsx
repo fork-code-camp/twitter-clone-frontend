@@ -71,7 +71,6 @@ const OfferToRegister = () => {
           sx={{
             height: '40px',
             borderRadius: '100px',
-            // m: '16px 12px 16px 12px',
             textTransform: 'inherit',
             fontFamily: theme.typography.button.fontFamily,
             fontStyle: theme.typography.button.fontStyle,

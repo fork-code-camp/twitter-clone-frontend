@@ -6,14 +6,12 @@ const tweetConfig = {
     key: 'getTweets',
     request: async () => {
       const response = await getTweets();
-      console.log(response);
-
       return response.data;
     },
   },
 };
 
-export const useTweetQuery = () => {
+export const useGetTweetQuery = () => {
   const { getTweets: config } = tweetConfig;
 
   const state = useQuery(config.key, config.request, {
