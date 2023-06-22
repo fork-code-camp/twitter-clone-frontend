@@ -1,4 +1,4 @@
-import { makeTweet } from '@/services/tweetService';
+import { deleteTweet, makeTweet } from '@/services/tweetService';
 import { IMakeTweetRequest } from '@/services/types';
 import { useMutation, useQueryClient } from 'react-query';
 
@@ -18,6 +18,14 @@ const tweetConfig = {
       return response.data;
     },
   },
+
+  deleteTweet: {
+    key: 'deleteTweet',
+    request: async (requestData: number) => {
+      const response = await deleteTweet(requestData);
+      return response;
+    },
+  },
 };
 
 export const useMakeTweetMutation = () => {
@@ -31,6 +39,23 @@ export const useMakeTweetMutation = () => {
     },
     onError(error) {
       console.log('ошибка создания поста', error);
+    },
+  });
+
+  return state;
+};
+
+export const useDeleteTweetMutation = () => {
+  const queryClient = useQueryClient();
+
+  const { deleteTweet: config } = tweetConfig;
+  const state = useMutation(config.request, {
+    onSuccess(data) {
+      queryClient.invalidateQueries();
+      console.log('Пост удален', data);
+    },
+    onError(error) {
+      console.log('ошибка удаления поста', error);
     },
   });
 

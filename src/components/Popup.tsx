@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Container } from '@mui/material';
+import { Container, useTheme } from '@mui/material';
 
 interface IPopup {
   title: string;
@@ -16,6 +16,7 @@ interface IPopup {
   onPopupSubmit: () => void;
 }
 const Popup: FC<IPopup> = (props) => {
+  const theme = useTheme();
   const {
     title,
     contentText,
@@ -33,13 +34,15 @@ const Popup: FC<IPopup> = (props) => {
           setOpenPopup(false);
         }}
       >
-        <DialogTitle>{title}</DialogTitle>
-        <DialogContent>
+        <DialogTitle sx={{ background: theme.palette.primary.light }}>
+          {title}
+        </DialogTitle>
+        <DialogContent sx={{ background: theme.palette.primary.light }}>
           <DialogContentText>{contentText}</DialogContentText>
 
           {children}
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{ background: theme.palette.primary.light }}>
           <Button
             onClick={() => {
               setOpenPopup(false);

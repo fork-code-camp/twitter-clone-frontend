@@ -9,6 +9,7 @@ interface IPosts {
 }
 
 const Posts: FC<IPosts> = ({ posts }, index) => {
+  console.log(posts);
   return (
     <Container disableGutters>
       {posts &&
@@ -40,4 +41,3 @@ const Posts: FC<IPosts> = ({ posts }, index) => {
 };
 
 export default Posts;
-
