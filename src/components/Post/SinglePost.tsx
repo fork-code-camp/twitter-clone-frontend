@@ -5,6 +5,7 @@ import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import PostContent from './PostContent';
 import { ISinglePost } from '@/components/Post/types';
+import MoreActionButton from '@/components/Post/MoreActionButton';
 
 const SinglePost: FC<ISinglePost> = ({
   id,
@@ -37,18 +38,21 @@ const SinglePost: FC<ISinglePost> = ({
     >
       <Avatar img={avatarUrl} alt={avatarAlt} />
       <Box sx={{ width: '100%' }}>
-        {/* name, username, time */}
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '8px',
-          }}
-        >
-          <UserHeader name={username} tag={userTag} />
-          <PassedTime date={userPassedTime} />
+        {/* name, username, time, moreActionBtn */}
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '8px',
+            }}
+          >
+            <UserHeader name={username} tag={userTag} />
+            <PassedTime date={userPassedTime} />
+          </Box>
+          <MoreActionButton id={id} />
         </Box>
         {/* text, image, widgets */}
         <PostContent

@@ -17,6 +17,7 @@ interface IInner {
   avatarUrl: string;
   avatarAlt: string;
 }
+
 const Inner: FC<IInner> = ({ avatarUrl, avatarAlt }) => {
   const theme = useTheme();
   const { register, handleSubmit, reset } = useForm<IMakeTweetRequest>();
