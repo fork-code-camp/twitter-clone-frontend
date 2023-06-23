@@ -27,7 +27,7 @@ const SinglePost: FC<ISinglePost> = ({
 }) => {
   return (
     <Container
-      id={id}
+      id={id.toString()}
       disableGutters
       sx={{
         display: 'flex',

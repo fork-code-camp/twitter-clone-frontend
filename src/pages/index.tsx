@@ -28,12 +28,7 @@ const Home = () => {
           p: '10px',
         }}
       >
-        <Button
-          component={Link}
-          href="/registration"
-          variant="contained"
-          sx={btnTheme}
-        >
+        <Button component={Link} href="/registration" variant="contained" sx={btnTheme} >
           Registration
         </Button>
 
@@ -41,26 +36,22 @@ const Home = () => {
           Home page
         </Button>
 
-        <Button
-          component={Link}
-          href="/login"
-          variant="contained"
-          sx={btnTheme}
-        >
+        <Button component={Link} href="/login" variant="contained" sx={btnTheme} >
           Login
         </Button>
 
         <Button onClick={() => logout()} variant="contained" sx={btnTheme}>
           Logout Auth
         </Button>
-        <Button
-          component={Link}
-          href="/logout"
-          variant="contained"
-          sx={btnTheme}
-        >
+
+        <Button component={Link} href="/logout" variant="contained" sx={btnTheme} >
           Logout page
         </Button>
+
+        <Button component={Link} href="/profile" variant="contained" sx={btnTheme} >
+          Profile page
+        </Button>
+
       </Container>
     </>
   );

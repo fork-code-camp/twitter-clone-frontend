@@ -5,4 +5,7 @@ export const AUTH_LOGOUT = '/api/v1/auth/logout';
 export const TWEETS_GET = 'api/v1/tweets';
 export const TWEETS_POST = 'api/v1/tweets';
 export const TWEETS_DELETE = 'api/v1/tweets';
-export const TIMELINES_TWEETS_GET = 'api/v1/timelines/user?page=0&size=100'; /* временно, TODO сделать pages */
+export const TIMELINES_TWEETS_GET_USER = 'api/v1/timelines/user';
+export const TIMELINES_TWEETS_GET_USER_REPLIES = 'api/v1/timelines/user-replies';
+export const TIMELINES_TWEETS_GET_USER_HOME = 'api/v1/timelines/home';
+export const RETWEET_POST = '/api/v1/retweets';

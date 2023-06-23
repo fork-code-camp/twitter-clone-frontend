@@ -3,13 +3,13 @@ import MoreActionButtonTemplate from './templates/MoreActionButtonTemplate';
 import { useDeleteTweetMutation } from '@/services/Query/tweet/tweet.mutation';
 
 interface IMoreActionButton {
-  id: string;
+  id: number;
 }
 const MoreActionButton: FC<IMoreActionButton> = ({ id }) => {
   const { mutateAsync: mutateDeleteTweet } = useDeleteTweetMutation();
 
   const onDelete = async () => {
-    await mutateDeleteTweet(Number(id));
+    await mutateDeleteTweet(id);
   };
 
   return <MoreActionButtonTemplate onDelete={onDelete} />;

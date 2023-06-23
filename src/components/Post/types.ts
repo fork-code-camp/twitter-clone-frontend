@@ -1,5 +1,5 @@
 export type ISinglePost = {
-  id: string;
+  id: number;
   avatarUrl: string;
   avatarAlt: string;
   username: string;
@@ -19,7 +19,50 @@ export type IPostWidgets = {
   replyCount: number;
   replyTo: string | null;
   retweetCount: number;
-  retweetTo: string | null;
+  retweetTo?: IRetweetTo;
   viewsCount: number;
 };
 
+export type IPost = {
+  id: number;
+  replyTo: null;
+  text?: string;
+  mediaUrls?: string;
+  quoteTo: null;
+  retweets: number;
+  replies: number;
+  likes: number;
+  views: number;
+  creationDate: string;
+  retweetTo: IRetweetTo;
+  profile: Profile;
+};
+
+type IRetweetTo = {
+  id: number;
+  replyTo: null;
+  retweetTo: null;
+  profile: Profile;
+  text: string;
+  mediaUrls: string[];
+  quoteTo: null;
+  retweets: number;
+  replies: number;
+  likes: number;
+  views: number;
+  creationDate: string;
+}
+type Profile = {
+  profileId: string;
+  username: string;
+  email: string;
+  followers: number;
+  followees: number;
+  joinDate: string;
+  bio: null;
+  location: null;
+  website: null;
+  birthDate: null;
+  avatarUrl: string;
+  bannerUrl: null;
+};

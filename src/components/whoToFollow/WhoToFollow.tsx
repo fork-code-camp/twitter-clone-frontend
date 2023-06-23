@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import img from '../../temp/BlankAvatar.jpg';
+import img from '@/temp/BlankAvatar.jpg';
 import { Box, Container, useTheme } from '@mui/material';
 import UnderLine from '@/common/UnderLine';
-import Header from '@/views/home/components/Header';
+import Header from '@/components/Header';
 import SingleWhoToFollow from './SingleWhoToFollow';
 
 const temp = [

@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Container } from '@mui/material';
-import ButtonLike from '../buttons/ButtonLike';
-import ButtonWidget from '../buttons/ButtonWidget';
+import ButtonLike from '../../buttons/ButtonLike';
+import ButtonWidget from '../../buttons/ButtonWidget';
 import ReplySVG from '@/assets/icons/Reply.svg';
 import RetweetSVG from '@/assets/icons/Retweet.svg';
 import ShareSVG from '@/assets/icons/Share.svg';

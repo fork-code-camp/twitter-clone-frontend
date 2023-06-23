@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import Inner from '@/components/Inner/Inner';
 import Posts from '@/components/Post/Posts';
 import { Alert, Box, CircularProgress, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
@@ -8,11 +7,11 @@ import Menu from '@/components/menu/Menu';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
-import { useGetTweetHomeQuery } from '@/services/Query/timeline/tweetTimeline.query';
+import { useGetTweetUserQuery } from '@/services/Query/timeline/tweetTimeline.query';
 
-const HomePage: FC = () => {
+const ProfileView: FC = () => {
   const theme = useTheme();
-  const { data, isLoading, isError } = useGetTweetHomeQuery();
+  const { data, isLoading, isError } = useGetTweetUserQuery();
 
   return (
     <Grid
@@ -31,13 +30,7 @@ const HomePage: FC = () => {
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
       >
-        <Header title="Home" hasIcon />
-        <UnderLine />
-
-        <Inner
-          avatarUrl={require('../../temp/BlankAvatar.jpg')}
-          avatarAlt="avatarAlt"
-        />
+        <Header title="Profile" />
         <UnderLine />
 
         <Box
@@ -70,4 +63,4 @@ const HomePage: FC = () => {
   );
 };
 
-export default HomePage;
+export default ProfileView;
