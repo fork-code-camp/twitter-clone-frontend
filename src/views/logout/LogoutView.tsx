@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Grid, useTheme } from '@mui/material';
 import Menu from '@/components/menu/Menu';
-import Header from '@/views/home/components/Header';
+import Header from '@/components/Header';
 import { menuLogoutList } from '@/data/configMenu/configMenu';
 import UnderLine from '@/common/UnderLine';
 import OfferToRegister from '@/components/OfferToRegister/OfferToRegister';

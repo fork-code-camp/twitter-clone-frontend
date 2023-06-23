@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
-import PostWidgets from './PostWidgets';
+import PostWidgets from './templates/PostWidgets';
 import { IPostContent } from '@/components/Post/types';
 
 const PostContent: FC<IPostContent> = ({

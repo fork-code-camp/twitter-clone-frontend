@@ -1,5 +1,5 @@
 import api from '../api/index';
-import { TIMELINES_TWEETS_GET, TWEETS_DELETE, TWEETS_POST } from './config';
+import { TWEETS_DELETE, TWEETS_POST } from './config';
 import { IMakeTweetResponse } from './types';
 
 export const deleteTweet = async (id: number) => {
@@ -9,10 +9,5 @@ export const deleteTweet = async (id: number) => {
 
 export const makeTweet = async (data: FormData) => {
   const response = await api.post<IMakeTweetResponse>(TWEETS_POST, data);
-  return response;
-};
-
-export const getTweets = async () => {
-  const response = await api.get(TIMELINES_TWEETS_GET);
   return response;
 };

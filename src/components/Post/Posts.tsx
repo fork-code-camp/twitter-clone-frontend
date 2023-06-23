@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import SinglePost from '@/components/Post/SinglePost';
 import { Box, Container } from '@mui/material';
 import UnderLine from '@/common/UnderLine';
-import { ISinglePost } from './types';
+import { IPost } from './types';
+import SinglePost from './SinglePost';
 
 interface IPosts {
-  posts: ISinglePost[];
+  posts: IPost[];
 }
 
 const Posts: FC<IPosts> = ({ posts }, index) => {
@@ -13,7 +13,7 @@ const Posts: FC<IPosts> = ({ posts }, index) => {
   return (
     <Container disableGutters>
       {posts &&
-        posts.map((post: ISinglePost) => (
+        posts.map((post: IPost) => (
           <Box key={post.id}>
             <SinglePost
               id={post.id}
@@ -23,8 +23,8 @@ const Posts: FC<IPosts> = ({ posts }, index) => {
               userTag={post.profile.username}
               userPassedTime={Number(new Date(post.creationDate))}
               postText={post.text}
-              postImg={post.mediaUrls[0]}
-              postAlt={post.mediaUrls[0]}
+              postImg={post.mediaUrls && post.mediaUrls[0]}
+              postAlt={post.mediaUrls && post.mediaUrls[0]}
               likeCount={post.likes}
               likeIsSelected={false}
               replyCount={post.replies}
