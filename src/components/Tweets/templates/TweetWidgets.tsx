@@ -6,9 +6,9 @@ import ReplySVG from '@/assets/icons/Reply.svg';
 import RetweetSVG from '@/assets/icons/Retweet.svg';
 import ShareSVG from '@/assets/icons/Share.svg';
 import ViewsSVG from '@/assets/icons/Views.svg';
-import { IPostWidgets } from '@/components/Post/types';
+import { ITweetWidgets } from '@/components/Tweets/types';
 
-const PostWidgets: FC<IPostWidgets> = ({
+const TweetWidgets: FC<ITweetWidgets> = ({
   likeCount,
   likeIsSelected,
   replyCount,
@@ -78,4 +78,4 @@ const PostWidgets: FC<IPostWidgets> = ({
   );
 };
 
-export default PostWidgets;
+export default TweetWidgets;

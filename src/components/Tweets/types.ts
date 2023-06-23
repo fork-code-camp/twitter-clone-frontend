@@ -1,19 +1,19 @@
-export type ISinglePost = {
+export type ISingleTweet = {
   id: number;
   avatarUrl: string;
   avatarAlt: string;
   username: string;
   userTag: string;
   userPassedTime: number;
-} & IPostContent;
+} & ITweetContent;
 
-export type IPostContent = {
-  postText?: string;
-  postImg?: string;
-  postAlt?: string;
-} & IPostWidgets;
+export type ITweetContent = {
+  tweetText?: string;
+  tweetImg?: string;
+  tweetAlt?: string;
+} & ITweetWidgets;
 
-export type IPostWidgets = {
+export type ITweetWidgets = {
   likeCount: number;
   likeIsSelected?: boolean;
   replyCount: number;
@@ -23,7 +23,11 @@ export type IPostWidgets = {
   viewsCount: number;
 };
 
-export type IPost = {
+export type ITweets = {
+  tweets: ITweet[];
+}
+
+export type ITweet = {
   id: number;
   replyTo: null;
   text?: string;
