@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Posts from '@/components/Post/Posts';
+import Tweets from '@/components/Tweets/Tweets';
 import { Alert, Box, CircularProgress, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
 import Header from '@/components/Header';
@@ -45,7 +45,7 @@ const ProfileView: FC = () => {
           {isError && <Alert severity="error">Ошибка загрузки постов</Alert>}
         </Box>
 
-        <Posts posts={data} />
+        <Tweets tweets={data} />
       </Grid>
       <Grid
         item

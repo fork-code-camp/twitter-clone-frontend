@@ -3,20 +3,20 @@ import { Box, Container } from '@mui/material';
 import Avatar from '@/components/Avatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
-import PostContent from './PostContent';
-import { ISinglePost } from '@/components/Post/types';
-import MoreActionButton from '@/components/Post/MoreActionButton';
+import TweetContent from './TweetContent';
+import { ISingleTweet } from '@/components/Tweets/types';
+import MoreActionButton from '@/components/Tweets/MoreActionButton';
 
-const SinglePost: FC<ISinglePost> = ({
+const SingleTweet: FC<ISingleTweet> = ({
   id,
   avatarUrl,
   avatarAlt,
   username,
   userTag,
   userPassedTime,
-  postText,
-  postImg,
-  postAlt,
+  tweetText,
+  tweetImg,
+  tweetAlt,
   likeCount,
   replyCount,
   replyTo,
@@ -55,10 +55,10 @@ const SinglePost: FC<ISinglePost> = ({
           <MoreActionButton id={id} />
         </Box>
         {/* text, image, widgets */}
-        <PostContent
-          postText={postText}
-          postImg={postImg}
-          postAlt={postAlt}
+        <TweetContent
+          tweetText={tweetText}
+          tweetImg={tweetImg}
+          tweetAlt={tweetAlt}
           likeCount={likeCount}
           likeIsSelected={likeIsSelected}
           replyCount={replyCount}
@@ -72,4 +72,4 @@ const SinglePost: FC<ISinglePost> = ({
   );
 };
 
-export default SinglePost;
+export default SingleTweet;

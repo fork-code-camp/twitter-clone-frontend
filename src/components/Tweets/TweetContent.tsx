@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
-import PostWidgets from './templates/PostWidgets';
-import { IPostContent } from '@/components/Post/types';
+import TweetWidgets from './templates/TweetWidgets';
+import { ITweetContent } from '@/components/Tweets/types';
 
-const PostContent: FC<IPostContent> = ({
-  postText,
-  postImg,
-  postAlt,
+const TweetContent: FC<ITweetContent> = ({
+  tweetText,
+  tweetImg,
+  tweetAlt,
   likeCount,
   likeIsSelected,
   replyCount,
@@ -16,7 +16,7 @@ const PostContent: FC<IPostContent> = ({
   retweetTo,
   viewsCount,
 }) => {
-  const isShowImage = postImg && postAlt;
+  const isShowImage = tweetImg && tweetAlt;
   return (
     <Container
       disableGutters
@@ -29,7 +29,7 @@ const PostContent: FC<IPostContent> = ({
         maxWidth: { xs: '100%', md: '510px' },
       }}
     >
-      <Typography sx={{ wordWrap: 'break-word' }}>{postText}</Typography>
+      <Typography sx={{ wordWrap: 'break-word' }}>{tweetText}</Typography>
       {isShowImage && (
         <Box
           sx={{
@@ -45,13 +45,13 @@ const PostContent: FC<IPostContent> = ({
             height={100}
             style={{ width: 'inherit', height: 'inherit' }}
             unoptimized
-            src={postImg}
-            alt={postAlt}
+            src={tweetImg}
+            alt={tweetAlt}
           />
         </Box>
       )}
 
-      <PostWidgets
+      <TweetWidgets
         likeCount={likeCount}
         likeIsSelected={likeIsSelected}
         replyCount={replyCount}
@@ -64,4 +64,4 @@ const PostContent: FC<IPostContent> = ({
   );
 };
 
-export default PostContent;
+export default TweetContent;
