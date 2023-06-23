@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import Inner from '@/components/Inner/Inner';
-import Tweets from '@/components/Tweets/Tweets';
 import { Alert, Box, CircularProgress, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
 import Header from '@/components/Header';
@@ -9,6 +8,7 @@ import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import { useGetTweetHomeQuery } from '@/services/Query/timeline/tweetTimeline.query';
+import TweetList from '../home/TweetList';
 
 const HomePage: FC = () => {
   const theme = useTheme();
@@ -52,7 +52,7 @@ const HomePage: FC = () => {
           {isError && <Alert severity="error">Ошибка загрузки постов</Alert>}
         </Box>
 
-        <Tweets tweets={data} />
+        <TweetList tweets={data} />
       </Grid>
       <Grid
         item
