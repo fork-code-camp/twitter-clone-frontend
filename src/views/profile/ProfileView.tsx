@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import Tweets from '@/components/Tweets/Tweets';
 import { Alert, Box, CircularProgress, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
 import Header from '@/components/Header';
@@ -8,6 +7,7 @@ import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import { useGetTweetUserQuery } from '@/services/Query/timeline/tweetTimeline.query';
+import TweetList from './TweetList';
 
 const ProfileView: FC = () => {
   const theme = useTheme();
@@ -45,7 +45,7 @@ const ProfileView: FC = () => {
           {isError && <Alert severity="error">Ошибка загрузки постов</Alert>}
         </Box>
 
-        <Tweets tweets={data} />
+        <TweetList tweets={data} />
       </Grid>
       <Grid
         item
