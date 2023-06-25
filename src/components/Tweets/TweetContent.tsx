@@ -5,6 +5,7 @@ import TweetWidgets from './templates/TweetWidgets';
 import { ITweetContent } from '@/components/Tweets/types';
 
 const TweetContent: FC<ITweetContent> = ({
+  id,
   tweetText,
   tweetImg,
   tweetAlt,
@@ -52,6 +53,7 @@ const TweetContent: FC<ITweetContent> = ({
       )}
 
       <TweetWidgets
+        id={id}
         likeCount={likeCount}
         likeIsSelected={likeIsSelected}
         replyCount={replyCount}

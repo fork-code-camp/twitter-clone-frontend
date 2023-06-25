@@ -35,7 +35,7 @@ const HomePage: FC = () => {
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
       >
-        <Header title="Home" hasIcon />
+        <Header title="Home(получение=timelines/home)" hasIcon />
         <UnderLine />
 
         <Inner
