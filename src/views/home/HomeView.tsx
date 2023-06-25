@@ -9,10 +9,14 @@ import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import { useGetTweetHomeQuery } from '@/services/Query/timeline/tweetTimeline.query';
 import TweetList from '../home/TweetList';
+import { useGetProfileAvatarQuery } from '@/services/Query/profile/profile.query';
 
 const HomePage: FC = () => {
   const theme = useTheme();
-  const { data, isLoading, isError } = useGetTweetHomeQuery();
+  const { data: tweetsArray, isLoading, isError } = useGetTweetHomeQuery();
+  const { data: avatarUrl } = useGetProfileAvatarQuery();
+  console.log(avatarUrl && avatarUrl);
+
 
   return (
     <Grid
@@ -35,7 +39,7 @@ const HomePage: FC = () => {
         <UnderLine />
 
         <Inner
-          avatarUrl={require('../../temp/BlankAvatar.jpg')}
+          avatarUrl={avatarUrl}
           avatarAlt="avatarAlt"
         />
         <UnderLine />
@@ -52,7 +56,7 @@ const HomePage: FC = () => {
           {isError && <Alert severity="error">Ошибка загрузки постов</Alert>}
         </Box>
 
-        <TweetList tweets={data} />
+        <TweetList tweets={tweetsArray} />
       </Grid>
       <Grid
         item
