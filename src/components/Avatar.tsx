@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import Image from 'next/image';
 import { Box, IconButton } from '@mui/material';
-import defaultAvatar from '../temp/BlankAvatar.jpg';
+import defaultAvatar from '../assets/images/BlankAvatar.jpg';
 interface IAvatar {
-  img: string;
-  alt: string;
+  img: string | null;
+  alt: string | null;
 }
 
 const onClick = () => {

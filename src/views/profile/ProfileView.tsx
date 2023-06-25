@@ -6,12 +6,14 @@ import Menu from '@/components/menu/Menu';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
-import { useGetTweetUserQuery } from '@/services/Query/timeline/tweetTimeline.query';
+import { useGetTweetHomeQuery, useGetTweetUserQuery, useGetTweetUserRepliesQuery } from '@/services/Query/timeline/tweetTimeline.query';
 import TweetList from './TweetList';
 
 const ProfileView: FC = () => {
   const theme = useTheme();
-  const { data, isLoading, isError } = useGetTweetUserQuery();
+  const { data: userData, isLoading: userIsLoading, isError: userIsError } = useGetTweetUserQuery();
+  const { data: homeData, isLoading: homeIsLoading, isError: homeIsError } = useGetTweetHomeQuery();
+  const { data: userRepliesData, isLoading: userRepliesIsLoading, isError: userRepliesIsError } = useGetTweetUserRepliesQuery();
 
   return (
     <Grid
@@ -41,11 +43,11 @@ const ProfileView: FC = () => {
             alignItems: 'center',
           }}
         >
-          {isLoading && <CircularProgress />}
-          {isError && <Alert severity="error">Ошибка загрузки постов</Alert>}
+          {userIsLoading && <CircularProgress />}
+          {userIsError && <Alert severity="error">Ошибка загрузки постов</Alert>}
         </Box>
 
-        <TweetList tweets={data} />
+        <TweetList tweets={userData} retweets={homeData} userReplies={userRepliesData} />
       </Grid>
       <Grid
         item

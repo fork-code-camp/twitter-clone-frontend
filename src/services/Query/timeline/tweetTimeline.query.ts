@@ -34,7 +34,7 @@ export const useGetTweetHomeQuery = () => {
 
   const state = useQuery(config.key, config.request, {
     onSuccess() {
-      console.log('твиты (фоловнутых) получены');
+      console.log('ретвиты (фоловнутых) получены');
     },
   });
   return state;
