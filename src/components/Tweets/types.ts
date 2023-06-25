@@ -1,5 +1,4 @@
 export type ISingleTweet = {
-  id: number;
   avatarUrl: string;
   avatarAlt: string;
   username: string;
@@ -14,6 +13,7 @@ export type ITweetContent = {
 } & ITweetWidgets;
 
 export type ITweetWidgets = {
+  id: number;
   likeCount: number;
   likeIsSelected?: boolean;
   replyCount: number;
@@ -42,7 +42,7 @@ export type ITweet = {
   profile: Profile;
 };
 
-type IRetweetTo = {
+export type IRetweetTo = {
   id: number;
   replyTo: null;
   retweetTo: null;

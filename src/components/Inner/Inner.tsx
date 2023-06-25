@@ -24,15 +24,6 @@ const Inner: FC<IInner> = ({ avatarUrl, avatarAlt }) => {
   const { mutateAsync: mutateMakeTweet } = useMakeTweetMutation();
   const onSubmit = async (requestData: IMakeTweetRequest) => {
     await mutateMakeTweet(requestData);
-
-    const formdata = new FormData();
-    const blob = new Blob([JSON.stringify({ text: requestData.text })], {
-      type: 'application/json',
-    });
-
-    formdata.append('request', blob);
-    formdata.append('files', requestData.file[0]);
-
     reset();
   };
 

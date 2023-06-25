@@ -7,8 +7,10 @@ import RetweetSVG from '@/assets/icons/Retweet.svg';
 import ShareSVG from '@/assets/icons/Share.svg';
 import ViewsSVG from '@/assets/icons/Views.svg';
 import { ITweetWidgets } from '@/components/Tweets/types';
+import ButtonRetweet from '@/components/buttons/ButtonRetweet';
 
 const TweetWidgets: FC<ITweetWidgets> = ({
+  id,
   likeCount,
   likeIsSelected,
   replyCount,
@@ -22,10 +24,6 @@ const TweetWidgets: FC<ITweetWidgets> = ({
 
   const onChangeReply = () => {
     console.log('onChangeReply');
-  };
-
-  const onChangeRetweet = () => {
-    console.log('onChangeRetweet');
   };
 
   const onClickLike = () => {
@@ -55,11 +53,11 @@ const TweetWidgets: FC<ITweetWidgets> = ({
         onClick={onChangeReply}
         widgetTo={replyTo}
       />
-      <ButtonWidget
+      <ButtonRetweet
+        id={id}
         icon={<RetweetSVG />}
         count={retweetCount}
-        onClick={onChangeRetweet}
-        widgetTo={retweetTo}
+        retweetTo={retweetTo}
       />
       <ButtonLike
         count={likeCountButton}

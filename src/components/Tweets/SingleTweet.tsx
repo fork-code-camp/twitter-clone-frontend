@@ -56,6 +56,7 @@ const SingleTweet: FC<ISingleTweet> = ({
         </Box>
         {/* text, image, widgets */}
         <TweetContent
+          id={id}
           tweetText={tweetText}
           tweetImg={tweetImg}
           tweetAlt={tweetAlt}
