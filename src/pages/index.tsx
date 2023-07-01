@@ -1,8 +1,8 @@
 import React from 'react';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../next-seo.config';
-import { Button, Container, Link, useTheme } from '@mui/material';
-import { useLogoutQuery } from '@/services/Query/authorization/authorization.query';
+import { Button, Container, Link, Box, useTheme } from '@mui/material';
+import { useLogoutQuery } from '@/query/authorization/authorization.query';
 const Home = () => {
   const { refetch: logout } = useLogoutQuery();
 
@@ -24,34 +24,67 @@ const Home = () => {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '0 15px',
-          p: '10px',
+          gap: 1,
+          p: 1,
         }}
       >
-        <Button component={Link} href="/registration" variant="contained" sx={btnTheme} >
-          Registration
-        </Button>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+          <Button
+            component={Link}
+            href="/registration"
+            variant="contained"
+            sx={btnTheme}
+          >
+            Registration page
+          </Button>
+          <Button
+            component={Link}
+            href="/login"
+            variant="contained"
+            sx={btnTheme}
+          >
+            Login page
+          </Button>
+          <Button
+            component={Link}
+            href="/logout"
+            variant="contained"
+            sx={btnTheme}
+          >
+            Logout(View) page
+          </Button>
+        </Box>
 
-        <Button component={Link} href="/home" variant="contained" sx={btnTheme}>
-          Home page
-        </Button>
-
-        <Button component={Link} href="/login" variant="contained" sx={btnTheme} >
-          Login
-        </Button>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+          <Button
+            component={Link}
+            href="/home"
+            variant="contained"
+            sx={btnTheme}
+          >
+            Home page
+          </Button>
+          <Button
+            component={Link}
+            href="/profile"
+            variant="contained"
+            sx={btnTheme}
+          >
+            Profile page
+          </Button>
+          <Button
+            component={Link}
+            href="/404"
+            variant="contained"
+            sx={btnTheme}
+          >
+            404 page
+          </Button>
+        </Box>
 
         <Button onClick={() => logout()} variant="contained" sx={btnTheme}>
           Logout Auth
         </Button>
-
-        <Button component={Link} href="/logout" variant="contained" sx={btnTheme} >
-          Logout page
-        </Button>
-
-        <Button component={Link} href="/profile" variant="contained" sx={btnTheme} >
-          Profile page
-        </Button>
-
       </Container>
     </>
   );

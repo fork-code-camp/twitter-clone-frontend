@@ -1,5 +1,8 @@
-import { getRetweet, getRetweetList } from "@/services/retweetService";
-import { useQuery } from "react-query";
+import {
+  getRetweet,
+  getRetweetList,
+} from '@/services/tweetService/retweetController';
+import { useQuery } from 'react-query';
 
 const retweetConfig = {
   getRetweet: {
@@ -16,7 +19,7 @@ const retweetConfig = {
       return res.data;
     },
   },
-}
+};
 
 export const useRetweetQuery = () => {
   const { getRetweet: config } = retweetConfig;
@@ -47,5 +50,3 @@ export const useRetweetListQuery = () => {
 
   return state;
 };
-
-

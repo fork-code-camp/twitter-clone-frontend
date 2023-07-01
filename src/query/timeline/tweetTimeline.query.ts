@@ -2,7 +2,7 @@ import {
   getHomeTweets,
   getUserRepliesTweets,
   getUserTweets,
-} from '@/services/timelineSevice';
+} from '@/services/timelineService/timelineService';
 import { useQuery } from 'react-query';
 
 const tweetConfig = {

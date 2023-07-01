@@ -1,19 +1,37 @@
 import React, { FC } from 'react';
-import { Alert, Box, CircularProgress, Grid, useTheme } from '@mui/material';
+import { Box, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
-import Header from '@/components/Header';
+import PageHeader from '@/components/headers/PageHeader';
 import Menu from '@/components/menu/Menu';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
-import { useGetTweetHomeQuery, useGetTweetUserQuery, useGetTweetUserRepliesQuery } from '@/services/Query/timeline/tweetTimeline.query';
-import TweetList from './TweetList';
+import {
+  useGetTweetHomeQuery,
+  useGetTweetUserQuery,
+  useGetTweetUserRepliesQuery,
+} from '@/query/timeline/tweetTimeline.query';
+import TweetList from './components/TweetList';
+import UserInfo from './components/UserInfo';
+import AccountBar from '@/components/headers/AccountBar';
 
 const ProfileView: FC = () => {
   const theme = useTheme();
-  const { data: userData, isLoading: userIsLoading, isError: userIsError } = useGetTweetUserQuery();
-  const { data: homeData, isLoading: homeIsLoading, isError: homeIsError } = useGetTweetHomeQuery();
-  const { data: userRepliesData, isLoading: userRepliesIsLoading, isError: userRepliesIsError } = useGetTweetUserRepliesQuery();
+  const {
+    data: userData,
+    isLoading: userIsLoading,
+    isError: userIsError,
+  } = useGetTweetUserQuery();
+  const {
+    data: homeData,
+    isLoading: homeIsLoading,
+    isError: homeIsError,
+  } = useGetTweetHomeQuery();
+  const {
+    data: userRepliesData,
+    isLoading: userRepliesIsLoading,
+    isError: userRepliesIsError,
+  } = useGetTweetUserRepliesQuery();
 
   return (
     <Grid
@@ -21,8 +39,25 @@ const ProfileView: FC = () => {
       gap={2}
       sx={{ justifyContent: 'center', flexWrap: 'nowrap' }}
     >
-      <Grid item sx={{ width: { md: '75px', lg: '200px' } }}>
-        <Menu menuList={menuList} />
+      <Grid
+        item
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          width: { sm: '75px', md: '200px', lg: '200px' },
+          height: '100vh',
+          pb: 2,
+        }}
+      >
+        <Menu activeItem="Profile" menuList={menuList} />
+        <AccountBar
+          hasAvatar
+          isVertical
+          name="AdminAdminAdmin"
+          tag="Admin"
+        />{' '}
+        {/* TODO */}
       </Grid>
       <Grid
         item
@@ -32,7 +67,9 @@ const ProfileView: FC = () => {
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
       >
-        <Header title="Profile" />
+        <PageHeader title="Profile" />
+        <UnderLine />
+        <UserInfo />
         <UnderLine />
 
         <Box
@@ -42,12 +79,19 @@ const ProfileView: FC = () => {
             justifyContent: 'center',
             alignItems: 'center',
           }}
-        >
-          {userIsLoading && <CircularProgress />}
-          {userIsError && <Alert severity="error">Ошибка загрузки постов</Alert>}
-        </Box>
+        ></Box>
 
-        <TweetList tweets={userData} retweets={homeData} userReplies={userRepliesData} />
+        <TweetList
+          userData={userData}
+          userIsLoading={userIsLoading}
+          userIsError={userIsError}
+          homeData={homeData}
+          homeIsLoading={homeIsLoading}
+          homeIsError={homeIsError}
+          userReplies={userRepliesData}
+          userRepliesIsLoading={userRepliesIsLoading}
+          userRepliesIsError={userRepliesIsError}
+        />
       </Grid>
       <Grid
         item

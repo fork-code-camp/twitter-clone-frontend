@@ -11,7 +11,7 @@ import InnerActions from './InnerActions';
 import Avatar from '@/components/Avatar';
 import { useForm } from 'react-hook-form';
 import { IMakeTweetRequest } from '@/services/types';
-import { useMakeTweetMutation } from '@/services/Query/tweet/tweet.mutation';
+import { useMakeTweetMutation } from '@/query/tweet/tweet.mutation';
 
 interface IInner {
   avatarUrl: string;
@@ -56,11 +56,11 @@ const Inner: FC<IInner> = ({ avatarUrl, avatarAlt }) => {
           multiline
           required={true}
           fullWidth
+          color="primary"
           sx={{
             minHeight: 18,
-            color: theme.palette.primary.dark,
-            fontSize: theme.typography.h2.fontSize,
-            lineHeight: theme.typography.h2.lineHeight,
+            fontSize: 20,
+            lineHeight: 22,
             outline: 'none',
             border: 'none',
             resize: 'none',

@@ -4,8 +4,8 @@ import Avatar from '@/components/Avatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import TweetContent from './TweetContent';
-import { ISingleTweet } from '@/components/Tweets/types';
-import MoreActionButton from '@/components/Tweets/MoreActionButton';
+import { ISingleTweet } from '@/components/tweets/types';
+import MoreActionButton from '@/components/tweets/MoreActionButton';
 
 const SingleTweet: FC<ISingleTweet> = ({
   id,
@@ -45,7 +45,7 @@ const SingleTweet: FC<ISingleTweet> = ({
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center',
-              flexWrap: 'wrap',
+              flexWrap: { xs: 'wrap', sm: 'nowrap' },
               gap: '8px',
             }}
           >
@@ -55,6 +55,26 @@ const SingleTweet: FC<ISingleTweet> = ({
           <MoreActionButton id={id} />
         </Box>
         {/* text, image, widgets */}
+        {retweetTo && (
+          <SingleTweet
+            id={retweetTo.id}
+            avatarUrl={retweetTo.profile.avatarUrl}
+            avatarAlt={retweetTo.profile.avatarUrl}
+            username={retweetTo.profile.username}
+            userTag={retweetTo.profile.username}
+            userPassedTime={Number(new Date(retweetTo.creationDate))}
+            tweetText={retweetTo.text}
+            tweetImg={retweetTo.mediaUrls && retweetTo.mediaUrls[0]}
+            tweetAlt={retweetTo.mediaUrls && retweetTo.mediaUrls[0]}
+            likeCount={retweetTo.likes}
+            likeIsSelected={false}
+            replyCount={retweetTo.replies}
+            replyTo={retweetTo.replyTo}
+            retweetCount={retweetTo.retweets}
+            retweetTo={retweetTo.retweetTo}
+            viewsCount={retweetTo.views}
+          />
+        )}
         <TweetContent
           id={id}
           tweetText={tweetText}

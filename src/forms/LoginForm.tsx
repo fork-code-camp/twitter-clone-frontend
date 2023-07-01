@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import LoginPageTemplate from '../forms/templates/LogInPageTemplate';
-import { useLoginMutation } from '@/services/Query/authorization/authorization.mutation';
+import { useLoginMutation } from '@/query/authorization/authorization.mutation';
 import { IAuthLoginRequest } from '@/services/types';
 
 const LoginForm: FC = () => {

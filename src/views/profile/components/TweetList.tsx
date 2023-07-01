@@ -2,10 +2,9 @@ import React, { FC, useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import Tweets from '@/components/Tweets/Tweets';
-// import { ITweets } from '@/components/Tweets/types';
-import { Container } from '@mui/material';
-import { ITweet } from '@/components/Tweets/types';
+import Tweets from '@/components/tweets/Tweets';
+import { Alert, CircularProgress, Container } from '@mui/material';
+import { ITweet } from '@/components/tweets/types';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -36,13 +35,29 @@ function a11yProps(index: number) {
   };
 }
 
-export type ITweets = {
-  tweets: ITweet[];
-  retweets: ITweet[];
+export type ITweetList = {
+  userData: ITweet[];
+  userIsLoading: boolean;
+  userIsError: unknown;
+  homeData: ITweet[];
+  homeIsLoading: boolean;
+  homeIsError: unknown;
   userReplies: ITweet[];
+  userRepliesIsLoading: boolean;
+  userRepliesIsError: unknown;
 };
 
-const TweetList: FC<ITweets> = ({ tweets, retweets, userReplies }) => {
+const TweetList: FC<ITweetList> = ({
+  userData,
+  userIsLoading,
+  userIsError,
+  homeData,
+  homeIsLoading,
+  homeIsError,
+  userReplies,
+  userRepliesIsLoading,
+  userRepliesIsError,
+}) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -69,13 +84,25 @@ const TweetList: FC<ITweets> = ({ tweets, retweets, userReplies }) => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Tweets tweets={tweets || []} />
+        <Tweets tweets={userData || []} />
+        {userIsLoading && <CircularProgress />}
+        {userIsError && (
+          <Alert severity="error">Ошибка загрузки постов user</Alert>
+        )}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Tweets tweets={retweets || []} />
+        <Tweets tweets={homeData || []} />
+        {homeIsLoading && <CircularProgress />}
+        {homeIsError && (
+          <Alert severity="error">Ошибка загрузки постов home</Alert>
+        )}
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <Tweets tweets={userReplies || []} />
+        <Tweets tweets={userReplies || []} />
+        {userRepliesIsLoading && <CircularProgress />}
+        {userRepliesIsError && (
+          <Alert severity="error">Ошибка загрузки постов userReplies</Alert>
+        )}
       </TabPanel>
     </Container>
   );

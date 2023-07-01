@@ -11,11 +11,7 @@ const Home = () => {
   const { push } = useRouter();
 
   useEffect(() => {
-    check().then((res) =>
-      setTimeout(() => {
-        !res && push('/logout');
-      }, 1000)
-    );
+    check().then((res) => !res && push('/logout'));
   }, [push]);
 
   return (

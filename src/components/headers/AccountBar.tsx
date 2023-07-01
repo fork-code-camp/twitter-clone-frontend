@@ -7,14 +7,23 @@ import {
   useTheme,
 } from '@mui/material';
 import VerificationSVG from '@/assets/icons/Verification.svg';
+import Avatar from '../Avatar';
 
-interface IUserHeader {
+interface IAccountBar {
   name: string;
   tag: string;
+  hasAvatar?: boolean;
   isVerified?: boolean;
+  isVertical?: boolean;
 }
 
-const UserHeader: FC<IUserHeader> = ({ name, tag, isVerified }) => {
+const AccountBar: FC<IAccountBar> = ({
+  name,
+  tag,
+  hasAvatar,
+  isVerified,
+  isVertical,
+}) => {
   const theme = useTheme();
 
   return (
@@ -22,11 +31,12 @@ const UserHeader: FC<IUserHeader> = ({ name, tag, isVerified }) => {
       disableGutters
       sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}
     >
+      {hasAvatar && <Avatar width={30} height={30} />}
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
+          display: { xs: 'none', md: 'none', lg: 'flex' },
+          flexDirection: isVertical ? 'column' : 'row',
+          alignItems: isVertical ? 'start' : 'center',
           gap: '0 8px',
         }}
       >
@@ -56,4 +66,4 @@ const UserHeader: FC<IUserHeader> = ({ name, tag, isVerified }) => {
   );
 };
 
-export default UserHeader;
+export default AccountBar;

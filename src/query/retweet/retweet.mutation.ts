@@ -1,19 +1,22 @@
-import { deleteRetweet, setRetweet } from '@/services/retweetService';
+import {
+  deleteRetweet,
+  setRetweet,
+} from '@/services/tweetService/retweetController';
 import { useMutation } from 'react-query';
 
 const retweetConfig = {
   setRetweet: {
     key: 'setRetweet',
-    request: async (params: any) => {
+    request: async (params: number) => {
       const response = await setRetweet(params);
       return response;
     },
   },
   deleteRetweet: {
     key: 'deleteRetweet',
-    request: async (params: any) => {
+    request: async (params: number) => {
       const response = await deleteRetweet(params);
-      return response
+      return response;
     },
   },
 };

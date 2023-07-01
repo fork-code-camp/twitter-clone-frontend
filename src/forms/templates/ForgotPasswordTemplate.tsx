@@ -37,31 +37,13 @@ const ForgotPasswordForm = () => {
           alt="twitter icon"
           src="/icons/twitter-logo.png"
         />
-        <Typography
-          variant="h4"
-          component="h4"
-          sx={{
-            fontFamily: theme.typography.h1.fontFamily,
-            fontStyle: theme.typography.h1.fontStyle,
-            fontWeight: theme.typography.h1.fontWeight,
-            fontSize: theme.typography.h1.fontSize,
-            lineHeight: theme.typography.h1.lineHeight,
-            color: theme.typography.h1.color,
-          }}
-        >
-          Forgot password
-        </Typography>
+        <Typography variant="h1">Forgot password</Typography>
         <Container>
           <Typography
-            variant="h5"
-            component="h5"
+            variant="h4"
             sx={{
               textAlign: 'center',
-              fontFamily: theme.typography.h4.fontFamily,
-              fontStyle: theme.typography.h4.fontStyle,
-              fontWeight: theme.typography.h4.fontWeight,
-              fontSize: theme.typography.h4.fontSize,
-              lineHeight: theme.typography.h4.lineHeight,
+              fontWeight: 400,
               color: theme.palette.secondary.main,
             }}
           >
@@ -96,16 +78,18 @@ const ForgotPasswordForm = () => {
             display: 'flex',
             justifyContent: 'center',
             mt: '15px',
-            fontFamily: theme.typography.h4.fontFamily,
-            fontStyle: theme.typography.h4.fontStyle,
-            fontWeight: theme.typography.h4.fontWeight,
-            fontSize: theme.typography.h4.fontSize,
-            lineHeight: theme.typography.h4.lineHeight,
-            color: theme.palette.secondary.main,
           }}
         >
           <Link href="./../login" style={{ color: theme.palette.primary.main }}>
-            Back to Login
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 400,
+                color: theme.palette.secondary.main,
+              }}
+            >
+              Back to Login
+            </Typography>
           </Link>
         </Box>
       </Box>

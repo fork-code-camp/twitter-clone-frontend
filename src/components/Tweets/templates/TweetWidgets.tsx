@@ -6,7 +6,7 @@ import ReplySVG from '@/assets/icons/Reply.svg';
 import RetweetSVG from '@/assets/icons/Retweet.svg';
 import ShareSVG from '@/assets/icons/Share.svg';
 import ViewsSVG from '@/assets/icons/Views.svg';
-import { ITweetWidgets } from '@/components/Tweets/types';
+import { ITweetWidgets } from '@/components/tweets/types';
 import ButtonRetweet from '@/components/buttons/ButtonRetweet';
 
 const TweetWidgets: FC<ITweetWidgets> = ({

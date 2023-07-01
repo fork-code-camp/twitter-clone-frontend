@@ -3,15 +3,15 @@ import { Container, IconButton, Typography, useTheme } from '@mui/material';
 import TopTweet from '@/assets/icons/TopTweet.svg';
 
 const onClick = () => {
-  console.log('Header click');
+  console.log('PageHeader click');
 };
 
-interface IHomeHeader {
+interface IPageHeader {
   title: string;
   hasIcon?: boolean;
 }
 
-const Header: FC<IHomeHeader> = ({ title, hasIcon }) => {
+const PageHeader: FC<IPageHeader> = ({ title, hasIcon }) => {
   const theme = useTheme();
 
   return (
@@ -24,13 +24,7 @@ const Header: FC<IHomeHeader> = ({ title, hasIcon }) => {
         padding: '10px 15px',
       }}
     >
-      <Typography
-        variant="h2"
-        fontWeight={700}
-        fontSize={19}
-        lineHeight="23px"
-        color={theme.palette.primary.dark}
-      >
+      <Typography variant="h3" fontWeight={700}>
         {title}
       </Typography>
       {hasIcon && (
@@ -44,4 +38,4 @@ const Header: FC<IHomeHeader> = ({ title, hasIcon }) => {
   );
 };
 
-export default Header;
+export default PageHeader;

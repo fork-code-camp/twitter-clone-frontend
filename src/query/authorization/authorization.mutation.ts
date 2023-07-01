@@ -1,4 +1,8 @@
-import { login, register, verifyEmail } from '@/services/authService';
+import {
+  login,
+  register,
+  verifyEmail,
+} from '@/services/authService/authService';
 import { IAuthLoginRequest, IAuthRegisterRequest } from '@/services/types';
 import { useMutation } from 'react-query';
 

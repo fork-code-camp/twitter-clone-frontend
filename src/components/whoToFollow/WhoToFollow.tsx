@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import img from '@/assets/images/BlankAvatar.jpg';
 import { Box, Container, useTheme } from '@mui/material';
 import UnderLine from '@/common/UnderLine';
-import Header from '@/components/Header';
+import Header from '@/components/headers/PageHeader';
 import SingleWhoToFollow from './SingleWhoToFollow';
 
 const temp = [

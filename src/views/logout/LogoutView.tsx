@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Grid, useTheme } from '@mui/material';
 import Menu from '@/components/menu/Menu';
-import Header from '@/components/Header';
+import PageHeader from '@/components/headers/PageHeader';
 import { menuLogoutList } from '@/data/configMenu/configMenu';
 import UnderLine from '@/common/UnderLine';
 import OfferToRegister from '@/components/OfferToRegister/OfferToRegister';
@@ -16,7 +16,7 @@ const LogoutView: FC = () => {
       sx={{ justifyContent: 'center', flexWrap: 'nowrap', paddingTop: '20px' }}
     >
       <Grid item sx={{ width: { md: '75px', lg: '200px' } }}>
-        <Menu menuList={menuLogoutList} />
+        <Menu activeItem="View" menuList={menuLogoutList} />
       </Grid>
       <Grid
         item
@@ -27,7 +27,7 @@ const LogoutView: FC = () => {
         }}
       >
         <UnderLine />
-        <Header title="View" />
+        <PageHeader title="View" />
         <UnderLine />
         <Description />
         <UnderLine />
