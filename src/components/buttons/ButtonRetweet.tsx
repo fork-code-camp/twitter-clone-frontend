@@ -1,10 +1,10 @@
 import React, { FC, ReactNode, useState } from 'react';
 import { Box, Button, Typography, useTheme } from '@mui/material';
-import { IRetweetTo } from '../../components/Tweets/types';
+import { IRetweetTo } from '../tweets/types';
 import {
   useDeleteRetweetMutation,
   useRetweetMutation,
-} from '@/services/Query/retweet/retweet.mutation';
+} from '@/query/retweet/retweet.mutation';
 interface IButtonRetweet {
   id: number;
   icon: ReactNode;

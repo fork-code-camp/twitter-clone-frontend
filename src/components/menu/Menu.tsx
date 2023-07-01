@@ -1,22 +1,21 @@
 import React, { FC, ReactNode } from 'react';
 import { AppBar, Box, Container, Toolbar, useTheme } from '@mui/material';
-import MenuContainer from './MenuContainer';
+import MenuItem from './MenuItem';
 
 interface IMenu {
   title: string;
   icon: ReactNode;
+  url: string;
 }
 
 interface IMenuArray {
   menuList: IMenu[];
+  activeItem: string;
 }
 
-const onClick = () => {
-  console.log('click');
-};
-
-const Menu: FC<IMenuArray> = ({ menuList }) => {
+const Menu: FC<IMenuArray> = ({ menuList, activeItem }) => {
   const theme = useTheme();
+
   return (
     <AppBar
       position="relative"
@@ -39,10 +38,11 @@ const Menu: FC<IMenuArray> = ({ menuList }) => {
             }}
           >
             {menuList.map((navItem) => (
-              <MenuContainer
+              <MenuItem
                 key={navItem.title}
                 navItem={navItem}
-                onClick={onClick}
+                isActiveItem={activeItem === navItem.title}
+                url={navItem.url}
               />
             ))}
           </Box>
@@ -55,10 +55,11 @@ const Menu: FC<IMenuArray> = ({ menuList }) => {
             }}
           >
             {menuList.map((navItem) => (
-              <MenuContainer
+              <MenuItem
                 key={navItem.title}
                 navItem={navItem}
-                onClick={onClick}
+                isActiveItem={activeItem === navItem.title}
+                url={navItem.url}
               />
             ))}
           </Box>

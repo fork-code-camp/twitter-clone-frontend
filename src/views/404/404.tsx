@@ -1,6 +1,6 @@
-import { Box, Typography, useTheme } from '@mui/material'
-import Image from 'next/image'
-import Link from 'next/link'
+import { Box, Typography, useTheme } from '@mui/material';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const NotFoundPageView = () => {
   const theme = useTheme();
@@ -34,40 +34,40 @@ const NotFoundPageView = () => {
           alt="twitter icon"
           src="/icons/twitter-logo.png"
         />
-        <Typography
-          variant="h4"
-          component="h4"
-          sx={{
-            fontFamily: theme.typography.h1.fontFamily,
-            fontStyle: theme.typography.h1.fontStyle,
-            fontWeight: theme.typography.h1.fontWeight,
-            fontSize: theme.typography.h1.fontSize,
-            lineHeight: theme.typography.h1.lineHeight,
-            color: theme.typography.h1.color,
-          }}
-        >
-          Sorry, that page does not exist
-        </Typography>
+        <Typography variant="h1">Sorry, that page does not exist</Typography>
 
         <Box
           sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 1,
             mt: '15px',
             width: '100%',
-            fontFamily: theme.typography.h4.fontFamily,
-            fontStyle: theme.typography.h4.fontStyle,
-            fontWeight: theme.typography.h4.fontWeight,
-            fontSize: { xs: 15, sm: theme.typography.h4.fontSize },
-            lineHeight: theme.typography.h4.lineHeight,
           }}
         >
-          Please visit you{' '}
-          <Link href={'./'} style={{color: theme.palette.primary.main}}>
-            Home Page
+          <Typography
+            variant="h4"
+            sx={{
+              fontWeight: 400,
+            }}
+          >
+            Please visit you
+          </Typography>
+          <Link href={'./'}>
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 400,
+                color: theme.palette.primary.main,
+              }}
+            >
+              Home Page
+            </Typography>
           </Link>
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default NotFoundPageView
+export default NotFoundPageView;

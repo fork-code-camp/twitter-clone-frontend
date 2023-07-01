@@ -1,5 +1,5 @@
-import { logout } from "@/services/authService";
-import { useQuery } from "react-query";
+import { logout } from '@/services/authService/authService';
+import { useQuery } from 'react-query';
 
 const authorizationConfig = {
   logoutConfig: {
@@ -9,7 +9,7 @@ const authorizationConfig = {
       return res.data;
     },
   },
-}
+};
 
 export const useLogoutQuery = () => {
   const { logoutConfig: config } = authorizationConfig;
@@ -25,5 +25,3 @@ export const useLogoutQuery = () => {
 
   return state;
 };
-
-

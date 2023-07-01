@@ -1,5 +1,5 @@
-import Tweets from '@/components/Tweets/Tweets';
-import { ITweets } from '@/components/Tweets/types';
+import Tweets from '@/components/tweets/Tweets';
+import { ITweets } from '@/components/tweets/types';
 import React, { FC } from 'react';
 
 const TweetList: FC<ITweets> = ({ tweets }) => {

@@ -59,27 +59,20 @@ const SingleWhoToFollow: FC<IWhoToFollow> = ({
         </Box>
         <Box>
           <Typography
+            variant="h3"
             sx={{
-              fontFamily: theme.typography.h3.fontFamily,
-              fontStyle: theme.typography.h3.fontStyle,
-              fontWeight: theme.typography.h3.fontWeight,
-              fontSize: theme.typography.h3.fontSize,
-              lineHeight: theme.typography.h3.lineHeight,
-              color: theme.typography.h3.color,
-              letterSpacing: theme.typography.h3.letterSpacing,
+              fontWeight: 700,
+              letterSpacing: '-0.02em',
             }}
           >
             {name}
           </Typography>
           <Typography
+            variant="h6"
             sx={{
-              fontFamily: theme.typography.h6.fontFamily,
-              fontStyle: theme.typography.h6.fontStyle,
-              fontWeight: theme.typography.h6.fontWeight,
-              fontSize: theme.typography.h6.fontSize,
-              lineHeight: theme.typography.h6.lineHeight,
-              color: theme.typography.h6.color,
-              letterSpacing: theme.typography.h6.letterSpacing,
+              fontWeight: 500,
+              color: theme.palette.secondary.main,
+              letterSpacing: '-0.02em',
             }}
           >
             {tag}

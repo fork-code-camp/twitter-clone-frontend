@@ -11,7 +11,8 @@ export const check = async () => {
   try {
     const decoded: IJWT | false = await (token ? jwtDecode(token) : false);
     const statusIsAuth = await (decoded && decoded.exp > Date.now() / 1000);
-    !statusIsAuth && localStorage.removeItem('auth-token');
+
+    (await !statusIsAuth) && (await localStorage.removeItem('auth-token'));
 
     return statusIsAuth;
   } catch (error) {

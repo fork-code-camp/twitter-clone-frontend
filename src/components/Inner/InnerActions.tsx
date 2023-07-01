@@ -17,8 +17,8 @@ const InnerActions = () => {
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: '18px',
-        maxWidth: { xs: '100px', md: '100%' },
+        gap: { xs: '5px', sm: '5px', md: '18px' },
+        maxWidth: { xs: '100px', sm: '100%' },
       }}
     >
       {iconArray.map((item) => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RegistrationTemplate from './templates/RegistrationTemplate';
-import { useRegistrationMutation } from '@/services/Query/authorization/authorization.mutation';
+import { useRegistrationMutation } from '@/query/authorization/authorization.mutation';
 import { IAuthRegisterRequest } from '@/services/types';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';

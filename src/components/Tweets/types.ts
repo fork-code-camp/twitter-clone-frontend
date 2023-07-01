@@ -19,13 +19,13 @@ export type ITweetWidgets = {
   replyCount: number;
   replyTo: string | null;
   retweetCount: number;
-  retweetTo?: IRetweetTo;
+  retweetTo: IRetweetTo | null;
   viewsCount: number;
 };
 
 export type ITweets = {
   tweets: ITweet[];
-}
+};
 
 export type ITweet = {
   id: number;
@@ -55,7 +55,7 @@ export type IRetweetTo = {
   likes: number;
   views: number;
   creationDate: string;
-}
+};
 type Profile = {
   profileId: string;
   username: string;

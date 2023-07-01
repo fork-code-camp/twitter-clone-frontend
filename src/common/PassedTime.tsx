@@ -40,30 +40,23 @@ const PassedTime: FC<IPassedTime> = ({ date }) => {
         flexDirection: 'row',
         alignItems: 'center',
         gap: '4px',
+        whiteSpace: 'nowrap',
       }}
     >
       <Typography
+        variant="h5"
         sx={{
-          fontFamily: theme.typography.h5.fontFamily,
-          fontStyle: theme.typography.h5.fontStyle,
           fontWeight: 500,
-          fontSize: theme.typography.h5.fontSize,
-          lineHeight: theme.typography.h5.lineHeight,
-          color: theme.typography.h5.color,
-          letterSpacing: theme.typography.h5.letterSpacing,
+          color: theme.palette.secondary.main,
         }}
       >
         ·
       </Typography>
       <Typography
+        variant="h5"
         sx={{
-          fontFamily: theme.typography.h5.fontFamily,
-          fontStyle: theme.typography.h5.fontStyle,
           fontWeight: 500,
-          fontSize: theme.typography.h5.fontSize,
-          lineHeight: theme.typography.h5.lineHeight,
-          color: theme.typography.h5.color,
-          letterSpacing: theme.typography.h5.letterSpacing,
+          color: theme.palette.secondary.main,
         }}
       >
         {dateResult}

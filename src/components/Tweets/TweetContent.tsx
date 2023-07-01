@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
 import TweetWidgets from './templates/TweetWidgets';
-import { ITweetContent } from '@/components/Tweets/types';
+import { ITweetContent } from '@/components/tweets/types';
 
 const TweetContent: FC<ITweetContent> = ({
   id,

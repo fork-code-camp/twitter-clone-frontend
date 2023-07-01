@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import VerifyTemplate from './templates/VerifyTemplate';
-import { useVerificationMutation } from '@/services/Query/authorization/authorization.mutation';
+import { useVerificationMutation } from '@/query/authorization/authorization.mutation';
 import { IAuthVerifyRequest } from '@/services/types';
 
 interface IVerifyTemplate {

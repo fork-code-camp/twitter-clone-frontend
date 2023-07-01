@@ -1,4 +1,7 @@
-import { deleteTweet, makeTweet } from '@/services/tweetService';
+import {
+  deleteTweet,
+  makeTweet,
+} from '@/services/tweetService/tweetController';
 import { IMakeTweetRequest } from '@/services/types';
 import { useMutation, useQueryClient } from 'react-query';
 

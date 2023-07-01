@@ -3,7 +3,7 @@ import SingleNews from './SingleNews';
 import img from '../../temp/testPost.jpg';
 import { Box, Container, useTheme } from '@mui/material';
 import UnderLine from '@/common/UnderLine';
-import Header from '../../components/Header';
+import Header from '../headers/PageHeader';
 
 const temp = [
   {
