@@ -9,15 +9,23 @@ import {
   Box,
   Link,
   useTheme,
+  Alert,
 } from '@mui/material';
 import { IAuthLoginRequest } from '@/services/types';
 
 interface ILogin {
   loginRegisterForm: UseFormRegister<IAuthLoginRequest>;
   onSubmitForm: (e: React.FormEvent) => void;
+  isErrorLogin: boolean;
+  errorMessage: string;
 }
 
-const Login: FC<ILogin> = ({ loginRegisterForm, onSubmitForm }) => {
+const Login: FC<ILogin> = ({
+  loginRegisterForm,
+  onSubmitForm,
+  isErrorLogin,
+  errorMessage,
+}) => {
   const theme = useTheme();
 
   return (
@@ -82,6 +90,7 @@ const Login: FC<ILogin> = ({ loginRegisterForm, onSubmitForm }) => {
         >
           Login
         </Button>
+        {isErrorLogin && <Alert severity="warning">{errorMessage}</Alert>}
         <Box
           sx={{
             mt: '15px',
@@ -95,12 +104,7 @@ const Login: FC<ILogin> = ({ loginRegisterForm, onSubmitForm }) => {
             href="./../forgotpassword"
             style={{ color: theme.palette.primary.main }}
           >
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: 400,
-              }}
-            >
+            <Typography variant="h4" sx={{ fontWeight: 400 }}>
               Forgot password?
             </Typography>
           </Link>

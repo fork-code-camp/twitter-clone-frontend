@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import LoginPageTemplate from '../forms/templates/LogInPageTemplate';
 import { useLoginMutation } from '@/query/authorization/authorization.mutation';
 import { IAuthLoginRequest } from '@/services/types';
+import { ErrorResponse } from './types';
 
 const LoginForm: FC = () => {
   const { push } = useRouter();
@@ -14,8 +15,14 @@ const LoginForm: FC = () => {
     reset: loginResetForm,
   } = useForm<IAuthLoginRequest>();
 
-  const { mutateAsync: mutateLogin, isSuccess: loginIsSuccess } =
-    useLoginMutation();
+  const {
+    mutateAsync: mutateLogin,
+    isSuccess: loginIsSuccess,
+    isError: isErrorLogin,
+    error: errorMessage,
+  } = useLoginMutation();
+
+  const messageOnError = (errorMessage as ErrorResponse)?.response.data.message;
 
   const customHandleSubmit = (data: IAuthLoginRequest) => {
     mutateLogin(data);
@@ -33,6 +40,8 @@ const LoginForm: FC = () => {
     <LoginPageTemplate
       loginRegisterForm={loginRegisterForm}
       onSubmitForm={onSubmitForm}
+      isErrorLogin={isErrorLogin}
+      errorMessage={messageOnError}
     />
   );
 };

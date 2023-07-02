@@ -8,6 +8,7 @@ import {
   Container,
   Box,
   useTheme,
+  Alert,
 } from '@mui/material';
 
 import VerifyForm from '../VerifyForm';
@@ -107,11 +108,7 @@ const Registration = ({
             Sign up
           </Button>
           {isLoadingRegister && <Typography>Loading.......</Typography>}
-          {isErrorRegister && (
-            <Typography variant="subtitle1" sx={{ textAlign: 'center' }}>
-              {errorMessage}
-            </Typography>
-          )}
+          {isErrorRegister && <Alert severity="warning">{errorMessage}</Alert>}
         </Box>
       </Container>
 
