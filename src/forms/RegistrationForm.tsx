@@ -4,14 +4,7 @@ import { useRegistrationMutation } from '@/query/authorization/authorization.mut
 import { IAuthRegisterRequest } from '@/services/types';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-
-interface ErrorResponse {
-  response: {
-    data: {
-      message: string;
-    };
-  };
-}
+import { ErrorResponse } from './types';
 
 const RegistrationForm = () => {
   const { push } = useRouter();

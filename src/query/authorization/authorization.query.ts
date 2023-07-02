@@ -17,6 +17,7 @@ export const useLogoutQuery = () => {
     enabled: false,
     onSuccess(data) {
       console.log('выход успешен', data);
+      localStorage.removeItem('auth-token');
     },
     onError(error) {
       console.log('выход ошибка', error);
