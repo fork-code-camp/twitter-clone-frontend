@@ -20,7 +20,13 @@ const UserHeader: FC<IUserHeader> = ({ name, tag, isVerified }) => {
   return (
     <Container
       disableGutters
-      sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 1,
+        width: 'auto',
+        m: 0,
+      }}
     >
       <Box
         sx={{
@@ -31,7 +37,7 @@ const UserHeader: FC<IUserHeader> = ({ name, tag, isVerified }) => {
         }}
       >
         <Box sx={{ display: 'flex', gap: '8px' }}>
-          <Typography variant="subtitle1" fontWeight={700}>
+          <Typography variant="h5" fontWeight={700}>
             {name}
           </Typography>
           {isVerified && (

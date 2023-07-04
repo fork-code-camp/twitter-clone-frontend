@@ -1,60 +1,74 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Box, ToggleButton, Typography, useTheme } from '@mui/material';
 import LikeSVG from '@/assets/icons/Like.svg';
+import {
+  useLikeMutation,
+  useDeleteLikeMutation,
+} from '@/query/likes/likes.mutation';
 
 interface IButtonLike {
-  count: number;
-  selected?: boolean;
-  setButtonLikeCount: React.Dispatch<React.SetStateAction<number>>;
-  setSelected: React.Dispatch<React.SetStateAction<boolean>>;
-  onClick: () => void;
+  id: number;
+  likes: number;
+  isLiked: boolean;
 }
 
-const ButtonLike: FC<IButtonLike> = ({
-  count,
-  selected,
-  setButtonLikeCount,
-  setSelected,
-  onClick,
-}) => {
+const ButtonLike: FC<IButtonLike> = ({ id, likes, isLiked }) => {
   const theme = useTheme();
+  const [isActive, setActive] = useState(isLiked);
+  const [likesCount, setLikesCount] = useState(likes);
+  const { mutateAsync: mutateMakeLike } = useLikeMutation();
+  const { mutateAsync: mutateDeleteLike } = useDeleteLikeMutation();
+
   const notSelectedColor = theme.palette.buttonLike?.main;
   const selectedColor = theme.palette.buttonLike?.contrastText;
+  const strokeColor = isActive ? selectedColor : notSelectedColor;
+  const fillColor = isActive ? selectedColor : 'none';
+
   const toggleStyles = {
     display: 'flex',
     alignItems: 'center',
     gap: 1.25,
     minWidth: '40px',
     p: 0,
-    background: 'none!important',
+    background: 'none',
     border: 'none',
   };
-  const onChange = () => {
-    setSelected((selected) => !selected);
-    setButtonLikeCount((count) => (selected ? count - 1 : count + 1));
+  
+  const onChange = async () => {
+    if (isActive) {
+      await mutateDeleteLike(id);
+      await setActive(false);
+      setLikesCount((likesCount) => likesCount - 1);
+    } else {
+      await mutateMakeLike(id);
+      await setActive(true);
+      setLikesCount((likesCount) => likesCount + 1);
+    }
   };
 
   return (
     <ToggleButton
       value="check"
-      selected={selected}
+      selected={isLiked}
       onChange={onChange}
-      onClick={onClick}
       sx={toggleStyles}
     >
-      <Box sx={{ display: 'flex', strokeWidth: 2 }}>
-        <LikeSVG
-          style={{
-            stroke: selected ? selectedColor : notSelectedColor,
-            fill: selected ? selectedColor : 'none',
-          }}
-        />
+      <Box
+        sx={{
+          display: 'flex',
+          strokeWidth: 2,
+          stroke: strokeColor,
+          fill: fillColor,
+        }}
+      >
+        <LikeSVG />
       </Box>
       <Typography
-        variant="subtitle1"
-        sx={{ color: notSelectedColor, lineHeight: 1.1 }}
+        variant="h5"
+        fontWeight={500}
+        sx={{ color: notSelectedColor }}
       >
-        {count}
+        {likesCount}
       </Typography>
     </ToggleButton>
   );

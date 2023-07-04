@@ -13,7 +13,6 @@ export const RETWEET_DELETE = '/api/v1/retweets';
 export const RETWEET_LIST_GET = '/api/v1/retweets';
 export const RETWEET_GET = '/api/v1/retweets';
 
-export const LIKES_GET = '/api/v1/likes'; /* req: /{tweetId}; res: code: 200, true */
 export const LIKES_POST = '/api/v1/likes'; /* req: /{tweetId}; res: code: 200 */
 export const LIKES_DELETE = '/api/v1/likes'; /* req: /{tweetId}; res: code: 200 */
 

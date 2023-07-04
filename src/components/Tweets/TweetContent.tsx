@@ -6,14 +6,15 @@ import { ITweetContent } from '@/components/tweets/types';
 
 const TweetContent: FC<ITweetContent> = ({
   id,
+  isLiked,
+  isRetweeted,
   tweetText,
   tweetImg,
   tweetAlt,
-  likeCount,
-  likeIsSelected,
-  replyCount,
+  likes,
+  replies,
   replyTo,
-  retweetCount,
+  retweets,
   retweetTo,
   viewsCount,
 }) => {
@@ -54,11 +55,12 @@ const TweetContent: FC<ITweetContent> = ({
 
       <TweetWidgets
         id={id}
-        likeCount={likeCount}
-        likeIsSelected={likeIsSelected}
-        replyCount={replyCount}
+        isLiked={isLiked}
+        isRetweeted={isRetweeted}
+        likes={likes}
+        replies={replies}
         replyTo={replyTo}
-        retweetCount={retweetCount}
+        retweets={retweets}
         retweetTo={retweetTo}
         viewsCount={viewsCount}
       />

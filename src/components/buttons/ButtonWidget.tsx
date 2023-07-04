@@ -34,8 +34,9 @@ const ButtonWidget: FC<IButtonWidget> = ({
     <Button onClick={onClick} sx={toggleStyles}>
       <Box sx={{ display: 'flex', stroke: strokeColor }}>{icon}</Box>
       <Typography
-        variant="subtitle1"
-        sx={{ color: notSelectedColor, lineHeight: 1.1 }}
+        variant="h5"
+        fontWeight={500}
+        sx={{ color: notSelectedColor }}
       >
         {count}
       </Typography>

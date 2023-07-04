@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography, useTheme } from '@mui/material';
 import Avatar from '@/components/Avatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import TweetContent from './TweetContent';
 import { ISingleTweet } from '@/components/tweets/types';
-import MoreActionButton from '@/components/tweets/MoreActionButton';
-
-const SingleTweet: FC<ISingleTweet> = ({
+import RetweetSVG from '@/assets/icons/Retweet.svg';
+const Retweet: FC<ISingleTweet> = ({
   id,
   isLiked,
   isRetweeted,
@@ -26,6 +25,7 @@ const SingleTweet: FC<ISingleTweet> = ({
   retweetTo,
   viewsCount,
 }) => {
+  const theme = useTheme();
   return (
     <Container
       id={id.toString()}
@@ -39,12 +39,28 @@ const SingleTweet: FC<ISingleTweet> = ({
     >
       <Avatar img={avatarUrl} alt={avatarAlt} />
       <Box sx={{ width: '100%' }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center',
+              gap: 0.5,
+            }}
+          >
+            <RetweetSVG width="15" height="11" />
+            <Typography
+              variant="h6"
+              sx={{ color: theme.palette.secondary.main }}
+            >
+              /profile/me/ Retweeted
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'start',
+              textAlign: 'center',
               flexWrap: { xs: 'wrap', sm: 'nowrap' },
               gap: '8px',
             }}
@@ -52,7 +68,6 @@ const SingleTweet: FC<ISingleTweet> = ({
             <UserHeader name={username} tag={userTag} />
             <PassedTime date={userPassedTime} />
           </Box>
-          <MoreActionButton id={id} />
         </Box>
         <TweetContent
           id={id}
@@ -73,4 +88,4 @@ const SingleTweet: FC<ISingleTweet> = ({
   );
 };
 
-export default SingleTweet;
+export default Retweet;

@@ -6,8 +6,8 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import VerificationSVG from '@/assets/icons/Verification.svg';
 import Avatar from '../Avatar';
+import VerificationSVG from '@/assets/icons/Verification.svg';
 
 interface IAccountBar {
   name: string;
@@ -41,7 +41,7 @@ const AccountBar: FC<IAccountBar> = ({
         }}
       >
         <Box sx={{ display: 'flex', gap: '8px' }}>
-          <Typography variant="subtitle1" fontWeight={700}>
+          <Typography variant="h5" fontWeight={700}>
             {name}
           </Typography>
           {isVerified && (
