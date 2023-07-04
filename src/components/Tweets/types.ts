@@ -14,11 +14,12 @@ export type ITweetContent = {
 
 export type ITweetWidgets = {
   id: number;
-  likeCount: number;
-  likeIsSelected?: boolean;
-  replyCount: number;
+  isLiked: boolean;
+  isRetweeted: boolean;
+  likes: number;
+  replies: number;
   replyTo: string | null;
-  retweetCount: number;
+  retweets: number;
   retweetTo: IRetweetTo | null;
   viewsCount: number;
 };
@@ -28,34 +29,40 @@ export type ITweets = {
 };
 
 export type ITweet = {
-  id: number;
-  replyTo: null;
-  text?: string;
-  mediaUrls?: string;
-  quoteTo: null;
-  retweets: number;
-  replies: number;
-  likes: number;
-  views: number;
   creationDate: string;
-  retweetTo: IRetweetTo;
+  id: number;
+  isLiked: boolean;
+  isRetweeted: boolean;
+  // isReplyed: boolean; BACKEND TODO
+  likes: number;
+  mediaUrls?: string;
   profile: Profile;
+  quoteTo: null;
+  replies: number;
+  replyTo: null;
+  retweetTo: IRetweetTo;
+  retweets: number;
+  text?: string;
+  views: number;
 };
 
 export type IRetweetTo = {
-  id: number;
-  replyTo: null;
-  retweetTo: null;
-  profile: Profile;
-  text: string;
-  mediaUrls: string[];
-  quoteTo: null;
-  retweets: number;
-  replies: number;
-  likes: number;
-  views: number;
   creationDate: string;
+  id: number;
+  isLiked: boolean;
+  isRetweeted: boolean;
+  likes: number;
+  mediaUrls: string[];
+  profile: Profile;
+  quoteTo: null;
+  replies: number;
+  replyTo: null;
+  retweetTo: null | IRetweetTo;
+  retweets: number;
+  text: string;
+  views: number;
 };
+
 type Profile = {
   profileId: string;
   username: string;

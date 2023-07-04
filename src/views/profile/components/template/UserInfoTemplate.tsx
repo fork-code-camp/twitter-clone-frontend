@@ -1,3 +1,4 @@
+import React, { FC } from 'react';
 import Avatar from '@/components/Avatar';
 import { useGetProfileAvatarQuery } from '@/query/profile/profile.query';
 import {
@@ -8,8 +9,9 @@ import {
   Typography,
 } from '@mui/material';
 import { Container, useTheme } from '@mui/system';
-import React, { FC } from 'react';
-import ListsSVG from '@/assets/icons/Lists.svg';
+import CalendarSVG from '@/assets/icons/Calendar.svg';
+import LocationSVG from '@/assets/icons/Location.svg';
+
 interface IUserInfoTemplate {
   avatarUrl: string;
   username: string;
@@ -67,7 +69,7 @@ const UserInfoTemplate: FC<IUserInfoTemplate> = ({
           >
             <IconButton sx={{ p: 0 }}>
               <ListItemIcon sx={{ minWidth: '100%' }}>
-                <ListsSVG
+                <LocationSVG
                   fill={theme.palette.secondary.main}
                   width="20"
                   height="20"
@@ -94,7 +96,7 @@ const UserInfoTemplate: FC<IUserInfoTemplate> = ({
           >
             <IconButton sx={{ p: 0 }}>
               <ListItemIcon sx={{ minWidth: '100%' }}>
-                <ListsSVG
+                <CalendarSVG
                   fill={theme.palette.secondary.main}
                   width="20"
                   height="20"
