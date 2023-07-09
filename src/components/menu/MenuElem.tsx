@@ -1,15 +1,13 @@
 import {
   Button,
-  Container,
   IconButton,
-  ListItemIcon,
-  Typography,
+  MenuItem,
   useTheme,
 } from '@mui/material';
 import React, { FC, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
-interface IMenuItem {
+interface IMenuElem {
   navItem: {
     title: string;
     icon: ReactNode;
@@ -18,44 +16,28 @@ interface IMenuItem {
   url: string;
 }
 
-const MenuItem: FC<IMenuItem> = ({ navItem, isActiveItem, url }) => {
+const MenuElem: FC<IMenuElem> = ({ navItem, isActiveItem, url }) => {
   const theme = useTheme();
   const { push } = useRouter();
 
   return (
-    <Container
+    <MenuItem
       disableGutters
       key={navItem.title}
       onClick={() => push(url)}
       sx={{
         display: { xs: 'flex', md: 'flex' },
         flexDirection: { xs: 'none', md: 'row' },
+        gap: 2,
         justifyContent: 'start',
         alignItems: 'center',
         px: 1.5,
         my: 1.5,
       }}
     >
-      <IconButton
-        sx={{
-          my: 0,
-          pl: 0,
-        }}
-        color="secondary"
-      >
-        <ListItemIcon
-          sx={{
-            minWidth: '40px',
-            fill: isActiveItem
-              ? theme.palette.primary.main
-              : theme.palette.primary.dark,
-          }}
-        >
-          {navItem.icon}
-        </ListItemIcon>
+      <IconButton sx={{ minWidth: '35px', m: 0, p: 0, }} color="secondary" > {navItem.icon}
       </IconButton>
-      <Typography
-        variant="button"
+      <Button
         sx={{
           display: { xs: 'none', sm: 'none', md: 'flex', lg: 'flex' },
           justifyContent: 'flex-start',
@@ -72,9 +54,9 @@ const MenuItem: FC<IMenuItem> = ({ navItem, isActiveItem, url }) => {
         }}
       >
         {navItem.title}
-      </Typography>
-    </Container>
+      </Button>
+    </MenuItem>
   );
 };
 
-export default MenuItem;
+export default MenuElem;

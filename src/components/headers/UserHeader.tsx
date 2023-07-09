@@ -7,6 +7,7 @@ import {
   useTheme,
 } from '@mui/material';
 import VerificationSVG from '@/assets/icons/Verification.svg';
+import TaggedText from '@/common/TaggedText';
 
 interface IUserHeader {
   name: string;
@@ -48,15 +49,7 @@ const UserHeader: FC<IUserHeader> = ({ name, tag, isVerified }) => {
             </IconButton>
           )}
         </Box>
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: 500,
-            color: theme.palette.secondary.main,
-          }}
-        >
-          @{tag.toLowerCase()}
-        </Typography>
+        <TaggedText color="tag.contrastText" tagSymb="@" text={tag} />
       </Box>
     </Container>
   );

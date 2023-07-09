@@ -2,13 +2,13 @@ import React from 'react';
 import { IconButton, ListItemIcon, useTheme } from '@mui/material';
 import ConfigActions from '@/data/configInner/configActions';
 
-const InnerActions = () => {
+const InnerWidgetsTemplate = () => {
   const theme = useTheme();
   const iconColor = theme.palette.buttonWidget?.contrastText || '#000000';
   const iconArray = ConfigActions({ iconColor });
 
   const onClick = (itemId: number) => {
-    console.log('InnerActions: id ' + itemId);
+    console.log('InnerWidgetsTemplate: id ' + itemId);
   };
 
   return (
@@ -36,4 +36,4 @@ const InnerActions = () => {
   );
 };
 
-export default InnerActions;
+export default InnerWidgetsTemplate;

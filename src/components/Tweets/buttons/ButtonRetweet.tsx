@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import RetweetSVG from '@/assets/icons/Retweet.svg';
-import { IRetweetTo } from '../tweets/types';
+import { IDataRetweetTo } from '../types';
 import {
   useDeleteRetweetMutation,
   useRetweetMutation,
@@ -9,21 +9,20 @@ import {
 interface IButtonRetweet {
   id: number;
   isRetweeted: boolean;
-  count?: number;
-  retweetTo?: IRetweetTo | null;
+  retweets: number;
+  retweetTo?: IDataRetweetTo | null;
 }
 
-const ButtonWidget: FC<IButtonRetweet> = ({ id, count, isRetweeted }) => {
+const ButtonWidget: FC<IButtonRetweet> = ({ id, retweets, isRetweeted }) => {
   const theme = useTheme();
   const [isActive, setActive] = useState(isRetweeted);
+  const [retweetCount, setRetweetCount] = useState(retweets);
   const { mutateAsync: mutateMakeRetweet } = useRetweetMutation();
   const { mutateAsync: mutateDeleteRetweet } = useDeleteRetweetMutation();
 
   const notSelectedColor = theme.palette.buttonWidget?.main;
   const selectedColor = theme.palette.buttonWidget?.contrastText;
   const strokeColor = isActive ? selectedColor : notSelectedColor;
-  
-  console.log('isActive:', isActive, 'id:', id);
 
   const toggleStyles = {
     display: 'flex',
@@ -38,9 +37,11 @@ const ButtonWidget: FC<IButtonRetweet> = ({ id, count, isRetweeted }) => {
     if (isActive) {
       await mutateDeleteRetweet(id);
       await setActive(false);
+      await setRetweetCount((retweetCount) => retweetCount - 1);
     } else {
       await mutateMakeRetweet(id);
       await setActive(true);
+      await setRetweetCount((retweetCount) => retweetCount + 1);
     }
   };
 
@@ -54,7 +55,7 @@ const ButtonWidget: FC<IButtonRetweet> = ({ id, count, isRetweeted }) => {
         fontWeight={500}
         sx={{ color: notSelectedColor }}
       >
-        {count}
+        {retweetCount}
       </Typography>
     </Button>
   );

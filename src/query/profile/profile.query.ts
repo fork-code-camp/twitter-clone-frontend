@@ -41,10 +41,10 @@ export const useGetProfileDataQuery = () => {
 
   const state = useQuery(config.key, config.request, {
     onSuccess() {
-      console.log('аватар получен');
+      console.log('data профиля получена');
     },
     onError(error) {
-      console.log('аватар ошибка', error);
+      console.log('data профиля ошибка', error);
     },
   });
   return state;

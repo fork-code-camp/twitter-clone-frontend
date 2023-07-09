@@ -3,11 +3,12 @@ import { Box, Container } from '@mui/material';
 import Avatar from '@/components/Avatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
-import TweetContent from './TweetContent';
-import { ISingleTweet } from '@/components/tweets/types';
+import TweetContentTemplate from './templates/TweetContentTemplate';
+import { ITweet } from '@/components/tweets/types';
 import MoreActionButton from '@/components/tweets/MoreActionButton';
+import TweetWidgets from './templates/TweetWidgetsTemplate';
 
-const SingleTweet: FC<ISingleTweet> = ({
+const Tweet: FC<ITweet> = ({
   id,
   isLiked,
   isRetweeted,
@@ -24,11 +25,10 @@ const SingleTweet: FC<ISingleTweet> = ({
   replyTo,
   retweets,
   retweetTo,
-  viewsCount,
+  views,
 }) => {
   return (
     <Container
-      id={id.toString()}
       disableGutters
       sx={{
         display: 'flex',
@@ -54,23 +54,36 @@ const SingleTweet: FC<ISingleTweet> = ({
           </Box>
           <MoreActionButton id={id} />
         </Box>
-        <TweetContent
-          id={id}
-          isLiked={isLiked}
-          isRetweeted={isRetweeted}
-          tweetText={tweetText}
-          tweetImg={tweetImg}
-          tweetAlt={tweetAlt}
-          likes={likes}
-          replies={replies}
-          replyTo={replyTo}
-          retweets={retweets}
-          retweetTo={retweetTo}
-          viewsCount={viewsCount}
-        />
+        <Box
+          sx={{
+            m: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px',
+            width: { xs: '100%', md: '100%' },
+            maxWidth: { xs: '100%', md: '510px' },
+          }}
+        >
+          <TweetContentTemplate
+            tweetText={tweetText}
+            tweetImg={tweetImg}
+            tweetAlt={tweetAlt}
+          />
+          <TweetWidgets
+            id={id}
+            isLiked={isLiked}
+            isRetweeted={isRetweeted}
+            likes={likes}
+            replies={replies}
+            replyTo={replyTo}
+            retweets={retweets}
+            retweetTo={retweetTo}
+            views={views}
+          />
+        </Box>
       </Box>
     </Container>
   );
 };
 
-export default SingleTweet;
+export default Tweet;

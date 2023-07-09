@@ -1,32 +1,33 @@
+import React, { FC } from 'react';
 import {
-  Box,
-  Button,
   Container,
-  Input,
+  Box,
   TextField,
+  Input,
+  Button,
   useTheme,
 } from '@mui/material';
-import React, { FC } from 'react';
-import InnerActions from './InnerActions';
-import Avatar from '@/components/Avatar';
-import { useForm } from 'react-hook-form';
+import Avatar from '../../../components/Avatar';
+import InnerWidgetsTemplate from './InnerWidgetsTemplate';
 import { IMakeTweetRequest } from '@/services/types';
-import { useMakeTweetMutation } from '@/query/tweet/tweet.mutation';
+import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
-interface IInner {
-  avatarUrl: string;
-  avatarAlt: string;
+interface IInnerTemplate {
+  avatarUrl?: string;
+  avatarAlt?: string;
+  register: UseFormRegister<IMakeTweetRequest>;
+  handleSubmit: UseFormHandleSubmit<IMakeTweetRequest>;
+  onSubmit: (requestData: IMakeTweetRequest) => void;
 }
 
-const Inner: FC<IInner> = ({ avatarUrl, avatarAlt }) => {
+const InnerTemplate: FC<IInnerTemplate> = ({
+  avatarUrl,
+  avatarAlt,
+  register,
+  handleSubmit,
+  onSubmit,
+}) => {
   const theme = useTheme();
-  const { register, handleSubmit, reset } = useForm<IMakeTweetRequest>();
-  const { mutateAsync: mutateMakeTweet } = useMakeTweetMutation();
-  const onSubmit = async (requestData: IMakeTweetRequest) => {
-    await mutateMakeTweet(requestData);
-    reset();
-  };
-
   return (
     <Container
       component="form"
@@ -39,7 +40,7 @@ const Inner: FC<IInner> = ({ avatarUrl, avatarAlt }) => {
         padding: '10px 15px',
       }}
     >
-      <Avatar img={avatarUrl} alt={avatarAlt} />
+      {avatarUrl && <Avatar img={avatarUrl} alt={avatarAlt} />}
       <Box
         sx={{
           display: 'flex',
@@ -80,7 +81,7 @@ const Inner: FC<IInner> = ({ avatarUrl, avatarAlt }) => {
             gap: '0 10px',
           }}
         >
-          <InnerActions />
+          <InnerWidgetsTemplate />
           <Button
             type="submit"
             variant="contained"
@@ -107,4 +108,4 @@ const Inner: FC<IInner> = ({ avatarUrl, avatarAlt }) => {
   );
 };
 
-export default Inner;
+export default InnerTemplate;
