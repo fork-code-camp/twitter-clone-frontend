@@ -12,8 +12,9 @@ import {
   useGetTweetUserRepliesQuery,
 } from '@/query/timeline/tweetTimeline.query';
 import TweetList from './components/TweetList';
-import UserInfo from './components/UserInfo';
+import UserInfo from './components/UserInfo/UserInfo';
 import AccountBar from '@/components/headers/AccountBar';
+import { useGetProfileDataQuery } from '@/query/profile/profile.query';
 
 const ProfileView: FC = () => {
   const theme = useTheme();
@@ -32,37 +33,42 @@ const ProfileView: FC = () => {
     isLoading: userRepliesIsLoading,
     isError: userRepliesIsError,
   } = useGetTweetUserRepliesQuery();
-
+  const { data: profileData } = useGetProfileDataQuery();
   return (
     <Grid
       container
       gap={2}
-      sx={{ justifyContent: 'center', flexWrap: 'nowrap' }}
+      justifyContent='center' flexWrap='nowrap'
     >
-      <Grid
-        item
+      <Grid item
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          width: { sm: '75px', md: '200px', lg: '200px' },
-          height: '100vh',
-          pb: 2,
+          width: { xs: '75px', sm: '75px', md: '200px', lg: '200px' },
+          position: 'relative'
         }}
       >
-        <Menu activeItem="Profile" menuList={menuList} />
-        <AccountBar
-          hasAvatar
-          isVertical
-          name="AdminAdminAdmin"
-          tag="Admin"
-        />{' '}
-        {/* TODO */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            position: 'fixed',
+            height: '100vh',
+            pb: 2,
+          }}>
+          <Menu activeItem="Profile" menuList={menuList} />
+          <AccountBar
+            hasAvatar
+            isVertical
+            name={profileData && profileData.username}
+            tag={profileData && profileData.username}
+          />
+        </Box>
       </Grid>
+
       <Grid
         item
         sx={{
-          width: { xs: '300px', sm: '600px', md: '600px' },
+          width: { xs: '350px', sm: '600px', md: '600px' },
           borderLeft: `1px solid ${theme.palette.border?.main}`,
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
@@ -73,12 +79,10 @@ const ProfileView: FC = () => {
         <UnderLine />
 
         <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          display='flex'
+          flexDirection='column'
+          justifyContent='center'
+          alignItems='center'
         ></Box>
 
         <TweetList
@@ -93,6 +97,7 @@ const ProfileView: FC = () => {
           userRepliesIsError={userRepliesIsError}
         />
       </Grid>
+
       <Grid
         item
         sx={{

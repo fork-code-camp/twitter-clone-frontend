@@ -1,28 +1,15 @@
-import api from '@/api';
-import { REPLIES_GET, REPLIES_GET_LIST, REPLIES_POST } from '../config';
-
-type IGetReplyResponse = any; /* TODO defaultTweetArray */
+import api from '@/api'
+import { REPLIES_GET, REPLIES_POST } from '../config'
+import { IDataReplyTo } from '@/components/tweets/types'
 
 export const getReply = async (parentTweetId: number) => {
-  const response = await api.get<IGetReplyResponse>(
+  const response = await api.get<IDataReplyTo>(
     `${REPLIES_GET}/${parentTweetId}`
-  );
-  return response;
-};
+  )
+  return response
+}
 
-type IGetReplyListResponse = any; /* TODO defaultTweetArray */
-
-export const getReplyList = async (page?: number, size?: number) => {
-  const response = await api.get<IGetReplyListResponse>(
-    `${REPLIES_GET_LIST}${page && '/'}${page}${size && '/'}${size}`
-  );
-  return response;
-};
-
-type IMakeRequest = any;
-type IMakeResponse = any;
-
-export const makeReply = async (data: IMakeRequest) => {
-  const response = await api.post<IMakeResponse>(REPLIES_POST, data);
-  return response;
-};
+export const makeReply = async (formData: FormData, replyToId: number) => {
+  const response = await api.post(`${REPLIES_POST}/${replyToId}`, formData)
+  return response
+}

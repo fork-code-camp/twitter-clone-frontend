@@ -1,7 +1,7 @@
 import React from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { TextField } from '@mui/material';
-import Popup from '@/components/Popup';
+import PopupVerify from '@/components/popups/PopupVerify';
 import { IAuthVerifyRequest } from '@/services/types';
 
 interface IVerifyTemplate {
@@ -19,7 +19,7 @@ const VerifyTemplate = ({
 }: IVerifyTemplate) => {
   return (
     <>
-      <Popup
+      <PopupVerify
         title="Activate"
         contentText="Please enter this verification code to get started on Twitter:"
         openPopup={openPopup}
@@ -35,7 +35,7 @@ const VerifyTemplate = ({
           margin="dense"
           fullWidth
         />
-      </Popup>
+      </PopupVerify>
     </>
   );
 };

@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import PassedTime from '@/common/PassedTime';
 import { ISingleNews } from './types';
+import TaggedText from '@/common/TaggedText';
 
 const SingleNews: FC<ISingleNews> = ({
   title,
@@ -80,16 +81,7 @@ const SingleNews: FC<ISingleNews> = ({
           >
             Trending with
           </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 500,
-              color: theme.palette.tag?.main,
-              letterSpacing: '-0.02em',
-            }}
-          >
-            #{mainTag}
-          </Typography>
+          <TaggedText color="tag.main" tagSymb="#" text={mainTag} />
         </Box>
       </Box>
       <Box

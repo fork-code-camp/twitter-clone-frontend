@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import Avatar from '../Avatar';
 import VerificationSVG from '@/assets/icons/Verification.svg';
+import TaggedText from '@/common/TaggedText';
 
 interface IAccountBar {
   name: string;
@@ -34,7 +35,7 @@ const AccountBar: FC<IAccountBar> = ({
       {hasAvatar && <Avatar width={30} height={30} />}
       <Box
         sx={{
-          display: { xs: 'none', md: 'none', lg: 'flex' },
+          display: { xs: 'none', md: 'flex', lg: 'flex' },
           flexDirection: isVertical ? 'column' : 'row',
           alignItems: isVertical ? 'start' : 'center',
           gap: '0 8px',
@@ -52,15 +53,7 @@ const AccountBar: FC<IAccountBar> = ({
             </IconButton>
           )}
         </Box>
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: 500,
-            color: theme.palette.secondary.main,
-          }}
-        >
-          @{tag.toLowerCase()}
-        </Typography>
+        <TaggedText color="tag.contrastText" tagSymb="@" text={tag} />
       </Box>
     </Container>
   );

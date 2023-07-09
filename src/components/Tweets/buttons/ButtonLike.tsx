@@ -30,10 +30,10 @@ const ButtonLike: FC<IButtonLike> = ({ id, likes, isLiked }) => {
     gap: 1.25,
     minWidth: '40px',
     p: 0,
-    background: 'none',
+    background: 'none!important',
     border: 'none',
   };
-  
+
   const onChange = async () => {
     if (isActive) {
       await mutateDeleteLike(id);

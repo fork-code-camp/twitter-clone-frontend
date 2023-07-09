@@ -1,79 +1,116 @@
-export type ISingleTweet = {
-  avatarUrl: string;
-  avatarAlt: string;
-  username: string;
-  userTag: string;
-  userPassedTime: number;
-} & ITweetContent;
-
-export type ITweetContent = {
-  tweetText?: string;
-  tweetImg?: string;
-  tweetAlt?: string;
-} & ITweetWidgets;
-
-export type ITweetWidgets = {
-  id: number;
-  isLiked: boolean;
-  isRetweeted: boolean;
-  likes: number;
-  replies: number;
-  replyTo: string | null;
-  retweets: number;
-  retweetTo: IRetweetTo | null;
-  viewsCount: number;
-};
-
-export type ITweets = {
-  tweets: ITweet[];
-};
-
 export type ITweet = {
-  creationDate: string;
-  id: number;
-  isLiked: boolean;
-  isRetweeted: boolean;
-  // isReplyed: boolean; BACKEND TODO
-  likes: number;
-  mediaUrls?: string;
-  profile: Profile;
-  quoteTo: null;
-  replies: number;
-  replyTo: null;
-  retweetTo: IRetweetTo;
-  retweets: number;
-  text?: string;
-  views: number;
-};
+  avatarUrl: string
+  avatarAlt: string
+  username: string
+  userTag: string
+  userPassedTime: number
+} & ITweetContentTemplate &
+  ITweetWidgetsTemplate
 
-export type IRetweetTo = {
-  creationDate: string;
-  id: number;
-  isLiked: boolean;
-  isRetweeted: boolean;
-  likes: number;
-  mediaUrls: string[];
-  profile: Profile;
-  quoteTo: null;
-  replies: number;
-  replyTo: null;
-  retweetTo: null | IRetweetTo;
-  retweets: number;
-  text: string;
-  views: number;
-};
+export type ITweetContentTemplate = {
+  tweetText?: string
+  tweetImg?: string
+  tweetAlt?: string
+}
 
-type Profile = {
-  profileId: string;
-  username: string;
-  email: string;
-  followers: number;
-  followees: number;
-  joinDate: string;
-  bio: null;
-  location: null;
-  website: null;
-  birthDate: null;
-  avatarUrl: string;
-  bannerUrl: null;
-};
+export type ITweetWidgetsTemplate = {
+  id: number
+  isLiked: boolean
+  isRetweeted: boolean
+  likes: number
+  replies: number
+  replyTo: null | IDataReplyTo
+  retweets: number
+  retweetTo: IDataRetweetTo | null
+  views: number
+}
+
+export type IDataTweets = {
+  tweets: IDataTweet[]
+}
+
+export type IDataTweet = {
+  creationDate: string
+  id: number
+  isLiked: boolean
+  isRetweeted: boolean
+  likes: number
+  mediaUrls?: string
+  profile: IDataProfile
+  quoteTo: null
+  replies: number
+  replyTo: null | IDataReplyTo
+  retweetTo: null | IDataRetweetTo
+  retweets: number
+  text?: string
+  views: number
+}
+
+export type IDataRetweetTo = {
+  creationDate: string
+  id: number
+  isLiked: boolean
+  isRetweeted: boolean
+  likes: number
+  mediaUrls: string[]
+  profile: IDataProfile
+  quoteTo: null
+  replies: number
+  replyTo: null | IDataReplyTo
+  retweetTo: null | IDataRetweetTo
+  retweets: number
+  text: string
+  views: number
+}
+
+export type IDataReplyTo = {
+  creationDate: string
+  id: number
+  isLiked: boolean
+  isRetweeted: boolean
+  likes: number
+  mediaUrls: string[]
+  profile: IDataProfile
+  quoteTo: null
+  replies: number
+  replyTo: null | IDataReplyTo
+  retweetTo: null | IDataRetweetTo
+  retweets: number
+  text: string
+  views: number
+}
+
+export type IDataReply = {
+  replyId: number
+  replyIsLiked: boolean
+  replyIsRetweeted: boolean
+  replyLikes: number
+  replyReplies: number
+  replyReplyTo: null | IDataReplyTo
+  replyRetweets: number
+  replyRetweetTo: null | IDataRetweetTo
+  replyViews: number
+  replyTweetText?: string
+  replyTweetImg?: string
+  replyTweetAlt?: string
+  replyAvatarUrl: string
+  replyAvatarAlt: string
+  replyUsername: string
+  replyUserTag: string
+  replyUserPassedTime: number
+} & ITweet
+
+type IDataProfile = {
+  profileId: string
+  username: string
+  email: string
+  followers: number
+  followees: number
+  joinDate: string
+  bio: string
+  location: string
+  website: string
+  birthDate: string
+  avatarUrl: string
+  bannerUrl: string
+}

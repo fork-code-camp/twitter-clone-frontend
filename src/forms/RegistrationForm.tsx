@@ -36,7 +36,8 @@ const RegistrationForm = () => {
 
   isVerify && push('/login');
 
-  const messageOnError = (errorMessage as ErrorResponse)?.response.data.message;
+  let messageOnError = null;
+  messageOnError = (errorMessage as ErrorResponse)?.response.data.message;
 
   return (
     <RegistrationTemplate

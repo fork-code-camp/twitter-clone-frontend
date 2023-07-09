@@ -30,6 +30,7 @@ const palette = {
   },
   tag: {
     main: '#1da1f2',
+    contrastText: '#5b7083',
   },
   buttonLike: {
     main: '#5b7083',
@@ -39,6 +40,6 @@ const palette = {
     main: '#5b7083',
     contrastText: '#1da1F2',
   },
-};
+}
 
-export default palette;
+export default palette

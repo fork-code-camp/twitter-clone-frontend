@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Inner from '@/components/Inner/Inner';
+import InnerTweet from '@/components/inner/InnerTweet';
 import { Alert, Box, CircularProgress, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
 import PageHeader from '@/components/headers/PageHeader';
@@ -8,15 +8,18 @@ import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import { useGetTweetHomeQuery } from '@/query/timeline/tweetTimeline.query';
-import TweetList from '../home/TweetList';
-import { useGetProfileAvatarQuery } from '@/query/profile/profile.query';
+import {
+  useGetProfileAvatarQuery,
+  useGetProfileDataQuery,
+} from '@/query/profile/profile.query';
 import AccountBar from '@/components/headers/AccountBar';
+import Tweets from '@/components/tweets/Tweets';
 
 const HomePage: FC = () => {
   const theme = useTheme();
   const { data: tweetsArray, isLoading, isError } = useGetTweetHomeQuery();
   const { data: avatarUrl } = useGetProfileAvatarQuery();
-
+  const { data: profileData } = useGetProfileDataQuery();
   return (
     <Grid
       container
@@ -38,10 +41,9 @@ const HomePage: FC = () => {
         <AccountBar
           hasAvatar
           isVertical
-          name="AdminAdminAdmin"
-          tag="Admin"
-        />{' '}
-        {/* TODO */}
+          name={profileData && profileData.username}
+          tag={profileData && profileData.username}
+        />
       </Grid>
       <Grid
         item
@@ -54,7 +56,7 @@ const HomePage: FC = () => {
         <PageHeader title="Home(получение=timelines/home)" hasIcon />
         <UnderLine />
 
-        <Inner avatarUrl={avatarUrl} avatarAlt="avatarAlt" />
+        <InnerTweet avatarUrl={avatarUrl} avatarAlt="avatarAlt" />
         <UnderLine />
 
         <Box
@@ -68,8 +70,7 @@ const HomePage: FC = () => {
           {isLoading && <CircularProgress />}
           {isError && <Alert severity="error">Ошибка загрузки постов</Alert>}
         </Box>
-
-        <TweetList tweets={tweetsArray} />
+        <Tweets tweets={tweetsArray || []} />
       </Grid>
       <Grid
         item

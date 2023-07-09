@@ -1,23 +1,9 @@
 import React, { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
-import TweetWidgets from './templates/TweetWidgets';
-import { ITweetContent } from '@/components/tweets/types';
+import { ITweetContentTemplate } from '@/components/tweets/types';
 
-const TweetContent: FC<ITweetContent> = ({
-  id,
-  isLiked,
-  isRetweeted,
-  tweetText,
-  tweetImg,
-  tweetAlt,
-  likes,
-  replies,
-  replyTo,
-  retweets,
-  retweetTo,
-  viewsCount,
-}) => {
+const TweetContentTemplate: FC<ITweetContentTemplate> = ({ tweetText, tweetImg, tweetAlt }) => {
   const isShowImage = tweetImg && tweetAlt;
   return (
     <Container
@@ -52,20 +38,8 @@ const TweetContent: FC<ITweetContent> = ({
           />
         </Box>
       )}
-
-      <TweetWidgets
-        id={id}
-        isLiked={isLiked}
-        isRetweeted={isRetweeted}
-        likes={likes}
-        replies={replies}
-        replyTo={replyTo}
-        retweets={retweets}
-        retweetTo={retweetTo}
-        viewsCount={viewsCount}
-      />
     </Container>
   );
 };
 
-export default TweetContent;
+export default TweetContentTemplate;

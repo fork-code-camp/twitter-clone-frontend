@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Tweets from '@/components/tweets/Tweets';
 import { Alert, CircularProgress, Container } from '@mui/material';
-import { ITweet } from '@/components/tweets/types';
+import { IDataTweet } from '@/components/tweets/types';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -30,30 +30,24 @@ const TabPanel = (props: TabPanelProps) => {
 
 const a11yProps = (index: number) => {
   return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    id: `tweet-tab-${index}`,
+    'aria-controls': `tweet-tabpanel-${index}`,
   };
 };
 
 export type ITweetList = {
-  userData: ITweet[];
+  userData: IDataTweet[];
   userIsLoading: boolean;
-  userIsError: unknown;
-  homeData: ITweet[];
-  homeIsLoading: boolean;
-  homeIsError: unknown;
-  userReplies: ITweet[];
+  userIsError: boolean;
+  userReplies: IDataTweet[];
   userRepliesIsLoading: boolean;
-  userRepliesIsError: unknown;
+  userRepliesIsError: boolean;
 };
 
 const TweetList: FC<ITweetList> = ({
   userData,
   userIsLoading,
   userIsError,
-  homeData,
-  homeIsLoading,
-  homeIsError,
   userReplies,
   userRepliesIsLoading,
   userRepliesIsError,
@@ -71,38 +65,39 @@ const TweetList: FC<ITweetList> = ({
           sx={{
             '& .MuiTabs-flexContainer': {
               display: 'flex',
+              justifyContent: 'space-between',
               flexWrap: 'wrap',
-            },
+            }
           }}
           value={value}
           onChange={handleChange}
-          aria-label="basic tabs example"
+          aria-label="tabs"
         >
-          <Tab label="Tweets(timelines/user)" {...a11yProps(0)} />
-          <Tab label="Retweets(timelines/home)" {...a11yProps(1)} />
-          <Tab label="Replies(timelines/user-replies)" {...a11yProps(2)} />
+          <Tab label="Tweets" {...a11yProps(0)} />
+          <Tab label="Replies" {...a11yProps(1)} />
+          <Tab label="Highlights" {...a11yProps(2)} />
+          <Tab label="Media" {...a11yProps(3)} />
+          <Tab label="Likes" {...a11yProps(4)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
+        <Box width='100%' textAlign='center'> {userIsLoading && <CircularProgress sx={{ m: 1 }} />} </Box>
         <Tweets tweets={userData || []} />
-        {userIsLoading && <CircularProgress />}
-        {userIsError && (
-          <Alert severity="error">Ошибка загрузки постов user</Alert>
-        )}
+        {userIsError && (<Alert severity="error">Ошибка загрузки постов user</Alert>)}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Tweets tweets={homeData || []} />
-        {homeIsLoading && <CircularProgress />}
-        {homeIsError && (
-          <Alert severity="error">Ошибка загрузки постов home</Alert>
-        )}
+        <Box width='100%' textAlign='center'>{userRepliesIsLoading && <CircularProgress sx={{ m: 1 }} />}</Box>
+        <Tweets tweets={userReplies || []} />
+        {userRepliesIsError && (<Alert severity="error">Ошибка загрузки постов userReplies</Alert>)}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Tweets tweets={userReplies || []} />
-        {userRepliesIsLoading && <CircularProgress />}
-        {userRepliesIsError && (
-          <Alert severity="error">Ошибка загрузки постов userReplies</Alert>
-        )}
+        Highlights
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Media
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        Likes
       </TabPanel>
     </Container>
   );
