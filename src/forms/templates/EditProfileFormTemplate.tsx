@@ -1,7 +1,8 @@
 import { IChangeInfoRequest } from '@/services/types'
-import { Container, TextField } from '@mui/material'
+import { Container, TextField, Tooltip } from '@mui/material'
 import React, { FC } from 'react'
 import { UseFormRegister } from 'react-hook-form'
+import MyInputMask from '../../ui/input/MyInputMask'
 
 interface IEditProfileFormTemplate {
   changeInfoRegister: UseFormRegister<IChangeInfoRequest>
@@ -53,14 +54,19 @@ const EditProfileFormTemplate: FC<IEditProfileFormTemplate> = ({
         variant="outlined"
         fullWidth
       />
-      <TextField
-        {...changeInfoRegister('birthDate')}
-        id="birthDate"
-        label="Birth Date"
-        type="text"
-        variant="outlined"
-        fullWidth
-      />
+      <Tooltip title="YYYY-MM-DD" placement="bottom-start" arrow>
+        <MyInputMask
+          {...changeInfoRegister('birthDate')}
+          mask="9999-99-99"
+          // label="Номер карты"
+          id="birthDate"
+          label="Birth Date"
+          type="text"
+          variant="outlined"
+          fullWidth
+        />
+
+      </Tooltip>
     </Container>
   )
 }

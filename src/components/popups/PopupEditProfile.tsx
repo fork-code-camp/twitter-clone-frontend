@@ -26,14 +26,14 @@ const PopupEditProfile: FC<IPopupEditProfile> = ({
     reset: changeInfoResetForm,
   } = useForm<IChangeInfoRequest>()
 
-  const { mutateAsync: mutateEditProfileBio } = useEditProfileBioMutation()
   const { data: avatarUrl } = useGetProfileAvatarQuery()
   const { data: profileData } = useGetProfileDataQuery();
   const { mutateAsync: mutateGetPathId } = useGetPathIdMutation()
+  const { mutateAsync: mutateEditProfileBio } = useEditProfileBioMutation()
 
 
   const requestEditProfile: SubmitHandler<IChangeInfoRequest> = async (value: IChangeInfoRequest) => {
-    const pathId = await mutateGetPathId(profileData.username).then((response: string) => { return (response) })
+    const pathId = await mutateGetPathId(profileData.email).then((response: string) => { return (response) })
     mutateEditProfileBio({ bioData: value, pathId: pathId })
   }
 

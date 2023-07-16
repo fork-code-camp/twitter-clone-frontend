@@ -4,7 +4,7 @@ import RetweetSVG from '@/assets/icons/Retweet.svg';
 import { IDataRetweetTo } from '../types';
 import {
   useDeleteRetweetMutation,
-  useRetweetMutation,
+  useMakeRetweetMutation,
 } from '@/query/retweet/retweet.mutation';
 interface IButtonRetweet {
   id: number;
@@ -17,7 +17,7 @@ const ButtonWidget: FC<IButtonRetweet> = ({ id, retweets, isRetweeted }) => {
   const theme = useTheme();
   const [isActive, setActive] = useState(isRetweeted);
   const [retweetCount, setRetweetCount] = useState(retweets);
-  const { mutateAsync: mutateMakeRetweet } = useRetweetMutation();
+  const { mutateAsync: mutateMakeRetweet } = useMakeRetweetMutation();
   const { mutateAsync: mutateDeleteRetweet } = useDeleteRetweetMutation();
 
   const notSelectedColor = theme.palette.buttonWidget?.main;

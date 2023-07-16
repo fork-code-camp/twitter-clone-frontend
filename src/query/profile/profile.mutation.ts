@@ -4,7 +4,7 @@ import {
   getProfileId,
 } from '@/services/profileService/profileService'
 import { IChangeInfoRequest, IMakeAvatarRequest } from '@/services/types'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 
 type IMakeRequest = {
   requestData: IMakeAvatarRequest
@@ -58,9 +58,12 @@ export const useMakeAvatarMutation = () => {
 }
 
 export const useEditProfileBioMutation = () => {
+  const queryClient = useQueryClient();
+
   const { editProfileBio: config } = profileConfig
   const state = useMutation(config.request, {
     onSuccess(data) {
+      queryClient.invalidateQueries();
       console.log('био-данные обновлены', data)
     },
     onError(error) {

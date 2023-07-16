@@ -1,43 +1,46 @@
 import {
   deleteRetweet,
-  setRetweet,
-} from '@/services/tweetService/retweetController';
-import { useMutation } from 'react-query';
+  makeRetweet,
+} from '@/services/tweetService/retweetController'
+import { useMutation, useQueryClient } from 'react-query'
 
 const retweetConfig = {
-  setRetweet: {
-    key: 'setRetweet',
+  makeRetweet: {
+    key: 'makeRetweet',
     request: async (params: number) => {
-      const response = await setRetweet(params);
-      return response;
+      const response = await makeRetweet(params)
+      return response
     },
   },
   deleteRetweet: {
     key: 'deleteRetweet',
     request: async (params: number) => {
-      const response = await deleteRetweet(params);
-      return response;
+      const response = await deleteRetweet(params)
+      return response
     },
   },
-};
+}
 
-export const useRetweetMutation = () => {
-  const { setRetweet: config } = retweetConfig;
+export const useMakeRetweetMutation = () => {
+  const queryClient = useQueryClient()
+
+  const { makeRetweet: config } = retweetConfig
   const state = useMutation(config.request, {
     onSuccess(data) {
-      console.log('ретвит сделан', data);
+      queryClient.invalidateQueries()
+      console.log('ретвит сделан', data)
     },
-  });
+  })
 
-  return state;
-};
+  return state
+}
 export const useDeleteRetweetMutation = () => {
-  const { deleteRetweet: config } = retweetConfig;
+  const { deleteRetweet: config } = retweetConfig
   const state = useMutation(config.request, {
     onSuccess(data) {
-      console.log('ретвит удален', data);
+      console.log('ретвит удален', data)
     },
-  });
+  })
 
-  return state;
-};
+  return state
+}

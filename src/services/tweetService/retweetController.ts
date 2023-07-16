@@ -6,7 +6,7 @@ import {
   RETWEET_POST,
 } from '../config'
 
-export const setRetweet = async (tweetId: number) => {
+export const makeRetweet = async (tweetId: number) => {
   console.log(tweetId, 'tweetId: ' + tweetId)
 
   const response = await api.post(`${RETWEET_POST}/${tweetId}`)
