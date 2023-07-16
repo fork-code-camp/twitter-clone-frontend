@@ -7,7 +7,7 @@ import {
   Button,
   useTheme,
 } from '@mui/material';
-import Avatar from '../../../components/Avatar';
+import Avatar from '../../avatar/Avatar';
 import InnerWidgetsTemplate from './InnerWidgetsTemplate';
 import { IMakeTweetRequest } from '@/services/types';
 import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';

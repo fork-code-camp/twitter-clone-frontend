@@ -7,12 +7,11 @@ import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import {
-  useGetTweetHomeQuery,
   useGetTweetUserQuery,
   useGetTweetUserRepliesQuery,
 } from '@/query/timeline/tweetTimeline.query';
-import TweetList from './components/TweetList';
-import UserInfo from './components/UserInfo/UserInfo';
+import TweetTabPanel from './components/TweetTabPanel';
+import UserInfo from '../../components/userInfo/UserInfo';
 import AccountBar from '@/components/headers/AccountBar';
 import { useGetProfileDataQuery } from '@/query/profile/profile.query';
 
@@ -23,11 +22,6 @@ const ProfileView: FC = () => {
     isLoading: userIsLoading,
     isError: userIsError,
   } = useGetTweetUserQuery();
-  const {
-    data: homeData,
-    isLoading: homeIsLoading,
-    isError: homeIsError,
-  } = useGetTweetHomeQuery();
   const {
     data: userRepliesData,
     isLoading: userRepliesIsLoading,
@@ -65,8 +59,7 @@ const ProfileView: FC = () => {
         </Box>
       </Grid>
 
-      <Grid
-        item
+      <Grid item
         sx={{
           width: { xs: '350px', sm: '600px', md: '600px' },
           borderLeft: `1px solid ${theme.palette.border?.main}`,
@@ -77,21 +70,10 @@ const ProfileView: FC = () => {
         <UnderLine />
         <UserInfo />
         <UnderLine />
-
-        <Box
-          display='flex'
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
-        ></Box>
-
-        <TweetList
+        <TweetTabPanel
           userData={userData}
           userIsLoading={userIsLoading}
           userIsError={userIsError}
-          homeData={homeData}
-          homeIsLoading={homeIsLoading}
-          homeIsError={homeIsError}
           userReplies={userRepliesData}
           userRepliesIsLoading={userRepliesIsLoading}
           userRepliesIsError={userRepliesIsError}

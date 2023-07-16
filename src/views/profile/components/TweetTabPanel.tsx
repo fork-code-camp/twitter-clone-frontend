@@ -6,6 +6,15 @@ import Tweets from '@/components/tweets/Tweets';
 import { Alert, CircularProgress, Container } from '@mui/material';
 import { IDataTweet } from '@/components/tweets/types';
 
+export type ITweetTabPanel = {
+  userData: IDataTweet[];
+  userIsLoading: boolean;
+  userIsError: boolean;
+  userReplies: IDataTweet[];
+  userRepliesIsLoading: boolean;
+  userRepliesIsError: boolean;
+};
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -35,16 +44,7 @@ const a11yProps = (index: number) => {
   };
 };
 
-export type ITweetList = {
-  userData: IDataTweet[];
-  userIsLoading: boolean;
-  userIsError: boolean;
-  userReplies: IDataTweet[];
-  userRepliesIsLoading: boolean;
-  userRepliesIsError: boolean;
-};
-
-const TweetList: FC<ITweetList> = ({
+const TweetTabPanel: FC<ITweetTabPanel> = ({
   userData,
   userIsLoading,
   userIsError,
@@ -65,6 +65,7 @@ const TweetList: FC<ITweetList> = ({
           sx={{
             '& .MuiTabs-flexContainer': {
               display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
               justifyContent: 'space-between',
               flexWrap: 'wrap',
             }
@@ -103,4 +104,4 @@ const TweetList: FC<ITweetList> = ({
   );
 };
 
-export default TweetList;
+export default TweetTabPanel;

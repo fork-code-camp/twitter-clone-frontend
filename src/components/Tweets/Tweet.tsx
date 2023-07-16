@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Box, Container } from '@mui/material';
-import Avatar from '@/components/Avatar';
+import Avatar from '@/components/avatar/Avatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import TweetContentTemplate from './templates/TweetContentTemplate';

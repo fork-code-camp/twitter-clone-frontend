@@ -15,7 +15,7 @@ services:
   frontend-service:
     container_name: frontend-service
     hostname: frontend-service
-    image: nansimon/frontend
+    image: nansimon/frontend:1.0.0
     restart: unless-stopped
     ports:
       - 3000:3000

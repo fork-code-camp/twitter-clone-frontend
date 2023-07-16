@@ -1,37 +1,50 @@
 /* Auth */
 export interface IAuthRegisterRequest {
-  email: string;
-  username: string;
-  password: string;
+  email: string
+  username: string
+  password: string
 }
 
 export interface IAuthRegisterResponse {
-  message: string;
+  message: string
 }
 
 export interface IAuthVerifyRequest {
-  activationCode: string;
+  activationCode: string
 }
 
 export interface IAuthVerifyResponse {
-  jwt: string;
+  jwt: string
 }
 
 export interface IAuthLoginRequest {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 export interface IAuthLoginResponse {
-  jwt: string;
+  jwt: string
 }
 
 /* Tweet */
 export interface IMakeTweetRequest {
-  text: string;
-  file: FileList;
+  text: string
+  file: FileList
 }
 
 export interface IMakeTweetResponse {
-  text: string;
+  text: string
+}
+
+export interface IMakeAvatarRequest {
+  file: FileList
+}
+
+/* Profile */
+export interface IChangeInfoRequest {
+  username: string
+  bio: string
+  location: string
+  website: string
+  birthDate: string
 }

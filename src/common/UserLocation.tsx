@@ -6,13 +6,13 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import CalendarSVG from '@/assets/icons/Calendar.svg';
+import LocationSVG from '@/assets/icons/Location.svg';
 
-interface IJoinDate {
-  joinDate: string;
+interface IUserLocation {
+  userLocation: string;
 }
 
-const JoinDate: FC<IJoinDate> = ({ joinDate }) => {
+const UserLocation: FC<IUserLocation> = ({ userLocation }) => {
   const theme = useTheme();
   return (
     <Box
@@ -25,7 +25,7 @@ const JoinDate: FC<IJoinDate> = ({ joinDate }) => {
     >
       <IconButton sx={{ p: 0 }}>
         <ListItemIcon sx={{ minWidth: '100%' }}>
-          <CalendarSVG
+          <LocationSVG
             fill={theme.palette.secondary.main}
             width="20"
             height="20"
@@ -39,10 +39,10 @@ const JoinDate: FC<IJoinDate> = ({ joinDate }) => {
           letterSpacing: '-0.02em',
         }}
       >
-        {joinDate}
+        {userLocation}
       </Typography>
     </Box>
   );
 };
 
-export default JoinDate;
+export default UserLocation;

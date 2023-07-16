@@ -6,7 +6,7 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import Avatar from '../Avatar';
+import Avatar from '../avatar/Avatar';
 import VerificationSVG from '@/assets/icons/Verification.svg';
 import TaggedText from '@/common/TaggedText';
 

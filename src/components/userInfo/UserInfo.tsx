@@ -15,8 +15,8 @@ const UserInfo = () => {
       username={profileData && profileData.username}
       tag={profileData && profileData.username}
       bio={profileData?.bio}
-      location={profileData?.location}
-      joinDate={profileData?.joinDate}
+      userLocation={profileData?.location}
+      joinedDate={profileData?.joinDate}
     />
   );
 };

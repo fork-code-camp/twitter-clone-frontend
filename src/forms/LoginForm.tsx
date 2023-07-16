@@ -30,7 +30,7 @@ const LoginForm: FC = () => {
   };
 
   const onSubmitForm = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault();/* TODO убрать e */
     loginhandleSubmitForm(customHandleSubmit)();
   };
 
