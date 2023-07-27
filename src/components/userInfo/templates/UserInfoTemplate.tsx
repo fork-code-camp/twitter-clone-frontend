@@ -5,7 +5,7 @@ import { Container, useTheme } from '@mui/system'
 import TaggedText from '@/common/TaggedText'
 import UserLocation from '@/common/UserLocation'
 import JoinedDate from '@/common/JoinedDate'
-import PopupEditProfile from '@/components/popups/PopupEditProfile'
+import EditUserInfo from '@/components/userInfo/EditUserInfo'
 import Banner from '@/components/banner/Banner'
 
 interface IUserInfoTemplate {
@@ -77,7 +77,7 @@ const UserInfoTemplate: FC<IUserInfoTemplate> = ({
         </Button>
       </Box>
       {openEditProfile && (
-        <PopupEditProfile
+        <EditUserInfo
           openEditProfile={openEditProfile}
           setOpenEditProfile={setOpenEditProfile}
         />

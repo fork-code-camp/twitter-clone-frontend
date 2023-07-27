@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Container } from '@mui/material';
 import { check } from '../api/authCheck';
-import ProfileView from '@/views/profile/ProfileView';
+import ExploreView from '@/views/explore/ExploreView';
 
 const Profile = () => {
   // const { push } = useRouter();
@@ -16,9 +16,9 @@ const Profile = () => {
 
   return (
     <>
-      <DefaultSeo title="Profile" {...SEO} />
+      <DefaultSeo title="Explore" {...SEO} />
       <Container>
-        <ProfileView />
+        <ExploreView />
       </Container>
     </>
   );

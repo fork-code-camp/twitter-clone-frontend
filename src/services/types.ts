@@ -48,3 +48,9 @@ export interface IChangeInfoRequest {
   website: string
   birthDate: string
 }
+
+export interface ISearchQueryData {
+  username: string
+  page: number
+  size: number
+}

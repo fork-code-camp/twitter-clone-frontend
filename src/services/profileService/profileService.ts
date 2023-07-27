@@ -2,11 +2,12 @@ import api from '@/api'
 import {
   PROFILE_AVATAR_GET,
   PROFILE_AVATAR_POST,
+  PROFILE_GET,
   PROFILE_ME,
   PROFILE_PATCH,
-  PROFILE_PATH_ID,
+  PROFILE_DATA_BY_ID,
 } from '../config'
-import { IChangeInfoRequest } from '../types'
+import { IChangeInfoRequest, ISearchQueryData } from '../types'
 
 export const getProfileData = async () => {
   const response = await api.get(PROFILE_ME)
@@ -26,10 +27,22 @@ export const getProfileAvatar = async () => {
   return response
 }
 
-export const getProfileId = async (email: string) => {
-  console.log(PROFILE_PATH_ID + '/' + email)
+export const getUsersList = async (pageable: ISearchQueryData) => {
+  await console.log(pageable)
 
-  const response = await api.get(PROFILE_PATH_ID + '/' + email)
+  const username = await pageable.username
+  const size = await pageable.size
+  const page = await pageable.page
+
+  const response = await api.get(
+    `${PROFILE_GET}/?username=${username}&size=${size}&page=${page}`
+  )
+
+  return response
+}
+
+export const getProfileDataById = async (email: string) => {
+  const response = await api.get(PROFILE_DATA_BY_ID + '/' + email)
   return response
 }
 

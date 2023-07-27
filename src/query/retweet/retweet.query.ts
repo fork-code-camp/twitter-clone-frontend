@@ -36,6 +36,7 @@ export const useRetweetQuery = () => {
   return state;
 };
 
+/* useRetweetListQuery еще не внедрено, TODO изменения от бэкенда */
 export const useRetweetListQuery = () => {
   const { getRetweetList: config } = retweetConfig;
   const state = useQuery(config.key, config.request, {

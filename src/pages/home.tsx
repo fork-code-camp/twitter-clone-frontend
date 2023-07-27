@@ -8,11 +8,11 @@ import { Container } from '@mui/material';
 import { check } from '../api/authCheck';
 
 const Home = () => {
-  const { push } = useRouter();
+  // const { push } = useRouter();
 
-  useEffect(() => {
-    check().then((res) => !res && push('/logout'));
-  }, [push]);
+  // useEffect(() => {
+  //   check().then((res) => !res && push('/logout'));
+  // }, [push]);
 
   return (
     <>

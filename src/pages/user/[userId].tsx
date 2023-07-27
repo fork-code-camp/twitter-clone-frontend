@@ -1,35 +1,26 @@
-import React, { FC } from 'react';
-import { Box, Grid, useTheme } from '@mui/material';
-import { menuList } from '@/data/configMenu/configMenu';
-import PageHeader from '@/components/headers/PageHeader';
-import Navigation from '@/components/navigation/Navigation';
-import News from '@/components/news/News';
+import React from 'react';
+import { useRouter } from 'next/router'
+import { Box, Grid, Typography } from '@mui/material';
 import UnderLine from '@/common/UnderLine';
-import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
-import {
-  useGetTweetUserQuery,
-  useGetTweetUserRepliesQuery,
-} from '@/query/timeline/tweetTimeline.query';
-import TweetTabPanel from './components/TweetTabPanel';
-import UserInfo from '../../components/userInfo/UserInfo';
 import AccountBar from '@/components/headers/AccountBar';
-import { useGetProfileDataQuery } from '@/query/profile/profile.query';
+import PageHeader from '@/components/headers/PageHeader';
+import News from '@/components/news/News';
+import UserInfo from '@/components/userInfo/UserInfo';
+import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
+import { menuList } from '@/data/configMenu/configMenu';
+import theme from '@/theme/theme';
+import Navigation from '@/components/navigation/Navigation';
 
-const ProfileView: FC = () => {
-  const theme = useTheme();
-  const {
-    data: userData,
-    isLoading: userIsLoading,
-    isError: userIsError,
-  } = useGetTweetUserQuery();
-  const {
-    data: userRepliesData,
-    isLoading: userRepliesIsLoading,
-    isError: userRepliesIsError,
-  } = useGetTweetUserRepliesQuery();
-  const { data: profileData } = useGetProfileDataQuery();
+const User = () => {
+  const router = useRouter()
+  const username = router.query.userId || 'undefined'
+
+
+
   return (
-    <Grid
+    <>
+      <Typography>User: {username}</Typography>
+      <Grid
       container
       gap={2}
       justifyContent='center' flexWrap='nowrap'
@@ -50,12 +41,12 @@ const ProfileView: FC = () => {
             pb: 2,
           }}>
           <Navigation activeItem="Profile" menuList={menuList} />
-          <AccountBar
+          {/* <AccountBar
             hasAvatar
             isVertical
             name={profileData && profileData.username}
             tag={profileData && profileData.username}
-          />
+          /> */}
         </Box>
       </Grid>
 
@@ -66,18 +57,10 @@ const ProfileView: FC = () => {
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
       >
-        <PageHeader title="Profile" />
+        <PageHeader title={username.toString()} />
         <UnderLine />
-        <UserInfo />
+        {/* <UserInfo /> */}
         <UnderLine />
-        <TweetTabPanel
-          userData={userData}
-          userIsLoading={userIsLoading}
-          userIsError={userIsError}
-          userReplies={userRepliesData}
-          userRepliesIsLoading={userRepliesIsLoading}
-          userRepliesIsError={userRepliesIsError}
-        />
       </Grid>
 
       <Grid
@@ -93,7 +76,8 @@ const ProfileView: FC = () => {
         <WhoToFollow />
       </Grid>
     </Grid>
+    </>
   );
 };
 
-export default ProfileView;
+export default User;

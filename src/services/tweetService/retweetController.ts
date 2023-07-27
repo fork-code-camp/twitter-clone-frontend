@@ -20,6 +20,7 @@ export const getRetweet = async () => {
   return response
 }
 
+/* getRetweetList еще не внедрено, TODO изменения от бэкенда */
 export const getRetweetList = async () => {
   const response = await api.get(RETWEET_LIST_GET)
   return response

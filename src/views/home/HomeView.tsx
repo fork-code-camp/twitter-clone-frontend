@@ -3,7 +3,7 @@ import InnerTweet from '@/components/inner/InnerTweet';
 import { Alert, Box, CircularProgress, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
 import PageHeader from '@/components/headers/PageHeader';
-import Menu from '@/components/menu/Menu';
+import Navigation from '@/components/navigation/Navigation';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
@@ -37,7 +37,7 @@ const HomePage: FC = () => {
           pb: 2,
         }}
       >
-        <Menu activeItem="Home" menuList={menuList} />
+        <Navigation activeItem="Home" menuList={menuList} />
         <AccountBar
           hasAvatar
           isVertical

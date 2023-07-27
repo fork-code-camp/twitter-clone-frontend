@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { AppBar, Container, Toolbar, useTheme } from '@mui/material';
-import MenuElem from './MenuElem';
+import NavigationItem from './NavigationItem';
 
 interface IMenu {
   title: string;
@@ -13,7 +13,7 @@ interface IMenuArray {
   activeItem: string;
 }
 
-const Menu: FC<IMenuArray> = ({ menuList, activeItem }) => {
+const Navigation: FC<IMenuArray> = ({ menuList, activeItem }) => {
   const theme = useTheme();
 
   return (
@@ -31,7 +31,7 @@ const Menu: FC<IMenuArray> = ({ menuList, activeItem }) => {
           sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}
         >
           {menuList.map((navItem) => (
-            <MenuElem
+            <NavigationItem
               key={navItem.title}
               navItem={navItem}
               isActiveItem={activeItem === navItem.title}
@@ -43,4 +43,4 @@ const Menu: FC<IMenuArray> = ({ menuList, activeItem }) => {
     </AppBar>
   );
 };
-export default Menu;
+export default Navigation;

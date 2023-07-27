@@ -1,32 +1,18 @@
 import React, { FC } from 'react';
 import { Box, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
-import PageHeader from '@/components/headers/PageHeader';
 import Navigation from '@/components/navigation/Navigation';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
-import {
-  useGetTweetUserQuery,
-  useGetTweetUserRepliesQuery,
-} from '@/query/timeline/tweetTimeline.query';
-import TweetTabPanel from './components/TweetTabPanel';
-import UserInfo from '../../components/userInfo/UserInfo';
 import AccountBar from '@/components/headers/AccountBar';
 import { useGetProfileDataQuery } from '@/query/profile/profile.query';
+import Search from '../../components/search/Search';
+
 
 const ProfileView: FC = () => {
   const theme = useTheme();
-  const {
-    data: userData,
-    isLoading: userIsLoading,
-    isError: userIsError,
-  } = useGetTweetUserQuery();
-  const {
-    data: userRepliesData,
-    isLoading: userRepliesIsLoading,
-    isError: userRepliesIsError,
-  } = useGetTweetUserRepliesQuery();
+
   const { data: profileData } = useGetProfileDataQuery();
   return (
     <Grid
@@ -49,7 +35,7 @@ const ProfileView: FC = () => {
             height: '100vh',
             pb: 2,
           }}>
-          <Navigation activeItem="Profile" menuList={menuList} />
+          <Navigation activeItem="Explore" menuList={menuList} />
           <AccountBar
             hasAvatar
             isVertical
@@ -66,18 +52,8 @@ const ProfileView: FC = () => {
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
       >
-        <PageHeader title="Profile" />
-        <UnderLine />
-        <UserInfo />
-        <UnderLine />
-        <TweetTabPanel
-          userData={userData}
-          userIsLoading={userIsLoading}
-          userIsError={userIsError}
-          userReplies={userRepliesData}
-          userRepliesIsLoading={userRepliesIsLoading}
-          userRepliesIsError={userRepliesIsError}
-        />
+        <UnderLine/>
+        <Search />
       </Grid>
 
       <Grid
