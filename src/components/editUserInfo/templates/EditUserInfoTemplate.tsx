@@ -1,11 +1,11 @@
-import EditProfileFormTemplate from '@/forms/templates/EditProfileFormTemplate'
+import EditProfileFormTemplate from '@/components/editUserInfo/templates/EditProfileFormTemplate'
 import { IChangeInfoRequest } from '@/services/types'
 import { Container, Box } from '@mui/material'
 import React, { FC } from 'react'
 import { UseFormRegister } from 'react-hook-form'
 import PopupTemplate from '../../popups/templates/PopupTemplate'
-import EditAvatar from '../EditAvatar'
-import EditBanner from '../EditBanner'
+import EditAvatar from '../../userInfo/EditAvatar'
+import EditBanner from '../../userInfo/EditBanner'
 
 interface IEditUserInfoTemplate {
   openEditProfile: boolean
@@ -31,9 +31,9 @@ const EditUserInfoTemplate: FC<IEditUserInfoTemplate> = ({
       onSubmit={onSubmit}
     >
       <Container disableGutters sx={{ width: { xs: '300px', sm: '600px' }, height: '100%' }}>
-        <EditBanner/>
+        <EditBanner />
         <Box p={2}>
-          <EditAvatar/>
+          <EditAvatar />
         </Box>
         <Box p={2}>
           <EditProfileFormTemplate changeInfoRegister={changeInfoRegister} />

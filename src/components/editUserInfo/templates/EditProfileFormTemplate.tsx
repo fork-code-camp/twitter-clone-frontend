@@ -1,15 +1,18 @@
+import React, { FC } from 'react'
 import { IChangeInfoRequest } from '@/services/types'
 import { Container, TextField, Tooltip } from '@mui/material'
-import React, { FC } from 'react'
 import { UseFormRegister } from 'react-hook-form'
-import MyInputMask from '../../ui/input/MyInputMask'
+import MyInputMask from '../../../ui/input/MyInputMask'
+import { useGetCurrentProfileDataQuery } from '@/query/profile/currentBioData.query'
 
 interface IEditProfileFormTemplate {
   changeInfoRegister: UseFormRegister<IChangeInfoRequest>
 }
+
 const EditProfileFormTemplate: FC<IEditProfileFormTemplate> = ({
   changeInfoRegister,
 }) => {
+  const { data } = useGetCurrentProfileDataQuery()
   return (
     <Container
       disableGutters
@@ -25,7 +28,8 @@ const EditProfileFormTemplate: FC<IEditProfileFormTemplate> = ({
       <TextField
         {...changeInfoRegister('username')}
         id="username"
-        label="Username"
+        label={'Username'}
+        defaultValue={data.username}
         type="text"
         variant="outlined"
         fullWidth
@@ -33,7 +37,8 @@ const EditProfileFormTemplate: FC<IEditProfileFormTemplate> = ({
       <TextField
         {...changeInfoRegister('bio')}
         id="bio"
-        label="Bio"
+        label={'Bio'}
+        defaultValue={data.bio}
         type="text"
         variant="outlined"
         fullWidth
@@ -41,7 +46,8 @@ const EditProfileFormTemplate: FC<IEditProfileFormTemplate> = ({
       <TextField
         {...changeInfoRegister('location')}
         id="location"
-        label="Location"
+        label={'Location'}
+        defaultValue={data.location}
         type="text"
         variant="outlined"
         fullWidth
@@ -49,7 +55,8 @@ const EditProfileFormTemplate: FC<IEditProfileFormTemplate> = ({
       <TextField
         {...changeInfoRegister('website')}
         id="website"
-        label="Website"
+        label={'Website'}
+        defaultValue={data.website}
         type="text"
         variant="outlined"
         fullWidth
@@ -58,14 +65,13 @@ const EditProfileFormTemplate: FC<IEditProfileFormTemplate> = ({
         <MyInputMask
           {...changeInfoRegister('birthDate')}
           mask="9999-99-99"
-          // label="Номер карты"
           id="birthDate"
-          label="Birth Date"
+          label={'Birthdate'}
+          defaultValue={data.birthDate}
           type="text"
           variant="outlined"
           fullWidth
         />
-
       </Tooltip>
     </Container>
   )

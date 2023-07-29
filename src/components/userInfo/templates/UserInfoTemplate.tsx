@@ -5,7 +5,7 @@ import { Container, useTheme } from '@mui/system'
 import TaggedText from '@/common/TaggedText'
 import UserLocation from '@/common/UserLocation'
 import JoinedDate from '@/common/JoinedDate'
-import EditUserInfo from '@/components/userInfo/EditUserInfo'
+import EditUserInfo from '@/components/editUserInfo/EditUserInfo'
 import Banner from '@/components/banner/Banner'
 
 interface IUserInfoTemplate {
