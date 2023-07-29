@@ -8,13 +8,6 @@ import { ISearchQueryData } from '@/services/types'
 import { useQuery } from 'react-query'
 
 const profileConfig = {
-  getProfileAvatar: {
-    key: 'geProfileAvatar',
-    request: async () => {
-      const response = await getProfileAvatar()
-      return response.data
-    },
-  },
   getProfileData: {
     key: 'getProfileData',
     request: async () => {
@@ -39,20 +32,6 @@ export const useGetSearchUsersListQuery = (
       console.error('searchQueryData error', error)
     },
   })
-}
-
-export const useGetProfileAvatarQuery = () => {
-  const { getProfileAvatar: config } = profileConfig
-
-  const state = useQuery(config.key, config.request, {
-    onSuccess() {
-      console.log('/api/v1/profiles/images/avatar received successfully')
-    },
-    onError() {
-      console.error('/api/v1/profiles/images/avatar ERROR')
-    },
-  })
-  return state
 }
 
 export const useGetProfileDataQuery = () => {

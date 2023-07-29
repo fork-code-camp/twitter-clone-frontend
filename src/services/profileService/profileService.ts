@@ -46,7 +46,7 @@ export const getProfileDataById = async (email: string) => {
   return response
 }
 
-export const makeAvatar = async (formData: FormData) => {
+export const editAvatar = async (formData: FormData) => {
   const response = await api.post(PROFILE_AVATAR_POST, formData)
   return response
 }

@@ -2,14 +2,14 @@ import { Box, IconButton, useTheme } from '@mui/material'
 import React, { ChangeEventHandler, MutableRefObject, useRef } from 'react'
 import AddPhotoSVG from '@/assets/icons/AddPhoto.svg';
 import Avatar from '../avatar/Avatar';
-import { useMakeAvatarMutation } from '@/query/profile/profile.mutation';
-import { useGetProfileAvatarQuery } from '@/query/profile/profile.query';
+import { useEditAvatarMutation } from '@/query/profile/avatar.mutation';
+import { useGetProfileAvatarQuery } from '@/query/profile/avatar.query';
 
 const EditAvatar = () => {
   const theme = useTheme()
 
   const { data: avatarUrl } = useGetProfileAvatarQuery()
-  const { mutateAsync: mutateMakeAvatar } = useMakeAvatarMutation()
+  const { mutateAsync: mutateEditAvatar } = useEditAvatarMutation()
 
   const inputRef = useRef<HTMLInputElement | null>(null) as MutableRefObject<HTMLInputElement>
 
@@ -17,9 +17,13 @@ const EditAvatar = () => {
     inputRef.current.click()
   };
 
-  const avatarRequest = async (event: React.MouseEvent<HTMLElement>) => {
-    if (event.target) { return }
-    await mutateMakeAvatar(event.target)
+  const avatarRequest = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files) { return }
+    if (files && files.length > 0) {
+      const requestFile = await files[0];
+      await mutateEditAvatar(requestFile)
+    }
   }
 
   return (

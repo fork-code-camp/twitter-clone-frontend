@@ -1,14 +1,9 @@
 import {
-  makeAvatar,
   editProfileBio,
   getProfileDataById,
 } from '@/services/profileService/profileService'
-import { IChangeInfoRequest, IMakeAvatarRequest } from '@/services/types'
+import { IChangeInfoRequest } from '@/services/types'
 import { useMutation, useQueryClient } from 'react-query'
-
-type IMakeRequest = {
-  requestData: IMakeAvatarRequest
-}
 
 type IEditProfileBio = {
   pathId: string
@@ -16,16 +11,6 @@ type IEditProfileBio = {
 }
 
 const profileConfig = {
-  makeAvatar: {
-    key: 'makeAvatar',
-    request: async (requestData: IMakeRequest) => {
-      const formData = await new FormData()
-      await formData.append('file', requestData.files[0])
-      const response = await makeAvatar(formData)
-      return response.data
-    },
-  },
-
   editProfileBio: {
     key: 'editProfileBio',
     request: async (params: IEditProfileBio) => {
@@ -43,19 +28,6 @@ const profileConfig = {
       return response.data
     },
   },
-}
-
-export const useMakeAvatarMutation = () => {
-  const { makeAvatar: config } = profileConfig
-  const state = useMutation(config.request, {
-    onSuccess(data) {
-      console.log('фото загружено', data)
-    },
-    onError(error) {
-      console.log('фото НЕ загружено', error)
-    },
-  })
-  return state
 }
 
 export const useEditProfileBioMutation = () => {

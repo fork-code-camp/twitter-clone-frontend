@@ -36,10 +36,6 @@ export interface IMakeTweetResponse {
   text: string
 }
 
-export interface IMakeAvatarRequest {
-  file: FileList
-}
-
 /* Profile */
 export interface IChangeInfoRequest {
   username: string
