@@ -1,6 +1,6 @@
 import {
   editProfileBio,
-  getProfileDataById,
+  getProfilePathIdByEmail,
 } from '@/services/profileService/profileService'
 import { IChangeInfoRequest } from '@/services/types'
 import { useMutation, useQueryClient } from 'react-query'
@@ -21,10 +21,10 @@ const profileConfig = {
     },
   },
 
-  getProfileDataById: {
-    key: 'getProfileDataById',
+  getProfilePathIdByEmail: {
+    key: 'getProfilePathIdByEmail',
     request: async (email: string) => {
-      const response = await getProfileDataById(email)
+      const response = await getProfilePathIdByEmail(email)
       return response.data
     },
   },
@@ -46,12 +46,3 @@ export const useEditProfileBioMutation = () => {
   return state
 }
 
-export const useGetProfileDataByIdMutation = () => {
-  const { getProfileDataById: config } = profileConfig
-  const state = useMutation(config.request, {
-    onError(error) {
-      console.log('ошибка получения pathId', error)
-    },
-  })
-  return state
-}

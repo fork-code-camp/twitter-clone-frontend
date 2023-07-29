@@ -8,18 +8,16 @@ import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import { useGetTweetHomeQuery } from '@/query/timeline/tweetTimeline.query';
-import {
-  useGetProfileAvatarQuery,
-  useGetProfileDataQuery,
-} from '@/query/profile/profile.query';
 import AccountBar from '@/components/headers/AccountBar';
 import Tweets from '@/components/tweets/Tweets';
+import { useGetCurrentProfileDataQuery } from '@/query/profile/currentBioData.query';
+import { useGetProfileAvatarQuery } from '@/query/profile/avatar.query';
 
 const HomePage: FC = () => {
   const theme = useTheme();
   const { data: tweetsArray, isLoading, isError } = useGetTweetHomeQuery();
   const { data: avatarUrl } = useGetProfileAvatarQuery();
-  const { data: profileData } = useGetProfileDataQuery();
+  const { data: profileData, isLoading: profileDataIsLoading } = useGetCurrentProfileDataQuery();
   return (
     <Grid
       container
@@ -38,12 +36,13 @@ const HomePage: FC = () => {
         }}
       >
         <Navigation activeItem="Home" menuList={menuList} />
-        <AccountBar
+        {profileDataIsLoading ? <CircularProgress sx={{ m: 1 }} /> : <AccountBar
           hasAvatar
           isVertical
           name={profileData && profileData.username}
           tag={profileData && profileData.username}
-        />
+        />}
+
       </Grid>
       <Grid
         item

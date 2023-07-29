@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Box, Grid, useTheme } from '@mui/material';
+import { Box, CircularProgress, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
 import PageHeader from '@/components/headers/PageHeader';
 import Navigation from '@/components/navigation/Navigation';
@@ -13,7 +13,7 @@ import {
 import TweetTabPanel from './components/TweetTabPanel';
 import UserInfo from '../../components/userInfo/UserInfo';
 import AccountBar from '@/components/headers/AccountBar';
-import { useGetProfileDataQuery } from '@/query/profile/profile.query';
+import { useGetCurrentProfileDataQuery } from '@/query/profile/currentBioData.query';
 
 const ProfileView: FC = () => {
   const theme = useTheme();
@@ -27,7 +27,7 @@ const ProfileView: FC = () => {
     isLoading: userRepliesIsLoading,
     isError: userRepliesIsError,
   } = useGetTweetUserRepliesQuery();
-  const { data: profileData } = useGetProfileDataQuery();
+  const { data: profileData, isLoading: profileDataIsLoading } = useGetCurrentProfileDataQuery();
   return (
     <Grid
       container
@@ -50,12 +50,12 @@ const ProfileView: FC = () => {
             pb: 2,
           }}>
           <Navigation activeItem="Profile" menuList={menuList} />
-          <AccountBar
+          {profileDataIsLoading ? <CircularProgress sx={{ m: 1 }} /> : <AccountBar
             hasAvatar
             isVertical
             name={profileData && profileData.username}
             tag={profileData && profileData.username}
-          />
+          />}
         </Box>
       </Grid>
 

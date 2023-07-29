@@ -3,7 +3,7 @@ import { useQuery } from "react-query"
 
 const profileConfig = {
   getProfileAvatar: {
-    key: 'geProfileAvatar',
+    key: 'getProfileAvatar',
     request: async () => {
       const response = await getProfileAvatar()
       return response.data

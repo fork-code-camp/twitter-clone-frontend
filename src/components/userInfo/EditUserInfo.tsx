@@ -1,9 +1,10 @@
-import { useGetProfileDataByIdMutation, useEditProfileBioMutation } from '@/query/profile/profile.mutation';
-import { useGetProfileDataQuery } from '@/query/profile/profile.query';
-import { IChangeInfoRequest } from '@/services/types';
 import React, { FC } from 'react'
+import { useEditProfileBioMutation } from '@/query/profile/profile.mutation';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import EditUserInfoTemplate from './templates/EditUserInfoTemplate'
+import { useGetProfilePathIdByEmailQuery } from '@/query/profile/pathId.query';
+import { useGetCurrentProfileDataQuery } from '@/query/profile/currentBioData.query';
+import { IChangeInfoRequest } from '@/services/types';
 
 interface IEditUserInfo {
   openEditProfile: boolean
@@ -20,13 +21,12 @@ const EditUserInfo: FC<IEditUserInfo> = ({
     reset: changeInfoResetForm,
   } = useForm<IChangeInfoRequest>()
 
-  const { data: profileData } = useGetProfileDataQuery();
-  const { mutateAsync: getProfileDataById } = useGetProfileDataByIdMutation()
-  const { mutateAsync: mutateEditProfileBio } = useEditProfileBioMutation()
+  const { data: profileData } = useGetCurrentProfileDataQuery(); //current bio data from JWT
+  const { data: pathId } = useGetProfilePathIdByEmailQuery(profileData.email) //pathId from email
+  const { mutateAsync: mutateEditProfileBio } = useEditProfileBioMutation() //edit current profile biography
 
 
   const requestEditProfile: SubmitHandler<IChangeInfoRequest> = async (value: IChangeInfoRequest) => {
-    const pathId = await getProfileDataById(profileData.email).then((response: string) => { return (response) })
     mutateEditProfileBio({ bioData: value, pathId: pathId })
   }
 

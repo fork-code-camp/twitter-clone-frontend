@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
-import { Box, Grid, useTheme } from '@mui/material';
+import { Box, CircularProgress, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
 import Navigation from '@/components/navigation/Navigation';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import AccountBar from '@/components/headers/AccountBar';
-import { useGetProfileDataQuery } from '@/query/profile/profile.query';
 import Search from '../../components/search/Search';
+import { useGetCurrentProfileDataQuery } from '@/query/profile/currentBioData.query';
 
 
 const ProfileView: FC = () => {
   const theme = useTheme();
 
-  const { data: profileData } = useGetProfileDataQuery();
+  const { data: profileData, isLoading: profileDataIsLoading } = useGetCurrentProfileDataQuery();
   return (
     <Grid
       container
@@ -36,12 +36,12 @@ const ProfileView: FC = () => {
             pb: 2,
           }}>
           <Navigation activeItem="Explore" menuList={menuList} />
-          <AccountBar
+          {profileDataIsLoading ? <CircularProgress sx={{ m: 1 }} /> : <AccountBar
             hasAvatar
             isVertical
             name={profileData && profileData.username}
             tag={profileData && profileData.username}
-          />
+          />}
         </Box>
       </Grid>
 
@@ -52,7 +52,7 @@ const ProfileView: FC = () => {
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
       >
-        <UnderLine/>
+        <UnderLine />
         <Search />
       </Grid>
 

@@ -9,7 +9,7 @@ import {
 import Avatar from '../avatar/Avatar';
 import VerificationSVG from '@/assets/icons/Verification.svg';
 import TaggedText from '@/common/TaggedText';
-
+import { useGetProfileAvatarQuery } from '@/query/profile/avatar.query';
 interface IAccountBar {
   name: string;
   tag: string;
@@ -26,13 +26,14 @@ const AccountBar: FC<IAccountBar> = ({
   isVertical,
 }) => {
   const theme = useTheme();
+  const { data: avatarUrl } = useGetProfileAvatarQuery();
 
   return (
     <Container
       disableGutters
       sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}
     >
-      {hasAvatar && <Avatar width={30} height={30} />}
+      {hasAvatar && <Avatar img={avatarUrl} alt='AvatarAlt' width={30} height={30} />}
       <Box
         sx={{
           display: { xs: 'none', md: 'flex', lg: 'flex' },

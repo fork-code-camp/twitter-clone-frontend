@@ -1,21 +1,8 @@
 import {
-  getProfileAvatar,
-  getProfileData,
   getUsersList,
 } from '@/services/profileService/profileService'
 import { ISearchQueryData } from '@/services/types'
-
 import { useQuery } from 'react-query'
-
-const profileConfig = {
-  getProfileData: {
-    key: 'getProfileData',
-    request: async () => {
-      const response = await getProfileData()
-      return response.data
-    },
-  },
-}
 
 export const useGetSearchUsersListQuery = (
   searchQueryData: ISearchQueryData
@@ -34,16 +21,3 @@ export const useGetSearchUsersListQuery = (
   })
 }
 
-export const useGetProfileDataQuery = () => {
-  const { getProfileData: config } = profileConfig
-
-  const state = useQuery(config.key, config.request, {
-    onSuccess() {
-      console.log('/api/v1/profiles/me received successfully')
-    },
-    onError() {
-      console.error('/api/v1/profiles/me ERROR')
-    },
-  })
-  return state
-}

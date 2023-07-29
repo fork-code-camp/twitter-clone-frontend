@@ -1,15 +1,13 @@
 import React from 'react';
 import UserInfoTemplate from './templates/UserInfoTemplate';
 import {
-  useGetProfileDataQuery,
-} from '@/query/profile/profile.query';
-import {
   useGetProfileAvatarQuery,
 } from '@/query/profile/avatar.query';
+import { useGetCurrentProfileDataQuery } from '@/query/profile/currentBioData.query';
 
 const UserInfo = () => {
   const { data: avatarUrl } = useGetProfileAvatarQuery();
-  const { data: profileData } = useGetProfileDataQuery();
+  const { data: profileData } = useGetCurrentProfileDataQuery();
 
   return (
     <UserInfoTemplate

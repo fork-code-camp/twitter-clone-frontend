@@ -5,7 +5,7 @@ import { Box, Container } from '@mui/material'
 import SearchList from '@/components/search/SearchList'
 import { useForm } from 'react-hook-form'
 import { ISearchInner } from './types'
-import { useGetSearchUsersListQuery } from '@/query/profile/profile.query'
+import { useGetSearchUsersListQuery } from '@/query/profile/search.query'
 import { ISearchQueryData } from '@/services/types'
 
 const Search = () => {

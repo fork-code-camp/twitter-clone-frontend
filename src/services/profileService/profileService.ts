@@ -2,15 +2,15 @@ import api from '@/api'
 import {
   PROFILE_AVATAR_GET,
   PROFILE_AVATAR_POST,
-  PROFILE_GET,
-  PROFILE_ME,
+  PROFILE_USERS_LIST_GET,
+  PROFILE_ME_BIO,
   PROFILE_PATCH,
-  PROFILE_DATA_BY_ID,
+  PATH_ID_BY_EMAIL_GET,
 } from '../config'
 import { IChangeInfoRequest, ISearchQueryData } from '../types'
 
 export const getProfileData = async () => {
-  const response = await api.get(PROFILE_ME)
+  const response = await api.get(PROFILE_ME_BIO)
   return response
 }
 
@@ -35,14 +35,14 @@ export const getUsersList = async (pageable: ISearchQueryData) => {
   const page = await pageable.page
 
   const response = await api.get(
-    `${PROFILE_GET}/?username=${username}&size=${size}&page=${page}`
+    `${PROFILE_USERS_LIST_GET}/?username=${username}&size=${size}&page=${page}`
   )
 
   return response
 }
 
-export const getProfileDataById = async (email: string) => {
-  const response = await api.get(PROFILE_DATA_BY_ID + '/' + email)
+export const getProfilePathIdByEmail = async (email: string) => {
+  const response = await api.get(PATH_ID_BY_EMAIL_GET + '/' + email)
   return response
 }
 

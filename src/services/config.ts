@@ -26,9 +26,9 @@ export const RETWEET_LIST_GET = '/api/v1/retweets'; /* RETWEET_LIST_GET еще �
 /* + */ export const PROFILE_AVATAR_POST = '/api/v1/profiles/images/avatar';
 /* + */ export const PROFILE_AVATAR_DELETE = '/api/v1/profiles/images/avatar';
 
-/* + */ export const PROFILE_ME = '/api/v1/profiles/me'; /* ADDED req: /{id}; res: code: 200, {profileData} */
-/* + */ export const PROFILE_GET = '/api/v1/profiles'; /* req: username, pageble; res: code: 200, {usernames userlist} */
+/* + */ export const PROFILE_ME_BIO = '/api/v1/profiles/me'; /* ADDED req: /{id}; res: code: 200, {profileData} */
+export const PROFILE_GET = '/api/v1/profiles' /* req: pathId */
 /* + */ export const PROFILE_POST = '/api/v1/profiles'; /* req: /{email, username, jointDate}; res: code: 200, string */
 /* + */ export const PROFILE_PATCH = '/api/v1/profiles'; /* req: /{id}; res: code: 200, {profileData} */
-/* + */ export const PROFILE_DATA_BY_ID = '/api/v1/profiles/id'; /* req: /{email}; res: code: 200, pathId */
-export const PROFILE_GET_FILTER = '/api/v1/profiles'; /* еще не внедрено req: username, {}; res: code: 200, profileData */
+/* + */ export const PATH_ID_BY_EMAIL_GET = '/api/v1/profiles/id'; /* req: /{email}; res: code: 200, pathId */
+/* + */ export const PROFILE_USERS_LIST_GET = '/api/v1/profiles'; /* req: username, pageble; res: code: 200, {usernames userlist} */
