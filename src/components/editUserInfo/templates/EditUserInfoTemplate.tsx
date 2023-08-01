@@ -14,7 +14,6 @@ interface IEditUserInfoTemplate {
   changeInfoRegister: UseFormRegister<IChangeInfoRequest>;
 }
 
-
 const EditUserInfoTemplate: FC<IEditUserInfoTemplate> = ({
   openEditProfile,
   setOpenEditProfile,

@@ -1,9 +1,10 @@
 import React, { FC } from 'react'
 import { IChangeInfoRequest } from '@/services/types'
-import { Container, TextField, Tooltip } from '@mui/material'
+import { Box, Container, TextField, Typography } from '@mui/material'
 import { UseFormRegister } from 'react-hook-form'
-import MyInputMask from '../../../ui/input/MyInputMask'
 import { useGetCurrentProfileDataQuery } from '@/query/profile/currentBioData.query'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css';
 
 interface IEditProfileFormTemplate {
   changeInfoRegister: UseFormRegister<IChangeInfoRequest>
@@ -21,7 +22,7 @@ const EditProfileFormTemplate: FC<IEditProfileFormTemplate> = ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'start',
         gap: 2,
       }}
     >
@@ -61,18 +62,15 @@ const EditProfileFormTemplate: FC<IEditProfileFormTemplate> = ({
         variant="outlined"
         fullWidth
       />
-      <Tooltip title="YYYY-MM-DD" placement="bottom-start" arrow>
-        <MyInputMask
-          {...changeInfoRegister('birthDate')}
-          mask="9999-99-99"
-          id="birthDate"
-          label={'Birthdate'}
-          defaultValue={data.birthDate}
-          type="text"
-          variant="outlined"
-          fullWidth
-        />
-      </Tooltip>
+    <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
+      <Typography>Birth Date</Typography>
+      <DatePicker
+      selected={new Date()}
+        {...changeInfoRegister('birthDate')}
+      />
+
+    </Box>
+
     </Container>
   )
 }
