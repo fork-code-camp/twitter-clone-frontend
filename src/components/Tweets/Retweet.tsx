@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ITweet } from '@/components/tweets/types';
 import RetweetTemplate from './templates/RetweetTemplate';
-import { useGetCurrentProfileDataQuery } from '@/query/profile/currentBioData.query';
+import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
 
 const Retweet: FC<ITweet> = ({
   id,
@@ -22,7 +22,7 @@ const Retweet: FC<ITweet> = ({
   retweetTo,
   views,
 }) => {
-  const { data: profileData } = useGetCurrentProfileDataQuery();
+  const { data: profileData } = useGetAuthorizedUserDataQuery();
   return (
     <RetweetTemplate
       id={id}

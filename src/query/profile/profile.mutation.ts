@@ -1,7 +1,4 @@
-import {
-  editProfileBio,
-  getProfilePathIdByEmail,
-} from '@/services/profileService/profileService'
+import { editProfileBio } from '@/services/profileService/profileService'
 import { IChangeInfoRequest } from '@/services/types'
 import { useMutation, useQueryClient } from 'react-query'
 
@@ -18,14 +15,6 @@ const profileConfig = {
       const bioData = params.bioData
       const response = await editProfileBio(pathId, bioData)
       return response
-    },
-  },
-
-  getProfilePathIdByEmail: {
-    key: 'getProfilePathIdByEmail',
-    request: async (email: string) => {
-      const response = await getProfilePathIdByEmail(email)
-      return response.data
     },
   },
 }
@@ -45,4 +34,3 @@ export const useEditProfileBioMutation = () => {
   })
   return state
 }
-

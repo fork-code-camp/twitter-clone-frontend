@@ -7,7 +7,7 @@ import {
   Button,
   useTheme,
 } from '@mui/material';
-import Avatar from '../../avatar/Avatar';
+import CustomAvatar from '../../avatar/CustomAvatar';
 import InnerWidgetsTemplate from './InnerWidgetsTemplate';
 import { IMakeTweetRequest } from '@/services/types';
 import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
@@ -40,7 +40,7 @@ const InnerTemplate: FC<IInnerTemplate> = ({
         padding: '10px 15px',
       }}
     >
-      {avatarUrl && <Avatar img={avatarUrl} alt={avatarAlt} />}
+      {avatarUrl && <CustomAvatar img={avatarUrl} alt={avatarAlt} />}
       <Box
         sx={{
           display: 'flex',

@@ -6,7 +6,7 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import Avatar from '../avatar/Avatar';
+import CustomAvatar from '../avatar/CustomAvatar';
 import VerificationSVG from '@/assets/icons/Verification.svg';
 import TaggedText from '@/common/TaggedText';
 import { useGetProfileAvatarQuery } from '@/query/profile/avatar.query';
@@ -33,7 +33,7 @@ const AccountBar: FC<IAccountBar> = ({
       disableGutters
       sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}
     >
-      {hasAvatar && <Avatar img={avatarUrl} alt='AvatarAlt' width={30} height={30} />}
+      {hasAvatar && <CustomAvatar img={avatarUrl} alt='AvatarAlt' width={30} height={30} />}
       <Box
         sx={{
           display: { xs: 'none', md: 'flex', lg: 'flex' },

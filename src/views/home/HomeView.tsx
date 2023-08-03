@@ -10,14 +10,14 @@ import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import { useGetTweetHomeQuery } from '@/query/timeline/tweetTimeline.query';
 import AccountBar from '@/components/headers/AccountBar';
 import Tweets from '@/components/tweets/Tweets';
-import { useGetCurrentProfileDataQuery } from '@/query/profile/currentBioData.query';
+import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
 import { useGetProfileAvatarQuery } from '@/query/profile/avatar.query';
 
 const HomePage: FC = () => {
   const theme = useTheme();
   const { data: tweetsArray, isLoading, isError } = useGetTweetHomeQuery();
   const { data: avatarUrl } = useGetProfileAvatarQuery();
-  const { data: profileData, isLoading: profileDataIsLoading } = useGetCurrentProfileDataQuery();
+  const { data: profileData, isLoading: profileDataIsLoading } = useGetAuthorizedUserDataQuery();
   return (
     <Grid
       container

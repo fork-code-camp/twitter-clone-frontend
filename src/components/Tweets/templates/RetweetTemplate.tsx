@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Box, Container, Typography, useTheme } from '@mui/material';
-import Avatar from '@/components/avatar/Avatar';
+import CustomAvatar from '@/components/avatar/CustomAvatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import { ITweet } from '@/components/tweets/types';
@@ -43,7 +43,7 @@ const RetweetTemplate: FC<IRetweetTemplay> = ({
         padding: '10px 15px',
       }}
     >
-      <Avatar img={avatarUrl} alt={avatarAlt} />
+      <CustomAvatar img={avatarUrl} alt={avatarAlt} />
       <Box sx={{ width: '100%' }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           <Box

@@ -5,8 +5,10 @@ export const useGetProfilePathIdByEmailQuery = (email: string) => {
   return useQuery({
     queryKey: ['getProfilePathIdByEmail', email],
     queryFn: async () => {
-      const response = await getProfilePathIdByEmail(email)
-      return response.data
+      if(email){
+        const response = await getProfilePathIdByEmail(email)
+        return response.data
+      }
     },
     keepPreviousData: true,
     enabled: email !== null,

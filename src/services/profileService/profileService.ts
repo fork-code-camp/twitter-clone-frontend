@@ -9,7 +9,7 @@ import {
 } from '../config'
 import { IChangeInfoRequest, ISearchQueryData } from '../types'
 
-export const getProfileData = async () => {
+export const getAuthorizedUserData = async () => {
   const response = await api.get(PROFILE_ME_BIO)
   return response
 }

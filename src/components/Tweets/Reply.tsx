@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Box, Container, Paper, Typography, useTheme } from '@mui/material';
-import Avatar from '@/components/avatar/Avatar';
+import CustomAvatar from '@/components/avatar/CustomAvatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import TweetContentTemplate from './templates/TweetContentTemplate';
@@ -57,7 +57,7 @@ const Reply: FC<IDataReply> = ({
     >
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
         <Box position="relative">
-          <Avatar img={replyAvatarUrl} alt={replyAvatarAlt} />
+          <CustomAvatar img={replyAvatarUrl} alt={replyAvatarAlt} />
           <Paper
             sx={{
               background: theme.palette.secondary.main,
@@ -109,7 +109,7 @@ const Reply: FC<IDataReply> = ({
       </Box>
       <Box>
         <Box display="flex" flexDirection="row" gap={2}>
-          <Avatar img={avatarUrl} alt={avatarAlt} />
+          <CustomAvatar img={avatarUrl} alt={avatarAlt} />
           <Box
             sx={{
               display: 'flex',

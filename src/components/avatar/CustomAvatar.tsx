@@ -10,7 +10,7 @@ interface IAvatar {
   height?: number;
 }
 
-const Avatar: FC<IAvatar> = ({ img, alt, width = 48, height = 48 }) => {
+const CustomAvatar: FC<IAvatar> = ({ img, alt, width = 48, height = 48 }) => {
   const theme = useTheme();
   return (
     <Box
@@ -34,4 +34,4 @@ const Avatar: FC<IAvatar> = ({ img, alt, width = 48, height = 48 }) => {
   );
 };
 
-export default Avatar;
+export default CustomAvatar;

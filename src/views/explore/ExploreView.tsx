@@ -7,13 +7,13 @@ import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import AccountBar from '@/components/headers/AccountBar';
 import Search from '../../components/search/Search';
-import { useGetCurrentProfileDataQuery } from '@/query/profile/currentBioData.query';
+import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
 
 
 const ProfileView: FC = () => {
   const theme = useTheme();
 
-  const { data: profileData, isLoading: profileDataIsLoading } = useGetCurrentProfileDataQuery();
+  const { data: profileData, isLoading: profileDataIsLoading } = useGetAuthorizedUserDataQuery();
   return (
     <Grid
       container
