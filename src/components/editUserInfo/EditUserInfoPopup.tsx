@@ -22,9 +22,13 @@ const EditUserInfoPopup: FC<IEditUserInfoPopup> = ({ userInfoData, openEditUserI
   const { mutateAsync: mutateEditProfileBio } = useEditProfileBioMutation()
 
   const requestEditProfile: SubmitHandler<IChangeInfoRequest> = async (value: IChangeInfoRequest) => {
-    console.log('value', value);
+  const transitionalBioData = await birthDateConverter(value)
+    mutateEditProfileBio({ bioData: transitionalBioData, pathId: pathId })
+  }
 
-    mutateEditProfileBio({ bioData: value, pathId: pathId })
+  const birthDateConverter = (obj: IChangeInfoRequest) => {
+    obj.birthDate = obj.birthDate.toISOString().split('T')[0];
+    return obj
   }
 
   const onSubmit = () => {

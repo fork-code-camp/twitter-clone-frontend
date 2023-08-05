@@ -1,17 +1,19 @@
 import React, { FC } from 'react'
-import { UseFormRegister } from 'react-hook-form'
+import { UseFormRegister, Controller, Control } from 'react-hook-form'
 import { Box, Container, TextField, Typography } from '@mui/material'
-import BirthDatePicker from './BirthDatePicker'
 import { IChangeInfoRequest } from '@/services/types'
 import { IUserInfoData } from '@/query/profile/types';
+import ReactDatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css';
 
 interface IEditUserInfoForm {
   registerEditForm: UseFormRegister<IChangeInfoRequest>
   userInfoData: IUserInfoData
-  control: any
+  control: Control<IChangeInfoRequest>
 }
 
 const EditUserInfoForm: FC<IEditUserInfoForm> = ({ control, registerEditForm, userInfoData }) => {
+  console.log(control);
 
   return (
     <Container
@@ -63,7 +65,18 @@ const EditUserInfoForm: FC<IEditUserInfoForm> = ({ control, registerEditForm, us
       />
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         <Typography>Birth Date</Typography>
-        <BirthDatePicker control={control} registerEditForm={registerEditForm}  />
+        <Controller
+          control={control}
+          name="birthDate"
+          render={({ field }) => (
+            <ReactDatePicker
+              className="input"
+              placeholderText="Select date"
+              onChange={(e) => field.onChange(e)}
+              selected={field.value}
+            />
+          )}
+        />
       </Box>
     </Container>
   )
