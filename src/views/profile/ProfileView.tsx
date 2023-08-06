@@ -36,8 +36,7 @@ const ProfileView: FC = () => {
           }}>
           <Navigation activeItem="Profile" menuList={menuList} />
           {userInfoDataIsLoading && <CircularProgress sx={{ m: 1 }} />}
-          {userInfoData && <AccountBar hasAvatar isVertical name={userInfoData.username} tag={userInfoData.username}
-          />}
+          {userInfoData && <AccountBar hasAvatar isVertical name={userInfoData.username} tag={userInfoData.username}/>}
         </Box>
       </Grid>
 

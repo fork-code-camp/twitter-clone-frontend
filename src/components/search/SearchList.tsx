@@ -1,31 +1,17 @@
 import { Container } from '@mui/material'
 import React, { FC } from 'react'
 import SearchItem from './SearchItem'
-
-interface ISearchList {
-  profileId: string
-  username: string
-  email: string
-  followers: string
-  followees: string
-  joinDate: string
-  bio: string
-  location: string
-  website: string
-  birthDate: string
-  avatarUrl: string
-  bannerUrl: string
-}
+import { IUserInfoData } from '../tweets/types'
 
 interface ISearchListArray {
-  searchedList: ISearchList[]
+  searchedList: IUserInfoData[]
 }
 
 const SearchList: FC<ISearchListArray> = ({ searchedList = [] }) => {
   return (
     <Container sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-      {searchedList.map((item: ISearchList) => {
-        return <SearchItem key={item.profileId} username={item.username} />
+      {searchedList.map((item: IUserInfoData) => {
+        return <SearchItem key={item.profileId} username={item.username} profileId={item.profileId} />
       })}
     </Container>
   )

@@ -36,13 +36,8 @@ const HomePage: FC = () => {
         }}
       >
         <Navigation activeItem="Home" menuList={menuList} />
-        {profileDataIsLoading ? <CircularProgress sx={{ m: 1 }} /> : <AccountBar
-          hasAvatar
-          isVertical
-          name={profileData && profileData.username}
-          tag={profileData && profileData.username}
-        />}
-
+        {profileDataIsLoading && <CircularProgress sx={{ m: 1 }} />}
+        {profileData && <AccountBar hasAvatar isVertical name={profileData.username} tag={profileData.username}/>}
       </Grid>
       <Grid
         item

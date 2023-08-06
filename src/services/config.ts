@@ -32,3 +32,6 @@ export const PROFILE_GET = '/api/v1/profiles' /* req: pathId */
 /* + */ export const PROFILE_PATCH = '/api/v1/profiles'; /* req: /{id}; res: code: 200, {profileData} */
 /* + */ export const PATH_ID_BY_EMAIL_GET = '/api/v1/profiles/id'; /* req: /{email}; res: code: 200, pathId */
 /* + */ export const PROFILE_USERS_LIST_GET = '/api/v1/profiles'; /* req: username, pageble; res: code: 200, {usernames userlist} */
+
+export const FOLLOW_POST = '/api/v1/follows/' //req: {followeeId} res: true | false
+export const FOLLOW_DELETE = '/api/v1/follows/' //req: {followeeId} res: true | false

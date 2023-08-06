@@ -36,12 +36,8 @@ const ProfileView: FC = () => {
             pb: 2,
           }}>
           <Navigation activeItem="Explore" menuList={menuList} />
-          {profileDataIsLoading ? <CircularProgress sx={{ m: 1 }} /> : <AccountBar
-            hasAvatar
-            isVertical
-            name={profileData && profileData.username}
-            tag={profileData && profileData.username}
-          />}
+          {profileDataIsLoading && <CircularProgress sx={{ m: 1 }} />}
+          {profileData && <AccountBar hasAvatar isVertical name={profileData.username} tag={profileData.username}/>}
         </Box>
       </Grid>
 

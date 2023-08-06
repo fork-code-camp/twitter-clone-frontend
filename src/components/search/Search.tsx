@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import InnerSearch from '@/components/search/InnerSearch'
 import SettingsSVG from '@/assets/icons/Settings.svg'
@@ -7,21 +8,38 @@ import { useForm } from 'react-hook-form'
 import { ISearchInner } from './types'
 import { useGetSearchUsersListQuery } from '@/query/profile/search.query'
 import { ISearchQueryData } from '@/services/types'
+import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query'
+import { IUserInfoData } from '../tweets/types'
 
 const Search = () => {
   const [userslist, setUserslist] = useState([])
-
   const [searchRequestData, setSearchRequestData] = useState<ISearchQueryData>({ username: '', page: 0, size: 11 });
 
   const { register, handleSubmit } = useForm<ISearchInner>();
   const { data: searchResponseData } = useGetSearchUsersListQuery(searchRequestData);
+  const { data: authorizedUserData } = useGetAuthorizedUserDataQuery()
 
   const onSubmit = (innerData: ISearchInner) => {
     setSearchRequestData({ username: innerData.username, page: 0, size: 10 })
   };
 
+  const removeAuthorizedUser = () => {
+    const myId = authorizedUserData?.profileId
+    const searchResponseDataContent = searchResponseData?.content
+
+    const newArr = searchResponseDataContent?.filter((el: IUserInfoData) => {
+      console.log(el);
+
+      return el.profileId !== myId
+    })
+    return newArr
+  }
+
   useEffect(() => {
-    setUserslist(searchResponseData && searchResponseData.content);
+    const userslistWithoutAuthorizedUser = removeAuthorizedUser()
+
+    setUserslist(searchResponseData && userslistWithoutAuthorizedUser);
+
   }, [searchResponseData])
 
   return (

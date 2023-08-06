@@ -15,8 +15,6 @@ const User = () => {
   const router = useRouter()
   const username = router.query.userId || 'undefined'
 
-
-
   return (
     <>
       <Typography>User: {username}</Typography>
@@ -41,12 +39,8 @@ const User = () => {
             pb: 2,
           }}>
           <Navigation activeItem="Profile" menuList={menuList} />
-          {/* <AccountBar
-            hasAvatar
-            isVertical
-            name={profileData && profileData.username}
-            tag={profileData && profileData.username}
-          /> */}
+          {/* {userInfoDataIsLoading && <CircularProgress sx={{ m: 1 }} />}
+          {userInfoData && <AccountBar hasAvatar isVertical name={userInfoData.username} tag={userInfoData.username}/>} */}
         </Box>
       </Grid>
 

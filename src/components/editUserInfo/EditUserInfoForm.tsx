@@ -13,7 +13,6 @@ interface IEditUserInfoForm {
 }
 
 const EditUserInfoForm: FC<IEditUserInfoForm> = ({ control, registerEditForm, userInfoData }) => {
-  console.log(control);
 
   return (
     <Container
