@@ -2,12 +2,12 @@ import { Container, IconButton, Paper, useTheme } from '@mui/material'
 import Image from 'next/image';
 import React, { FC } from 'react'
 
-interface IBannerTemplate {
+interface ICustomBanner {
   img?: string | null;
   alt?: string | null;
 }
 
-const BannerTemplate: FC<IBannerTemplate> = ({ img, alt }) => {
+const CustomBanner: FC<ICustomBanner> = ({ img, alt }) => {
   const theme = useTheme()
   return (
     <Container disableGutters sx={{ flex: '0 0 auto', width: '100%', height: 'inherit' }} >
@@ -27,5 +27,4 @@ const BannerTemplate: FC<IBannerTemplate> = ({ img, alt }) => {
   )
 }
 
-export default BannerTemplate
-
+export default CustomBanner

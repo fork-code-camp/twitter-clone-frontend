@@ -27,8 +27,11 @@ const EditUserInfoPopup: FC<IEditUserInfoPopup> = ({ userInfoData, openEditUserI
   }
 
   const birthDateConverter = (obj: IChangeInfoRequest) => {
-    obj.birthDate = obj.birthDate.toISOString().split('T')[0];
+    if (obj.birthDate !== undefined) {
+      obj.birthDate = obj.birthDate.toISOString().split('T')[0];
+    }
     return obj
+
   }
 
   const onSubmit = () => {

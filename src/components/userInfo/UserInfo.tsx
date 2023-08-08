@@ -1,10 +1,11 @@
 import React, { FC, useState } from 'react'
 import { useGetProfileAvatarQuery } from '@/query/profile/avatar.query';
+import { useGetProfileBannerQuery } from '@/query/profile/banner.query';
 import { Container, Box, Typography, Button } from '@mui/material';
 import JoinedDate from '@/common/JoinedDate';
 import TaggedText from '@/common/TaggedText';
 import UserLocation from '@/common/UserLocation';
-import Banner from '@/components/banner/Banner';
+import CustomBanner from '@/components/banner/CustomBanner';
 import EditUserInfoPopup from '@/components/editUserInfo/EditUserInfoPopup';
 import CustomAvatar from '@/components/avatar/CustomAvatar';
 import { IUserInfoData } from '@/query/profile/types';
@@ -15,11 +16,12 @@ interface IUserInfo {
 
 const UserInfo: FC<IUserInfo> = ({ userInfoData }) => {
   const { data: avatarUrl } = useGetProfileAvatarQuery();
+  const { data: bannerUrl } = useGetProfileBannerQuery()
   const [openEditUserInfo, setOpenEditUserInfo] = useState(false)
   return (
     <Container disableGutters sx={{ position: 'relative', marginBottom: '10px' }}>
       <Box sx={{ width: '100%', height: '200px', position: 'absolute' }}>
-        <Banner />
+      <CustomBanner img={bannerUrl} alt={bannerUrl} />
       </Box>
       <Box
         display="flex"

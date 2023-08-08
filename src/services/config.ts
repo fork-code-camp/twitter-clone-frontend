@@ -24,7 +24,11 @@ export const RETWEET_LIST_GET = '/api/v1/retweets'; /* RETWEET_LIST_GET еще �
 
 /* + */ export const PROFILE_AVATAR_GET = '/api/v1/profiles/images/avatar';
 /* + */ export const PROFILE_AVATAR_POST = '/api/v1/profiles/images/avatar';
-/* + */ export const PROFILE_AVATAR_DELETE = '/api/v1/profiles/images/avatar';
+export const PROFILE_AVATAR_DELETE = '/api/v1/profiles/images/avatar';
+
+/* + */ export const PROFILE_BANNER_GET = '/api/v1/profiles/images/banner';
+/* + */ export const PROFILE_BANNER_POST = '/api/v1/profiles/images/banner';
+export const PROFILE_BANNER_DELETE = '/api/v1/profiles/images/banner';
 
 /* + */ export const PROFILE_ME_BIO = '/api/v1/profiles/me'; /* ADDED req: /{id}; res: code: 200, {profileData} */
 export const PROFILE_GET = '/api/v1/profiles' /* req: pathId */
