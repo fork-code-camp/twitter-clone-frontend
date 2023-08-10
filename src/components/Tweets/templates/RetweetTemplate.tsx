@@ -20,7 +20,7 @@ const RetweetTemplate: FC<IRetweetTemplay> = ({
   username,
   currentUsername,
   userTag,
-  userPassedTime,
+  creationDate,
   tweetText,
   tweetImg,
   tweetAlt,
@@ -72,7 +72,7 @@ const RetweetTemplate: FC<IRetweetTemplay> = ({
             }}
           >
             <UserHeader name={username} tag={userTag} />
-            <PassedTime date={userPassedTime} />
+            <PassedTime date={creationDate} />
           </Box>
         </Box>
         <Box

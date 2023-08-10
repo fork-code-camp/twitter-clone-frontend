@@ -11,7 +11,7 @@ const Retweet: FC<ITweet> = ({
   avatarAlt,
   username,
   userTag,
-  userPassedTime,
+  creationDate,
   tweetText,
   tweetImg,
   tweetAlt,
@@ -42,7 +42,7 @@ const Retweet: FC<ITweet> = ({
       username={username}
       currentUsername={profileData && profileData.username}
       userTag={userTag}
-      userPassedTime={userPassedTime}
+      creationDate={creationDate}
     />
   );
 };

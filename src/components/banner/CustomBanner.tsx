@@ -21,7 +21,14 @@ const CustomBanner: FC<ICustomBanner> = ({ img, alt }) => {
         }} />
       }
       {img && alt && <IconButton sx={{ width: '100%', height: '200px', p: 0 }}>
-        <Image fill sizes='100vw' style={{ objectFit: 'cover' }} src={img && img} alt={alt ? alt : 'defaultBanner'} />
+        <Image
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          placeholder="blur"
+          blurDataURL={img && img}
+          style={{ objectFit: 'cover' }}
+          src={img && img}
+          alt={alt ? alt : 'defaultBanner'} />
       </IconButton>}
     </Container>
   )

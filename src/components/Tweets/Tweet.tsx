@@ -16,7 +16,7 @@ const Tweet: FC<ITweet> = ({
   avatarAlt,
   username,
   userTag,
-  userPassedTime,
+  creationDate,
   tweetText,
   tweetImg,
   tweetAlt,
@@ -27,6 +27,7 @@ const Tweet: FC<ITweet> = ({
   retweetTo,
   views,
 }) => {
+
   return (
     <Container
       disableGutters
@@ -50,7 +51,7 @@ const Tweet: FC<ITweet> = ({
             }}
           >
             <UserHeader name={username} tag={userTag} />
-            <PassedTime date={userPassedTime} />
+            <PassedTime date={creationDate} />
           </Box>
           <MoreActionButton id={id} />
         </Box>

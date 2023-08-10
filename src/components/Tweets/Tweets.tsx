@@ -21,7 +21,7 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
               avatarAlt={tweet.retweetTo.profile.avatarUrl}
               username={tweet.retweetTo.profile.username}
               userTag={tweet.retweetTo.profile.username}
-              userPassedTime={Number(new Date(tweet.retweetTo.creationDate))}
+              creationDate={Number(new Date(tweet.retweetTo.creationDate))}
               tweetText={tweet.retweetTo.text}
               tweetImg={
                 tweet.retweetTo.mediaUrls && tweet.retweetTo.mediaUrls[0]
@@ -44,7 +44,7 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
               isRetweeted={tweet.isRetweeted}
               username={tweet.profile.username}
               userTag={tweet.profile.username}
-              userPassedTime={Number(new Date(tweet.creationDate))}
+              creationDate={Number(new Date(tweet.creationDate))}
               avatarUrl={tweet.profile.avatarUrl}
               avatarAlt={tweet.profile.avatarUrl}
               tweetText={tweet.text}
@@ -61,7 +61,7 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
               replyIsRetweeted={tweet.replyTo.isRetweeted}
               replyUsername={tweet.replyTo.profile.username}
               replyUserTag={tweet.replyTo.profile.username}
-              replyUserPassedTime={Number(new Date(tweet.replyTo.creationDate))}
+              replycreationDate={Number(new Date(tweet.replyTo.creationDate))}
               replyAvatarUrl={tweet.replyTo.profile.avatarUrl}
               replyAvatarAlt={tweet.replyTo.profile.avatarUrl}
               replyTweetText={tweet.replyTo.text}
@@ -88,7 +88,7 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
               avatarAlt={tweet.profile.avatarUrl}
               username={tweet.profile.username}
               userTag={tweet.profile.username}
-              userPassedTime={Number(new Date(tweet.creationDate))}
+              creationDate={Number(new Date(tweet.creationDate))}
               tweetText={tweet.text}
               tweetImg={tweet.mediaUrls && tweet.mediaUrls[0]}
               tweetAlt={tweet.mediaUrls && tweet.mediaUrls[0]}

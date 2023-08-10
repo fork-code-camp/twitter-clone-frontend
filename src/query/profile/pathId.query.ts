@@ -1,7 +1,7 @@
 import { getProfilePathIdByEmail } from '@/services/profileService/profileService'
 import { useQuery } from 'react-query'
 
-export const useGetProfilePathIdByEmailQuery = (email: string) => {
+export const useGetProfilePathIdByEmailQuery = (email?: string) => {
   return useQuery({
     queryKey: ['getProfilePathIdByEmail', email],
     queryFn: async () => {

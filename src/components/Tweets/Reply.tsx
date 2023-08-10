@@ -22,7 +22,7 @@ const Reply: FC<IDataReply> = ({
   views,
   username,
   userTag,
-  userPassedTime,
+  creationDate,
   avatarUrl,
   avatarAlt,
   tweetText,
@@ -33,7 +33,7 @@ const Reply: FC<IDataReply> = ({
   replyAvatarAlt,
   replyUsername,
   replyUserTag,
-  replyUserPassedTime,
+  replycreationDate,
   replyTweetText,
   replyTweetImg,
   replyTweetAlt,
@@ -86,7 +86,7 @@ const Reply: FC<IDataReply> = ({
             }}
           >
             <UserHeader name={replyUsername} tag={replyUserTag} />
-            <PassedTime date={replyUserPassedTime} />
+            <PassedTime date={replycreationDate} />
           </Box>
 
           <TweetContentTemplate
@@ -120,7 +120,7 @@ const Reply: FC<IDataReply> = ({
           >
             <Box display="flex" flexDirection="row">
               <UserHeader name={username} tag={userTag} />
-              <PassedTime date={userPassedTime} />
+              <PassedTime date={creationDate} />
             </Box>
             <Box display="flex" flexDirection="column" gap={1}>
               <Box display="flex" flexDirection="row" gap={0.5}>

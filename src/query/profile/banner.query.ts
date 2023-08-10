@@ -15,9 +15,6 @@ export const useGetProfileBannerQuery = () => {
   const { getProfileBanner: config } = profileConfig
 
   const state = useQuery(config.key, config.request, {
-    onSuccess() {
-      console.log('баннер получен')
-    },
     onError() {
       console.error('баннер ERROR')
     },

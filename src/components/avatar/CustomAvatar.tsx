@@ -24,6 +24,7 @@ const CustomAvatar: FC<IAvatar> = ({ img, alt, width = 48, height = 48 }) => {
       }}
     >
       <Image
+        priority={true}
         width={width}
         height={height}
         style={{ objectFit: 'contain', transform: 'scale(1.1)' }}

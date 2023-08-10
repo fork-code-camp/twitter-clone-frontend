@@ -1,11 +1,11 @@
-import { IUserInfoData } from "@/query/profile/types"
+import { IUserInfoData } from '@/query/profile/types'
 
 export type ITweet = {
-  avatarUrl: string
-  avatarAlt: string
+  avatarUrl: string | null
+  avatarAlt: string | null
   username: string
   userTag: string
-  userPassedTime: number
+  creationDate: number
 } & ITweetContentTemplate &
   ITweetWidgetsTemplate
 
@@ -95,11 +95,10 @@ export type IDataReply = {
   replyTweetText?: string
   replyTweetImg?: string
   replyTweetAlt?: string
-  replyAvatarUrl: string
-  replyAvatarAlt: string
+  replyAvatarUrl: string | null
+  replyAvatarAlt: string | null
   replyUsername: string
   replyUserTag: string
-  replyUserPassedTime: number
+  replycreationDate: number
 } & ITweet
-export { IUserInfoData }
-
+// export { IUserInfoData }
