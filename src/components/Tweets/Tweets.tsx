@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Box, Container } from '@mui/material';
 import UnderLine from '@/common/UnderLine';
-import { IDataTweet, IDataTweets } from './types';
 import Tweet from './Tweet';
 import Retweet from './Retweet';
 import Reply from './Reply';
+import { IDataTweet, IDataTweets } from './types';
 
 const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
   console.log(tweets);
@@ -18,7 +18,7 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
               isLiked={tweet.retweetTo.isLiked}
               isRetweeted={tweet.retweetTo.isRetweeted}
               profile={tweet.retweetTo.profile}
-              creationDate={Number(new Date(tweet.retweetTo.creationDate))}
+              creationDate={tweet.retweetTo.creationDate}
               tweetText={tweet.retweetTo.text}
               tweetImg={tweet.retweetTo.mediaUrls && tweet.retweetTo.mediaUrls[0]}
               tweetAlt={tweet.retweetTo.mediaUrls && tweet.retweetTo.mediaUrls[0]}
@@ -36,7 +36,7 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
               isLiked={tweet.isLiked}
               isRetweeted={tweet.isRetweeted}
               profile={tweet.profile}
-              creationDate={Number(new Date(tweet.creationDate))}
+              creationDate={tweet.creationDate}
               tweetText={tweet.text}
               tweetImg={tweet.mediaUrls && tweet.mediaUrls[0]}
               tweetAlt={tweet.mediaUrls && tweet.mediaUrls[0]}
@@ -50,7 +50,7 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
               replyIsLiked={tweet.replyTo.isLiked}
               replyIsRetweeted={tweet.replyTo.isRetweeted}
               replyProfile={tweet.replyTo.profile}
-              replycreationDate={Number(new Date(tweet.replyTo.creationDate))}
+              replycreationDate={tweet.replyTo.creationDate}
               replyTweetText={tweet.replyTo.text}
               replyTweetImg={tweet.replyTo.mediaUrls && tweet.replyTo.mediaUrls[0]}
               replyTweetAlt={tweet.replyTo.mediaUrls && tweet.replyTo.mediaUrls[0]}
@@ -68,7 +68,7 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
               isLiked={tweet.isLiked}
               isRetweeted={tweet.isRetweeted}
               profile={tweet.profile}
-              creationDate={Number(new Date(tweet.creationDate))}
+              creationDate={tweet.creationDate}
               tweetText={tweet.text}
               tweetImg={tweet.mediaUrls && tweet.mediaUrls[0]}
               tweetAlt={tweet.mediaUrls && tweet.mediaUrls[0]}

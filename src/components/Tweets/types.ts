@@ -2,7 +2,7 @@ import { IUserInfoData } from '@/query/profile/types'
 
 export type ITweet = {
   profile: IUserInfoData
-  creationDate: number
+  creationDate: string
 } & ITweetContent &
   ITweetWidgets
 
@@ -93,5 +93,5 @@ export type IDataReply = {
   replyTweetText?: string
   replyTweetImg?: string
   replyTweetAlt?: string
-  replycreationDate: number
+  replycreationDate: string
 } & ITweet
