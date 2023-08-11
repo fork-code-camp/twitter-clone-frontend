@@ -3,9 +3,9 @@ import { Box, Container, Paper, Typography, useTheme } from '@mui/material';
 import CustomAvatar from '@/components/avatar/CustomAvatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
-import TweetContentTemplate from './templates/TweetContentTemplate';
+import TweetContent from './TweetContent';
 import { IDataReply } from './types';
-import TweetWidgets from './templates/TweetWidgetsTemplate';
+import TweetWidgets from './TweetWidgets';
 import TaggedText from '@/common/TaggedText';
 
 const Reply: FC<IDataReply> = ({
@@ -20,19 +20,13 @@ const Reply: FC<IDataReply> = ({
   retweets,
   retweetTo,
   views,
-  username,
-  userTag,
+  profile,
   creationDate,
-  avatarUrl,
-  avatarAlt,
   tweetText,
   replyId,
   replyIsLiked,
   replyIsRetweeted,
-  replyAvatarUrl,
-  replyAvatarAlt,
-  replyUsername,
-  replyUserTag,
+  replyProfile,
   replycreationDate,
   replyTweetText,
   replyTweetImg,
@@ -57,7 +51,7 @@ const Reply: FC<IDataReply> = ({
     >
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
         <Box position="relative">
-          <CustomAvatar img={replyAvatarUrl} alt={replyAvatarAlt} />
+          <CustomAvatar img={replyProfile.avatarUrl} alt={replyProfile.avatarUrl} />
           <Paper
             sx={{
               background: theme.palette.secondary.main,
@@ -85,11 +79,11 @@ const Reply: FC<IDataReply> = ({
               flexWrap: { xs: 'wrap', sm: 'nowrap' },
             }}
           >
-            <UserHeader name={replyUsername} tag={replyUserTag} />
+            <UserHeader name={replyProfile.username} tag={replyProfile.username} />
             <PassedTime date={replycreationDate} />
           </Box>
 
-          <TweetContentTemplate
+          <TweetContent
             tweetText={replyTweetText}
             tweetImg={replyTweetImg}
             tweetAlt={replyTweetAlt}
@@ -109,7 +103,7 @@ const Reply: FC<IDataReply> = ({
       </Box>
       <Box>
         <Box display="flex" flexDirection="row" gap={2}>
-          <CustomAvatar img={avatarUrl} alt={avatarAlt} />
+          <CustomAvatar img={profile.avatarUrl} alt={profile.avatarUrl} />
           <Box
             sx={{
               display: 'flex',
@@ -119,7 +113,7 @@ const Reply: FC<IDataReply> = ({
             }}
           >
             <Box display="flex" flexDirection="row">
-              <UserHeader name={username} tag={userTag} />
+              <UserHeader name={profile.username} tag={profile.username} />
               <PassedTime date={creationDate} />
             </Box>
             <Box display="flex" flexDirection="column" gap={1}>
@@ -133,10 +127,10 @@ const Reply: FC<IDataReply> = ({
                 >
                   Replying to
                 </Typography>
-                <TaggedText color="tag.main" tagSymb="@" text={replyUserTag} />
+                <TaggedText color="tag.main" tagSymb="@" text={replyProfile.username} />
               </Box>
 
-              <TweetContentTemplate
+              <TweetContent
                 tweetText={tweetText}
                 tweetImg={tweetImg}
                 tweetAlt={tweetAlt}

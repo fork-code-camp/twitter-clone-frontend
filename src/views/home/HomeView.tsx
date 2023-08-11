@@ -47,7 +47,7 @@ const HomePage: FC = () => {
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
       >
-        <PageHeader title="Home(получение=timelines/home)" hasIcon />
+        <PageHeader title="Home" hasIcon />
         <UnderLine />
 
         <InnerTweet avatarUrl={avatarUrl} avatarAlt="avatarAlt" />

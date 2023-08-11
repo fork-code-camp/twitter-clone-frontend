@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { Container } from '@mui/material';
-import ButtonLike from '../buttons/ButtonLike';
-import ButtonViews from '../buttons/ButtonViews';
+import ButtonLike from './buttons/ButtonLike';
+import ButtonViews from './buttons/ButtonViews';
 import ButtonRetweet from '@/components/tweets/buttons/ButtonRetweet';
 import ButtonReply from '@/components/tweets/buttons/ButtonReply';
-import ButtonShare from '../buttons/ButtonShare';
-import { ITweetWidgetsTemplate } from '@/components/tweets/types';
+import ButtonShare from './buttons/ButtonShare';
+import { ITweetWidgets } from '@/components/tweets/types';
 
-const TweetWidgetsTemplate: FC<ITweetWidgetsTemplate> = ({
+const TweetWidgets: FC<ITweetWidgets> = ({
   id,
   likes,
   isLiked,
@@ -45,4 +45,4 @@ const TweetWidgetsTemplate: FC<ITweetWidgetsTemplate> = ({
   );
 };
 
-export default TweetWidgetsTemplate;
+export default TweetWidgets;

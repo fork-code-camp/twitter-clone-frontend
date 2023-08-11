@@ -3,19 +3,16 @@ import { Box, Container } from '@mui/material';
 import CustomAvatar from '@/components/avatar/CustomAvatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
-import TweetContentTemplate from './templates/TweetContentTemplate';
+import TweetContent from './TweetContent';
 import { ITweet } from '@/components/tweets/types';
 import MoreActionButton from '@/components/tweets/MoreActionButton';
-import TweetWidgets from './templates/TweetWidgetsTemplate';
+import TweetWidgets from './TweetWidgets';
 
 const Tweet: FC<ITweet> = ({
   id,
   isLiked,
   isRetweeted,
-  avatarUrl,
-  avatarAlt,
-  username,
-  userTag,
+  profile,
   creationDate,
   tweetText,
   tweetImg,
@@ -38,7 +35,7 @@ const Tweet: FC<ITweet> = ({
         padding: '10px 15px',
       }}
     >
-      <CustomAvatar img={avatarUrl} alt={avatarAlt} />
+      <CustomAvatar img={profile.avatarUrl} alt={profile.avatarUrl} />
       <Box sx={{ width: '100%' }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box
@@ -50,7 +47,7 @@ const Tweet: FC<ITweet> = ({
               gap: '8px',
             }}
           >
-            <UserHeader name={username} tag={userTag} />
+            <UserHeader name={profile.username} tag={profile.username} />
             <PassedTime date={creationDate} />
           </Box>
           <MoreActionButton id={id} />
@@ -65,7 +62,7 @@ const Tweet: FC<ITweet> = ({
             maxWidth: { xs: '100%', md: '510px' },
           }}
         >
-          <TweetContentTemplate
+          <TweetContent
             tweetText={tweetText}
             tweetImg={tweetImg}
             tweetAlt={tweetAlt}

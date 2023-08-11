@@ -1,21 +1,18 @@
 import { IUserInfoData } from '@/query/profile/types'
 
 export type ITweet = {
-  avatarUrl: string | null
-  avatarAlt: string | null
-  username: string
-  userTag: string
+  profile: IUserInfoData
   creationDate: number
-} & ITweetContentTemplate &
-  ITweetWidgetsTemplate
+} & ITweetContent &
+  ITweetWidgets
 
-export type ITweetContentTemplate = {
+export type ITweetContent = {
   tweetText?: string
   tweetImg?: string
   tweetAlt?: string
 }
 
-export type ITweetWidgetsTemplate = {
+export type ITweetWidgets = {
   id: number
   isLiked: boolean
   isRetweeted: boolean
@@ -32,13 +29,13 @@ export type IDataTweets = {
 }
 
 export type IDataTweet = {
-  creationDate: string
   id: number
   isLiked: boolean
   isRetweeted: boolean
   likes: number
-  mediaUrls?: string
   profile: IUserInfoData
+  mediaUrls?: string
+  creationDate: string
   quoteTo: null
   replies: number
   replyTo: null | IDataReplyTo
@@ -87,6 +84,7 @@ export type IDataReply = {
   replyIsLiked: boolean
   replyIsRetweeted: boolean
   replyLikes: number
+  replyProfile: IUserInfoData
   replyReplies: number
   replyReplyTo: null | IDataReplyTo
   replyRetweets: number
@@ -95,10 +93,5 @@ export type IDataReply = {
   replyTweetText?: string
   replyTweetImg?: string
   replyTweetAlt?: string
-  replyAvatarUrl: string | null
-  replyAvatarAlt: string | null
-  replyUsername: string
-  replyUserTag: string
   replycreationDate: number
 } & ITweet
-// export { IUserInfoData }
