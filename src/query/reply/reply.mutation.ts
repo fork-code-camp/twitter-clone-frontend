@@ -1,9 +1,9 @@
 import { makeReply } from '@/services/tweetService/replyController'
-import { IMakeTweetRequest } from '@/services/types'
+import { IAddTweetRequest } from '@/services/types'
 import { useMutation, useQueryClient } from 'react-query'
 
 type IMakeRequest = {
-  requestData: IMakeTweetRequest
+  requestData: IAddTweetRequest
   replyToId: number
 }
 
@@ -29,12 +29,12 @@ const replyConfig = {
 }
 
 export const useMakeReplyMutation = () => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   const { makeReply: config } = replyConfig
   const state = useMutation(config.request, {
     onSuccess(data) {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries()
       console.log('реплай сделан', data)
     },
   })

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import MoreActionButtonTemplate from './templates/MoreActionButtonTemplate';
-import { useDeleteTweetMutation } from '@/query/tweet/tweet.mutation';
+import { useDeleteTweetMutation } from '@/query/tweet/delete.mutation';
 
 interface IMoreActionButton {
   id: number;

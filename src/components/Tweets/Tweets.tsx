@@ -14,46 +14,24 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
         <Box key={tweet.id}>
           {tweet.retweetTo && (
             <Retweet
-              id={tweet.retweetTo.id}
-              isLiked={tweet.retweetTo.isLiked}
-              isRetweeted={tweet.retweetTo.isRetweeted}
-              profile={tweet.retweetTo.profile}
-              creationDate={tweet.retweetTo.creationDate}
-              tweetText={tweet.retweetTo.text}
+              {...tweet.retweetTo}
               tweetImg={tweet.retweetTo.mediaUrls && tweet.retweetTo.mediaUrls[0]}
               tweetAlt={tweet.retweetTo.mediaUrls && tweet.retweetTo.mediaUrls[0]}
-              likes={tweet.retweetTo.likes}
-              replies={tweet.retweetTo.replies}
-              replyTo={tweet.retweetTo.replyTo}
-              retweets={tweet.retweetTo.retweets}
-              retweetTo={tweet.retweetTo.retweetTo}
-              views={tweet.retweetTo.views}
             />
           )}
           {tweet.replyTo && (
             <Reply
-              id={tweet.id}
-              isLiked={tweet.isLiked}
-              isRetweeted={tweet.isRetweeted}
-              profile={tweet.profile}
-              creationDate={tweet.creationDate}
-              tweetText={tweet.text}
+              {...tweet}
               tweetImg={tweet.mediaUrls && tweet.mediaUrls[0]}
               tweetAlt={tweet.mediaUrls && tweet.mediaUrls[0]}
-              likes={tweet.likes}
-              replies={tweet.replies}
-              replyTo={tweet.replyTo}
-              retweets={tweet.retweets}
-              retweetTo={tweet.retweetTo}
-              views={tweet.views}
+              replyTweetImg={tweet.replyTo.mediaUrls && tweet.replyTo.mediaUrls[0]}
+              replyTweetAlt={tweet.replyTo.mediaUrls && tweet.replyTo.mediaUrls[0]}
               replyId={tweet.replyTo.id}
               replyIsLiked={tweet.replyTo.isLiked}
               replyIsRetweeted={tweet.replyTo.isRetweeted}
               replyProfile={tweet.replyTo.profile}
               replycreationDate={tweet.replyTo.creationDate}
               replyTweetText={tweet.replyTo.text}
-              replyTweetImg={tweet.replyTo.mediaUrls && tweet.replyTo.mediaUrls[0]}
-              replyTweetAlt={tweet.replyTo.mediaUrls && tweet.replyTo.mediaUrls[0]}
               replyLikes={tweet.replyTo.likes}
               replyReplies={tweet.replyTo.replies}
               replyReplyTo={tweet.replyTo.replyTo}
@@ -64,20 +42,9 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
           )}
           {!tweet.retweetTo && !tweet.replyTo && (
             <Tweet
-              id={tweet.id}
-              isLiked={tweet.isLiked}
-              isRetweeted={tweet.isRetweeted}
-              profile={tweet.profile}
-              creationDate={tweet.creationDate}
-              tweetText={tweet.text}
+              {...tweet}
               tweetImg={tweet.mediaUrls && tweet.mediaUrls[0]}
               tweetAlt={tweet.mediaUrls && tweet.mediaUrls[0]}
-              likes={tweet.likes}
-              replies={tweet.replies}
-              replyTo={tweet.replyTo}
-              retweets={tweet.retweets}
-              retweetTo={tweet.retweetTo}
-              views={tweet.views}
             />
           )}
           {tweets && tweets.length - 1 != index && <UnderLine />}

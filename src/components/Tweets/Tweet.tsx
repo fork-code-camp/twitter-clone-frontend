@@ -4,9 +4,9 @@ import CustomAvatar from '@/components/avatar/CustomAvatar';
 import UserHeader from '@/components/headers/UserHeader';
 import PassedTime from '@/common/PassedTime';
 import TweetContent from './TweetContent';
-import { ITweet } from '@/components/tweets/types';
 import MoreActionButton from '@/components/tweets/MoreActionButton';
 import TweetWidgets from './TweetWidgets';
+import { ITweet } from '@/components/tweets/types';
 
 const Tweet: FC<ITweet> = ({
   id,
@@ -14,7 +14,7 @@ const Tweet: FC<ITweet> = ({
   isRetweeted,
   profile,
   creationDate,
-  tweetText,
+  text,
   tweetImg,
   tweetAlt,
   likes,
@@ -63,7 +63,7 @@ const Tweet: FC<ITweet> = ({
           }}
         >
           <TweetContent
-            tweetText={tweetText}
+            text={text}
             tweetImg={tweetImg}
             tweetAlt={tweetAlt}
           />

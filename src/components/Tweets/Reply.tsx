@@ -22,7 +22,7 @@ const Reply: FC<IDataReply> = ({
   views,
   profile,
   creationDate,
-  tweetText,
+  text,
   replyId,
   replyIsLiked,
   replyIsRetweeted,
@@ -57,8 +57,10 @@ const Reply: FC<IDataReply> = ({
               background: theme.palette.secondary.main,
               position: 'absolute',
               left: '50%',
-              width: '2px',
-              height: '100%',
+              width: '1px',
+              filter: 'blur(1px)',
+              height: '40px',
+              marginTop: '5px',
             }}
           />
         </Box>
@@ -84,7 +86,7 @@ const Reply: FC<IDataReply> = ({
           </Box>
 
           <TweetContent
-            tweetText={replyTweetText}
+            text={replyTweetText}
             tweetImg={replyTweetImg}
             tweetAlt={replyTweetAlt}
           />
@@ -131,7 +133,7 @@ const Reply: FC<IDataReply> = ({
               </Box>
 
               <TweetContent
-                tweetText={tweetText}
+                text={text}
                 tweetImg={tweetImg}
                 tweetAlt={tweetAlt}
               />

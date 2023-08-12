@@ -14,7 +14,7 @@ const Retweet: FC<ITweet> = ({
   isRetweeted,
   profile,
   creationDate,
-  tweetText,
+  text,
   tweetImg,
   tweetAlt,
   likes,
@@ -80,7 +80,7 @@ const Retweet: FC<ITweet> = ({
           }}
         >
           <TweetContent
-            tweetText={tweetText}
+            text={text}
             tweetImg={tweetImg}
             tweetAlt={tweetAlt}
           />

@@ -3,7 +3,7 @@ import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
 import { ITweetContentTemplate } from '@/components/tweets/types';
 
-const TweetContentTemplate: FC<ITweetContentTemplate> = ({ tweetText, tweetImg, tweetAlt }) => {
+const TweetContentTemplate: FC<ITweetContentTemplate> = ({ text, tweetImg, tweetAlt }) => {
   const isShowImage = tweetImg && tweetAlt;
   return (
     <Container
@@ -17,7 +17,7 @@ const TweetContentTemplate: FC<ITweetContentTemplate> = ({ tweetText, tweetImg, 
         maxWidth: { xs: '100%', md: '510px' },
       }}
     >
-      <Typography sx={{ wordWrap: 'break-word' }}>{tweetText}</Typography>
+      <Typography sx={{ wordWrap: 'break-word' }}>{text}</Typography>
       {isShowImage && (
         <Box
           sx={{

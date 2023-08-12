@@ -7,7 +7,7 @@ export type ITweet = {
   ITweetWidgets
 
 export type ITweetContent = {
-  tweetText?: string
+  text?: string
   tweetImg?: string
   tweetAlt?: string
 }

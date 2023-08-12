@@ -9,15 +9,15 @@ import {
 } from '@mui/material';
 import CustomAvatar from '../../avatar/CustomAvatar';
 import InnerWidgetsTemplate from './InnerWidgetsTemplate';
-import { IMakeTweetRequest } from '@/services/types';
+import { IAddTweetRequest } from '@/services/types';
 import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
 interface IInnerTemplate {
   avatarUrl?: string;
   avatarAlt?: string;
-  register: UseFormRegister<IMakeTweetRequest>;
-  handleSubmit: UseFormHandleSubmit<IMakeTweetRequest>;
-  onSubmit: (requestData: IMakeTweetRequest) => void;
+  register: UseFormRegister<IAddTweetRequest>;
+  handleSubmit: UseFormHandleSubmit<IAddTweetRequest>;
+  onSubmit: (requestData: IAddTweetRequest) => void;
 }
 
 const InnerTemplate: FC<IInnerTemplate> = ({

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { IMakeTweetRequest } from '@/services/types';
+import { IAddTweetRequest } from '@/services/types';
 import { useMakeReplyMutation } from '@/query/reply/reply.mutation';
 import InnerTemplate from './templates/InnerTemplate';
 
@@ -10,11 +10,11 @@ interface IInnerReply {
 }
 
 const InnerReply: FC<IInnerReply> = ({ replyToId, onSubmitReply }) => {
-  const { register, handleSubmit, reset } = useForm<IMakeTweetRequest>();
+  const { register, handleSubmit, reset } = useForm<IAddTweetRequest>();
 
   const { mutateAsync: mutateMakeReply } = useMakeReplyMutation();
 
-  const onSubmit = (requestData: IMakeTweetRequest) => {
+  const onSubmit = (requestData: IAddTweetRequest) => {
     mutateMakeReply({ requestData, replyToId });
     onSubmitReply(false)
     reset();

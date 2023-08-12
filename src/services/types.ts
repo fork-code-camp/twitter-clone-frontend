@@ -27,12 +27,12 @@ export interface IAuthLoginResponse {
 }
 
 /* Tweet */
-export interface IMakeTweetRequest {
+export interface IAddTweetRequest {
   text: string
   file: FileList
 }
 
-export interface IMakeTweetResponse {
+export interface IAddTweetResponse {
   text: string
 }
 
