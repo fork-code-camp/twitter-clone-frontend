@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, createContext } from 'react';
 import { useGetUserTweetsQuery, useGetTweetUserRepliesQuery } from '@/query/timeline/tweetTimeline.query';
 import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
 import { Box, CircularProgress, Grid, useTheme } from '@mui/material';
@@ -12,11 +12,21 @@ import TweetTabPanel from './components/TweetTabPanel';
 import UserInfo from '../../components/userInfo/UserInfo';
 import AccountBar from '@/components/headers/AccountBar';
 
+interface ContextTypeUserData {
+  profileId?: string,
+  username?: string,
+}
+
+export const UserInfoDataContext = createContext<ContextTypeUserData | undefined>(undefined);
+
 const ProfileView: FC = () => {
   const theme = useTheme();
   const { data: userTweets, isLoading: userTweetsIsLoading, isError: userTweetsIsError, } = useGetUserTweetsQuery();
   const { data: userRepliesData, isLoading: userRepliesIsLoading, isError: userRepliesIsError, } = useGetTweetUserRepliesQuery();
   const { data: userInfoData, isLoading: userInfoDataIsLoading } = useGetAuthorizedUserDataQuery();
+
+  const dataForContext = { 'profileId': userInfoData?.profileId, 'username': userInfoData?.username }
+
   return (
     <Grid container gap={2} justifyContent='center' flexWrap='nowrap' >
       <Grid item
@@ -36,7 +46,7 @@ const ProfileView: FC = () => {
           }}>
           <Navigation activeItem="Profile" menuList={menuList} />
           {userInfoDataIsLoading && <CircularProgress sx={{ m: 1 }} />}
-          {userInfoData && <AccountBar hasAvatar isVertical name={userInfoData.username} tag={userInfoData.username}/>}
+          {userInfoData && <AccountBar hasAvatar isVertical name={userInfoData.username} tag={userInfoData.username} />}
         </Box>
       </Grid>
 
@@ -51,14 +61,16 @@ const ProfileView: FC = () => {
         <UnderLine />
         <UserInfo userInfoData={userInfoData} />
         <UnderLine />
-        <TweetTabPanel
-          userData={userTweets}
-          userIsLoading={userTweetsIsLoading}
-          userIsError={userTweetsIsError}
-          userReplies={userRepliesData}
-          userRepliesIsLoading={userRepliesIsLoading}
-          userRepliesIsError={userRepliesIsError}
-        />
+        <UserInfoDataContext.Provider value={dataForContext}>
+          <TweetTabPanel
+            userData={userTweets}
+            userIsLoading={userTweetsIsLoading}
+            userIsError={userTweetsIsError}
+            userReplies={userRepliesData}
+            userRepliesIsLoading={userRepliesIsLoading}
+            userRepliesIsError={userRepliesIsError}
+          />
+        </UserInfoDataContext.Provider>
       </Grid>
 
       <Grid

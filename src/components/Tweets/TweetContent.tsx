@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
-import { ITweetContentTemplate } from '@/components/tweets/types';
+import { ITweetContent } from '@/components/tweets/types';
 
-const TweetContentTemplate: FC<ITweetContentTemplate> = ({ text, tweetImg, tweetAlt }) => {
+const TweetContent: FC<ITweetContent> = ({ text, tweetImg, tweetAlt }) => {
   const isShowImage = tweetImg && tweetAlt;
   return (
     <Container
@@ -42,4 +42,4 @@ const TweetContentTemplate: FC<ITweetContentTemplate> = ({ text, tweetImg, tweet
   );
 };
 
-export default TweetContentTemplate;
+export default TweetContent;

@@ -1,7 +1,6 @@
 import { getAuthorizedUserData } from '@/services/profileService/profileService'
 import { useQuery } from 'react-query'
-import { IUserInfoData } from './types'
-
+import { IUserInfoData } from '@/components/tweets/types'
 
 
 const profileConfig = {

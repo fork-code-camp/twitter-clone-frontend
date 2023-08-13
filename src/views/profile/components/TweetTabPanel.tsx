@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Tweets from '@/components/tweets/Tweets';
+import ReplyList from '@/components/tweets/ReplyList';
 import { Alert, CircularProgress, Container } from '@mui/material';
 import { IDataTweet } from '@/components/tweets/types';
 
@@ -53,7 +54,6 @@ const TweetTabPanel: FC<ITweetTabPanel> = ({
   userRepliesIsError,
 }) => {
   const [value, setValue] = useState(0);
-
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -88,7 +88,7 @@ const TweetTabPanel: FC<ITweetTabPanel> = ({
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Box width='100%' textAlign='center'>{userRepliesIsLoading && <CircularProgress sx={{ m: 1 }} />}</Box>
-        <Tweets tweets={userReplies || []} />
+        <ReplyList replies={userReplies || []} />
         {userRepliesIsError && (<Alert severity="error">Ошибка загрузки постов userReplies</Alert>)}
       </TabPanel>
       <TabPanel value={value} index={2}>

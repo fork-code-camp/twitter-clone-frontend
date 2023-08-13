@@ -50,7 +50,7 @@ const Tweet: FC<ITweet> = ({
             <UserHeader name={profile.username} tag={profile.username} />
             <PassedTime date={creationDate} />
           </Box>
-          <MoreActionButton id={id} />
+          <MoreActionButton id={id} type={'tweet'} />
         </Box>
         <Box
           sx={{

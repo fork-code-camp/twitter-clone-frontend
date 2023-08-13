@@ -2,10 +2,9 @@ import React, { FC, useState } from 'react';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import RetweetSVG from '@/assets/icons/Retweet.svg';
 import { IDataRetweetTo } from '../types';
-import {
-  useDeleteRetweetMutation,
-  useMakeRetweetMutation,
-} from '@/query/retweet/retweet.mutation';
+import { useMakeRetweetMutation } from '@/query/retweet/addRetweet.mutation';
+import { useDeleteRetweetMutation } from '@/query/retweet/deleteRetweet.mutation';
+
 interface IButtonRetweet {
   id: number;
   isRetweeted: boolean;

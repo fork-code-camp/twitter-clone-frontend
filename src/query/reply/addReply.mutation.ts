@@ -1,4 +1,4 @@
-import { makeReply } from '@/services/tweetService/replyController'
+import { addReply } from '@/services/tweetService/replyController'
 import { IAddTweetRequest } from '@/services/types'
 import { useMutation, useQueryClient } from 'react-query'
 
@@ -8,8 +8,8 @@ type IMakeRequest = {
 }
 
 const replyConfig = {
-  makeReply: {
-    key: 'makeReply',
+  addReply: {
+    key: 'addReply',
     request: async (params: IMakeRequest) => {
       const requestData = params.requestData
       const replyToId = params.replyToId
@@ -22,16 +22,16 @@ const replyConfig = {
       await formData.append('request', blob)
       await formData.append('files', requestData.file[0])
 
-      const response = await makeReply(formData, replyToId)
+      const response = await addReply(formData, replyToId)
       return response.data
     },
   },
 }
 
-export const useMakeReplyMutation = () => {
+export const useAddReplyMutation = () => {
   const queryClient = useQueryClient()
 
-  const { makeReply: config } = replyConfig
+  const { addReply: config } = replyConfig
   const state = useMutation(config.request, {
     onSuccess(data) {
       queryClient.invalidateQueries()

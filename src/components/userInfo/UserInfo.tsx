@@ -8,7 +8,8 @@ import UserLocation from '@/common/UserLocation';
 import CustomBanner from '@/components/banner/CustomBanner';
 import EditUserInfoPopup from '@/components/editUserInfo/EditUserInfoPopup';
 import CustomAvatar from '@/components/avatar/CustomAvatar';
-import { IUserInfoData } from '@/query/profile/types';
+import { IUserInfoData } from '../tweets/types';
+
 
 interface IUserInfo {
   userInfoData?: IUserInfoData

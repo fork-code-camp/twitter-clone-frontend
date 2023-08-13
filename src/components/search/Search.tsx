@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import InnerSearch from '@/components/search/InnerSearch'
-import SettingsSVG from '@/assets/icons/Settings.svg'
 import { Box, Container } from '@mui/material'
-import SearchList from '@/components/search/SearchList'
 import { useForm } from 'react-hook-form'
-import { ISearchInner } from './types'
 import { useGetSearchUsersListQuery } from '@/query/profile/search.query'
-import { ISearchQueryData } from '@/services/types'
 import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query'
+import InnerSearch from '@/components/search/InnerSearch'
+import SearchList from '@/components/search/SearchList'
+import SettingsSVG from '@/assets/icons/Settings.svg'
+import { ISearchInner } from './types'
+import { ISearchQueryData } from '@/services/types'
 import { IUserInfoData } from '../tweets/types'
 
 const Search = () => {

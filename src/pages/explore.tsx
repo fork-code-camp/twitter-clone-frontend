@@ -8,11 +8,11 @@ import { check } from '../api/authCheck';
 import ExploreView from '@/views/explore/ExploreView';
 
 const Profile = () => {
-  // const { push } = useRouter();
+  const { push } = useRouter();
 
-  // useEffect(() => {
-  //   check().then((res) => !res && push('/logout'));
-  // }, [push]);
+  useEffect(() => {
+    check().then((res) => !res && push('/logout'));
+  }, [push]);
 
   return (
     <>

@@ -7,11 +7,12 @@ import TweetContent from './TweetContent';
 import { IDataReply } from './types';
 import TweetWidgets from './TweetWidgets';
 import TaggedText from '@/common/TaggedText';
-
+import MoreActionButton from './MoreActionButton';
 const Reply: FC<IDataReply> = ({
   id,
   isLiked,
   isRetweeted,
+  isBelongs,
   tweetImg,
   tweetAlt,
   likes,
@@ -26,6 +27,7 @@ const Reply: FC<IDataReply> = ({
   replyId,
   replyIsLiked,
   replyIsRetweeted,
+  replyIsBelongs,
   replyProfile,
   replycreationDate,
   replyTweetText,
@@ -39,6 +41,8 @@ const Reply: FC<IDataReply> = ({
   replyViews,
 }) => {
   const theme = useTheme();
+  console.log('isBelongs', isBelongs, 'replyIsBelongs', replyIsBelongs);
+
   return (
     <Container
       disableGutters
@@ -72,6 +76,7 @@ const Reply: FC<IDataReply> = ({
             width: '100%',
           }}
         >
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box
             sx={{
               display: 'flex',
@@ -83,6 +88,8 @@ const Reply: FC<IDataReply> = ({
           >
             <UserHeader name={replyProfile.username} tag={replyProfile.username} />
             <PassedTime date={replycreationDate} />
+          </Box>
+          {isBelongs && <MoreActionButton id={id} type={'reply'} />}
           </Box>
 
           <TweetContent

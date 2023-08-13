@@ -21,6 +21,7 @@ export const RETWEET_LIST_GET = '/api/v1/retweets'; /* RETWEET_LIST_GET еще �
 
 /* + */ export const REPLIES_GET = '/api/v1/reply'; /* req: /{parentTweetId}; res: code: 200, [{repliesData}] */
 /* + */ export const REPLIES_POST = '/api/v1/reply'; /* req: default tweet data ; res: code: 200, [{repliesData}] */
+/* + */ export const REPLIES_DELETE = '/api/v1/reply';
 
 /* + */ export const PROFILE_AVATAR_GET = '/api/v1/profiles/images/avatar';
 /* + */ export const PROFILE_AVATAR_POST = '/api/v1/profiles/images/avatar';

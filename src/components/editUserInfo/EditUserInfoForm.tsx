@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import { UseFormRegister, Controller, Control } from 'react-hook-form'
 import { Box, Container, TextField, Typography } from '@mui/material'
-import { IChangeInfoRequest } from '@/services/types'
-import { IUserInfoData } from '@/query/profile/types';
 import ReactDatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css';
+import { IChangeInfoRequest } from '@/services/types'
+import { IUserInfoData } from '../tweets/types'
 
 interface IEditUserInfoForm {
   registerEditForm: UseFormRegister<IChangeInfoRequest>

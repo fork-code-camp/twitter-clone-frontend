@@ -2,13 +2,13 @@ import React, { FC } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useEditProfileBioMutation } from '@/query/profile/profile.mutation';
 import { useGetProfilePathIdByEmailQuery } from '@/query/profile/pathId.query';
-import { IChangeInfoRequest } from '@/services/types';
-import { IUserInfoData } from '@/query/profile/types';
 import { Container, Box } from '@mui/material';
 import PopupTemplate from '@/components/popups/templates/PopupTemplate';
 import EditAvatar from '@/components/userInfo/EditAvatar';
 import EditBanner from '@/components/userInfo/EditBanner';
 import EditUserInfoForm from './EditUserInfoForm';
+import { IChangeInfoRequest } from '@/services/types';
+import { IUserInfoData } from '../tweets/types';
 
 interface IEditUserInfoPopup {
   userInfoData: IUserInfoData

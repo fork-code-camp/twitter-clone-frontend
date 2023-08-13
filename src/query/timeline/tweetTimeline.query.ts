@@ -1,4 +1,8 @@
-import { getHomeTweets, getUserRepliesTweets, getUserTweets } from '@/services/timelineService/timelineService'
+import {
+  getHomeTweets,
+  getUserRepliesTweets,
+  getUserTweets,
+} from '@/services/timelineService/timelineService'
 import { useQuery } from 'react-query'
 
 const tweetConfig = {
@@ -39,21 +43,13 @@ export const useGetTweetHomeQuery = () => {
 export const useGetUserTweetsQuery = () => {
   const { getUserTweets: config } = tweetConfig
 
-  const state = useQuery(config.key, config.request, {
-    onSuccess() {
-      console.log('твиты (свои+фолов+реплаи) получены')
-    },
-  })
+  const state = useQuery(config.key, config.request, {})
   return state
 }
 
 export const useGetTweetUserRepliesQuery = () => {
   const { getUserRepliesTweets: config } = tweetConfig
 
-  const state = useQuery(config.key, config.request, {
-    onSuccess() {
-      console.log('твиты (реплаи) получены')
-    },
-  })
+  const state = useQuery(config.key, config.request, {})
   return state
 }
