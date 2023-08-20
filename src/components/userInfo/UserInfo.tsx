@@ -1,6 +1,4 @@
 import React, { FC, useState } from 'react'
-import { useGetProfileAvatarQuery } from '@/query/profile/avatar.query';
-import { useGetProfileBannerQuery } from '@/query/profile/banner.query';
 import { Container, Box, Typography, Button } from '@mui/material';
 import JoinedDate from '@/common/JoinedDate';
 import TaggedText from '@/common/TaggedText';
@@ -13,16 +11,34 @@ import { IUserInfoData } from '../tweets/types';
 
 interface IUserInfo {
   userInfoData?: IUserInfoData
+  hasEditButton?: boolean
 }
 
-const UserInfo: FC<IUserInfo> = ({ userInfoData }) => {
-  const { data: avatarUrl } = useGetProfileAvatarQuery();
-  const { data: bannerUrl } = useGetProfileBannerQuery()
+const UserInfo: FC<IUserInfo> = ({ userInfoData, hasEditButton }) => {
   const [openEditUserInfo, setOpenEditUserInfo] = useState(false)
+
+  const editButtonStyles = {
+    borderRadius: '100px',
+    height: '40px',
+    padding: '0 20px',
+    fontFamily: 'button.fontFamily',
+    fontStyle: 'button.fontStyle',
+    fontWeight: 'button.fontWeight',
+    fontSize: 'button.fontSize',
+    lineHeight: 'button.lineHeight',
+    color: 'primary.dark',
+    textTransform: 'none',
+    border: '1px solid rgb(207, 217, 222)',
+    ':hover': {
+      border: '1px solid rgb(255, 255, 255)',
+      background: 'rgba(15, 20, 25, 0.1)',
+    },
+  }
+
   return (
     <Container disableGutters sx={{ position: 'relative', marginBottom: '10px' }}>
       <Box sx={{ width: '100%', height: '200px', position: 'absolute' }}>
-      <CustomBanner img={bannerUrl} alt={bannerUrl} />
+        <CustomBanner img={userInfoData && userInfoData.bannerUrl} alt={userInfoData && userInfoData.bannerUrl} />
       </Box>
       <Box
         display="flex"
@@ -35,7 +51,7 @@ const UserInfo: FC<IUserInfo> = ({ userInfoData }) => {
         paddingTop='120px'
       >
         <Box>
-          <CustomAvatar width={150} height={150} img={avatarUrl} alt={avatarUrl} />
+          <CustomAvatar width={150} height={150} img={userInfoData && userInfoData.avatarUrl} alt={userInfoData && userInfoData.avatarUrl} />
           {userInfoData && <Typography variant="h2">{userInfoData.username}</Typography>}
           {userInfoData && (<TaggedText color="tag.contrastText" tagSymb="@" text={userInfoData.username} />)}
           {userInfoData && (<Typography variant="h4" my={1}> {userInfoData.bio} </Typography>)}
@@ -44,30 +60,7 @@ const UserInfo: FC<IUserInfo> = ({ userInfoData }) => {
             {userInfoData && <JoinedDate joinedDate={userInfoData.joinDate} />}
           </Box>
         </Box>
-        <Button
-          variant="outlined"
-          onClick={() => {
-            setOpenEditUserInfo(true)
-          }}
-          sx={{
-            borderRadius: '100px',
-            height: '39px',
-            fontFamily: 'button.fontFamily',
-            fontStyle: 'button.fontStyle',
-            fontWeight: 'button.fontWeight',
-            fontSize: 'button.fontSize',
-            lineHeight: 'button.lineHeight',
-            color: 'primary.dark',
-            textTransform: 'none',
-            border: '1px solid rgb(207, 217, 222)',
-            ':hover': {
-              border: '1px solid rgb(255, 255, 255)',
-              background: 'rgba(15, 20, 25, 0.1)',
-            },
-          }}
-        >
-          Edit profile
-        </Button>
+        {hasEditButton && <Button sx={editButtonStyles} onClick={() => { setOpenEditUserInfo(true) }}> Edit profile </Button>}
       </Box>
       {userInfoData && openEditUserInfo && (
         <EditUserInfoPopup

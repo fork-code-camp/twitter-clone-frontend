@@ -59,7 +59,7 @@ const ProfileView: FC = () => {
       >
         <PageHeader title="Profile" />
         <UnderLine />
-        <UserInfo userInfoData={userInfoData} />
+        <UserInfo hasEditButton userInfoData={userInfoData} />
         <UnderLine />
         <UserInfoDataContext.Provider value={dataForContext}>
           <TweetTabPanel

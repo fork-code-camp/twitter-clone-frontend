@@ -11,7 +11,7 @@ import SettingsSVG from '@/assets/icons/Settings.svg';
 
 export const menuList = [
   { title: 'Home', icon: <HomeSVG />, url: '/home' },
-  { title: 'Explore', icon: <ExplorerSVG />, url: 'explore' },
+  { title: 'Explore', icon: <ExplorerSVG />, url: '/explore' },
   { title: 'Notifications', icon: <NotificationSVG />, url: '#' },
   { title: 'Messages', icon: <MessagesSVG />, url: '#' },
   { title: 'Bookmarks', icon: <BookmarksSVG />, url: '#' },

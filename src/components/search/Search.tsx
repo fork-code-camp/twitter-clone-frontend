@@ -28,8 +28,6 @@ const Search = () => {
     const searchResponseDataContent = searchResponseData?.content
 
     const newArr = searchResponseDataContent?.filter((el: IUserInfoData) => {
-      console.log(el);
-
       return el.profileId !== myId
     })
     return newArr

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, CircularProgress, Grid, Typography } from '@mui/material';
+import { useUserDataByPathIdQuery } from '@/query/profile/userDataByPathId.query';
+import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
+import { useGetSearchUsersListQuery } from '@/query/profile/search.query';
 import UnderLine from '@/common/UnderLine';
 import AccountBar from '@/components/headers/AccountBar';
 import PageHeader from '@/components/headers/PageHeader';
@@ -8,21 +11,29 @@ import News from '@/components/news/News';
 import UserInfo from '@/components/userInfo/UserInfo';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import { menuList } from '@/data/configMenu/configMenu';
-import theme from '@/theme/theme';
 import Navigation from '@/components/navigation/Navigation';
+import theme from '@/theme/theme';
+import { ISearchQueryData } from '@/services/types';
 
 const User = () => {
-  const router = useRouter()
-  const username = router.query.userId || 'undefined'
+  const username = useRouter().query.userId as string
+
+  const [profileId, setProfileId] = useState('')
+  const [searchRequestData, setSearchRequestData] = useState<ISearchQueryData>({ username: username, page: 0, size: 1 });
+  const { data: searchResponseData } = useGetSearchUsersListQuery(searchRequestData);
+
+  useEffect(() => { setSearchRequestData({ username: username, page: 0, size: 1 }) }, [username])
+
+  useEffect(() => {
+    searchResponseData && searchResponseData.content[0] && setProfileId(searchResponseData.content[0].profileId)
+  }, [searchRequestData, searchResponseData])
+
+  const { data: userInfoData, isLoading: userInfoDataIsLoading } = useUserDataByPathIdQuery(profileId)
+  const { data: authorizedUserData, isLoading: authorizedUserIsLoading } = useGetAuthorizedUserDataQuery()
+  console.log(userInfoData);
 
   return (
-    <>
-      <Typography>User: {username}</Typography>
-      <Grid
-      container
-      gap={2}
-      justifyContent='center' flexWrap='nowrap'
-    >
+    <Grid container gap={2} justifyContent='center' flexWrap='nowrap' >
       <Grid item
         sx={{
           width: { xs: '75px', sm: '75px', md: '200px', lg: '200px' },
@@ -38,9 +49,9 @@ const User = () => {
             height: '100vh',
             pb: 2,
           }}>
-          <Navigation activeItem="Profile" menuList={menuList} />
-          {/* {userInfoDataIsLoading && <CircularProgress sx={{ m: 1 }} />}
-          {userInfoData && <AccountBar hasAvatar isVertical name={userInfoData.username} tag={userInfoData.username}/>} */}
+          <Navigation menuList={menuList} />
+          {authorizedUserIsLoading && <CircularProgress sx={{ m: 1 }} />}
+          {authorizedUserData && <AccountBar hasAvatar isVertical name={authorizedUserData.username} tag={authorizedUserData.username} />}
         </Box>
       </Grid>
 
@@ -51,10 +62,12 @@ const User = () => {
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
       >
-        <PageHeader title={username.toString()} />
+        {username && <PageHeader title={username.toString()} />}
         <UnderLine />
-        {/* <UserInfo /> */}
+        {userInfoDataIsLoading && <CircularProgress sx={{ m: 1 }} />}
+        <UserInfo userInfoData={userInfoData} />
         <UnderLine />
+        {userInfoData === undefined && <Typography variant='h1' sx={{textAlign: 'center'}}>This account doesn’t exist</Typography>}
       </Grid>
 
       <Grid
@@ -70,7 +83,6 @@ const User = () => {
         <WhoToFollow />
       </Grid>
     </Grid>
-    </>
   );
 };
 

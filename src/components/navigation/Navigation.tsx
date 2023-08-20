@@ -10,7 +10,7 @@ interface IMenu {
 
 interface IMenuArray {
   menuList: IMenu[];
-  activeItem: string;
+  activeItem?: string;
 }
 
 const Navigation: FC<IMenuArray> = ({ menuList, activeItem }) => {

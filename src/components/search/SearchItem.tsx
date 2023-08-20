@@ -1,18 +1,31 @@
 import TaggedText from '@/common/TaggedText'
 import { useToFollowMutation } from '@/query/profile/follow.mutation'
 import { Button, ListItem } from '@mui/material'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 const SearchItem = ({ username, profileId }: { username: string, profileId: string }) => {
-
+  const { push } = useRouter();
   const { mutateAsync: mutateToFollow } = useToFollowMutation()
 
   const onClick = () => {
     mutateToFollow(profileId)
   }
-  
+
+  const onItemClick = () => {
+    push(`/user/${username}`)
+  }
+
   return (
-    <ListItem sx={{ display: 'flex', justifyContent: 'space-between', padding: '10px 16px 10px', background: '#fbfbfb' }}>
+    <ListItem
+      onClick={onItemClick}
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        padding: '10px 16px 10px',
+        background: '#fbfbfb',
+        cursor: 'pointer'
+      }}>
       <TaggedText text={username} />
       <Button
         onClick={onClick}
