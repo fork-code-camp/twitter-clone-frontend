@@ -1,6 +1,7 @@
 import api from '@/api';
 import {
   TIMELINES_TWEETS_GET_USER,
+  TIMELINES_TWEETS_GET_USER_BY_ID,
   TIMELINES_TWEETS_GET_USER_HOME,
   TIMELINES_TWEETS_GET_USER_REPLIES,
 } from '../config';
@@ -12,6 +13,10 @@ export const getHomeTweets = async () => {
 
 export const getUserTweets = async () => {
   const response = await api.get(TIMELINES_TWEETS_GET_USER);
+  return response;
+};
+export const getUserTweetsById = async (profileId: string) => {
+  const response = await api.get(TIMELINES_TWEETS_GET_USER_BY_ID + '/' + profileId);
   return response;
 };
 

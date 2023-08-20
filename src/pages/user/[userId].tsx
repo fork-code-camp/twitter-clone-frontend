@@ -4,6 +4,7 @@ import { Box, CircularProgress, Grid, Typography } from '@mui/material';
 import { useUserDataByPathIdQuery } from '@/query/profile/userDataByPathId.query';
 import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
 import { useGetSearchUsersListQuery } from '@/query/profile/search.query';
+import { useGetUserTweetsByIdQuery } from '@/query/timeline/tweetTimeline.query';
 import UnderLine from '@/common/UnderLine';
 import AccountBar from '@/components/headers/AccountBar';
 import PageHeader from '@/components/headers/PageHeader';
@@ -12,6 +13,7 @@ import UserInfo from '@/components/userInfo/UserInfo';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import { menuList } from '@/data/configMenu/configMenu';
 import Navigation from '@/components/navigation/Navigation';
+import Tweets from '@/components/tweets/Tweets';
 import theme from '@/theme/theme';
 import { ISearchQueryData } from '@/services/types';
 
@@ -30,7 +32,9 @@ const User = () => {
 
   const { data: userInfoData, isLoading: userInfoDataIsLoading } = useUserDataByPathIdQuery(profileId)
   const { data: authorizedUserData, isLoading: authorizedUserIsLoading } = useGetAuthorizedUserDataQuery()
-  console.log(userInfoData);
+
+  const { data: tweetList } = useGetUserTweetsByIdQuery(profileId)
+  console.log(tweetList);
 
   return (
     <Grid container gap={2} justifyContent='center' flexWrap='nowrap' >
@@ -67,6 +71,7 @@ const User = () => {
         {userInfoDataIsLoading && <CircularProgress sx={{ m: 1 }} />}
         <UserInfo userInfoData={userInfoData} />
         <UnderLine />
+        <Tweets tweets={tweetList || []} />
         {userInfoData === undefined && <Typography variant='h1' sx={{textAlign: 'center'}}>This account doesn’t exist</Typography>}
       </Grid>
 

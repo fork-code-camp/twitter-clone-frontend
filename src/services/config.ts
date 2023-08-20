@@ -8,6 +8,7 @@
 /* + */ export const TWEETS_DELETE = '/api/v1/tweet';
 
 /* + */ export const TIMELINES_TWEETS_GET_USER = '/api/v1/timeline/user';
+/* + */ export const TIMELINES_TWEETS_GET_USER_BY_ID = '/api/v1/timeline/user';
 /* + */ export const TIMELINES_TWEETS_GET_USER_REPLIES = '/api/v1/timeline/user-replies';
 /* + */ export const TIMELINES_TWEETS_GET_USER_HOME = '/api/v1/timeline/home';
 
@@ -32,7 +33,7 @@ export const PROFILE_AVATAR_DELETE = '/api/v1/profiles/images/avatar';
 export const PROFILE_BANNER_DELETE = '/api/v1/profiles/images/banner';
 
 /* + */ export const PROFILE_ME_BIO = '/api/v1/profiles/me'; /* ADDED req: /{id}; res: code: 200, {profileData} */
-export const PROFILE_GET = '/api/v1/profiles' /* req: pathId; res: code: 200, {profileData}  */
+/* + */ export const PROFILE_GET = '/api/v1/profiles' /* req: pathId; res: code: 200, {profileData}  */
 /* + */ export const PROFILE_POST = '/api/v1/profiles'; /* req: /{email, username, jointDate}; res: code: 200, string */
 /* + */ export const PROFILE_PATCH = '/api/v1/profiles'; /* req: /{id}; res: code: 200, {profileData} */
 /* + */ export const PATH_ID_BY_EMAIL_GET = '/api/v1/profiles/id'; /* req: /{email}; res: code: 200, pathId */
