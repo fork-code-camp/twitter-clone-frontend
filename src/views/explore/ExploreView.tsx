@@ -1,31 +1,21 @@
 import React, { FC } from 'react';
-import { Box, CircularProgress, Grid, useTheme } from '@mui/material';
+import { Box, Grid, useTheme } from '@mui/material';
+import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
 import { menuList } from '@/data/configMenu/configMenu';
 import Navigation from '@/components/navigation/Navigation';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import AccountBar from '@/components/headers/AccountBar';
-import Search from '../../components/search/Search';
-import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
-
+import Search from '@/components/search/Search';
 
 const ProfileView: FC = () => {
   const theme = useTheme();
 
   const { data: profileData, isLoading: profileDataIsLoading } = useGetAuthorizedUserDataQuery();
   return (
-    <Grid
-      container
-      gap={2}
-      justifyContent='center' flexWrap='nowrap'
-    >
-      <Grid item
-        sx={{
-          width: { xs: '75px', sm: '75px', md: '200px', lg: '200px' },
-          position: 'relative'
-        }}
-      >
+    <Grid container gap={2} justifyContent='center' flexWrap='nowrap' >
+      <Grid item sx={{ width: { xs: '75px', sm: '75px', md: '200px', lg: '200px' }, position: 'relative' }} >
         <Box
           sx={{
             display: 'flex',
@@ -36,8 +26,7 @@ const ProfileView: FC = () => {
             pb: 2,
           }}>
           <Navigation activeItem="Explore" menuList={menuList} />
-          {profileDataIsLoading && <CircularProgress sx={{ m: 1 }} />}
-          {profileData && <AccountBar hasAvatar isVertical name={profileData.username} tag={profileData.username}/>}
+          <AccountBar isLoading={profileDataIsLoading} hasAvatar isVertical name={profileData && profileData.username} tag={profileData && profileData.username}/>
         </Box>
       </Grid>
 

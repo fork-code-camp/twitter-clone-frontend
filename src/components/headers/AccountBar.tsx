@@ -1,21 +1,18 @@
 import React, { FC } from 'react';
-import {
-  Box,
-  Container,
-  IconButton,
-  Typography,
-  useTheme,
+import { Box, CircularProgress, Container, IconButton, Typography, useTheme,
 } from '@mui/material';
-import CustomAvatar from '../avatar/CustomAvatar';
-import VerificationSVG from '@/assets/icons/Verification.svg';
-import TaggedText from '@/common/TaggedText';
 import { useGetProfileAvatarQuery } from '@/query/profile/avatar.query';
+import CustomAvatar from '../avatar/CustomAvatar';
+import TaggedText from '@/common/TaggedText';
+import VerificationSVG from '@/assets/icons/Verification.svg';
+
 interface IAccountBar {
-  name: string;
-  tag: string;
+  name?: string;
+  tag?: string;
   hasAvatar?: boolean;
   isVerified?: boolean;
   isVertical?: boolean;
+  isLoading?: boolean
 }
 
 const AccountBar: FC<IAccountBar> = ({
@@ -24,15 +21,16 @@ const AccountBar: FC<IAccountBar> = ({
   hasAvatar,
   isVerified,
   isVertical,
+  isLoading,
 }) => {
   const theme = useTheme();
   const { data: avatarUrl } = useGetProfileAvatarQuery();
 
+  if(isLoading) return ( <CircularProgress sx={{ m: 1 }} /> )
+  if(!name || !tag) return ( <></> )
+
   return (
-    <Container
-      disableGutters
-      sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}
-    >
+    <Container disableGutters sx={{ display: 'flex', flexDirection: 'row', gap: 1 }} >
       {hasAvatar && <CustomAvatar img={avatarUrl} alt='AvatarAlt' width={30} height={30} />}
       <Box
         sx={{

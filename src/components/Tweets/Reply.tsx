@@ -41,7 +41,6 @@ const Reply: FC<IDataReply> = ({
   replyViews,
 }) => {
   const theme = useTheme();
-  console.log('isBelongs', isBelongs, 'replyIsBelongs', replyIsBelongs);
 
   return (
     <Container

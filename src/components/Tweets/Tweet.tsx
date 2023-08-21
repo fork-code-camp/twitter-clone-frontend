@@ -12,6 +12,7 @@ const Tweet: FC<ITweet> = ({
   id,
   isLiked,
   isRetweeted,
+  isBelongs,
   profile,
   creationDate,
   text,
@@ -38,19 +39,11 @@ const Tweet: FC<ITweet> = ({
       <CustomAvatar img={profile.avatarUrl} alt={profile.avatarUrl} />
       <Box sx={{ width: '100%' }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              flexWrap: { xs: 'wrap', sm: 'nowrap' },
-              gap: '8px',
-            }}
-          >
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: { xs: 'wrap', sm: 'nowrap' }, gap: '8px' }} >
             <UserHeader name={profile.username} tag={profile.username} />
             <PassedTime date={creationDate} />
           </Box>
-          <MoreActionButton id={id} type={'tweet'} />
+         {isBelongs && <MoreActionButton id={id} type={'tweet'} />}
         </Box>
         <Box
           sx={{

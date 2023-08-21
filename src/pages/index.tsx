@@ -66,6 +66,14 @@ const Home = () => {
           </Button>
           <Button
             component={Link}
+            href="/explore"
+            variant="contained"
+            sx={btnTheme}
+          >
+            Explore page
+          </Button>
+          <Button
+            component={Link}
             href="/profile"
             variant="contained"
             sx={btnTheme}

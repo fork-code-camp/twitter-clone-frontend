@@ -34,7 +34,6 @@ const User = () => {
   const { data: authorizedUserData, isLoading: authorizedUserIsLoading } = useGetAuthorizedUserDataQuery()
 
   const { data: tweetList } = useGetUserTweetsByIdQuery(profileId)
-  console.log(tweetList);
 
   return (
     <Grid container gap={2} justifyContent='center' flexWrap='nowrap' >

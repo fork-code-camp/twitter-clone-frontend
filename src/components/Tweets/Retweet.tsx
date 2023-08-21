@@ -8,10 +8,12 @@ import RetweetSVG from '@/assets/icons/Retweet.svg';
 import TweetContent from './TweetContent';
 import TweetWidgets from './TweetWidgets';
 import { ITweet } from '@/components/tweets/types';
+import MoreActionButton from './MoreActionButton';
 const Retweet: FC<ITweet> = ({
   id,
   isLiked,
   isRetweeted,
+  isBelongs,
   profile,
   creationDate,
   text,
@@ -30,45 +32,25 @@ const Retweet: FC<ITweet> = ({
     <Container
       id={id.toString()}
       disableGutters
-      sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        gap: '0 13px',
-        padding: '10px 15px',
-      }}
+      sx={{ display: 'flex', flexDirection: 'row', gap: '0 13px', padding: '10px 15px' }}
     >
       <CustomAvatar img={profile.avatarUrl} alt={profile.avatarUrl} />
       <Box sx={{ width: '100%' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 0.5,
-            }}
-          >
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 0.5, }} >
             <RetweetSVG width="15" height="11" />
-            <Typography
-              variant="h6"
-              sx={{ color: theme.palette.secondary.main }}
-            >
+            <Typography variant="h6" sx={{ color: theme.palette.secondary.main }} >
               {profileData && profileData.username} Retweeted
             </Typography>
           </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'start',
-              textAlign: 'center',
-              flexWrap: { xs: 'wrap', sm: 'nowrap' },
-              gap: '8px',
-            }}
-          >
+          <Box sx={{ display: 'flex', justifyContent: 'start', textAlign: 'center', flexWrap: { xs: 'wrap', sm: 'nowrap' }, gap: '8px', }} >
             <UserHeader name={profile.username} tag={profile.username} />
             <PassedTime date={creationDate} />
           </Box>
         </Box>
+        {isBelongs && <MoreActionButton id={id} type={'retweet'} />}
+      </Box>
         <Box
           sx={{
             m: 0,
