@@ -11,8 +11,9 @@ export const getHomeTweets = async () => {
   return response;
 };
 
-export const getUserTweets = async () => {
-  const response = await api.get(TIMELINES_TWEETS_GET_USER);
+export const getUserTweets = async (args: {page: number, size: number}) => {
+  const {page, size} = args
+  const response = await api.get(TIMELINES_TWEETS_GET_USER + `?page=${page}&size=${size}`);
   return response;
 };
 export const getUserTweetsById = async (profileId: string) => {

@@ -1,7 +1,6 @@
-import React, { FC, createContext } from 'react';
-import { useGetUserTweetsQuery, useGetTweetUserRepliesQuery } from '@/query/timeline/tweetTimeline.query';
+import React, { FC } from 'react';
 import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
-import { Box, CircularProgress, Grid, useTheme } from '@mui/material';
+import { Box, Grid, useTheme } from '@mui/material';
 import { menuList } from '@/data/configMenu/configMenu';
 import PageHeader from '@/components/headers/PageHeader';
 import Navigation from '@/components/navigation/Navigation';
@@ -12,20 +11,10 @@ import TweetTabPanel from './components/TweetTabPanel';
 import UserInfo from '../../components/userInfo/UserInfo';
 import AccountBar from '@/components/headers/AccountBar';
 
-interface ContextTypeUserData {
-  profileId?: string,
-  username?: string,
-}
-
-export const UserInfoDataContext = createContext<ContextTypeUserData | undefined>(undefined);
 
 const ProfileView: FC = () => {
   const theme = useTheme();
-  const { data: userTweets, isLoading: userTweetsIsLoading, isError: userTweetsIsError, } = useGetUserTweetsQuery();
-  const { data: userRepliesData, isLoading: userRepliesIsLoading, isError: userRepliesIsError, } = useGetTweetUserRepliesQuery();
   const { data: userInfoData, isLoading: userInfoDataIsLoading } = useGetAuthorizedUserDataQuery();
-
-  const dataForContext = { 'profileId': userInfoData?.profileId, 'username': userInfoData?.username }
 
   return (
     <Grid container gap={2} justifyContent='center' flexWrap='nowrap' >
@@ -45,7 +34,13 @@ const ProfileView: FC = () => {
             pb: 2,
           }}>
           <Navigation activeItem="Profile" menuList={menuList} />
-          <AccountBar isLoading={userInfoDataIsLoading} hasAvatar isVertical name={userInfoData && userInfoData.username} tag={userInfoData && userInfoData.username}/>
+          <AccountBar
+            isLoading={userInfoDataIsLoading}
+            hasAvatar
+            isVertical
+            name={userInfoData && userInfoData.username}
+            tag={userInfoData && userInfoData.username}
+          />
         </Box>
       </Grid>
 
@@ -60,16 +55,7 @@ const ProfileView: FC = () => {
         <UnderLine />
         <UserInfo hasEditButton userInfoData={userInfoData} />
         <UnderLine />
-        <UserInfoDataContext.Provider value={dataForContext}>
-          <TweetTabPanel
-            userData={userTweets}
-            userIsLoading={userTweetsIsLoading}
-            userIsError={userTweetsIsError}
-            userReplies={userRepliesData}
-            userRepliesIsLoading={userRepliesIsLoading}
-            userRepliesIsError={userRepliesIsError}
-          />
-        </UserInfoDataContext.Provider>
+        <TweetTabPanel />
       </Grid>
 
       <Grid

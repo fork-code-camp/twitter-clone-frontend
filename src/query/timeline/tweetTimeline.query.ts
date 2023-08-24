@@ -14,13 +14,6 @@ const tweetConfig = {
       return response.data
     },
   },
-  getUserTweets: {
-    key: 'getUserTweets',
-    request: async () => {
-      const response = await getUserTweets()
-      return response.data
-    },
-  },
   getUserRepliesTweets: {
     key: 'getUserRepliesTweets',
     request: async () => {
@@ -28,6 +21,21 @@ const tweetConfig = {
       return response.data
     },
   },
+}
+
+export const useGetUserTweetsQuery = (args: { page: number; size: number }) => {
+  return useQuery({
+    queryKey: ['getUserTweets', args],
+    queryFn: async () => {
+        const response = await getUserTweets(args)
+        return response.data
+    },
+    keepPreviousData: true,
+    enabled: args !== null,
+    onError(error) {
+      console.error('useGetUserTweetsQuery error', error)
+    },
+  })
 }
 
 export const useGetTweetHomeQuery = () => {
@@ -38,13 +46,6 @@ export const useGetTweetHomeQuery = () => {
       console.log('ретвиты (фоловнутых) получены')
     },
   })
-  return state
-}
-
-export const useGetUserTweetsQuery = () => {
-  const { getUserTweets: config } = tweetConfig
-
-  const state = useQuery(config.key, config.request, {})
   return state
 }
 

@@ -5,16 +5,7 @@ import Box from '@mui/material/Box';
 import Tweets from '@/components/tweets/Tweets';
 import ReplyList from '@/components/tweets/ReplyList';
 import { Alert, CircularProgress, Container } from '@mui/material';
-import { IDataTweet } from '@/components/tweets/types';
-
-export type ITweetTabPanel = {
-  userData: IDataTweet[];
-  userIsLoading: boolean;
-  userIsError: boolean;
-  userReplies: IDataTweet[];
-  userRepliesIsLoading: boolean;
-  userRepliesIsError: boolean;
-};
+import { useGetUserTweetsQuery, useGetTweetUserRepliesQuery } from '@/query/timeline/tweetTimeline.query';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -45,18 +36,14 @@ const a11yProps = (index: number) => {
   };
 };
 
-const TweetTabPanel: FC<ITweetTabPanel> = ({
-  userData,
-  userIsLoading,
-  userIsError,
-  userReplies,
-  userRepliesIsLoading,
-  userRepliesIsError,
-}) => {
+const TweetTabPanel: FC = () => {
   const [value, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  const { data: userTweetsData, isLoading: userTweetsIsLoading, isError: userTweetsIsError, } = useGetUserTweetsQuery({ page: 0, size: 100 });
+  const { data: userRepliesData, isLoading: userRepliesIsLoading, isError: userRepliesIsError, } = useGetTweetUserRepliesQuery();
 
   return (
     <Container disableGutters sx={{ width: '100%' }}>
@@ -82,14 +69,14 @@ const TweetTabPanel: FC<ITweetTabPanel> = ({
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Box width='100%' textAlign='center'> {userIsLoading && <CircularProgress sx={{ m: 1 }} />} </Box>
-        <Tweets tweets={userData || []} />
-        {userIsError && (<Alert severity="error">Ошибка загрузки постов user</Alert>)}
+        <Box width='100%' textAlign='center'> {userTweetsIsLoading && <CircularProgress sx={{ m: 1 }} />} </Box>
+        <Tweets tweets={userTweetsData || []} />
+        {userTweetsIsError && (<Alert severity="error">Ошибка загрузки постов user</Alert>)}
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Box width='100%' textAlign='center'>{userRepliesIsLoading && <CircularProgress sx={{ m: 1 }} />}</Box>
-        <ReplyList replies={userReplies || []} />
-        {userRepliesIsError && (<Alert severity="error">Ошибка загрузки постов userReplies</Alert>)}
+        <ReplyList replies={userRepliesData || []} />
+        {userRepliesIsError && (<Alert severity="error">Ошибка загрузки постов userRepliesData</Alert>)}
       </TabPanel>
       <TabPanel value={value} index={2}>
         Highlights
