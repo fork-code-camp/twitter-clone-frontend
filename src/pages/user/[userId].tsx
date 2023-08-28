@@ -13,7 +13,7 @@ import UserInfo from '@/components/userInfo/UserInfo';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import { menuList } from '@/data/configMenu/configMenu';
 import Navigation from '@/components/navigation/Navigation';
-import Tweets from '@/components/tweets/Tweets';
+import TweetAndRetweetList from '@/components/tweets/TweetAndRetweetList';
 import theme from '@/theme/theme';
 import { ISearchQueryData } from '@/services/types';
 
@@ -70,7 +70,7 @@ const User = () => {
         {userInfoDataIsLoading && <CircularProgress sx={{ m: 1 }} />}
         <UserInfo userInfoData={userInfoData} />
         <UnderLine />
-        <Tweets tweets={tweetList || []} />
+        <TweetAndRetweetList tweets={tweetList || []} />
         {userInfoData === undefined && <Typography variant='h1' sx={{textAlign: 'center'}}>This account doesn’t exist</Typography>}
       </Grid>
 

@@ -2,10 +2,9 @@ import React, { FC, useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import Tweets from '@/components/tweets/Tweets';
-import ReplyList from '@/components/tweets/ReplyList';
-import { Alert, CircularProgress, Container } from '@mui/material';
-import { useGetUserTweetsQuery, useGetTweetUserRepliesQuery } from '@/query/timeline/tweetTimeline.query';
+import { Container } from '@mui/material';
+import PanelTweets from './PanelTweets';
+import PanelReplies from './PanelReplies';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -42,9 +41,6 @@ const TweetTabPanel: FC = () => {
     setValue(newValue);
   };
 
-  const { data: userTweetsData, isLoading: userTweetsIsLoading, isError: userTweetsIsError, } = useGetUserTweetsQuery({ page: 0, size: 100 });
-  const { data: userRepliesData, isLoading: userRepliesIsLoading, isError: userRepliesIsError, } = useGetTweetUserRepliesQuery();
-
   return (
     <Container disableGutters sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -69,14 +65,10 @@ const TweetTabPanel: FC = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Box width='100%' textAlign='center'> {userTweetsIsLoading && <CircularProgress sx={{ m: 1 }} />} </Box>
-        <Tweets tweets={userTweetsData || []} />
-        {userTweetsIsError && (<Alert severity="error">Ошибка загрузки постов user</Alert>)}
+        <PanelTweets/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Box width='100%' textAlign='center'>{userRepliesIsLoading && <CircularProgress sx={{ m: 1 }} />}</Box>
-        <ReplyList replies={userRepliesData || []} />
-        {userRepliesIsError && (<Alert severity="error">Ошибка загрузки постов userRepliesData</Alert>)}
+        <PanelReplies/>
       </TabPanel>
       <TabPanel value={value} index={2}>
         Highlights

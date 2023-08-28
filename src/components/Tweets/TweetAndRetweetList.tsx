@@ -6,7 +6,7 @@ import Retweet from './Retweet';
 import { IDataTweet, IDataTweets } from './types';
 
 const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
-  console.log(tweets);
+  // console.log(tweets);
   return (
     <Container disableGutters>
       {tweets.map((tweet: IDataTweet) => (
