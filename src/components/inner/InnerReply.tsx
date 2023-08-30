@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { IAddTweetRequest } from '@/services/types';
 import { useAddReplyMutation } from '@/query/reply/addReply.mutation';
@@ -12,13 +12,14 @@ interface IInnerReply {
 const InnerReply: FC<IInnerReply> = ({ replyToId, onSubmitReply }) => {
   const { register, handleSubmit, reset } = useForm<IAddTweetRequest>();
 
-  const { mutateAsync: mutateMakeReply } = useAddReplyMutation();
+  const { mutateAsync, isSuccess } = useAddReplyMutation();
 
   const onSubmit = (requestData: IAddTweetRequest) => {
-    mutateMakeReply({ requestData, replyToId });
+    mutateAsync({ requestData, replyToId });
     onSubmitReply(false)
-    reset();
   };
+
+  useEffect(()=>{ reset() },[isSuccess, reset])
 
   return (
     <InnerTemplate

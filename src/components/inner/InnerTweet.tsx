@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { IAddTweetRequest } from '@/services/types';
 import { useAddTweetMutation } from '@/query/tweet/addTweet.mutation';
@@ -11,12 +11,13 @@ interface IInnerTweet {
 
 const InnerTweet: FC<IInnerTweet> = ({ avatarUrl, avatarAlt }) => {
   const { register, handleSubmit, reset } = useForm<IAddTweetRequest>();
-  const { mutateAsync: mutateAddTweet, isSuccess: isAddTweetSuccess } = useAddTweetMutation();
+  const { mutateAsync, isSuccess } = useAddTweetMutation();
 
   const onSubmit = async (requestData: IAddTweetRequest) => {
-    await mutateAddTweet(requestData);
-    await isAddTweetSuccess && reset();
+    await mutateAsync(requestData);
   };
+
+  useEffect(()=>{ reset() },[isSuccess, reset])
 
   return (
     <InnerTemplate
