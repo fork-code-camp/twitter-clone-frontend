@@ -13,8 +13,7 @@ const Reply: FC<IDataReply> = ({
   isLiked,
   isRetweeted,
   isBelongs,
-  tweetImg,
-  tweetAlt,
+  mediaUrls,
   likes,
   replies,
   replyTo,
@@ -31,8 +30,7 @@ const Reply: FC<IDataReply> = ({
   replyProfile,
   replycreationDate,
   replyTweetText,
-  replyTweetImg,
-  replyTweetAlt,
+  replyMediaUrls,
   replyLikes,
   replyReplies,
   replyReplyTo,
@@ -76,25 +74,24 @@ const Reply: FC<IDataReply> = ({
           }}
         >
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'start',
-              textAlign: 'center',
-              gap: 1,
-              flexWrap: { xs: 'wrap', sm: 'nowrap' },
-            }}
-          >
-            <UserHeader name={replyProfile.username} tag={replyProfile.username} />
-            <PassedTime date={replycreationDate} />
-          </Box>
-          {isBelongs && <MoreActionButton id={id} type={'reply'} />}
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'start',
+                textAlign: 'center',
+                gap: 1,
+                flexWrap: { xs: 'wrap', sm: 'nowrap' },
+              }}
+            >
+              <UserHeader name={replyProfile.username} tag={replyProfile.username} />
+              <PassedTime date={replycreationDate} />
+            </Box>
+            {isBelongs && <MoreActionButton id={id} type={'reply'} />}
           </Box>
 
           <TweetContent
             text={replyTweetText}
-            tweetImg={replyTweetImg}
-            tweetAlt={replyTweetAlt}
+            mediaUrls={replyMediaUrls}
           />
           <TweetWidgets
             id={replyId}
@@ -140,8 +137,7 @@ const Reply: FC<IDataReply> = ({
 
               <TweetContent
                 text={text}
-                tweetImg={tweetImg}
-                tweetAlt={tweetAlt}
+                mediaUrls={mediaUrls}
               />
             </Box>
             <TweetWidgets

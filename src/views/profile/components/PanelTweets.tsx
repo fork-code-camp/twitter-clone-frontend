@@ -9,8 +9,6 @@ const PanelTweets = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } = useGetUserTweetsQuery()
 
-  console.log(data);
-
   useEffect(() => {
     if (inView) {
       fetchNextPage()

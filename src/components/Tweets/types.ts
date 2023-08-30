@@ -22,8 +22,7 @@ export type ITweet = {
 
 export type ITweetContent = {
   text?: string
-  tweetImg?: string
-  tweetAlt?: string
+  mediaUrls?: string[]
 }
 
 export type ITweetWidgets = {
@@ -53,7 +52,7 @@ export type IDataTweet = {
   isBelongs: boolean
   likes: number
   profile: IUserInfoData
-  mediaUrls?: string
+  mediaUrls?: string[]
   creationDate: string
   quoteTo: null
   replies: number
@@ -113,7 +112,6 @@ export type IDataReply = {
   replyRetweetTo: null | IDataRetweetTo
   replyViews: number
   replyTweetText?: string
-  replyTweetImg?: string
-  replyTweetAlt?: string
+  replyMediaUrls?: string[]
   replycreationDate: string
 } & ITweet

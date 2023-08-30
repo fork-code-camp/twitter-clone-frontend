@@ -17,8 +17,7 @@ const Retweet: FC<ITweet> = ({
   profile,
   creationDate,
   text,
-  tweetImg,
-  tweetAlt,
+  mediaUrls,
   likes,
   replies,
   replyTo,
@@ -36,21 +35,21 @@ const Retweet: FC<ITweet> = ({
     >
       <CustomAvatar img={profile.avatarUrl} alt={profile.avatarUrl} />
       <Box sx={{ width: '100%' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 0.5, }} >
-            <RetweetSVG width="15" height="11" />
-            <Typography variant="h6" sx={{ color: theme.palette.secondary.main }} >
-              {profileData && profileData.username} Retweeted
-            </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 0.5, }} >
+              <RetweetSVG width="15" height="11" />
+              <Typography variant="h6" sx={{ color: theme.palette.secondary.main }} >
+                {profileData && profileData.username} Retweeted
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'start', textAlign: 'center', flexWrap: { xs: 'wrap', sm: 'nowrap' }, gap: '8px', }} >
+              <UserHeader name={profile.username} tag={profile.username} />
+              <PassedTime date={creationDate} />
+            </Box>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'start', textAlign: 'center', flexWrap: { xs: 'wrap', sm: 'nowrap' }, gap: '8px', }} >
-            <UserHeader name={profile.username} tag={profile.username} />
-            <PassedTime date={creationDate} />
-          </Box>
+          {isBelongs && <MoreActionButton id={id} type={'retweet'} />}
         </Box>
-        {isBelongs && <MoreActionButton id={id} type={'retweet'} />}
-      </Box>
         <Box
           sx={{
             m: 0,
@@ -63,8 +62,7 @@ const Retweet: FC<ITweet> = ({
         >
           <TweetContent
             text={text}
-            tweetImg={tweetImg}
-            tweetAlt={tweetAlt}
+            mediaUrls={mediaUrls}
           />
           <TweetWidgets
             id={id}

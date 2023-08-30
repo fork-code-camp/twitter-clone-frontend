@@ -6,7 +6,7 @@ import Retweet from './Retweet';
 import { IDataTweet, IDataTweets } from './types';
 
 const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
-  // console.log(tweets);
+  console.log(tweets);
   return (
     <Container disableGutters>
       {tweets.map((tweet: IDataTweet) => (
@@ -14,15 +14,11 @@ const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
           {tweet.retweetTo && (
             <Retweet
               {...tweet.retweetTo}
-              tweetImg={tweet.retweetTo.mediaUrls && tweet.retweetTo.mediaUrls[0]}
-              tweetAlt={tweet.retweetTo.mediaUrls && tweet.retweetTo.mediaUrls[0]}
             />
           )}
           {!tweet.retweetTo && !tweet.replyTo && (
             <Tweet
               {...tweet}
-              tweetImg={tweet.mediaUrls && tweet.mediaUrls[0]}
-              tweetAlt={tweet.mediaUrls && tweet.mediaUrls[0]}
             />
           )}
           {tweets && tweets.length - 1 != index && <UnderLine />}

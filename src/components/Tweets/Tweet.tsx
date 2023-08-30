@@ -16,8 +16,7 @@ const Tweet: FC<ITweet> = ({
   profile,
   creationDate,
   text,
-  tweetImg,
-  tweetAlt,
+  mediaUrls,
   likes,
   replies,
   replyTo,
@@ -57,8 +56,7 @@ const Tweet: FC<ITweet> = ({
         >
           <TweetContent
             text={text}
-            tweetImg={tweetImg}
-            tweetAlt={tweetAlt}
+            mediaUrls={mediaUrls}
           />
           <TweetWidgets
             id={id}

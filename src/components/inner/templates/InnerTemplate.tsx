@@ -71,7 +71,6 @@ const InnerTemplate: FC<IInnerTemplate> = ({
             },
           }}
         />
-        <Input type="file" {...register('file')} />
 
         <Box
           sx={{
@@ -82,6 +81,7 @@ const InnerTemplate: FC<IInnerTemplate> = ({
           }}
         >
           <InnerWidgetsTemplate />
+          <Input type="file" {...register('file')} />
           <Button
             type="submit"
             variant="contained"

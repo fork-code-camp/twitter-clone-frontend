@@ -14,10 +14,7 @@ const ReplyList: FC<IDataReplies> = ({ replies }, index) => {
           {reply.replyTo && (
             <Reply
               {...reply}
-              tweetImg={reply.mediaUrls && reply.mediaUrls[0]}
-              tweetAlt={reply.mediaUrls && reply.mediaUrls[0]}
-              replyTweetImg={reply.replyTo.mediaUrls && reply.replyTo.mediaUrls[0]}
-              replyTweetAlt={reply.replyTo.mediaUrls && reply.replyTo.mediaUrls[0]}
+              replyMediaUrls={reply.replyTo.mediaUrls}
               replyId={reply.replyTo.id}
               replyIsLiked={reply.replyTo.isLiked}
               replyIsRetweeted={reply.replyTo.isRetweeted}

@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Container, ImageListItem, Typography } from '@mui/material';
 import Image from 'next/image';
 import { ITweetContent } from '@/components/tweets/types';
 
-const TweetContent: FC<ITweetContent> = ({ text, tweetImg, tweetAlt }) => {
-  const isShowImage = tweetImg && tweetAlt;
+const TweetContent: FC<ITweetContent> = ({ text, mediaUrls }) => {
+  const isShowImage = mediaUrls?.length !== 0 && mediaUrls !== undefined;
+
   return (
     <Container
       disableGutters
@@ -18,26 +19,26 @@ const TweetContent: FC<ITweetContent> = ({ text, tweetImg, tweetAlt }) => {
       }}
     >
       <Typography sx={{ wordWrap: 'break-word' }}>{text}</Typography>
-      {isShowImage && (
-        <Box
-          sx={{
+      {isShowImage && mediaUrls.map((item) => (
+          <ImageListItem key={item} sx={{
             position: 'relative',
             borderRadius: '20px',
             overflow: 'hidden',
             width: '100%',
             height: '100%',
-          }}
-        >
-          <Image
-            width={100}
-            height={100}
-            style={{ width: 'inherit', height: 'inherit' }}
-            unoptimized
-            src={tweetImg}
-            alt={tweetAlt}
-          />
-        </Box>
-      )}
+          }}>
+            <Image
+              width={100}
+              height={100}
+              style={{ width: 'inherit', height: 'inherit' }}
+              unoptimized
+              src={item}
+              alt={item}
+            />
+          </ImageListItem>
+        ))
+
+      }
     </Container>
   );
 };
