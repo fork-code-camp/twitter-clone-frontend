@@ -1,11 +1,11 @@
 /* Auth */
-export interface IAuthRegisterRequest {
+export interface IAuthSignUpRequest {
   email: string
   username: string
   password: string
 }
 
-export interface IAuthRegisterResponse {
+export interface IAuthSignUpResponse {
   message: string
 }
 

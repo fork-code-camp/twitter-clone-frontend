@@ -1,13 +1,13 @@
 import React from 'react';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../next-seo.config';
-import LoginForm from '../forms/LoginForm';
+import SignInForm from '../forms/SignInForm';
 
 const Login = () => {
   return (
     <>
       <DefaultSeo title="Login" {...SEO} />
-      <LoginForm />
+      <SignInForm />
     </>
   );
 };

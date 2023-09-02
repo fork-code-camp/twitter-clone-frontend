@@ -31,15 +31,15 @@ const Home = () => {
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           <Button
             component={Link}
-            href="/registration"
+            href="/signUp"
             variant="contained"
             sx={btnTheme}
           >
-            Registration page
+            SignUp page
           </Button>
           <Button
             component={Link}
-            href="/login"
+            href="/signIn"
             variant="contained"
             sx={btnTheme}
           >

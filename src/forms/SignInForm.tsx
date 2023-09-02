@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import LoginPageTemplate from '../forms/templates/LogInPageTemplate';
+import SignInTemplate from './templates/SignInTemplate';
 import { useLoginMutation } from '@/query/authorization/authorization.mutation';
 import { IAuthLoginRequest } from '@/services/types';
 import { AxiosError } from 'axios';
 
-const LoginForm: FC = () => {
+const SignInForm: FC = () => {
   const { push } = useRouter();
   const { register: loginRegisterForm, handleSubmit: loginhandleSubmitForm, reset: loginResetForm } = useForm<IAuthLoginRequest>();
   const { mutateAsync: mutateLogin, isLoading, isSuccess, isError, error } = useLoginMutation();
@@ -21,7 +21,7 @@ const LoginForm: FC = () => {
   isSuccess && push('/home');
 
   return (
-    <LoginPageTemplate
+    <SignInTemplate
       loginRegisterForm={loginRegisterForm}
       onSubmitForm={onSubmitForm}
       isLoading={isLoading}
@@ -31,4 +31,4 @@ const LoginForm: FC = () => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;

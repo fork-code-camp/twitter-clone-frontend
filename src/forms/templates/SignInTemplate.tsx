@@ -16,7 +16,7 @@ import { IAuthLoginRequest } from '@/services/types';
 import { AxiosError } from 'axios';
 import { IErrorData } from '../types';
 
-interface ILogin {
+interface ISignInTemplate {
   loginRegisterForm: UseFormRegister<IAuthLoginRequest>;
   onSubmitForm: (e: React.FormEvent) => void;
   isLoading: boolean,
@@ -24,7 +24,7 @@ interface ILogin {
   error?: AxiosError
 }
 
-const Login: FC<ILogin> = ({ loginRegisterForm, onSubmitForm, isLoading, isError, error }) => {
+const SignInTemplate: FC<ISignInTemplate> = ({ loginRegisterForm, onSubmitForm, isLoading, isError, error }) => {
   const theme = useTheme();
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -32,7 +32,7 @@ const Login: FC<ILogin> = ({ loginRegisterForm, onSubmitForm, isLoading, isError
     isError && error && !error.response?.status && setErrorMessage(error.message)
     isError && error && error.response && error.response?.status && setErrorMessage((error.response.data as IErrorData).message)
     isError && error && console.log(error && error.response?.status);
-  }, [isError])
+  }, [error, isError])
 
   return (
     <Container
@@ -133,4 +133,4 @@ const Login: FC<ILogin> = ({ loginRegisterForm, onSubmitForm, isLoading, isError
   );
 }
 
-export default Login;
+export default SignInTemplate;

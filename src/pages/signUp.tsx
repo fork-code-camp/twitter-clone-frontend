@@ -2,12 +2,12 @@ import React from 'react';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../next-seo.config';
 import { Container } from '@mui/material';
-import RegistrationForm from '@/forms/RegistrationForm';
+import SignUpForm from '@/forms/SignUpForm';
 
 const Home = () => {
   return (
     <>
-      <DefaultSeo title="Registration" {...SEO} />
+      <DefaultSeo title="SignUp" {...SEO} />
       <Container
         sx={{
           display: 'flex',
@@ -17,7 +17,7 @@ const Home = () => {
           height: '100vh',
         }}
       >
-        <RegistrationForm />
+        <SignUpForm />
       </Container>
     </>
   );

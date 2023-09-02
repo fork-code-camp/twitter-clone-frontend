@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { UseFormRegister } from 'react-hook-form';
 import {
@@ -9,32 +9,42 @@ import {
   Box,
   useTheme,
   Alert,
+  CircularProgress,
 } from '@mui/material';
 
 import VerifyForm from '../VerifyForm';
-import { IAuthRegisterRequest } from '@/services/types';
+import { IAuthSignUpRequest } from '@/services/types';
+import { IErrorData } from '../types';
+import { AxiosError } from 'axios';
 
-interface IRegistration {
-  authRegisterForm: UseFormRegister<IAuthRegisterRequest>;
+interface ISignUpTemplate {
+  authRegisterForm: UseFormRegister<IAuthSignUpRequest>;
   onSubmitForm: (e: React.FormEvent) => void;
-  isLoadingRegister: boolean;
+  isLoading: boolean;
   openPopup: boolean;
   setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
   setIsVerify: React.Dispatch<React.SetStateAction<boolean>>;
-  isErrorRegister: boolean;
-  errorMessage: string;
+  isError: boolean;
+  error?: AxiosError;
 }
-const Registration = ({
+const SignUpTemplate = ({
   authRegisterForm,
   onSubmitForm,
-  isLoadingRegister,
+  isLoading,
   openPopup,
   setOpenPopup,
   setIsVerify,
-  isErrorRegister,
-  errorMessage,
-}: IRegistration) => {
+  isError,
+  error,
+}: ISignUpTemplate) => {
   const theme = useTheme();
+  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    isError && error && !error.response?.status && setErrorMessage(error.message)
+    isError && error && error.response && error.response?.status && setErrorMessage((error.response.data as IErrorData).message)
+    isError && error && console.log(error && error.response?.status);
+  }, [error, isError])
 
   return (
     <>
@@ -46,8 +56,10 @@ const Registration = ({
           justifyContent: 'center',
           alignItems: 'center',
           maxWidth: '452px',
+          position: 'relative',
         }}
       >
+        {isLoading && <CircularProgress sx={{ position: 'absolute', m: 1 }} />}
         <Box
           sx={{
             display: 'flex',
@@ -107,12 +119,11 @@ const Registration = ({
           >
             Sign up
           </Button>
-          {isLoadingRegister && <Typography>Loading.......</Typography>}
-          {isErrorRegister && <Alert severity="warning">{errorMessage}</Alert>}
+          {isError && <Alert severity="warning">{errorMessage}</Alert>}
         </Box>
       </Container>
 
-      {!isErrorRegister && (
+      {!isError && (
         <VerifyForm
           openPopup={openPopup}
           setOpenPopup={setOpenPopup}
@@ -123,4 +134,4 @@ const Registration = ({
   );
 };
 
-export default Registration;
+export default SignUpTemplate;

@@ -33,7 +33,7 @@ const OfferToRegister = () => {
       </Typography>
       <Button
         component={Link}
-        href="/registration"
+        href="/signUp"
         variant="contained"
         sx={{
           height: '40px',
