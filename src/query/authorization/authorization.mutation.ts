@@ -25,7 +25,7 @@ const authorizationConfig = {
     key: 'login',
     request: async (params: IAuthLoginRequest) => {
       const res = await login(params);
-      return res.data;
+      return res;
     },
   },
 };
@@ -58,9 +58,9 @@ export const useVerificationMutation = () => {
 export const useLoginMutation = () => {
   const { loginConfig: config } = authorizationConfig;
   const state = useMutation(config.request, {
-    onSuccess(data) {
-      console.log('логин успешен', data);
-      localStorage.setItem('auth-token', data.jwt);
+    onSuccess(response) {
+      console.log('логин успешен', response);
+      localStorage.setItem('auth-token', response.data.jwt);
     },
   });
 

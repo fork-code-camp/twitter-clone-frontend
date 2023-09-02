@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { UseFormRegister } from 'react-hook-form';
 import {
@@ -10,23 +10,29 @@ import {
   Link,
   useTheme,
   Alert,
+  CircularProgress,
 } from '@mui/material';
 import { IAuthLoginRequest } from '@/services/types';
+import { AxiosError } from 'axios';
+import { IErrorData } from '../types';
 
 interface ILogin {
   loginRegisterForm: UseFormRegister<IAuthLoginRequest>;
   onSubmitForm: (e: React.FormEvent) => void;
-  isErrorLogin: boolean;
-  errorMessage: string;
+  isLoading: boolean,
+  isError: boolean;
+  error?: AxiosError
 }
 
-const Login: FC<ILogin> = ({
-  loginRegisterForm,
-  onSubmitForm,
-  isErrorLogin,
-  errorMessage,
-}) => {
+const Login: FC<ILogin> = ({ loginRegisterForm, onSubmitForm, isLoading, isError, error }) => {
   const theme = useTheme();
+  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    isError && error && !error.response?.status && setErrorMessage(error.message)
+    isError && error && error.response && error.response?.status && setErrorMessage((error.response.data as IErrorData).message)
+    isError && error && console.log(error && error.response?.status);
+  }, [isError])
 
   return (
     <Container
@@ -37,8 +43,10 @@ const Login: FC<ILogin> = ({
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
+        position: 'relative',
       }}
     >
+      {isLoading && <CircularProgress sx={{ position: 'absolute', m: 1 }} />}
       <Box
         sx={{
           display: 'flex',
@@ -90,7 +98,7 @@ const Login: FC<ILogin> = ({
         >
           Login
         </Button>
-        {isErrorLogin && <Alert severity="warning">{errorMessage}</Alert>}
+        {isError && <Alert severity="warning">{errorMessage}</Alert>}
         <Box
           sx={{
             mt: '15px',
@@ -123,6 +131,6 @@ const Login: FC<ILogin> = ({
       </Box>
     </Container>
   );
-};
+}
 
 export default Login;

@@ -4,44 +4,29 @@ import { useForm } from 'react-hook-form';
 import LoginPageTemplate from '../forms/templates/LogInPageTemplate';
 import { useLoginMutation } from '@/query/authorization/authorization.mutation';
 import { IAuthLoginRequest } from '@/services/types';
-import { ErrorResponse } from './types';
+import { AxiosError } from 'axios';
 
 const LoginForm: FC = () => {
   const { push } = useRouter();
+  const { register: loginRegisterForm, handleSubmit: loginhandleSubmitForm, reset: loginResetForm } = useForm<IAuthLoginRequest>();
+  const { mutateAsync: mutateLogin, isLoading, isSuccess, isError, error } = useLoginMutation();
 
-  const {
-    register: loginRegisterForm,
-    handleSubmit: loginhandleSubmitForm,
-    reset: loginResetForm,
-  } = useForm<IAuthLoginRequest>();
+  const customHandleSubmit = (data: IAuthLoginRequest) => { mutateLogin(data); loginResetForm() };
 
-  const {
-    mutateAsync: mutateLogin,
-    isSuccess: loginIsSuccess,
-    isError: isErrorLogin,
-    error: errorMessage,
-  } = useLoginMutation();
-
-  const messageOnError = (errorMessage as ErrorResponse)?.response.data.message;
-
-  const customHandleSubmit = (data: IAuthLoginRequest) => {
-    mutateLogin(data);
-    loginResetForm();
-  };
-
-  const onSubmitForm = (e: React.FormEvent) => {
-    e.preventDefault();/* TODO убрать e */
+  const onSubmitForm = (event: React.FormEvent) => {
+    event.preventDefault();
     loginhandleSubmitForm(customHandleSubmit)();
   };
 
-  loginIsSuccess && push('/home');
+  isSuccess && push('/home');
 
   return (
     <LoginPageTemplate
       loginRegisterForm={loginRegisterForm}
       onSubmitForm={onSubmitForm}
-      isErrorLogin={isErrorLogin}
-      errorMessage={messageOnError}
+      isLoading={isLoading}
+      isError={isError}
+      error={error as AxiosError}
     />
   );
 };
