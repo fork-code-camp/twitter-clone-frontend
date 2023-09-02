@@ -28,7 +28,7 @@ const SignUpForm = () => {
     handleSubmit(requestRegister)();
   };
 
-  isVerify && push('/login');
+  isVerify && push('/signIn');
 
   return (
     <SignUpTemplate

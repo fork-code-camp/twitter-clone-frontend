@@ -3,11 +3,3 @@ export interface IErrorData {
   message: string,
   timestamp: number
 }
-
-export interface ErrorResponse {
-  response: {
-    data: {
-      message: string;
-    };
-  };
-}

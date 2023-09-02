@@ -66,7 +66,7 @@ const OfferToRegister = () => {
         <Typography variant="h6">Уже зарегистрированы?</Typography>
         <Button
           component={Link}
-          href="/login"
+          href="/signIn"
           variant="contained"
           sx={{
             height: '40px',
