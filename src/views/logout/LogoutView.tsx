@@ -4,7 +4,7 @@ import Navigation from '@/components/navigation/Navigation';
 import PageHeader from '@/components/headers/PageHeader';
 import { menuLogoutList } from '@/data/configMenu/configMenu';
 import UnderLine from '@/common/UnderLine';
-import OfferToRegister from '@/components/OfferToRegister/OfferToRegister';
+import OfferToRegister from '@/components/offerToRegister/OfferToRegister';
 import Description from '@/temp/Description';
 
 const LogoutView: FC = () => {
