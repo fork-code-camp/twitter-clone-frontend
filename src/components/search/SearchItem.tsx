@@ -8,11 +8,13 @@ const SearchItem = ({ username, profileId }: { username: string, profileId: stri
   const { push } = useRouter();
   const { mutateAsync: mutateToFollow } = useToFollowMutation()
 
-  const onClick = () => {
+  const onClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation()
     mutateToFollow(profileId)
   }
 
-  const onItemClick = () => {
+  const onItemClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation()
     push(`/user/${username}`)
   }
 
