@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ChangeEventHandler, MutableRefObject, useRef, useState } from 'react';
 import {
   Container,
   Box,
@@ -6,15 +6,18 @@ import {
   Input,
   Button,
   useTheme,
+  IconButton,
 } from '@mui/material';
 import CustomAvatar from '../../avatar/CustomAvatar';
 import InnerWidgetsTemplate from './InnerWidgetsTemplate';
 import { IAddTweetRequest } from '@/services/types';
-import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
+import { UseFormHandleSubmit, UseFormRegister, Controller, Control } from 'react-hook-form';
+import MediaSVG from '@/assets/icons/Media.svg';
 
 interface IInnerTemplate {
   avatarUrl?: string;
   avatarAlt?: string;
+  control: Control;
   register: UseFormRegister<IAddTweetRequest>;
   handleSubmit: UseFormHandleSubmit<IAddTweetRequest>;
   onSubmit: (requestData: IAddTweetRequest) => void;
@@ -23,11 +26,42 @@ interface IInnerTemplate {
 const InnerTemplate: FC<IInnerTemplate> = ({
   avatarUrl,
   avatarAlt,
+  control,
   register,
   handleSubmit,
   onSubmit,
 }) => {
   const theme = useTheme();
+  const iconColor = theme.palette.buttonWidget?.contrastText || '#000000';
+  const inputRef = useRef<HTMLInputElement | null>(null) as MutableRefObject<HTMLInputElement>
+
+  const avatarRequest = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files) { return }
+    if (files && files.length > 0) {
+      const requestFile = await files[0];
+      console.log(requestFile);
+
+      register('file')
+      // await mutateEditAvatar(requestFile)
+    }
+  }
+
+  const handleClick = () => {
+    inputRef.current.click()
+  };
+
+
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+
+  //   // Выполните здесь нужные действия с выбранным файлом
+
+  //   setSelectedFile(file);
+  // };
+
   return (
     <Container
       component="form"
@@ -81,7 +115,49 @@ const InnerTemplate: FC<IInnerTemplate> = ({
           }}
         >
           <InnerWidgetsTemplate />
-          <Input type="file" {...register('file')} />
+
+
+
+
+
+
+
+
+
+
+
+
+          {/* <Input type="file" {...register('file')} /> */}
+
+
+          <Controller
+            name="file"
+            control={control}
+            render={({ field: { value, onChange, ...field } }) => (
+              <>
+
+              <input style={{ display: 'none' }} type="file" id="upload" {...field} onChange={(event) => {
+                    onChange(event.target.files[0]);
+                  }} />
+          <label htmlFor="upload">
+            {/* Здесь вы можете использовать свою иконку */}
+            <MediaSVG style={{ fill: iconColor }} />
+            {/* {selectedFile ? selectedFile.name : "Выберите файл"} */}
+          </label>
+
+
+              </>
+            )}
+          />
+
+
+
+
+
+
+
+
+
           <Button
             type="submit"
             variant="contained"

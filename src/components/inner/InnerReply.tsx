@@ -10,7 +10,7 @@ interface IInnerReply {
 }
 
 const InnerReply: FC<IInnerReply> = ({ replyToId, onSubmitReply }) => {
-  const { register, handleSubmit, reset } = useForm<IAddTweetRequest>();
+  const { control, register, handleSubmit, reset } = useForm<IAddTweetRequest>();
 
   const { mutateAsync, isSuccess } = useAddReplyMutation();
 
@@ -23,6 +23,7 @@ const InnerReply: FC<IInnerReply> = ({ replyToId, onSubmitReply }) => {
 
   return (
     <InnerTemplate
+      control={control}
       register={register}
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}

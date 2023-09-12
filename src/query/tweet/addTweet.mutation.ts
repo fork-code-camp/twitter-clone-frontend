@@ -6,13 +6,15 @@ const tweetConfig = {
   addTweet: {
     key: 'addTweet',
     request: async (requestData: IAddTweetRequest) => {
+      console.log(requestData);
+
       const mydata = await new FormData()
       const blob = new Blob([JSON.stringify({ text: requestData.text })], {
         type: 'application/json',
       })
 
       await mydata.append('request', blob)
-      await mydata.append('files', requestData.file[0])
+      await mydata.append('files', requestData.file)
 
       const response = await addTweet(mydata)
       return response.data

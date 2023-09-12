@@ -10,7 +10,7 @@ interface IInnerTweet {
 }
 
 const InnerTweet: FC<IInnerTweet> = ({ avatarUrl, avatarAlt }) => {
-  const { register, handleSubmit, reset } = useForm<IAddTweetRequest>();
+  const { control, register, handleSubmit, reset } = useForm<IAddTweetRequest>();
   const { mutateAsync, isSuccess } = useAddTweetMutation();
 
   const onSubmit = async (requestData: IAddTweetRequest) => {
@@ -21,6 +21,7 @@ const InnerTweet: FC<IInnerTweet> = ({ avatarUrl, avatarAlt }) => {
 
   return (
     <InnerTemplate
+    control={control}
       avatarUrl={avatarUrl}
       avatarAlt={avatarAlt}
       register={register}
