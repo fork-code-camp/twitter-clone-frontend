@@ -16,8 +16,7 @@ const InnerWidgetsTemplate = () => {
       sx={{
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: { xs: '5px', sm: '5px', md: '18px' },
+        gap: '5px',
         maxWidth: { xs: '100px', sm: '100%' },
       }}
     >

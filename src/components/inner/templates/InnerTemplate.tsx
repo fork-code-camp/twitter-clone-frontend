@@ -1,4 +1,4 @@
-import React, { FC, ChangeEventHandler, MutableRefObject, useRef, useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Container,
   Box,
@@ -6,7 +6,7 @@ import {
   Input,
   Button,
   useTheme,
-  IconButton,
+  Typography,
 } from '@mui/material';
 import CustomAvatar from '../../avatar/CustomAvatar';
 import InnerWidgetsTemplate from './InnerWidgetsTemplate';
@@ -17,7 +17,7 @@ import MediaSVG from '@/assets/icons/Media.svg';
 interface IInnerTemplate {
   avatarUrl?: string;
   avatarAlt?: string;
-  control: Control;
+  control: Control<IAddTweetRequest>;
   register: UseFormRegister<IAddTweetRequest>;
   handleSubmit: UseFormHandleSubmit<IAddTweetRequest>;
   onSubmit: (requestData: IAddTweetRequest) => void;
@@ -33,34 +33,8 @@ const InnerTemplate: FC<IInnerTemplate> = ({
 }) => {
   const theme = useTheme();
   const iconColor = theme.palette.buttonWidget?.contrastText || '#000000';
-  const inputRef = useRef<HTMLInputElement | null>(null) as MutableRefObject<HTMLInputElement>
 
-  const avatarRequest = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (!files) { return }
-    if (files && files.length > 0) {
-      const requestFile = await files[0];
-      console.log(requestFile);
-
-      register('file')
-      // await mutateEditAvatar(requestFile)
-    }
-  }
-
-  const handleClick = () => {
-    inputRef.current.click()
-  };
-
-
-
-  const [selectedFile, setSelectedFile] = useState(null);
-  // const handleFileChange = (e) => {
-  //   const file = e.target.files[0];
-
-  //   // Выполните здесь нужные действия с выбранным файлом
-
-  //   setSelectedFile(file);
-  // };
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
   return (
     <Container
@@ -111,53 +85,34 @@ const InnerTemplate: FC<IInnerTemplate> = ({
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
+            alignItems: 'center',
             gap: '0 10px',
           }}
         >
-          <InnerWidgetsTemplate />
-
-
-
-
-
-
-
-
-
-
-
-
-          {/* <Input type="file" {...register('file')} /> */}
-
-
-          <Controller
-            name="file"
-            control={control}
-            render={({ field: { value, onChange, ...field } }) => (
-              <>
-
-              <input style={{ display: 'none' }} type="file" id="upload" {...field} onChange={(event) => {
-                    onChange(event.target.files[0]);
+          <Box sx={{ display: 'flex', flexDirection: 'row', gap: '5px', }}>
+            <Controller
+              name="file"
+              control={control}
+              render={({ field: { value, onChange, ...field } }) => (
+                <>
+                  <Input style={{ display: 'none' }} type="file" id="upload" {...field} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    const files = event.target.files;
+                    if (files && files.length > 0) {
+                      console.log('file added');
+                      setSelectedFile(files[0]);
+                      onChange(files[0]);
+                    }
                   }} />
-          <label htmlFor="upload">
-            {/* Здесь вы можете использовать свою иконку */}
-            <MediaSVG style={{ fill: iconColor }} />
-            {/* {selectedFile ? selectedFile.name : "Выберите файл"} */}
-          </label>
+                  <label htmlFor="upload" style={{ display: 'flex', gap: '5px', cursor: 'pointer', height: '20px', padding: '0px 0 0px 0' }}>
+                    <MediaSVG style={{ fill: iconColor }} />
+                    {selectedFile && <Typography>+1</Typography>}
+                  </label>
+                </>
+              )}
+            />
+            <InnerWidgetsTemplate />
 
-
-              </>
-            )}
-          />
-
-
-
-
-
-
-
-
-
+          </Box>
           <Button
             type="submit"
             variant="contained"

@@ -6,8 +6,6 @@ const tweetConfig = {
   addTweet: {
     key: 'addTweet',
     request: async (requestData: IAddTweetRequest) => {
-      console.log(requestData);
-
       const mydata = await new FormData()
       const blob = new Blob([JSON.stringify({ text: requestData.text })], {
         type: 'application/json',
@@ -24,7 +22,6 @@ const tweetConfig = {
 
 export const useAddTweetMutation = () => {
   const queryClient = useQueryClient()
-
   const { addTweet: config } = tweetConfig
   const state = useMutation(config.request, {
     onSuccess(data) {
