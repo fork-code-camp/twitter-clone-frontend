@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { AppBar, Container, Toolbar, useTheme } from '@mui/material';
-import { authorizedNavigationList, unauthorizedNavigationList } from '@/components/navigation/configMenu';
+import { authorizedNavigationList, unauthorizedNavigationList } from '@/components/navigation/configNavigation';
 import NavigationItem from './NavigationItem';
+
 import { INavigation, INavigationElement, IPlan } from './types';
 
 const Navigation: FC<INavigation> = ({ plan = 'unauthorized', activeItem }) => {
@@ -12,7 +13,7 @@ const Navigation: FC<INavigation> = ({ plan = 'unauthorized', activeItem }) => {
     unauthorized: unauthorizedNavigationList
   }
 
-  const PlanView = PLAN_VIEW[plan as keyof typeof PLAN_VIEW]
+  const planView = PLAN_VIEW[plan as keyof typeof PLAN_VIEW]
 
   return (
     <AppBar
@@ -28,7 +29,7 @@ const Navigation: FC<INavigation> = ({ plan = 'unauthorized', activeItem }) => {
           disableGutters
           sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}
         >
-          {PlanView.map((navItem: INavigationElement) => (
+          {planView.map((navItem: INavigationElement) => (
             <NavigationItem
               key={navItem.title}
               navItem={navItem}

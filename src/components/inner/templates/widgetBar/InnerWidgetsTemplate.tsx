@@ -1,11 +1,8 @@
 import React from 'react';
-import { IconButton, ListItemIcon, useTheme } from '@mui/material';
-import ConfigActions from '@/data/configInner/configActions';
+import { IconButton, ListItemIcon } from '@mui/material';
+import {configWidgets} from '@/components/inner/templates/widgetBar/ConfigWidgets';
 
 const InnerWidgetsTemplate = () => {
-  const theme = useTheme();
-  const iconColor = theme.palette.buttonWidget?.contrastText || '#000000';
-  const iconArray = ConfigActions({ iconColor });
 
   const onClick = (itemId: number) => {
     console.log('InnerWidgetsTemplate: id ' + itemId);
@@ -20,11 +17,11 @@ const InnerWidgetsTemplate = () => {
         maxWidth: { xs: '100px', sm: '100%' },
       }}
     >
-      {iconArray.map((item) => {
+      {configWidgets.map((item) => {
         return (
           <IconButton
             key={item.id}
-            sx={{ m: 0, p: 0 }}
+            sx={{ m: 0, p: 0, fill: "rgb(29, 161, 242)" }}
             onClick={() => onClick(item.id)}
           >
             {item.icon}

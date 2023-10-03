@@ -1,18 +1,16 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import {
   Container,
   Box,
   TextField,
-  Input,
   Button,
   useTheme,
-  Typography,
 } from '@mui/material';
 import CustomAvatar from '../../avatar/CustomAvatar';
-import InnerWidgetsTemplate from './InnerWidgetsTemplate';
+import InnerWidgetsTemplate from './widgetBar/InnerWidgetsTemplate';
 import { IAddTweetRequest } from '@/services/types';
-import { UseFormHandleSubmit, UseFormRegister, Controller, Control } from 'react-hook-form';
-import MediaSVG from '@/assets/icons/Media.svg';
+import { UseFormHandleSubmit, UseFormRegister, Control } from 'react-hook-form';
+import UploadButton from './widgetBar/UploadButton';
 
 interface IInnerTemplate {
   avatarUrl?: string;
@@ -32,9 +30,6 @@ const InnerTemplate: FC<IInnerTemplate> = ({
   onSubmit,
 }) => {
   const theme = useTheme();
-  const iconColor = theme.palette.buttonWidget?.contrastText || '#000000';
-
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
   return (
     <Container
@@ -90,28 +85,8 @@ const InnerTemplate: FC<IInnerTemplate> = ({
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: '5px', }}>
-            <Controller
-              name="file"
-              control={control}
-              render={({ field: { value, onChange, ...field } }) => (
-                <>
-                  <Input style={{ display: 'none' }} type="file" id="upload" {...field} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    const files = event.target.files;
-                    if (files && files.length > 0) {
-                      console.log('file added');
-                      setSelectedFile(files[0]);
-                      onChange(files[0]);
-                    }
-                  }} />
-                  <label htmlFor="upload" style={{ display: 'flex', gap: '5px', cursor: 'pointer', height: '20px', padding: '0px 0 0px 0' }}>
-                    <MediaSVG style={{ fill: iconColor }} />
-                    {selectedFile && <Typography>+1</Typography>}
-                  </label>
-                </>
-              )}
-            />
+            <UploadButton control={control} />
             <InnerWidgetsTemplate />
-
           </Box>
           <Button
             type="submit"

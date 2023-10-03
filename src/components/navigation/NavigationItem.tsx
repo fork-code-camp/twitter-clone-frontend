@@ -6,8 +6,8 @@ import {
 } from '@mui/material';
 import React, { FC } from 'react';
 import { useRouter } from 'next/router';
-import { INavigationItem } from './types';
 
+import { INavigationItem } from './types';
 
 const NavigationItem: FC<INavigationItem> = ({ navItem, isActiveItem }) => {
   const theme = useTheme();

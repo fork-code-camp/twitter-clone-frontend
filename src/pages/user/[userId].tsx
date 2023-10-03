@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import { Box, CircularProgress, Grid, Typography } from '@mui/material';
+
 import { useUserDataByPathIdQuery } from '@/query/profile/userDataByPathId.query';
 import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
 import { useGetSearchUsersListQuery } from '@/query/profile/search.query';
 import { useGetUserTweetsByIdQuery } from '@/query/timeline/tweetTimeline.query';
+
 import UnderLine from '@/common/UnderLine';
 import AccountBar from '@/components/headers/AccountBar';
 import PageHeader from '@/components/headers/PageHeader';
 import News from '@/components/news/News';
 import UserInfo from '@/components/userInfo/UserInfo';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
-import { menuList } from '@/components/navigation/configMenu';
 import Navigation from '@/components/navigation/Navigation';
 import TweetAndRetweetList from '@/components/tweets/TweetAndRetweetList';
 import theme from '@/theme/theme';
+
 import { ISearchQueryData } from '@/services/types';
 
 const User = () => {
@@ -52,7 +54,7 @@ const User = () => {
             height: '100vh',
             pb: 2,
           }}>
-          <Navigation menuList={menuList} />
+          <Navigation plan = 'authorized' />
           {authorizedUserIsLoading && <CircularProgress sx={{ m: 1 }} />}
           {authorizedUserData && <AccountBar hasAvatar isVertical name={authorizedUserData.username} tag={authorizedUserData.username} />}
         </Box>
