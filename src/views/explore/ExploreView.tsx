@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Box, Grid, useTheme } from '@mui/material';
 import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
-import { menuList } from '@/data/configMenu/configMenu';
 import Navigation from '@/components/navigation/Navigation';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
@@ -25,7 +24,7 @@ const ProfileView: FC = () => {
             height: '100vh',
             pb: 2,
           }}>
-          <Navigation activeItem="Explore" menuList={menuList} />
+          <Navigation plan = 'authorized' activeItem="Explore" />
           <AccountBar isLoading={profileDataIsLoading} hasAvatar isVertical name={profileData && profileData.username} tag={profileData && profileData.username}/>
         </Box>
       </Grid>

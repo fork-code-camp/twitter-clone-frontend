@@ -9,7 +9,7 @@ import MoreSVG from '@/assets/icons/More.svg';
 import ViewSVG from '@/assets/icons/View.svg';
 import SettingsSVG from '@/assets/icons/Settings.svg';
 
-export const menuList = [
+export const authorizedNavigationList = [
   { title: 'Home', icon: <HomeSVG />, url: '/home' },
   { title: 'Explore', icon: <ExplorerSVG />, url: '/explore' },
   { title: 'Notifications', icon: <NotificationSVG />, url: '#' },
@@ -20,7 +20,7 @@ export const menuList = [
   { title: 'More', icon: <MoreSVG />, url: '#' },
 ];
 
-export const menuLogoutList = [
+export const unauthorizedNavigationList = [
   { title: 'View', icon: <ViewSVG />, url: '/view' },
   { title: 'Settings', icon: <SettingsSVG />, url: '#' },
 ];

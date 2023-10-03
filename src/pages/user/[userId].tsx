@@ -11,7 +11,7 @@ import PageHeader from '@/components/headers/PageHeader';
 import News from '@/components/news/News';
 import UserInfo from '@/components/userInfo/UserInfo';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
-import { menuList } from '@/data/configMenu/configMenu';
+import { menuList } from '@/components/navigation/configMenu';
 import Navigation from '@/components/navigation/Navigation';
 import TweetAndRetweetList from '@/components/tweets/TweetAndRetweetList';
 import theme from '@/theme/theme';
@@ -71,7 +71,7 @@ const User = () => {
         <UserInfo userInfoData={userInfoData} />
         <UnderLine />
         <TweetAndRetweetList tweets={tweetList || []} />
-        {userInfoData === undefined && <Typography variant='h1' sx={{textAlign: 'center'}}>This account doesn’t exist</Typography>}
+        {userInfoData === undefined && <Typography variant='h1' sx={{ textAlign: 'center' }}>This account doesn’t exist</Typography>}
       </Grid>
 
       <Grid

@@ -1,20 +1,18 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import { AppBar, Container, Toolbar, useTheme } from '@mui/material';
+import { authorizedNavigationList, unauthorizedNavigationList } from '@/components/navigation/configMenu';
 import NavigationItem from './NavigationItem';
+import { INavigation, INavigationElement, IPlan } from './types';
 
-interface IMenu {
-  title: string;
-  icon: ReactNode;
-  url: string;
-}
-
-interface IMenuArray {
-  menuList: IMenu[];
-  activeItem?: string;
-}
-
-const Navigation: FC<IMenuArray> = ({ menuList, activeItem }) => {
+const Navigation: FC<INavigation> = ({ plan = 'unauthorized', activeItem }) => {
   const theme = useTheme();
+
+  const PLAN_VIEW: IPlan = {
+    authorized: authorizedNavigationList,
+    unauthorized: unauthorizedNavigationList
+  }
+
+  const PlanView = PLAN_VIEW[plan as keyof typeof PLAN_VIEW]
 
   return (
     <AppBar
@@ -30,12 +28,11 @@ const Navigation: FC<IMenuArray> = ({ menuList, activeItem }) => {
           disableGutters
           sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}
         >
-          {menuList.map((navItem) => (
+          {PlanView.map((navItem: INavigationElement) => (
             <NavigationItem
               key={navItem.title}
               navItem={navItem}
               isActiveItem={activeItem === navItem.title}
-              url={navItem.url}
             />
           ))}
         </Toolbar>

@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import InnerTweet from '@/components/inner/InnerTweet';
 import { Alert, Box, Button, CircularProgress, Grid, useTheme } from '@mui/material';
-import { menuList } from '@/data/configMenu/configMenu';
 import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
 import { useGetProfileAvatarQuery } from '@/query/profile/avatar.query';
 import { useGetTweetHomeQuery } from '@/query/timeline/homeTweets.query';
@@ -44,7 +43,7 @@ const HomePage: FC = () => {
           height: '100vh',
           pb: 2,
         }}>
-          <Navigation activeItem="Home" menuList={menuList} />
+          <Navigation plan='authorized' activeItem="Home" />
           <AccountBar
             isLoading={profileDataIsLoading}
             hasAvatar
@@ -69,7 +68,7 @@ const HomePage: FC = () => {
 
         <Box width='100%' textAlign='center'> {isLoading && <CircularProgress sx={{ m: 1 }} />} </Box>
         {isError && (<Alert severity="error">Ошибка загрузки постов user</Alert>)}
-        {data && data.pages.map((page: any, index: number) => (
+        {data && data.pages.map((page, index: number) => (
           <React.Fragment key={index}>
             <TweetAndRetweetList tweets={page || []} />
           </React.Fragment>

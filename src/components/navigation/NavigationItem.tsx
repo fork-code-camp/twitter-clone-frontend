@@ -4,19 +4,12 @@ import {
   MenuItem,
   useTheme,
 } from '@mui/material';
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import { useRouter } from 'next/router';
+import { INavigationItem } from './types';
 
-interface IMenuElem {
-  navItem: {
-    title: string;
-    icon: ReactNode;
-  };
-  isActiveItem: boolean;
-  url: string;
-}
 
-const MenuElem: FC<IMenuElem> = ({ navItem, isActiveItem, url }) => {
+const NavigationItem: FC<INavigationItem> = ({ navItem, isActiveItem }) => {
   const theme = useTheme();
   const { push } = useRouter();
 
@@ -24,7 +17,7 @@ const MenuElem: FC<IMenuElem> = ({ navItem, isActiveItem, url }) => {
     <MenuItem
       disableGutters
       key={navItem.title}
-      onClick={() => push(url)}
+      onClick={() => push(navItem.url)}
       sx={{
         display: { xs: 'flex', md: 'flex' },
         flexDirection: { xs: 'none', md: 'row' },
@@ -59,4 +52,4 @@ const MenuElem: FC<IMenuElem> = ({ navItem, isActiveItem, url }) => {
   );
 };
 
-export default MenuElem;
+export default NavigationItem;

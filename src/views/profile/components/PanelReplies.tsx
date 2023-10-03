@@ -19,7 +19,7 @@ const PanelTweets = () => {
     <Container disableGutters>
       <Box width='100%' textAlign='center'> {isLoading && <CircularProgress sx={{ m: 1 }} />} </Box>
       {isError && (<Alert severity="error">Ошибка загрузки постов replies</Alert>)}
-      {data && data.pages.map((page: any, index: number) => (
+      {data && data.pages.map((page, index: number) => (
         <React.Fragment key={index}>
           <ReplyList replies={page || []}/>
         </React.Fragment>

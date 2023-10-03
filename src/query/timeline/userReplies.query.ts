@@ -1,11 +1,13 @@
-import { getUserRepliesTweets, getUserTweets } from "@/services/timelineService/timelineService";
+import { getUserRepliesTweets } from "@/services/timelineService/timelineService";
 import { useInfiniteQuery } from "react-query";
+
+import { IDataTweet } from "@/components/tweets/types";
 
 export const useGetUserRepliesQuery = () => {
   return useInfiniteQuery({
     queryKey: 'userReplies',
     queryFn: ({ pageParam = 0 }) => getUserRepliesTweets(pageParam),
-    getNextPageParam: (lastPage: any, pages: any) => {
+    getNextPageParam: (lastPage, pages: IDataTweet[]) => {
       if (lastPage.length === 5) {
         return pages.length
       } else {

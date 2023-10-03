@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
 import { Box, Grid, useTheme } from '@mui/material';
-import { menuList } from '@/data/configMenu/configMenu';
 import PageHeader from '@/components/headers/PageHeader';
 import Navigation from '@/components/navigation/Navigation';
 import News from '@/components/news/News';
@@ -33,7 +32,7 @@ const ProfileView: FC = () => {
             height: '100vh',
             pb: 2,
           }}>
-          <Navigation activeItem="Profile" menuList={menuList} />
+          <Navigation plan = 'authorized' activeItem="Profile" />
           <AccountBar
             isLoading={userInfoDataIsLoading}
             hasAvatar
