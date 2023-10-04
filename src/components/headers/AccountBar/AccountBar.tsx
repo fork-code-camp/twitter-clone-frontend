@@ -79,7 +79,7 @@ const AccountBar: FC<IAccountBar> = ({
         }}
         sx={{
           '& .MuiMenu-paper': {
-            top: '740px!important',
+            top: '770px!important',
           }
         }}
       >
