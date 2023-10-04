@@ -9,7 +9,7 @@ import Navigation from '@/components/navigation/Navigation';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
-import AccountBar from '@/components/headers/AccountBar';
+import AccountBar from '@/components/headers/AccountBar/AccountBar';
 import TweetAndRetweetList from '@/components/tweets/TweetAndRetweetList';
 import { useInView } from 'react-intersection-observer';
 

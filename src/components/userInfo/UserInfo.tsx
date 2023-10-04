@@ -53,7 +53,7 @@ const UserInfo: FC<IUserInfo> = ({ userInfoData, hasEditButton }) => {
         <Box>
           <CustomAvatar width={150} height={150} img={userInfoData && userInfoData.avatarUrl} alt={userInfoData && userInfoData.avatarUrl} />
           {userInfoData && <Typography variant="h2">{userInfoData.username}</Typography>}
-          {userInfoData && (<TaggedText color="tag.contrastText" tagSymb="@" text={userInfoData.username} />)}
+          {userInfoData && (<TaggedText color="tag.contrastText" tagSymbol="@" text={userInfoData.username} />)}
           {userInfoData && (<Typography variant="h4" my={1}> {userInfoData.bio} </Typography>)}
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
             {userInfoData && <UserLocation userLocation={userInfoData.location} />}

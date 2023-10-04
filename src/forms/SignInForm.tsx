@@ -18,7 +18,7 @@ const SignInForm: FC = () => {
     loginhandleSubmitForm(customHandleSubmit)();
   };
 
-  isSuccess && push('/home');
+  isSuccess && push('/');
 
   return (
     <SignInTemplate

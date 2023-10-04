@@ -3,6 +3,10 @@
   для использования переименовать:
   pages/index.tsx --> pages/home.tsx
   pages/bootmenu.tsx --> pages/index.tsx
+  так же в src\forms\SignInForm.tsx поменять:
+  isSuccess && push('/'); --> isSuccess && push('/home');
+  так же в src\components\navigation\configNavigation.tsx поменять:
+  { title: 'Home', icon: <HomeSVG />, url: '/' }, -->   { title: 'Home', icon: <HomeSVG />, url: '/home' },
 */
 
 import React from 'react';

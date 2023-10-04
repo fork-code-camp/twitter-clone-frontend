@@ -5,7 +5,7 @@ import Navigation from '@/components/navigation/Navigation';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
-import AccountBar from '@/components/headers/AccountBar';
+import AccountBar from '@/components/headers/AccountBar/AccountBar';
 import Search from '@/components/search/Search';
 
 const ProfileView: FC = () => {
@@ -24,8 +24,8 @@ const ProfileView: FC = () => {
             height: '100vh',
             pb: 2,
           }}>
-          <Navigation plan = 'authorized' activeItem="Explore" />
-          <AccountBar isLoading={profileDataIsLoading} hasAvatar isVertical name={profileData && profileData.username} tag={profileData && profileData.username}/>
+          <Navigation plan='authorized' activeItem="Explore" />
+          <AccountBar isLoading={profileDataIsLoading} hasAvatar isVertical name={profileData && profileData.username} tag={profileData && profileData.username} />
         </Box>
       </Grid>
 

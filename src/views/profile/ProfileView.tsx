@@ -8,7 +8,7 @@ import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
 import TweetTabPanel from './components/TweetTabPanel';
 import UserInfo from '../../components/userInfo/UserInfo';
-import AccountBar from '@/components/headers/AccountBar';
+import AccountBar from '@/components/headers/AccountBar/AccountBar';
 
 const ProfileView: FC = () => {
   const theme = useTheme();
@@ -31,7 +31,7 @@ const ProfileView: FC = () => {
             height: '100vh',
             pb: 2,
           }}>
-          <Navigation plan = 'authorized' activeItem="Profile" />
+          <Navigation plan='authorized' activeItem="Profile" />
           <AccountBar
             isLoading={userInfoDataIsLoading}
             hasAvatar

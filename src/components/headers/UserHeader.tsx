@@ -49,7 +49,7 @@ const UserHeader: FC<IUserHeader> = ({ name, tag, isVerified }) => {
             </IconButton>
           )}
         </Box>
-        <TaggedText color="tag.contrastText" tagSymb="@" text={tag} />
+        <TaggedText color="tag.contrastText" tagSymbol="@" text={tag} />
       </Box>
     </Container>
   );

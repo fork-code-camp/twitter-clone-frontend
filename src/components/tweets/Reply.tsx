@@ -132,7 +132,7 @@ const Reply: FC<IDataReply> = ({
                 >
                   Replying to
                 </Typography>
-                <TaggedText color="tag.main" tagSymb="@" text={replyProfile.username} />
+                <TaggedText color="tag.main" tagSymbol="@" text={replyProfile.username} />
               </Box>
 
               <TweetContent

@@ -10,7 +10,7 @@ import ViewSVG from '@/assets/icons/View.svg';
 import SettingsSVG from '@/assets/icons/Settings.svg';
 
 export const authorizedNavigationList = [
-  { title: 'Home', icon: <HomeSVG />, url: '/home' },
+  { title: 'Home', icon: <HomeSVG />, url: '/' },
   { title: 'Explore', icon: <ExplorerSVG />, url: '/explore' },
   { title: 'Notifications', icon: <NotificationSVG />, url: '#' },
   { title: 'Messages', icon: <MessagesSVG />, url: '#' },
