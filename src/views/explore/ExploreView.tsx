@@ -13,8 +13,16 @@ const ProfileView: FC = () => {
 
   const { data: profileData, isLoading: profileDataIsLoading } = useGetAuthorizedUserDataQuery();
   return (
-    <Grid container gap={2} justifyContent='center' flexWrap='nowrap' >
-      <Grid item sx={{ width: { xs: '75px', sm: '75px', md: '200px', lg: '200px' }, position: 'relative' }} >
+    <Grid
+      className='view-explore'
+      container
+      gap={2}
+      sx={{ justifyContent: 'center', flexWrap: 'nowrap'}}
+    >
+      <Grid
+        className='view-explore-menu'
+        item
+        sx={{ width: { xs: '68px', sm: '68px', md: '200px', lg: '200px' }, position: 'relative' }} >
         <Box
           sx={{
             display: 'flex',
@@ -22,6 +30,7 @@ const ProfileView: FC = () => {
             justifyContent: 'space-between',
             position: 'fixed',
             height: '100vh',
+            width: 'inherit',
             pb: 2,
           }}>
           <Navigation plan='authorized' activeItem="Explore" />
@@ -30,8 +39,9 @@ const ProfileView: FC = () => {
       </Grid>
 
       <Grid item
+        className='view-explore-content'
         sx={{
-          width: { xs: '350px', sm: '600px', md: '600px' },
+          width: { xs: 'auto', sm: '600px', md: '600px' },
           borderLeft: `1px solid ${theme.palette.border?.main}`,
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
@@ -41,6 +51,7 @@ const ProfileView: FC = () => {
       </Grid>
 
       <Grid
+        className='view-explore-additional'
         item
         sx={{
           display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' },

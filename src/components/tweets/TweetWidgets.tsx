@@ -25,6 +25,7 @@ const TweetWidgets: FC<ITweetWidgets> = ({
       sx={{
         display: 'flex',
         flexDirection: 'raw',
+        flexWrap: 'wrap',
         justifyContent: 'space-between',
       }}
     >

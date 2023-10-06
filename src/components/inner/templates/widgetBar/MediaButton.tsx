@@ -4,11 +4,11 @@ import { Control, Controller } from 'react-hook-form';
 import MediaSVG from '@/assets/icons/Media.svg';
 import { IAddTweetRequest } from '@/services/types';
 
-interface IUploadButton {
+interface IMediaButton {
   control: Control<IAddTweetRequest>;
 }
 
-const UploadButton: FC<IUploadButton> = ({ control }) => {
+const MediaButton: FC<IMediaButton> = ({ control }) => {
   const theme = useTheme();
   const iconColor = theme.palette.buttonWidget?.contrastText || '#000000';
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -38,4 +38,4 @@ const UploadButton: FC<IUploadButton> = ({ control }) => {
   )
 }
 
-export default UploadButton
+export default MediaButton

@@ -17,7 +17,7 @@ const Profile = () => {
   return (
     <>
       <DefaultSeo title="Explore" {...SEO} />
-      <Container>
+      <Container  className='page-explore' disableGutters>
         <ExploreView />
       </Container>
     </>

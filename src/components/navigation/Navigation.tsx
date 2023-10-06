@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { AppBar, Container, Toolbar, useTheme } from '@mui/material';
+import { AppBar, Toolbar, useTheme } from '@mui/material';
 import { authorizedNavigationList, unauthorizedNavigationList } from '@/components/navigation/configNavigation';
 import NavigationItem from './NavigationItem';
 
@@ -17,6 +17,7 @@ const Navigation: FC<INavigation> = ({ plan = 'unauthorized', activeItem }) => {
 
   return (
     <AppBar
+      className='component-navigation'
       position="relative"
       sx={{
         width: 'auto',
@@ -24,7 +25,6 @@ const Navigation: FC<INavigation> = ({ plan = 'unauthorized', activeItem }) => {
         boxShadow: 'none',
       }}
     >
-      <Container disableGutters sx={{ display: 'flex' }}>
         <Toolbar
           disableGutters
           sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}
@@ -37,7 +37,6 @@ const Navigation: FC<INavigation> = ({ plan = 'unauthorized', activeItem }) => {
             />
           ))}
         </Toolbar>
-      </Container>
     </AppBar>
   );
 };

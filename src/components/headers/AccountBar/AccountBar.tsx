@@ -3,7 +3,7 @@ import { Box, Button, CircularProgress, Container, Menu, MenuItem, Typography } 
 import { useGetProfileAvatarQuery } from '@/query/profile/avatar.query';
 import CustomAvatar from '../../avatar/CustomAvatar';
 import TaggedText from '@/common/TaggedText';
-import VerifiedIcon from './VerifiedIcon';
+import VerifiedIcon from '../../../ui/icon/VerifiedIcon';
 import { useLogoutQuery } from '@/query/authorization/authorization.query';
 import { useRouter } from 'next/router';
 

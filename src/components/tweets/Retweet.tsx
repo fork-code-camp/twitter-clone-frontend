@@ -29,6 +29,7 @@ const Retweet: FC<ITweet> = ({
   const { data: profileData } = useGetAuthorizedUserDataQuery();
   return (
     <Container
+      className='retweet'
       id={id.toString()}
       disableGutters
       sx={{ display: 'flex', flexDirection: 'row', gap: '0 13px', padding: '10px 15px' }}

@@ -6,9 +6,12 @@ import Retweet from './Retweet';
 import { IDataTweet, IDataTweets } from './types';
 
 const Tweets: FC<IDataTweets> = ({ tweets }, index) => {
-  console.log(tweets);
+
   return (
-    <Container disableGutters>
+    <Container
+      className='tweet-retweet-list'
+      disableGutters
+    >
       {tweets.map((tweet: IDataTweet) => (
         <Box key={tweet.id}>
           {tweet.retweetTo && (

@@ -7,10 +7,13 @@ import {
   useTheme,
 } from '@mui/material';
 import CustomAvatar from '../../avatar/CustomAvatar';
-import InnerWidgetsTemplate from './widgetBar/InnerWidgetsTemplate';
 import { IAddTweetRequest } from '@/services/types';
 import { UseFormHandleSubmit, UseFormRegister, Control } from 'react-hook-form';
-import UploadButton from './widgetBar/UploadButton';
+import MediaButton from './widgetBar/MediaButton';
+import GifButton from './widgetBar/GifButton';
+import PollButton from './widgetBar/PollButton';
+import EmojiButton from './widgetBar/EmojiButton';
+import ScheduleButton from './widgetBar/ScheduleButton';
 
 interface IInnerTemplate {
   avatarUrl?: string;
@@ -79,14 +82,18 @@ const InnerTemplate: FC<IInnerTemplate> = ({
           sx={{
             display: 'flex',
             flexDirection: 'row',
+            flexWrap: 'wrap',
             justifyContent: 'space-between',
             alignItems: 'center',
-            gap: '0 10px',
+            gap: '10px 0',
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: '5px', }}>
-            <UploadButton control={control} />
-            <InnerWidgetsTemplate />
+            <MediaButton control={control} />
+            <GifButton />
+            <PollButton />
+            <EmojiButton />
+            <ScheduleButton />
           </Box>
           <Button
             type="submit"

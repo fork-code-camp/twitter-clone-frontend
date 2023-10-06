@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <>
       <DefaultSeo title="Home" {...SEO} />
-      <Container>
+      <Container className='page-home' disableGutters>
         <HomeView />
       </Container>
     </>

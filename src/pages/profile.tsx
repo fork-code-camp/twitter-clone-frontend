@@ -17,7 +17,7 @@ const Profile = () => {
   return (
     <>
       <DefaultSeo title="Profile" {...SEO} />
-      <Container>
+      <Container  className='page-profile' disableGutters>
         <ProfileView />
       </Container>
     </>

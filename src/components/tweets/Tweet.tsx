@@ -27,6 +27,7 @@ const Tweet: FC<ITweet> = ({
 
   return (
     <Container
+      className='tweet'
       disableGutters
       sx={{
         display: 'flex',
@@ -42,7 +43,7 @@ const Tweet: FC<ITweet> = ({
             <UserHeader name={profile.username} tag={profile.username} />
             <PassedTime date={creationDate} />
           </Box>
-         {isBelongs && <MoreActionButton id={id} type={'tweet'} />}
+          {isBelongs && <MoreActionButton id={id} type={'tweet'} />}
         </Box>
         <Box
           sx={{

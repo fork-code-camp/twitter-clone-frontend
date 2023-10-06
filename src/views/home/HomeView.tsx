@@ -21,17 +21,23 @@ const HomePage: FC = () => {
   const { data: profileData, isLoading: profileDataIsLoading } = useGetAuthorizedUserDataQuery();
 
   useEffect(() => {
-    if (inView) {
+    if (!isLoading && inView) {
       fetchNextPage()
     }
-  }, [inView])
+  }, [fetchNextPage, inView, isLoading])
 
   return (
-    <Grid container gap={2} sx={{ justifyContent: 'center', flexWrap: 'nowrap' }}
+    <Grid
+      className='view-home'
+      container
+      gap={2}
+      sx={{ justifyContent: 'center', flexWrap: 'nowrap'}}
     >
-      <Grid item
+      <Grid
+        className='view-home-menu'
+        item
         sx={{
-          width: { xs: '75px', sm: '75px', md: '200px', lg: '200px' },
+          width: { xs: '68px', sm: '68px', md: '200px', lg: '200px' },
           position: 'relative'
         }}
       >
@@ -41,6 +47,7 @@ const HomePage: FC = () => {
           justifyContent: 'space-between',
           position: 'fixed',
           height: '100vh',
+          width: 'inherit',
           pb: 2,
         }}>
           <Navigation plan='authorized' activeItem="Home" />
@@ -53,9 +60,10 @@ const HomePage: FC = () => {
         </Box>
       </Grid>
       <Grid
+        className='view-home-content'
         item
         sx={{
-          width: { xs: '300px', sm: '600px', md: '600px' },
+          width: { xs: 'auto', sm: '600px', md: '600px' },
           borderLeft: `1px solid ${theme.palette.border?.main}`,
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
@@ -80,6 +88,7 @@ const HomePage: FC = () => {
         )}
       </Grid>
       <Grid
+        className='view-home-additional'
         item
         sx={{
           display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' },

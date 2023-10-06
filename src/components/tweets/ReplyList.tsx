@@ -8,7 +8,9 @@ const ReplyList: FC<IDataReplies> = ({ replies }, index) => {
   console.log(replies);
 
   return (
-    <Container disableGutters>
+    <Container
+      className='reply-list'
+      disableGutters>
       {replies.map((reply: IDataTweet) => (
         <Box key={reply.id}>
           {reply.replyTo && (
