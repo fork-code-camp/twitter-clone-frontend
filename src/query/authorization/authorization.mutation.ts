@@ -1,15 +1,11 @@
-import {
-  login,
-  register,
-  verifyEmail,
-} from '@/services/authService/authService';
-import { IAuthLoginRequest, IAuthRegisterRequest } from '@/services/types';
+import { login, register, verifyEmail } from '@/services/authService/authService';
+import { IAuthLoginRequest, IAuthSignUpRequest } from '@/services/types';
 import { useMutation } from 'react-query';
 
 const authorizationConfig = {
   registerConfig: {
     key: 'register',
-    request: async (params: IAuthRegisterRequest) => {
+    request: async (params: IAuthSignUpRequest) => {
       const res = await register(params);
       return res.data;
     },
@@ -30,7 +26,7 @@ const authorizationConfig = {
   },
 };
 
-export const useRegistrationMutation = () => {
+export const useSignUpMutation = () => {
   const { registerConfig: config } = authorizationConfig;
   const state = useMutation(config.request, {
     onSuccess(data) {

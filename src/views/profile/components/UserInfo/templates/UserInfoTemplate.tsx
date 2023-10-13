@@ -39,7 +39,7 @@ const UserInfoTemplate: FC<IUserInfoTemplate> = ({
           <Avatar width={150} height={150} img={avatarUrl} alt={avatarUrl} />
         </Box>
         <Typography variant="h2">{username}</Typography>
-        {tag && <TaggedText color="tag.contrastText" tagSymb="@" text={tag} />}
+        {tag && <TaggedText color="tag.contrastText" tagSymbol="@" text={tag} />}
         {bio && (
           <Typography variant="h4" my={1}>
             {' '}

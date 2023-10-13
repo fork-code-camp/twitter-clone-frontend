@@ -6,12 +6,8 @@ import {
   RETWEET_POST,
 } from '../config'
 
-export const setRetweet = async (tweetId: number) => {
-  console.log(tweetId, 'tweetId: ' + tweetId)
-
+export const addRetweet = async (tweetId: number) => {
   const response = await api.post(`${RETWEET_POST}/${tweetId}`)
-  console.log(response)
-
   return response
 }
 
@@ -20,14 +16,13 @@ export const getRetweet = async () => {
   return response
 }
 
+/* getRetweetList еще не внедрено, TODO изменения от бэкенда */
 export const getRetweetList = async () => {
   const response = await api.get(RETWEET_LIST_GET)
   return response
 }
 
 export const deleteRetweet = async (retweetData: number) => {
-  console.log(retweetData, '-')
-
   const response = await api.delete(`${RETWEET_DELETE}/${retweetData}`)
   return response
 }

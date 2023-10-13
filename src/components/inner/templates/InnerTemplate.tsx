@@ -3,31 +3,37 @@ import {
   Container,
   Box,
   TextField,
-  Input,
   Button,
   useTheme,
 } from '@mui/material';
-import Avatar from '../../../components/Avatar';
-import InnerWidgetsTemplate from './InnerWidgetsTemplate';
-import { IMakeTweetRequest } from '@/services/types';
-import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
+import CustomAvatar from '../../avatar/CustomAvatar';
+import { IAddTweetRequest } from '@/services/types';
+import { UseFormHandleSubmit, UseFormRegister, Control } from 'react-hook-form';
+import MediaButton from './widgetBar/MediaButton';
+import GifButton from './widgetBar/GifButton';
+import PollButton from './widgetBar/PollButton';
+import EmojiButton from './widgetBar/EmojiButton';
+import ScheduleButton from './widgetBar/ScheduleButton';
 
 interface IInnerTemplate {
   avatarUrl?: string;
   avatarAlt?: string;
-  register: UseFormRegister<IMakeTweetRequest>;
-  handleSubmit: UseFormHandleSubmit<IMakeTweetRequest>;
-  onSubmit: (requestData: IMakeTweetRequest) => void;
+  control: Control<IAddTweetRequest>;
+  register: UseFormRegister<IAddTweetRequest>;
+  handleSubmit: UseFormHandleSubmit<IAddTweetRequest>;
+  onSubmit: (requestData: IAddTweetRequest) => void;
 }
 
 const InnerTemplate: FC<IInnerTemplate> = ({
   avatarUrl,
   avatarAlt,
+  control,
   register,
   handleSubmit,
   onSubmit,
 }) => {
   const theme = useTheme();
+
   return (
     <Container
       component="form"
@@ -40,7 +46,7 @@ const InnerTemplate: FC<IInnerTemplate> = ({
         padding: '10px 15px',
       }}
     >
-      {avatarUrl && <Avatar img={avatarUrl} alt={avatarAlt} />}
+      {avatarUrl && <CustomAvatar img={avatarUrl} alt={avatarAlt} />}
       <Box
         sx={{
           display: 'flex',
@@ -71,17 +77,24 @@ const InnerTemplate: FC<IInnerTemplate> = ({
             },
           }}
         />
-        <Input type="file" {...register('file')} />
 
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'row',
+            flexWrap: 'wrap',
             justifyContent: 'space-between',
-            gap: '0 10px',
+            alignItems: 'center',
+            gap: '10px 0',
           }}
         >
-          <InnerWidgetsTemplate />
+          <Box sx={{ display: 'flex', flexDirection: 'row', gap: '5px', }}>
+            <MediaButton control={control} />
+            <GifButton />
+            <PollButton />
+            <EmojiButton />
+            <ScheduleButton />
+          </Box>
           <Button
             type="submit"
             variant="contained"

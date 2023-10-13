@@ -1,14 +1,7 @@
 import React, { FC } from 'react';
-import {
-  Box,
-  Container,
-  IconButton,
-  Typography,
-  useTheme,
-} from '@mui/material';
-import VerificationSVG from '@/assets/icons/Verification.svg';
+import { Box, Container, Typography } from '@mui/material';
 import TaggedText from '@/common/TaggedText';
-
+import VerifiedIcon from '@/ui/icon/VerifiedIcon';
 interface IUserHeader {
   name: string;
   tag: string;
@@ -16,7 +9,6 @@ interface IUserHeader {
 }
 
 const UserHeader: FC<IUserHeader> = ({ name, tag, isVerified }) => {
-  const theme = useTheme();
 
   return (
     <Container
@@ -33,23 +25,16 @@ const UserHeader: FC<IUserHeader> = ({ name, tag, isVerified }) => {
         sx={{
           display: 'flex',
           flexDirection: 'row',
+          flexWrap: 'wrap',
           alignItems: 'center',
           gap: '0 8px',
         }}
       >
         <Box sx={{ display: 'flex', gap: '8px' }}>
-          <Typography variant="h5" fontWeight={700}>
-            {name}
-          </Typography>
-          {isVerified && (
-            <IconButton sx={{ m: 0, p: 0 }}>
-              <VerificationSVG
-                style={{ fill: theme.palette.secondary.contrastText }}
-              />
-            </IconButton>
-          )}
+          <Typography variant="h5" fontWeight={700}>{name}</Typography>
+          {isVerified && <VerifiedIcon />}
         </Box>
-        <TaggedText color="tag.contrastText" tagSymb="@" text={tag} />
+        <TaggedText color="tag.contrastText" tagSymbol="@" text={tag} />
       </Box>
     </Container>
   );

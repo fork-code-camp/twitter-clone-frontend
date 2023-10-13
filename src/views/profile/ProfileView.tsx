@@ -1,48 +1,31 @@
 import React, { FC } from 'react';
+import { useGetAuthorizedUserDataQuery } from '@/query/profile/authorizedUserData.query';
 import { Box, Grid, useTheme } from '@mui/material';
-import { menuList } from '@/data/configMenu/configMenu';
 import PageHeader from '@/components/headers/PageHeader';
-import Menu from '@/components/menu/Menu';
+import Navigation from '@/components/navigation/Navigation';
 import News from '@/components/news/News';
 import UnderLine from '@/common/UnderLine';
 import WhoToFollow from '@/components/whoToFollow/WhoToFollow';
-import {
-  useGetTweetHomeQuery,
-  useGetTweetUserQuery,
-  useGetTweetUserRepliesQuery,
-} from '@/query/timeline/tweetTimeline.query';
-import TweetList from './components/TweetList';
-import UserInfo from './components/UserInfo/UserInfo';
-import AccountBar from '@/components/headers/AccountBar';
-import { useGetProfileDataQuery } from '@/query/profile/profile.query';
+import TweetTabPanel from './components/TweetTabPanel';
+import UserInfo from '../../components/userInfo/UserInfo';
+import AccountBar from '@/components/headers/AccountBar/AccountBar';
 
 const ProfileView: FC = () => {
   const theme = useTheme();
-  const {
-    data: userData,
-    isLoading: userIsLoading,
-    isError: userIsError,
-  } = useGetTweetUserQuery();
-  const {
-    data: homeData,
-    isLoading: homeIsLoading,
-    isError: homeIsError,
-  } = useGetTweetHomeQuery();
-  const {
-    data: userRepliesData,
-    isLoading: userRepliesIsLoading,
-    isError: userRepliesIsError,
-  } = useGetTweetUserRepliesQuery();
-  const { data: profileData } = useGetProfileDataQuery();
+  const { data: userInfoData, isLoading: userInfoDataIsLoading } = useGetAuthorizedUserDataQuery();
+
   return (
     <Grid
+      className='view-profile'
       container
       gap={2}
-      justifyContent='center' flexWrap='nowrap'
+      sx={{ justifyContent: 'center', flexWrap: 'nowrap'}}
     >
-      <Grid item
+      <Grid
+        className='view-profile-menu'
+        item
         sx={{
-          width: { xs: '75px', sm: '75px', md: '200px', lg: '200px' },
+          width: { xs: '68px', sm: '68px', md: '200px', lg: '200px' },
           position: 'relative'
         }}
       >
@@ -53,52 +36,38 @@ const ProfileView: FC = () => {
             justifyContent: 'space-between',
             position: 'fixed',
             height: '100vh',
+            width: 'inherit',
             pb: 2,
           }}>
-          <Menu activeItem="Profile" menuList={menuList} />
+          <Navigation plan='authorized' activeItem="Profile" />
           <AccountBar
+            isLoading={userInfoDataIsLoading}
             hasAvatar
             isVertical
-            name={profileData && profileData.username}
-            tag={profileData && profileData.username}
+            name={userInfoData && userInfoData.username}
+            tag={userInfoData && userInfoData.username}
           />
         </Box>
       </Grid>
 
       <Grid
+        className='view-profile-content'
         item
         sx={{
-          width: { xs: '350px', sm: '600px', md: '600px' },
+          width: { xs: 'auto', sm: '600px', md: '600px' },
           borderLeft: `1px solid ${theme.palette.border?.main}`,
           borderRight: `1px solid ${theme.palette.border?.main}`,
         }}
       >
         <PageHeader title="Profile" />
         <UnderLine />
-        <UserInfo />
+        <UserInfo hasEditButton userInfoData={userInfoData} />
         <UnderLine />
-
-        <Box
-          display='flex'
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
-        ></Box>
-
-        <TweetList
-          userData={userData}
-          userIsLoading={userIsLoading}
-          userIsError={userIsError}
-          homeData={homeData}
-          homeIsLoading={homeIsLoading}
-          homeIsError={homeIsError}
-          userReplies={userRepliesData}
-          userRepliesIsLoading={userRepliesIsLoading}
-          userRepliesIsError={userRepliesIsError}
-        />
+        <TweetTabPanel />
       </Grid>
 
       <Grid
+        className='view-profile-additional'
         item
         sx={{
           display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' },

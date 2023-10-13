@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import VerifyTemplate from './templates/VerifyTemplate';
 import { useVerificationMutation } from '@/query/authorization/authorization.mutation';
 import { IAuthVerifyRequest } from '@/services/types';
+import { AxiosError } from 'axios';
 
 interface IVerifyTemplate {
   openPopup: boolean;
@@ -10,41 +11,35 @@ interface IVerifyTemplate {
   setIsVerify: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const VerifyForm = ({
-  openPopup,
-  setOpenPopup,
-  setIsVerify,
-}: IVerifyTemplate) => {
-  const {
-    register: verifyRegisterForm,
-    handleSubmit: verifyHandleSubmitForm,
-    reset: verifyResetForm,
-  } = useForm<IAuthVerifyRequest>();
+const VerifyForm = ({ openPopup, setOpenPopup, setIsVerify }: IVerifyTemplate) => {
+  const { register: verifyRegisterForm, handleSubmit, reset } = useForm<IAuthVerifyRequest>();
 
-  const { mutateAsync: mutateVerifyEmail, isSuccess: verifyIsSuccess } =
-    useVerificationMutation();
+  const { mutateAsync: mutateVerifyEmail, isLoading, isSuccess, isError, error } = useVerificationMutation();
 
-  useEffect(() => {
-    setIsVerify(verifyIsSuccess);
-  }, [setIsVerify, verifyIsSuccess]);
+  useEffect(() => { setIsVerify(isSuccess); }, [setIsVerify, isSuccess]);
 
-  const requestVerify: SubmitHandler<IAuthVerifyRequest> = async (
-    activationCode
-  ) => {
+  const requestVerify: SubmitHandler<IAuthVerifyRequest> = async ( activationCode ) => {
     mutateVerifyEmail(activationCode);
-    setOpenPopup(false);
-    verifyResetForm();
   };
+
+  useEffect(()=>{
+    isSuccess && setOpenPopup(false);
+    isSuccess && reset();;
+  },[isSuccess, reset, setOpenPopup])
 
   const onSubmitForm = () => {
-    verifyHandleSubmitForm(requestVerify)();
+    handleSubmit(requestVerify)();
   };
+
   return (
     <VerifyTemplate
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       onSubmitForm={() => onSubmitForm()}
       verifyRegisterForm={verifyRegisterForm}
+      isLoading={isLoading}
+      isError={isError}
+      error={error as AxiosError}
     />
   );
 };

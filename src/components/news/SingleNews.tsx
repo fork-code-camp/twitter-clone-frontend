@@ -81,7 +81,7 @@ const SingleNews: FC<ISingleNews> = ({
           >
             Trending with
           </Typography>
-          <TaggedText color="tag.main" tagSymb="#" text={mainTag} />
+          <TaggedText color="tag.main" tagSymbol="#" text={mainTag} />
         </Box>
       </Box>
       <Box

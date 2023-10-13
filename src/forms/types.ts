@@ -1,7 +1,5 @@
-export interface ErrorResponse {
-  response: {
-    data: {
-      message: string;
-    };
-  };
+export interface IErrorData {
+  code: number,
+  message: string,
+  timestamp: number
 }

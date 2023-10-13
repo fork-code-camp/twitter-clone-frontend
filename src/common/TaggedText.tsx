@@ -3,17 +3,17 @@ import React, { FC } from 'react';
 
 interface ITaggedText {
   text: string;
-  tagSymb?: string;
+  tagSymbol?: string;
   color?: string;
 }
 const TaggedText: FC<ITaggedText> = ({
   text = 'null',
-  tagSymb = '@',
+  tagSymbol = '@',
   color = 'inherit',
 }) => {
   return (
     <Typography variant="h6" color={color}>
-      {tagSymb +
+      {tagSymbol +
         text.toLowerCase().replace(/[\s~'@#%&*()\-_=+[\]}\\;:'",<.>/?]/g, '')}
     </Typography>
   );
